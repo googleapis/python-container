@@ -20,7 +20,7 @@ set -eo pipefail
 # Disable buffering, so that the logs stream through.
 export PYTHONUNBUFFERED=1
 
-cd github/googleapis-container
+cd github/python-container
 
 # Remove old nox
 python3.6 -m pip uninstall --yes --quiet nox-automation

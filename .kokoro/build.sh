@@ -15,7 +15,7 @@
 
 set -eo pipefail
 
-cd github/googleapis-container
+cd github/python-container
 
 # Disable buffering, so that the logs stream through.
 export PYTHONUNBUFFERED=1

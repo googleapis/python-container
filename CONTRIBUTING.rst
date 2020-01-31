@@ -35,21 +35,21 @@ Using a Development Checkout
 You'll have to create a development environment using a Git checkout:
 
 - While logged into your GitHub account, navigate to the
-  ``googleapis-container`` `repo`_ on GitHub.
+  ``python-container`` `repo`_ on GitHub.
 
-- Fork and clone the ``googleapis-container`` repository to your GitHub account by
+- Fork and clone the ``python-container`` repository to your GitHub account by
   clicking the "Fork" button.
 
-- Clone your fork of ``googleapis-container`` from your GitHub account to your local
+- Clone your fork of ``python-container`` from your GitHub account to your local
   computer, substituting your account username and specifying the destination
-  as ``hack-on-googleapis-container``.  E.g.::
+  as ``hack-on-python-container``.  E.g.::
 
    $ cd ${HOME}
-   $ git clone git@github.com:USERNAME/googleapis-container.git hack-on-googleapis-container
-   $ cd hack-on-googleapis-container
-   # Configure remotes such that you can pull changes from the googleapis/googleapis-container
+   $ git clone git@github.com:USERNAME/python-container.git hack-on-python-container
+   $ cd hack-on-python-container
+   # Configure remotes such that you can pull changes from the googleapis/python-container
    # repository into your local repository.
-   $ git remote add upstream git@github.com:googleapis/googleapis-container.git
+   $ git remote add upstream git@github.com:googleapis/python-container.git
    # fetch and merge changes from upstream into master
    $ git fetch upstream
    $ git merge upstream/master
@@ -60,7 +60,7 @@ repo, from which you can submit a pull request.
 To work on the codebase and run the tests, we recommend using ``nox``,
 but you can also use a ``virtualenv`` of your own creation.
 
-.. _repo: https://github.com/googleapis/googleapis-container
+.. _repo: https://github.com/googleapis/python-container
 
 Using ``nox``
 =============
@@ -126,7 +126,7 @@ Coding Style
    export GOOGLE_CLOUD_TESTING_BRANCH="master"
 
   By doing this, you are specifying the location of the most up-to-date
-  version of ``googleapis-container``. The the suggested remote name ``upstream``
+  version of ``python-container``. The the suggested remote name ``upstream``
   should point to the official ``googleapis`` checkout and the
   the branch should be the main branch on that remote (``master``).
 
@@ -199,7 +199,7 @@ The `description on PyPI`_ for the project comes directly from the
 ``README``. Due to the reStructuredText (``rst``) parser used by
 PyPI, relative links which will work on GitHub (e.g. ``CONTRIBUTING.rst``
 instead of
-``https://github.com/googleapis/googleapis-container/blob/master/CONTRIBUTING.rst``)
+``https://github.com/googleapis/python-container/blob/master/CONTRIBUTING.rst``)
 may cause problems creating links or rendering the description.
 
 .. _description on PyPI: https://pypi.org/project/google-cloud-container
@@ -222,7 +222,7 @@ We support:
 
 Supported versions can be found in our ``noxfile.py`` `config`_.
 
-.. _config: https://github.com/googleapis/googleapis-container/blob/master/noxfile.py
+.. _config: https://github.com/googleapis/python-container/blob/master/noxfile.py
 
 We explicitly decided not to support `Python 2.5`_ due to `decreased usage`_
 and lack of continuous integration `support`_.

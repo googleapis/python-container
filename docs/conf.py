@@ -135,7 +135,7 @@ html_theme = "alabaster"
 html_theme_options = {
     "description": "Google Cloud Client Libraries for google-cloud-container",
     "github_user": "googleapis",
-    "github_repo": "googleapis-container",
+    "github_repo": "python-container",
     "github_banner": True,
     "font_family": "'Roboto', Georgia, sans",
     "head_font_family": "'Roboto', Georgia, serif",
