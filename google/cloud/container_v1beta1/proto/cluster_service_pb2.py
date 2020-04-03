@@ -12608,9 +12608,8 @@ NodePoolAutoscaling = _reflection.GeneratedProtocolMessageType(
     dict(
         DESCRIPTOR=_NODEPOOLAUTOSCALING,
         __module__="google.cloud.container_v1beta1.proto.cluster_service_pb2",
-        __doc__="""NodePoolAutoscaling contains information required by
-  cluster autoscaler to adjust the size of the node pool to the current
-  cluster usage.
+        __doc__="""NodePoolAutoscaling contains information required by cluster autoscaler
+  to adjust the size of the node pool to the current cluster usage.
   
   
   Attributes:

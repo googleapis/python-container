@@ -11239,12 +11239,12 @@ NodePool = _reflection.GeneratedProtocolMessageType(
     dict(
         DESCRIPTOR=_NODEPOOL,
         __module__="google.cloud.container_v1.proto.cluster_service_pb2",
-        __doc__="""NodePool contains the name and configuration for a cluster's node pool.
-  Node pools are a set of nodes (i.e. VM's), with a common configuration
-  and specification, under the control of the cluster master. They may
-  have a set of Kubernetes labels applied to them, which may be used to
-  reference them during pod scheduling. They may also be resized up or
-  down, to accommodate the workload.
+        __doc__="""NodePool contains the name and configuration for a
+  cluster's node pool. Node pools are a set of nodes (i.e. VM's), with a
+  common configuration and specification, under the control of the cluster
+  master. They may have a set of Kubernetes labels applied to them, which
+  may be used to reference them during pod scheduling. They may also be
+  resized up or down, to accommodate the workload.
   
   
   Attributes:
