@@ -215,16 +215,14 @@ class ClusterManagerClient(object):
             >>> response = client.list_clusters(project_id, zone)
 
         Args:
-            project_id (str): Required. Deprecated. The Google Developers Console `project ID or
-                project number <https://support.google.com/cloud/answer/6158840>`__.
-                This field has been deprecated and replaced by the parent field.
+            project_id (str): [Output only] Server-defined URL for the resource.
             zone (str): Required. Deprecated. The name of the Google Compute Engine
                 `zone <https://cloud.google.com/compute/docs/zones#available>`__ in
-                which the cluster resides, or "-" for all zones. This field has been
-                deprecated and replaced by the parent field.
-            parent (str): The parent (project and location) where the clusters will be listed.
-                Specified in the format ``projects/*/locations/*``. Location "-" matches
-                all zones and all regions.
+                which the cluster resides. This field has been deprecated and replaced
+                by the name field.
+            parent (str): Required. Deprecated. The Google Developers Console `project ID or
+                project number <https://support.google.com/cloud/answer/6158840>`__.
+                This field has been deprecated and replaced by the name field.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -305,17 +303,21 @@ class ClusterManagerClient(object):
             >>> response = client.get_cluster(project_id, zone, cluster_id)
 
         Args:
-            project_id (str): Required. Deprecated. The Google Developers Console `project ID or
-                project number <https://support.google.com/cloud/answer/6158840>`__.
-                This field has been deprecated and replaced by the name field.
+            project_id (str): The name of the uninterpreted option. Each string represents a
+                segment in a dot-separated name. is_extension is true iff a segment
+                represents an extension (denoted with parentheses in options specs in
+                .proto files). E.g.,{ ["foo", false], ["bar.baz", true], ["qux", false]
+                } represents "foo.(bar.baz).qux".
             zone (str): Required. Deprecated. The name of the Google Compute Engine
                 `zone <https://cloud.google.com/compute/docs/zones#available>`__ in
                 which the cluster resides. This field has been deprecated and replaced
                 by the name field.
             cluster_id (str): Required. Deprecated. The name of the cluster to retrieve.
                 This field has been deprecated and replaced by the name field.
-            name (str): The name (project, location, cluster) of the cluster to retrieve.
-                Specified in the format ``projects/*/locations/*/clusters/*``.
+            name (str): Required. Deprecated. The name of the Google Compute Engine
+                `zone <https://cloud.google.com/compute/docs/zones#available>`__ in
+                which the cluster resides. This field has been deprecated and replaced
+                by the name field.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -377,18 +379,12 @@ class ClusterManagerClient(object):
         metadata=None,
     ):
         """
-        Creates a cluster, consisting of the specified number and type of Google
-        Compute Engine instances.
+        The logging service the cluster should use to write logs. Currently
+        available options:
 
-        By default, the cluster is created in the project's `default
-        network <https://cloud.google.com/compute/docs/networks-and-firewalls#networks>`__.
-
-        One firewall is added for the cluster. After cluster creation, the
-        Kubelet creates routes for each node to allow the containers on that
-        node to communicate with all other instances in the cluster.
-
-        Finally, an entry is added to the project's global metadata indicating
-        which CIDR range the cluster is using.
+        -  ``logging.googleapis.com`` - the Google Cloud Logging service.
+        -  ``none`` - no logs will be exported from the cluster.
+        -  if left as an empty string,\ ``logging.googleapis.com`` will be used.
 
         Example:
             >>> from google.cloud import container_v1beta1
@@ -407,20 +403,24 @@ class ClusterManagerClient(object):
             >>> response = client.create_cluster(project_id, zone, cluster)
 
         Args:
-            project_id (str): Required. Deprecated. The Google Developers Console `project ID or
-                project number <https://support.google.com/cloud/answer/6158840>`__.
-                This field has been deprecated and replaced by the parent field.
-            zone (str): Required. Deprecated. The name of the Google Compute Engine
+            project_id (str): Required. Deprecated. The name of the Google Compute Engine
                 `zone <https://cloud.google.com/compute/docs/zones#available>`__ in
                 which the cluster resides. This field has been deprecated and replaced
                 by the parent field.
-            cluster (Union[dict, ~google.cloud.container_v1beta1.types.Cluster]): Required. A `cluster
-                resource <https://cloud.google.com/container-engine/reference/rest/v1beta1/projects.zones.clusters>`__
+            zone (str): Required. Deprecated. The Google Developers Console `project ID or
+                project number <https://support.google.com/cloud/answer/6158840>`__.
+                This field has been deprecated and replaced by the name field.
+            cluster (Union[dict, ~google.cloud.container_v1beta1.types.Cluster]): Required. Deprecated. The Google Developers Console `project ID or
+                project
+                number <https://developers.google.com/console/help/new/#projectnumber>`__.
+                This field has been deprecated and replaced by the parent field.
 
                 If a dict is provided, it must be of the same form as the protobuf
                 message :class:`~google.cloud.container_v1beta1.types.Cluster`
-            parent (str): The parent (project and location) where the cluster will be created.
-                Specified in the format ``projects/*/locations/*``.
+            parent (str): JSON name of this field. The value is set by protocol compiler. If
+                the user has set a "json_name" option on this field, that option's value
+                will be used. Otherwise, it's deduced from the field's name by
+                converting it to camelCase.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -505,20 +505,23 @@ class ClusterManagerClient(object):
             >>> response = client.update_cluster(project_id, zone, cluster_id, update)
 
         Args:
-            project_id (str): Required. Deprecated. The Google Developers Console `project ID or
-                project number <https://support.google.com/cloud/answer/6158840>`__.
-                This field has been deprecated and replaced by the name field.
-            zone (str): Required. Deprecated. The name of the Google Compute Engine
+            project_id (str): Required. Deprecated. The name of the Google Compute Engine
                 `zone <https://cloud.google.com/compute/docs/zones#available>`__ in
                 which the cluster resides. This field has been deprecated and replaced
                 by the name field.
+            zone (str): [Output only] The IP address of this cluster's master endpoint. The
+                endpoint can be accessed from the internet at
+                ``https://username:password@endpoint/``.
+
+                See the ``masterAuth`` property of this resource for username and
+                password information.
             cluster_id (str): Required. Deprecated. The name of the cluster to upgrade.
                 This field has been deprecated and replaced by the name field.
             update (Union[dict, ~google.cloud.container_v1beta1.types.ClusterUpdate]): Required. A description of the update.
 
                 If a dict is provided, it must be of the same form as the protobuf
                 message :class:`~google.cloud.container_v1beta1.types.ClusterUpdate`
-            name (str): The name (project, location, cluster) of the cluster to update.
+            name (str): The name (project, location, cluster) of the cluster to retrieve.
                 Specified in the format ``projects/*/locations/*/clusters/*``.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
@@ -617,13 +620,17 @@ class ClusterManagerClient(object):
             >>> response = client.update_node_pool(project_id, zone, cluster_id, node_pool_id, node_version, image_type)
 
         Args:
-            project_id (str): Required. Deprecated. The Google Developers Console `project ID or
-                project number <https://support.google.com/cloud/answer/6158840>`__.
-                This field has been deprecated and replaced by the name field.
-            zone (str): Required. Deprecated. The name of the Google Compute Engine
-                `zone <https://cloud.google.com/compute/docs/zones#available>`__ in
-                which the cluster resides. This field has been deprecated and replaced
-                by the name field.
+            project_id (str): If this is a private cluster setup. Private clusters are clusters
+                that, by default have no external IP addresses on the nodes and where
+                nodes and the master communicate over private IP addresses. This field
+                is deprecated, use private_cluster_config.enable_private_nodes instead.
+            zone (str): Minimum CPU platform to be used by this instance. The instance may
+                be scheduled on the specified or newer CPU platform. Applicable values
+                are the friendly names of CPU platforms, such as minCpuPlatform: "Intel
+                Haswell" or minCpuPlatform: "Intel Sandy Bridge". For more information,
+                read `how to specify min CPU
+                platform <https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform>`__
+                To unset the min cpu platform field pass "automatic" as field value.
             cluster_id (str): Required. Deprecated. The name of the cluster to upgrade.
                 This field has been deprecated and replaced by the name field.
             node_pool_id (str): Required. Deprecated. The name of the node pool to upgrade.
@@ -644,9 +651,9 @@ class ClusterManagerClient(object):
 
                 If a dict is provided, it must be of the same form as the protobuf
                 message :class:`~google.cloud.container_v1beta1.types.WorkloadMetadataConfig`
-            name (str): The name (project, location, cluster, node pool) of the node pool to
-                update. Specified in the format
-                ``projects/*/locations/*/clusters/*/nodePools/*``.
+            name (str): Time within the maintenance window to start the maintenance
+                operations. It must be in format "HH:MM", where HH : [00-23] and MM :
+                [00-59] GMT.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -742,13 +749,11 @@ class ClusterManagerClient(object):
             >>> response = client.set_node_pool_autoscaling(project_id, zone, cluster_id, node_pool_id, autoscaling)
 
         Args:
-            project_id (str): Required. Deprecated. The Google Developers Console `project ID or
-                project number <https://support.google.com/cloud/answer/6158840>`__.
-                This field has been deprecated and replaced by the name field.
-            zone (str): Required. Deprecated. The name of the Google Compute Engine
-                `zone <https://cloud.google.com/compute/docs/zones#available>`__ in
-                which the cluster resides. This field has been deprecated and replaced
-                by the name field.
+            project_id (str): The same concept of the ``singular`` field in k8s CRD spec
+                https://kubernetes.io/docs/tasks/access-kubernetes-api/custom-resources/custom-resource-definitions/
+                Such as "project" for the ``resourcemanager.googleapis.com/Project``
+                type.
+            zone (str): display_name is an optional field for users to identify CIDR blocks.
             cluster_id (str): Required. Deprecated. The name of the cluster to upgrade.
                 This field has been deprecated and replaced by the name field.
             node_pool_id (str): Required. Deprecated. The name of the node pool to upgrade.
@@ -757,9 +762,10 @@ class ClusterManagerClient(object):
 
                 If a dict is provided, it must be of the same form as the protobuf
                 message :class:`~google.cloud.container_v1beta1.types.NodePoolAutoscaling`
-            name (str): The name (project, location, cluster, node pool) of the node pool to set
-                autoscaler settings. Specified in the format
-                ``projects/*/locations/*/clusters/*/nodePools/*``.
+            name (str): Required. Deprecated. The name of the Google Compute Engine
+                `zone <https://cloud.google.com/compute/docs/zones#available>`__ in
+                which the cluster resides. This field has been deprecated and replaced
+                by the name field.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -849,22 +855,19 @@ class ClusterManagerClient(object):
             >>> response = client.set_logging_service(project_id, zone, cluster_id, logging_service)
 
         Args:
-            project_id (str): Required. Deprecated. The Google Developers Console `project ID or
-                project number <https://support.google.com/cloud/answer/6158840>`__.
+            project_id (str): cidr_block must be specified in CIDR notation.
+            zone (str): The name of the Google Compute Engine
+                `zone <https://cloud.google.com/compute/docs/zones#available>`__ in
+                which the operation is taking place. This field is deprecated, use
+                location instead.
+            cluster_id (str): Required. Deprecated. The name of the cluster to upgrade.
                 This field has been deprecated and replaced by the name field.
-            zone (str): Required. Deprecated. The name of the Google Compute Engine
+            logging_service (str): Required. Deprecated. The name of the Google Compute Engine
                 `zone <https://cloud.google.com/compute/docs/zones#available>`__ in
                 which the cluster resides. This field has been deprecated and replaced
                 by the name field.
-            cluster_id (str): Required. Deprecated. The name of the cluster to upgrade.
-                This field has been deprecated and replaced by the name field.
-            logging_service (str): Required. The logging service the cluster should use to write metrics.
-                Currently available options:
-
-                -  "logging.googleapis.com" - the Google Cloud Logging service
-                -  "none" - no metrics will be exported from the cluster
-            name (str): The name (project, location, cluster) of the cluster to set logging.
-                Specified in the format ``projects/*/locations/*/clusters/*``.
+            name (str): LOCATION_TYPE_UNSPECIFIED means the location type was not
+                determined.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -953,22 +956,18 @@ class ClusterManagerClient(object):
             >>> response = client.set_monitoring_service(project_id, zone, cluster_id, monitoring_service)
 
         Args:
-            project_id (str): Required. Deprecated. The Google Developers Console `project ID or
-                project number <https://support.google.com/cloud/answer/6158840>`__.
-                This field has been deprecated and replaced by the name field.
-            zone (str): Required. Deprecated. The name of the Google Compute Engine
-                `zone <https://cloud.google.com/compute/docs/zones#available>`__ in
-                which the cluster resides. This field has been deprecated and replaced
-                by the name field.
+            project_id (str): The name (project, location, cluster id) of the cluster to complete
+                IP rotation. Specified in the format
+                ``projects/*/locations/*/clusters/*``.
+            zone (str): The name (project, location, cluster) of the cluster to delete.
+                Specified in the format ``projects/*/locations/*/clusters/*``.
             cluster_id (str): Required. Deprecated. The name of the cluster to upgrade.
                 This field has been deprecated and replaced by the name field.
-            monitoring_service (str): Required. The monitoring service the cluster should use to write
-                metrics. Currently available options:
-
-                -  "monitoring.googleapis.com" - the Google Cloud Monitoring service
-                -  "none" - no metrics will be exported from the cluster
-            name (str): The name (project, location, cluster) of the cluster to set monitoring.
-                Specified in the format ``projects/*/locations/*/clusters/*``.
+            monitoring_service (str): The parent (project, location, cluster id) where the node pools will
+                be listed. Specified in the format
+                ``projects/*/locations/*/clusters/*``.
+            name (str): Required. The Google Developers Console `project ID or project
+                number <https://support.google.com/cloud/answer/6158840>`__.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -1057,13 +1056,23 @@ class ClusterManagerClient(object):
             >>> response = client.set_addons_config(project_id, zone, cluster_id, addons_config)
 
         Args:
-            project_id (str): Required. Deprecated. The Google Developers Console `project ID or
-                project number <https://support.google.com/cloud/answer/6158840>`__.
-                This field has been deprecated and replaced by the name field.
-            zone (str): Required. Deprecated. The name of the Google Compute Engine
-                `zone <https://cloud.google.com/compute/docs/zones#available>`__ in
-                which the cluster resides. This field has been deprecated and replaced
-                by the name field.
+            project_id (str): cidr_blocks define up to 10 external networks that could access
+                Kubernetes master through HTTPS.
+            zone (str): Set true to use the old proto1 MessageSet wire format for
+                extensions. This is provided for backwards-compatibility with the
+                MessageSet wire format. You should not use this for any other reason:
+                It's less efficient, has fewer features, and is more complicated.
+
+                The message must be defined exactly as follows: message Foo { option
+                message_set_wire_format = true; extensions 4 to max; } Note that the
+                message cannot have any defined fields; MessageSets only have
+                extensions.
+
+                All extensions of your type must be singular messages; e.g. they cannot
+                be int32s, enums, or repeated messages.
+
+                Because this is an option, the above two restrictions are not enforced
+                by the protocol compiler.
             cluster_id (str): Required. Deprecated. The name of the cluster to upgrade.
                 This field has been deprecated and replaced by the name field.
             addons_config (Union[dict, ~google.cloud.container_v1beta1.types.AddonsConfig]): Required. The desired configurations for the various addons available to run in the
@@ -1071,8 +1080,10 @@ class ClusterManagerClient(object):
 
                 If a dict is provided, it must be of the same form as the protobuf
                 message :class:`~google.cloud.container_v1beta1.types.AddonsConfig`
-            name (str): The name (project, location, cluster) of the cluster to set addons.
-                Specified in the format ``projects/*/locations/*/clusters/*``.
+            name (str): A human readable status message representing the reasons for cases
+                where the caller cannot use the secondary ranges under the subnet. For
+                example if the secondary_ip_ranges is empty due to a permission issue,
+                an insufficient permission message will be given by status_message.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -1161,24 +1172,20 @@ class ClusterManagerClient(object):
             >>> response = client.set_locations(project_id, zone, cluster_id, locations)
 
         Args:
-            project_id (str): Required. Deprecated. The Google Developers Console `project ID or
+            project_id (str): The name (project, location, cluster) of the cluster to update.
+                Specified in the format ``projects/*/locations/*/clusters/*``.
+            zone (str): Required. Deprecated. The Google Developers Console `project ID or
                 project number <https://support.google.com/cloud/answer/6158840>`__.
-                This field has been deprecated and replaced by the name field.
-            zone (str): Required. Deprecated. The name of the Google Compute Engine
-                `zone <https://cloud.google.com/compute/docs/zones#available>`__ in
-                which the cluster resides. This field has been deprecated and replaced
-                by the name field.
+                This field has been deprecated and replaced by the parent field.
             cluster_id (str): Required. Deprecated. The name of the cluster to upgrade.
                 This field has been deprecated and replaced by the name field.
-            locations (list[str]): Required. The desired list of Google Compute Engine
-                `zones <https://cloud.google.com/compute/docs/zones#available>`__ in
-                which the cluster's nodes should be located. Changing the locations a
-                cluster is in will result in nodes being either created or removed from
-                the cluster, depending on whether locations are being added or removed.
+            locations (list[str]): The name of a Google Compute Engine `machine
+                type <https://cloud.google.com/compute/docs/machine-types>`__ (e.g.
+                ``n1-standard-1``).
 
-                This list must always include the cluster's primary zone.
-            name (str): The name (project, location, cluster) of the cluster to set locations.
-                Specified in the format ``projects/*/locations/*/clusters/*``.
+                If unspecified, the default machine type is ``n1-standard-1``.
+            name (str): The accelerator type resource name. List of supported accelerators
+                `here <https://cloud.google.com/compute/docs/gpus>`__
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -1267,13 +1274,23 @@ class ClusterManagerClient(object):
             >>> response = client.update_master(project_id, zone, cluster_id, master_version)
 
         Args:
-            project_id (str): Required. Deprecated. The Google Developers Console `project ID or
-                project number <https://support.google.com/cloud/answer/6158840>`__.
-                This field has been deprecated and replaced by the name field.
-            zone (str): Required. Deprecated. The name of the Google Compute Engine
-                `zone <https://cloud.google.com/compute/docs/zones#available>`__ in
-                which the cluster resides. This field has been deprecated and replaced
-                by the name field.
+            project_id (str): The name (project, location, cluster, node pool) of the node pool to
+                set autoscaler settings. Specified in the format
+                ``projects/*/locations/*/clusters/*/nodePools/*``.
+            zone (str): OAuth scopes needed for the client.
+
+                Example:
+
+                | service Foo { option (google.api.oauth_scopes) =
+                | "https://www.googleapis.com/auth/cloud-platform"; ... }
+
+                If there is more than one scope, use a comma-separated string:
+
+                Example:
+
+                | service Foo { option (google.api.oauth_scopes) =
+                | "https://www.googleapis.com/auth/cloud-platform,"
+                  "https://www.googleapis.com/auth/monitoring"; ... }
             cluster_id (str): Required. Deprecated. The name of the cluster to upgrade.
                 This field has been deprecated and replaced by the name field.
             master_version (str): Required. The Kubernetes version to change the master to.
@@ -1286,8 +1303,10 @@ class ClusterManagerClient(object):
                 - "1.X.Y": picks the highest valid gke.N patch in the 1.X.Y version
                 - "1.X.Y-gke.N": picks an explicit Kubernetes version
                 - "-": picks the default Kubernetes version
-            name (str): The name (project, location, cluster) of the cluster to update.
-                Specified in the format ``projects/*/locations/*/clusters/*``.
+            name (str): Required. Deprecated. The name of the Google Compute Engine
+                `zone <https://cloud.google.com/compute/docs/zones#available>`__ in
+                which the cluster resides, or "-" for all zones. This field has been
+                deprecated and replaced by the parent field.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -1383,13 +1402,25 @@ class ClusterManagerClient(object):
             >>> response = client.set_master_auth(project_id, zone, cluster_id, action, update)
 
         Args:
-            project_id (str): Required. Deprecated. The Google Developers Console `project ID or
-                project number <https://support.google.com/cloud/answer/6158840>`__.
-                This field has been deprecated and replaced by the name field.
-            zone (str): Required. Deprecated. The name of the Google Compute Engine
+            project_id (str): Required. Deprecated. The name of the Google Compute Engine
                 `zone <https://cloud.google.com/compute/docs/zones#available>`__ in
                 which the cluster resides. This field has been deprecated and replaced
                 by the name field.
+            zone (str): The set of Google API scopes to be made available on all of the node
+                VMs under the "default" service account.
+
+                The following scopes are recommended, but not required, and by default
+                are not included:
+
+                -  ``https://www.googleapis.com/auth/compute`` is required for mounting
+                   persistent storage on your nodes.
+                -  ``https://www.googleapis.com/auth/devstorage.read_only`` is required
+                   for communicating with **gcr.io** (the `Google Container
+                   Registry <https://cloud.google.com/container-registry/>`__).
+
+                If unspecified, no scopes are added, unless Cloud Logging or Cloud
+                Monitoring are enabled, in which case their required scopes will be
+                added.
             cluster_id (str): Required. Deprecated. The name of the cluster to upgrade.
                 This field has been deprecated and replaced by the name field.
             action (~google.cloud.container_v1beta1.types.Action): Required. The exact form of action to be taken on the master auth.
@@ -1397,8 +1428,9 @@ class ClusterManagerClient(object):
 
                 If a dict is provided, it must be of the same form as the protobuf
                 message :class:`~google.cloud.container_v1beta1.types.MasterAuth`
-            name (str): The name (project, location, cluster) of the cluster to set auth.
-                Specified in the format ``projects/*/locations/*/clusters/*``.
+            name (str): Required. Deprecated. The Google Developers Console `project ID or
+                project number <https://support.google.com/cloud/answer/6158840>`__.
+                This field has been deprecated and replaced by the name field.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -1492,17 +1524,16 @@ class ClusterManagerClient(object):
             >>> response = client.delete_cluster(project_id, zone, cluster_id)
 
         Args:
-            project_id (str): Required. Deprecated. The Google Developers Console `project ID or
-                project number <https://support.google.com/cloud/answer/6158840>`__.
-                This field has been deprecated and replaced by the name field.
-            zone (str): Required. Deprecated. The name of the Google Compute Engine
-                `zone <https://cloud.google.com/compute/docs/zones#available>`__ in
-                which the cluster resides. This field has been deprecated and replaced
-                by the name field.
+            project_id (str): The name (project, location, cluster, node pool id) of the node pool
+                to set size. Specified in the format
+                ``projects/*/locations/*/clusters/*/nodePools/*``.
+            zone (str): Minimum number of nodes in the NodePool. Must be >= 1 and <=
+                max_node_count.
             cluster_id (str): Required. Deprecated. The name of the cluster to delete.
                 This field has been deprecated and replaced by the name field.
-            name (str): The name (project, location, cluster) of the cluster to delete.
-                Specified in the format ``projects/*/locations/*/clusters/*``.
+            name (str): The parent (project and location) where the clusters will be listed.
+                Specified in the format ``projects/*/locations/*``. Location "-" matches
+                all zones and all regions.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -1579,16 +1610,34 @@ class ClusterManagerClient(object):
             >>> response = client.list_operations(project_id, zone)
 
         Args:
-            project_id (str): Required. Deprecated. The Google Developers Console `project ID or
-                project number <https://support.google.com/cloud/answer/6158840>`__.
-                This field has been deprecated and replaced by the parent field.
-            zone (str): Required. Deprecated. The name of the Google Compute Engine
-                `zone <https://cloud.google.com/compute/docs/zones#available>`__ to
-                return operations for, or ``-`` for all zones. This field has been
-                deprecated and replaced by the parent field.
-            parent (str): The parent (project and location) where the operations will be listed.
-                Specified in the format ``projects/*/locations/*``. Location "-" matches
-                all zones and all regions.
+            project_id (str): The resource type that the annotated field references.
+
+                Example:
+
+                ::
+
+                    message Subscription {
+                      string topic = 2 [(google.api.resource_reference) = {
+                        type: "pubsub.googleapis.com/Topic"
+                      }];
+                    }
+            zone (str): [Output only] The name of the Google Compute Engine
+                `zone <https://cloud.google.com/compute/docs/regions-zones/regions-zones#available>`__
+                or
+                `region <https://cloud.google.com/compute/docs/regions-zones/regions-zones#available>`__
+                in which the cluster resides.
+            parent (str): Creates a cluster, consisting of the specified number and type of
+                Google Compute Engine instances.
+
+                By default, the cluster is created in the project's `default
+                network <https://cloud.google.com/compute/docs/networks-and-firewalls#networks>`__.
+
+                One firewall is added for the cluster. After cluster creation, the
+                Kubelet creates routes for each node to allow the containers on that
+                node to communicate with all other instances in the cluster.
+
+                Finally, an entry is added to the project's global metadata indicating
+                which CIDR range the cluster is using.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -1669,17 +1718,46 @@ class ClusterManagerClient(object):
             >>> response = client.get_operation(project_id, zone, operation_id)
 
         Args:
-            project_id (str): Required. Deprecated. The Google Developers Console `project ID or
+            project_id (str): The metadata key/value pairs assigned to instances in the cluster.
+
+                Keys must conform to the regexp [a-zA-Z0-9-_]+ and be less than 128
+                bytes in length. These are reflected as part of a URL in the metadata
+                server. Additionally, to avoid ambiguity, keys must not conflict with
+                any other metadata keys for the project or be one of the reserved keys:
+                "cluster-location" "cluster-name" "cluster-uid" "configure-sh"
+                "containerd-configure-sh" "enable-oslogin" "gci-ensure-gke-docker"
+                "gci-metrics-enabled" "gci-update-strategy" "instance-template"
+                "kube-env" "startup-script" "user-data" "disable-address-manager"
+                "windows-startup-script-ps1" "common-psm1" "k8s-node-setup-psm1"
+                "install-ssh-psm1" "user-profile-psm1" "serial-port-logging-enable"
+                Values are free-form strings, and only have meaning as interpreted by
+                the image running in the instance. The only restriction placed on them
+                is that each value's size must be less than or equal to 32 KB.
+
+                The total size of all keys and values must be less than 512 KB.
+            zone (str): [Output only] The name of the Google Compute Engine
+                `zone <https://cloud.google.com/compute/docs/zones#available>`__ in
+                which the cluster resides. This field is deprecated, use location
+                instead.
+            operation_id (str): Whether the message is an automatically generated map entry type for
+                the maps field.
+
+                For maps fields: map<KeyType, ValueType> map_field = 1; The parsed
+                descriptor looks like: message MapFieldEntry { option map_entry = true;
+                optional KeyType key = 1; optional ValueType value = 2; } repeated
+                MapFieldEntry map_field = 1;
+
+                Implementations may choose not to generate the map_entry=true message,
+                but use a native map in the target language to hold the keys and values.
+                The reflection APIs in such implementations still need to work as if the
+                field is a repeated message field.
+
+                NOTE: Do not set the option in .proto files. Always use the maps syntax
+                instead. The option should only be implicitly set by the proto compiler
+                parser.
+            name (str): Required. Deprecated. The Google Developers Console `project ID or
                 project number <https://support.google.com/cloud/answer/6158840>`__.
                 This field has been deprecated and replaced by the name field.
-            zone (str): Required. Deprecated. The name of the Google Compute Engine
-                `zone <https://cloud.google.com/compute/docs/zones#available>`__ in
-                which the cluster resides. This field has been deprecated and replaced
-                by the name field.
-            operation_id (str): Required. Deprecated. The server-assigned ``name`` of the operation.
-                This field has been deprecated and replaced by the name field.
-            name (str): The name (project, location, operation id) of the operation to get.
-                Specified in the format ``projects/*/locations/*/operations/*``.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -1760,17 +1838,54 @@ class ClusterManagerClient(object):
             >>> client.cancel_operation(project_id, zone, operation_id)
 
         Args:
-            project_id (str): Required. Deprecated. The Google Developers Console `project ID or
-                project number <https://support.google.com/cloud/answer/6158840>`__.
-                This field has been deprecated and replaced by the name field.
-            zone (str): Required. Deprecated. The name of the Google Compute Engine
+            project_id (str): Required. Deprecated. The name of the Google Compute Engine
                 `zone <https://cloud.google.com/compute/docs/zones#available>`__ in
-                which the operation resides. This field has been deprecated and replaced
+                which the cluster resides. This field has been deprecated and replaced
                 by the name field.
-            operation_id (str): Required. Deprecated. The server-assigned ``name`` of the operation.
-                This field has been deprecated and replaced by the name field.
-            name (str): The name (project, location, operation id) of the operation to cancel.
-                Specified in the format ``projects/*/locations/*/operations/*``.
+            zone (str): A Location identifies a piece of source code in a .proto file which
+                corresponds to a particular definition. This information is intended to
+                be useful to IDEs, code indexers, documentation generators, and similar
+                tools.
+
+                For example, say we have a file like: message Foo { optional string foo
+                = 1; } Let's look at just the field definition: optional string foo = 1;
+                ^ ^^ ^^ ^ ^^^ a bc de f ghi We have the following locations: span path
+                represents [a,i) [ 4, 0, 2, 0 ] The whole field definition. [a,b) [ 4,
+                0, 2, 0, 4 ] The label (optional). [c,d) [ 4, 0, 2, 0, 5 ] The type
+                (string). [e,f) [ 4, 0, 2, 0, 1 ] The name (foo). [g,h) [ 4, 0, 2, 0, 3
+                ] The number (1).
+
+                Notes:
+
+                -  A location may refer to a repeated field itself (i.e. not to any
+                   particular index within it). This is used whenever a set of elements
+                   are logically enclosed in a single code segment. For example, an
+                   entire extend block (possibly containing multiple extension
+                   definitions) will have an outer location whose path refers to the
+                   "extensions" repeated field without an index.
+                -  Multiple locations may have the same path. This happens when a single
+                   logical declaration is spread out across multiple places. The most
+                   obvious example is the "extend" block again -- there may be multiple
+                   extend blocks in the same scope, each of which will have the same
+                   path.
+                -  A location's span is not always a subset of its parent's span. For
+                   example, the "extendee" of an extension declaration appears at the
+                   beginning of the "extend" block and is shared by all extensions
+                   within the block.
+                -  Just because a location's span is a subset of some other location's
+                   span does not mean that it is a descendant. For example, a "group"
+                   defines both a type and a field in a single declaration. Thus, the
+                   locations corresponding to the type and field and their components
+                   will overlap.
+                -  Code which tries to interpret locations should probably be designed
+                   to ignore those that it doesn't understand, as more types of
+                   locations could be recorded in the future.
+            operation_id (str): [Output only] The time the operation started, in
+                `RFC3339 <https://www.ietf.org/rfc/rfc3339.txt>`__ text format.
+            name (str): Required. Deprecated. The name of the Google Compute Engine
+                `zone <https://cloud.google.com/compute/docs/zones#available>`__ in
+                which the cluster resides. This field has been deprecated and replaced
+                by the name field.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -1844,15 +1959,23 @@ class ClusterManagerClient(object):
             >>> response = client.get_server_config(project_id, zone)
 
         Args:
-            project_id (str): Required. Deprecated. The Google Developers Console `project ID or
-                project number <https://support.google.com/cloud/answer/6158840>`__.
-                This field has been deprecated and replaced by the name field.
-            zone (str): Required. Deprecated. The name of the Google Compute Engine
-                `zone <https://cloud.google.com/compute/docs/zones#available>`__ to
-                return operations for. This field has been deprecated and replaced by
-                the name field.
-            name (str): The name (project and location) of the server config to get, specified
-                in the format ``projects/*/locations/*``.
+            project_id (str): The name (project, location, cluster, node pool id) of the node pool
+                to set management properties. Specified in the format
+                ``projects/*/locations/*/clusters/*/nodePools/*``.
+            zone (str): If true, allow allocation of cluster CIDR ranges that overlap with
+                certain kinds of network routes. By default we do not allow cluster CIDR
+                ranges to intersect with any user declared routes. With
+                allow_route_overlap == true, we allow overlapping with CIDR ranges that
+                are larger than the cluster CIDR range.
+
+                If this field is set to true, then cluster and services CIDRs must be
+                fully-specified (e.g. ``10.96.0.0/14``, but not ``/14``), which means:
+
+                1) When ``use_ip_aliases`` is true, ``cluster_ipv4_cidr_block`` and
+                   ``services_ipv4_cidr_block`` must be fully-specified.
+                2) When ``use_ip_aliases`` is false, ``cluster.cluster_ipv4_cidr`` muse
+                   be fully-specified.
+            name (str): javanano_as_lite
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -1933,18 +2056,18 @@ class ClusterManagerClient(object):
             >>> response = client.list_node_pools(project_id, zone, cluster_id)
 
         Args:
-            project_id (str): Required. Deprecated. The Google Developers Console `project ID or
-                project
-                number <https://developers.google.com/console/help/new/#projectnumber>`__.
-                This field has been deprecated and replaced by the parent field.
+            project_id (str): [Output only] Deprecated, use
+                `NodePool.version <https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1beta1/projects.locations.clusters.nodePools>`__
+                instead. The current version of the node software components. If they
+                are currently at multiple versions because they're in the process of
+                being upgraded, this reflects the minimum version of all nodes.
             zone (str): Required. Deprecated. The name of the Google Compute Engine
                 `zone <https://cloud.google.com/compute/docs/zones#available>`__ in
                 which the cluster resides. This field has been deprecated and replaced
-                by the parent field.
+                by the name field.
             cluster_id (str): Required. Deprecated. The name of the cluster.
                 This field has been deprecated and replaced by the parent field.
-            parent (str): The parent (project, location, cluster id) where the node pools will be
-                listed. Specified in the format ``projects/*/locations/*/clusters/*``.
+            parent (str): This field is deprecated, use cluster_ipv4_cidr_block.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -2029,21 +2152,46 @@ class ClusterManagerClient(object):
             >>> response = client.get_node_pool(project_id, zone, cluster_id, node_pool_id)
 
         Args:
-            project_id (str): Required. Deprecated. The Google Developers Console `project ID or
-                project
-                number <https://developers.google.com/console/help/new/#projectnumber>`__.
-                This field has been deprecated and replaced by the name field.
-            zone (str): Required. Deprecated. The name of the Google Compute Engine
-                `zone <https://cloud.google.com/compute/docs/zones#available>`__ in
-                which the cluster resides. This field has been deprecated and replaced
-                by the name field.
+            project_id (str): Protocol Buffers - Google's data interchange format Copyright 2008
+                Google Inc. All rights reserved.
+                https://developers.google.com/protocol-buffers/
+
+                Redistribution and use in source and binary forms, with or without
+                modification, are permitted provided that the following conditions are
+                met:
+
+                ::
+
+                    * Redistributions of source code must retain the above copyright
+
+                notice, this list of conditions and the following disclaimer. \*
+                Redistributions in binary form must reproduce the above copyright
+                notice, this list of conditions and the following disclaimer in the
+                documentation and/or other materials provided with the distribution. \*
+                Neither the name of Google Inc. nor the names of its contributors may be
+                used to endorse or promote products derived from this software without
+                specific prior written permission.
+
+                THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
+                IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
+                TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+                PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER
+                OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+                EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+                PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+                PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+                LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+                NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+                SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+            zone (str): [Output only] The time the cluster was created, in
+                `RFC3339 <https://www.ietf.org/rfc/rfc3339.txt>`__ text format.
             cluster_id (str): Required. Deprecated. The name of the cluster.
                 This field has been deprecated and replaced by the name field.
             node_pool_id (str): Required. Deprecated. The name of the node pool.
                 This field has been deprecated and replaced by the name field.
-            name (str): The name (project, location, cluster, node pool id) of the node pool to
-                get. Specified in the format
-                ``projects/*/locations/*/clusters/*/nodePools/*``.
+            name (str): Required. Deprecated. The Google Developers Console `project ID or
+                project number <https://support.google.com/cloud/answer/6158840>`__.
+                This field has been deprecated and replaced by the name field.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -2132,22 +2280,35 @@ class ClusterManagerClient(object):
             >>> response = client.create_node_pool(project_id, zone, cluster_id, node_pool)
 
         Args:
-            project_id (str): Required. Deprecated. The Google Developers Console `project ID or
-                project
-                number <https://developers.google.com/console/help/new/#projectnumber>`__.
-                This field has been deprecated and replaced by the parent field.
-            zone (str): Required. Deprecated. The name of the Google Compute Engine
-                `zone <https://cloud.google.com/compute/docs/zones#available>`__ in
-                which the cluster resides. This field has been deprecated and replaced
-                by the parent field.
+            project_id (str): [Output only] The time the operation completed, in
+                `RFC3339 <https://www.ietf.org/rfc/rfc3339.txt>`__ text format.
+            zone (str): Required. The logging service the cluster should use to write
+                metrics. Currently available options:
+
+                -  "logging.googleapis.com" - the Google Cloud Logging service
+                -  "none" - no metrics will be exported from the cluster
             cluster_id (str): Required. Deprecated. The name of the cluster.
                 This field has been deprecated and replaced by the parent field.
             node_pool (Union[dict, ~google.cloud.container_v1beta1.types.NodePool]): Required. The node pool to create.
 
                 If a dict is provided, it must be of the same form as the protobuf
                 message :class:`~google.cloud.container_v1beta1.types.NodePool`
-            parent (str): The parent (project, location, cluster id) where the node pool will be
-                created. Specified in the format ``projects/*/locations/*/clusters/*``.
+            parent (str): Identifies which part of the FileDescriptorProto was defined at this
+                location.
+
+                Each element is a field number or an index. They form a path from the
+                root FileDescriptorProto to the place where the definition. For example,
+                this path: [ 4, 3, 2, 7, 1 ] refers to: file.message_type(3) // 4, 3
+                .field(7) // 2, 7 .name() // 1 This is because
+                FileDescriptorProto.message_type has field number 4: repeated
+                DescriptorProto message_type = 4; and DescriptorProto.field has field
+                number 2: repeated FieldDescriptorProto field = 2; and
+                FieldDescriptorProto.name has field number 1: optional string name = 1;
+
+                Thus, the above path gives the location of a field name. If we removed
+                the last element: [ 4, 3, 2, 7 ] this path refers to the whole field
+                declaration (from the beginning of the label to the terminating
+                semicolon).
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -2236,21 +2397,15 @@ class ClusterManagerClient(object):
             >>> response = client.delete_node_pool(project_id, zone, cluster_id, node_pool_id)
 
         Args:
-            project_id (str): Required. Deprecated. The Google Developers Console `project ID or
-                project
-                number <https://developers.google.com/console/help/new/#projectnumber>`__.
-                This field has been deprecated and replaced by the name field.
-            zone (str): Required. Deprecated. The name of the Google Compute Engine
-                `zone <https://cloud.google.com/compute/docs/zones#available>`__ in
-                which the cluster resides. This field has been deprecated and replaced
-                by the name field.
+            project_id (str): [Output only] The current software version of the master endpoint.
+            zone (str): [Output only] Progress information for an operation.
             cluster_id (str): Required. Deprecated. The name of the cluster.
                 This field has been deprecated and replaced by the name field.
             node_pool_id (str): Required. Deprecated. The name of the node pool to delete.
                 This field has been deprecated and replaced by the name field.
-            name (str): The name (project, location, cluster, node pool id) of the node pool to
-                delete. Specified in the format
-                ``projects/*/locations/*/clusters/*/nodePools/*``.
+            name (str): A custom subnetwork name to be used if ``create_subnetwork`` is
+                true. If this field is empty, then an automatic name will be chosen for
+                the new subnetwork.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -2340,20 +2495,17 @@ class ClusterManagerClient(object):
             >>> response = client.rollback_node_pool_upgrade(project_id, zone, cluster_id, node_pool_id)
 
         Args:
-            project_id (str): Required. Deprecated. The Google Developers Console `project ID or
-                project number <https://support.google.com/cloud/answer/6158840>`__.
-                This field has been deprecated and replaced by the name field.
-            zone (str): Required. Deprecated. The name of the Google Compute Engine
-                `zone <https://cloud.google.com/compute/docs/zones#available>`__ in
-                which the cluster resides. This field has been deprecated and replaced
-                by the name field.
+            project_id (str): Required. The monitoring service the cluster should use to write
+                metrics. Currently available options:
+
+                -  "monitoring.googleapis.com" - the Google Cloud Monitoring service
+                -  "none" - no metrics will be exported from the cluster
+            zone (str): GCE_STOCKOUT indicates a Google Compute Engine stockout.
             cluster_id (str): Required. Deprecated. The name of the cluster to rollback.
                 This field has been deprecated and replaced by the name field.
             node_pool_id (str): Required. Deprecated. The name of the node pool to rollback.
                 This field has been deprecated and replaced by the name field.
-            name (str): The name (project, location, cluster, node pool id) of the node poll to
-                rollback upgrade. Specified in the format
-                ``projects/*/locations/*/clusters/*/nodePools/*``.
+            name (str): Deprecated. Use node_pools.instance_group_urls.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -2448,7 +2600,7 @@ class ClusterManagerClient(object):
         Args:
             project_id (str): Required. Deprecated. The Google Developers Console `project ID or
                 project number <https://support.google.com/cloud/answer/6158840>`__.
-                This field has been deprecated and replaced by the name field.
+                This field has been deprecated and replaced by the parent field.
             zone (str): Required. Deprecated. The name of the Google Compute Engine
                 `zone <https://cloud.google.com/compute/docs/zones#available>`__ in
                 which the cluster resides. This field has been deprecated and replaced
@@ -2461,9 +2613,10 @@ class ClusterManagerClient(object):
 
                 If a dict is provided, it must be of the same form as the protobuf
                 message :class:`~google.cloud.container_v1beta1.types.NodeManagement`
-            name (str): The name (project, location, cluster, node pool id) of the node pool to
-                set management properties. Specified in the format
-                ``projects/*/locations/*/clusters/*/nodePools/*``.
+            name (str): Required. Deprecated. The Google Developers Console `project ID or
+                project
+                number <https://developers.google.com/console/help/new/#projectnumber>`__.
+                This field has been deprecated and replaced by the name field.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -2558,13 +2711,22 @@ class ClusterManagerClient(object):
 
         Args:
             project_id (str): Required. Deprecated. The Google Developers Console `project ID or
-                project
-                number <https://developers.google.com/console/help/new/#projectnumber>`__.
+                project number <https://support.google.com/cloud/answer/6158840>`__.
                 This field has been deprecated and replaced by the name field.
-            zone (str): Required. Deprecated. The name of the Google Compute Engine
-                `zone <https://cloud.google.com/compute/docs/zones#available>`__ in
-                which the cluster resides. This field has been deprecated and replaced
-                by the name field.
+            zone (str): The IP address range of the instance IPs in this cluster.
+
+                This is applicable only if ``create_subnetwork`` is true.
+
+                Set to blank to have a range chosen with the default size.
+
+                Set to /netmask (e.g. ``/14``) to have a range chosen with a specific
+                netmask.
+
+                Set to a
+                `CIDR <http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing>`__
+                notation (e.g. ``10.96.0.0/14``) from the RFC-1918 private networks
+                (e.g. ``10.0.0.0/8``, ``172.16.0.0/12``, ``192.168.0.0/16``) to pick a
+                specific range to use.
             cluster_id (str): Required. Deprecated. The name of the cluster.
                 This field has been deprecated and replaced by the name field.
             resource_labels (dict[str -> str]): Required. The labels to set for that cluster.
@@ -2574,8 +2736,9 @@ class ClusterManagerClient(object):
                 labels. You must always provide an up-to-date fingerprint hash when
                 updating or changing labels. Make a <code>get()</code> request to the
                 resource to get the latest fingerprint.
-            name (str): The name (project, location, cluster id) of the cluster to set labels.
-                Specified in the format ``projects/*/locations/*/clusters/*``.
+            name (str): The name (project, location, cluster id) of the cluster to set
+                networking policy. Specified in the format
+                ``projects/*/locations/*/clusters/*``.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -2665,18 +2828,29 @@ class ClusterManagerClient(object):
             >>> response = client.set_legacy_abac(project_id, zone, cluster_id, enabled)
 
         Args:
-            project_id (str): Required. Deprecated. The Google Developers Console `project ID or
-                project number <https://support.google.com/cloud/answer/6158840>`__.
-                This field has been deprecated and replaced by the name field.
-            zone (str): Required. Deprecated. The name of the Google Compute Engine
-                `zone <https://cloud.google.com/compute/docs/zones#available>`__ in
-                which the cluster resides. This field has been deprecated and replaced
-                by the name field.
+            project_id (str): [Output only] The number of nodes currently in the cluster.
+                Deprecated. Call Kubernetes API directly to retrieve node information.
+            zone (str): The parent (project and location) where the operations will be
+                listed. Specified in the format ``projects/*/locations/*``. Location "-"
+                matches all zones and all regions.
             cluster_id (str): Required. Deprecated. The name of the cluster to update.
                 This field has been deprecated and replaced by the name field.
             enabled (bool): Required. Whether ABAC authorization will be enabled in the cluster.
-            name (str): The name (project, location, cluster id) of the cluster to set legacy
-                abac. Specified in the format ``projects/*/locations/*/clusters/*``.
+            name (str): The IP address range of the services IPs in this cluster. If blank,
+                a range will be automatically chosen with the default size.
+
+                This field is only applicable when ``use_ip_aliases`` is true.
+
+                Set to blank to have a range chosen with the default size.
+
+                Set to /netmask (e.g. ``/14``) to have a range chosen with a specific
+                netmask.
+
+                Set to a
+                `CIDR <http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing>`__
+                notation (e.g. ``10.96.0.0/14``) from the RFC-1918 private networks
+                (e.g. ``10.0.0.0/8``, ``172.16.0.0/12``, ``192.168.0.0/16``) to pick a
+                specific range to use.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -2762,18 +2936,14 @@ class ClusterManagerClient(object):
             >>> response = client.start_i_p_rotation(project_id, zone, cluster_id)
 
         Args:
-            project_id (str): Required. Deprecated. The Google Developers Console `project ID or
-                project
-                number <https://developers.google.com/console/help/new/#projectnumber>`__.
+            project_id (str): [Output only] The pod CIDR block size per node in this node pool.
+            zone (str): Required. Deprecated. The Google Developers Console `project ID or
+                project number <https://support.google.com/cloud/answer/6158840>`__.
                 This field has been deprecated and replaced by the name field.
-            zone (str): Required. Deprecated. The name of the Google Compute Engine
-                `zone <https://cloud.google.com/compute/docs/zones#available>`__ in
-                which the cluster resides. This field has been deprecated and replaced
-                by the name field.
             cluster_id (str): Required. Deprecated. The name of the cluster.
                 This field has been deprecated and replaced by the name field.
-            name (str): The name (project, location, cluster id) of the cluster to start IP
-                rotation. Specified in the format ``projects/*/locations/*/clusters/*``.
+            name (str): Input and output type names. These are resolved in the same way as
+                FieldDescriptorProto.type_name, but must refer to a message type.
             rotate_credentials (bool): Whether to rotate credentials during IP rotation.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
@@ -2859,18 +3029,14 @@ class ClusterManagerClient(object):
             >>> response = client.complete_i_p_rotation(project_id, zone, cluster_id)
 
         Args:
-            project_id (str): Required. Deprecated. The Google Developers Console `project ID or
-                project
-                number <https://developers.google.com/console/help/new/#projectnumber>`__.
-                This field has been deprecated and replaced by the name field.
-            zone (str): Required. Deprecated. The name of the Google Compute Engine
-                `zone <https://cloud.google.com/compute/docs/zones#available>`__ in
-                which the cluster resides. This field has been deprecated and replaced
-                by the name field.
+            project_id (str): javalite_serializable
+            zone (str): [Output only] The time the cluster will be automatically deleted in
+                `RFC3339 <https://www.ietf.org/rfc/rfc3339.txt>`__ text format.
             cluster_id (str): Required. Deprecated. The name of the cluster.
                 This field has been deprecated and replaced by the name field.
-            name (str): The name (project, location, cluster id) of the cluster to complete IP
-                rotation. Specified in the format ``projects/*/locations/*/clusters/*``.
+            name (str): Required. Deprecated. The Google Developers Console `project ID or
+                project number <https://support.google.com/cloud/answer/6158840>`__.
+                This field has been deprecated and replaced by the name field.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -2959,21 +3125,26 @@ class ClusterManagerClient(object):
             >>> response = client.set_node_pool_size(project_id, zone, cluster_id, node_pool_id, node_count)
 
         Args:
-            project_id (str): Required. Deprecated. The Google Developers Console `project ID or
-                project number <https://support.google.com/cloud/answer/6158840>`__.
-                This field has been deprecated and replaced by the name field.
-            zone (str): Required. Deprecated. The name of the Google Compute Engine
-                `zone <https://cloud.google.com/compute/docs/zones#available>`__ in
-                which the cluster resides. This field has been deprecated and replaced
-                by the name field.
+            project_id (str): [Output only] The IP address range of the Kubernetes services in
+                this cluster, in
+                `CIDR <http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing>`__
+                notation (e.g. ``1.2.3.4/29``). Service addresses are typically put in
+                the last ``/16`` from the container CIDR.
+            zone (str): The name of the secondary range to be used as for the services CIDR
+                block. The secondary range will be used for service ClusterIPs. This
+                must be an existing secondary range associated with the cluster
+                subnetwork.
+
+                This field is only applicable with use_ip_aliases and create_subnetwork
+                is false.
             cluster_id (str): Required. Deprecated. The name of the cluster to update.
                 This field has been deprecated and replaced by the name field.
             node_pool_id (str): Required. Deprecated. The name of the node pool to update.
                 This field has been deprecated and replaced by the name field.
             node_count (int): Required. The desired node count for the pool.
-            name (str): The name (project, location, cluster, node pool id) of the node pool to
-                set size. Specified in the format
-                ``projects/*/locations/*/clusters/*/nodePools/*``.
+            name (str): Required. Deprecated. The Google Developers Console `project ID or
+                project number <https://support.google.com/cloud/answer/6158840>`__.
+                This field has been deprecated and replaced by the name field.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -3063,23 +3234,21 @@ class ClusterManagerClient(object):
             >>> response = client.set_network_policy(project_id, zone, cluster_id, network_policy)
 
         Args:
-            project_id (str): Required. Deprecated. The Google Developers Console `project ID or
-                project
-                number <https://developers.google.com/console/help/new/#projectnumber>`__.
-                This field has been deprecated and replaced by the name field.
-            zone (str): Required. Deprecated. The name of the Google Compute Engine
-                `zone <https://cloud.google.com/compute/docs/zones#available>`__ in
-                which the cluster resides. This field has been deprecated and replaced
-                by the name field.
+            project_id (str): Scopes that are used by NAP when creating node pools. If
+                oauth_scopes are specified, service_account should be empty.
+            zone (str): Required. The parent project where subnetworks are usable. Specified
+                in the format ``projects/*``.
             cluster_id (str): Required. Deprecated. The name of the cluster.
                 This field has been deprecated and replaced by the name field.
             network_policy (Union[dict, ~google.cloud.container_v1beta1.types.NetworkPolicy]): Required. Configuration options for the NetworkPolicy feature.
 
                 If a dict is provided, it must be of the same form as the protobuf
                 message :class:`~google.cloud.container_v1beta1.types.NetworkPolicy`
-            name (str): The name (project, location, cluster id) of the cluster to set
-                networking policy. Specified in the format
-                ``projects/*/locations/*/clusters/*``.
+            name (str): [Output only] The name of the Google Compute Engine
+                `zone <https://cloud.google.com/compute/docs/regions-zones/regions-zones#available>`__
+                or
+                `region <https://cloud.google.com/compute/docs/regions-zones/regions-zones#available>`__
+                in which the cluster resides.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -3168,20 +3337,46 @@ class ClusterManagerClient(object):
             >>> response = client.set_maintenance_policy(project_id, zone, cluster_id, maintenance_policy)
 
         Args:
-            project_id (str): Required. The Google Developers Console `project ID or project
-                number <https://support.google.com/cloud/answer/6158840>`__.
-            zone (str): Required. The name of the Google Compute Engine
+            project_id (str): Required. Deprecated. The name of the Google Compute Engine
                 `zone <https://cloud.google.com/compute/docs/zones#available>`__ in
-                which the cluster resides.
+                which the cluster resides. This field has been deprecated and replaced
+                by the name field.
+            zone (str): Should this field be parsed lazily? Lazy applies only to
+                message-type fields. It means that when the outer message is initially
+                parsed, the inner message's contents will not be parsed but instead
+                stored in encoded form. The inner message will actually be parsed when
+                it is first accessed.
+
+                This is only a hint. Implementations are free to choose whether to use
+                eager or lazy parsing regardless of the value of this option. However,
+                setting this option true suggests that the protocol author believes that
+                using lazy parsing on this field is worth the additional bookkeeping
+                overhead typically needed to implement it.
+
+                This option does not affect the public interface of any generated code;
+                all method signatures remain the same. Furthermore, thread-safety of the
+                interface is not affected by this option; const methods remain safe to
+                call from multiple threads concurrently, while non-const methods
+                continue to require exclusive access.
+
+                Note that implementations may choose not to check required fields within
+                a lazy sub-message. That is, calling IsInitialized() on the outer
+                message may return true even if the inner message has missing required
+                fields. This is necessary because otherwise the inner message would have
+                to be parsed in order to perform the check, defeating the purpose of
+                lazy parsing. An implementation which chooses not to check required
+                fields must be consistent about it. That is, for any particular
+                sub-message, the implementation must either *always* check its required
+                fields, or *never* check its required fields, regardless of whether or
+                not the message has been parsed.
             cluster_id (str): Required. The name of the cluster to update.
             maintenance_policy (Union[dict, ~google.cloud.container_v1beta1.types.MaintenancePolicy]): Required. The maintenance policy to be set for the cluster. An empty field
                 clears the existing maintenance policy.
 
                 If a dict is provided, it must be of the same form as the protobuf
                 message :class:`~google.cloud.container_v1beta1.types.MaintenancePolicy`
-            name (str): The name (project, location, cluster id) of the cluster to set
-                maintenance policy. Specified in the format
-                ``projects/*/locations/*/clusters/*``.
+            name (str): An annotation that describes a resource reference, see
+                ``ResourceReference``.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -3271,12 +3466,14 @@ class ClusterManagerClient(object):
             ...         pass
 
         Args:
-            parent (str): Required. The parent project where subnetworks are usable. Specified in
-                the format ``projects/*``.
-            filter_ (str): Filtering currently only supports equality on the networkProjectId and
-                must be in the form: "networkProjectId=[PROJECTID]", where
-                ``networkProjectId`` is the project which owns the listed subnetworks.
-                This defaults to the parent project ID.
+            parent (str): Required. Deprecated. The name of the Google Compute Engine
+                `zone <https://cloud.google.com/compute/docs/zones#available>`__ in
+                which the cluster resides. This field has been deprecated and replaced
+                by the parent field.
+            filter_ (str): Required. Deprecated. The Google Developers Console `project ID or
+                project
+                number <https://developers.google.com/console/help/new/#projectnumber>`__.
+                This field has been deprecated and replaced by the name field.
             page_size (int): The maximum number of resources contained in the
                 underlying API response. If page streaming is performed per-
                 resource, this parameter does not affect the return value. If page
@@ -3367,8 +3564,10 @@ class ClusterManagerClient(object):
             >>> response = client.list_locations(parent)
 
         Args:
-            parent (str): Required. Contains the name of the resource requested. Specified in the
-                format ``projects/*``.
+            parent (str): Required. Deprecated. The name of the Google Compute Engine
+                `zone <https://cloud.google.com/compute/docs/zones#available>`__ in
+                which the operation resides. This field has been deprecated and replaced
+                by the name field.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.

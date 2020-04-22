@@ -138,18 +138,8 @@ class ClusterManagerGrpcTransport(object):
     def create_cluster(self):
         """Return the gRPC stub for :meth:`ClusterManagerClient.create_cluster`.
 
-        Creates a cluster, consisting of the specified number and type of Google
-        Compute Engine instances.
-
-        By default, the cluster is created in the project's `default
-        network <https://cloud.google.com/compute/docs/networks-and-firewalls#networks>`__.
-
-        One firewall is added for the cluster. After cluster creation, the
-        Kubelet creates routes for each node to allow the containers on that
-        node to communicate with all other instances in the cluster.
-
-        Finally, an entry is added to the project's global metadata indicating
-        which CIDR range the cluster is using.
+        [Output only] Base64-encoded private key used by clients to
+        authenticate to the cluster endpoint.
 
         Returns:
             Callable: A callable which accepts the appropriate

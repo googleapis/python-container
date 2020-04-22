@@ -29,14 +29,25 @@ class Cluster(object):
           PROVISIONING (int): The PROVISIONING state indicates the cluster is being created.
           RUNNING (int): The RUNNING state indicates the cluster has been created and is fully
           usable.
-          RECONCILING (int): The RECONCILING state indicates that some work is actively being done on
-          the cluster, such as upgrading the master or node software. Details can
+          RECONCILING (int): The ERROR state indicates the node pool may be unusable. Details can
           be found in the ``statusMessage`` field.
           STOPPING (int): The STOPPING state indicates the cluster is being deleted.
-          ERROR (int): The ERROR state indicates the cluster may be unusable. Details can be
-          found in the ``statusMessage`` field.
-          DEGRADED (int): The DEGRADED state indicates the cluster requires user action to restore
-          full functionality. Details can be found in the ``statusMessage`` field.
+          ERROR (int): The resource type of a child collection that the annotated field
+          references. This is useful for annotating the ``parent`` field that
+          doesn't have a fixed resource type.
+
+          Example:
+
+          ::
+
+              message ListLogEntriesRequest {
+                string parent = 1 [(google.api.resource_reference) = {
+                  child_type: "logging.googleapis.com/LogEntry"
+                };
+              }
+          DEGRADED (int): Deprecated. The Google Developers Console `project ID or project
+          number <https://support.google.com/cloud/answer/6158840>`__. This field
+          has been deprecated and replaced by the name field.
         """
 
         STATUS_UNSPECIFIED = 0
@@ -89,16 +100,19 @@ class NodePool(object):
           PROVISIONING (int): The PROVISIONING state indicates the node pool is being created.
           RUNNING (int): The RUNNING state indicates the node pool has been created
           and is fully usable.
-          RUNNING_WITH_ERROR (int): The RUNNING\_WITH\_ERROR state indicates the node pool has been created
-          and is partially usable. Some error state has occurred and some
-          functionality may be impaired. Customer may need to reissue a request or
-          trigger a new update.
-          RECONCILING (int): The RECONCILING state indicates that some work is actively being done on
-          the node pool, such as upgrading node software. Details can be found in
-          the ``statusMessage`` field.
+          RUNNING_WITH_ERROR (int): [Output only] The IP address range of the Kubernetes services in
+          this cluster, in
+          `CIDR <http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing>`__
+          notation (e.g. ``1.2.3.4/29``). Service addresses are typically put in
+          the last ``/16`` from the container CIDR.
+          RECONCILING (int): The authentication information for accessing the master endpoint. If
+          unspecified, the defaults are used: For clusters before v1.12, if
+          master_auth is unspecified, ``username`` will be set to "admin", a
+          random password will be generated, and a client certificate will be
+          issued.
           STOPPING (int): The STOPPING state indicates the node pool is being deleted.
-          ERROR (int): The ERROR state indicates the node pool may be unusable. Details can be
-          found in the ``statusMessage`` field.
+          ERROR (int): The name (project, location, cluster) of the cluster to retrieve.
+          Specified in the format ``projects/*/locations/*/clusters/*``.
         """
 
         STATUS_UNSPECIFIED = 0
@@ -218,9 +232,11 @@ class StatusCondition(object):
 
         Attributes:
           UNKNOWN (int): UNKNOWN indicates a generic condition.
-          GCE_STOCKOUT (int): GCE\_STOCKOUT indicates a Google Compute Engine stockout.
-          GKE_SERVICE_ACCOUNT_DELETED (int): GKE\_SERVICE\_ACCOUNT\_DELETED indicates that the user deleted their
-          robot service account.
+          GCE_STOCKOUT (int): Deprecated. The Google Developers Console `project ID or project
+          number <https://developers.google.com/console/help/new/#projectnumber>`__.
+          This field has been deprecated and replaced by the name field.
+          GKE_SERVICE_ACCOUNT_DELETED (int): The name (project, location, cluster) of the cluster to update.
+          Specified in the format ``projects/*/locations/*/clusters/*``.
           GCE_QUOTA_EXCEEDED (int): Google Compute Engine quota was exceeded.
           SET_BY_OPERATOR (int): Cluster state was manually changed by an SRE due to a system logic error.
           CLOUD_KMS_KEY_ERROR (int): Unable to perform an encrypt operation against the CloudKMS key used for
@@ -244,13 +260,16 @@ class UsableSubnetworkSecondaryRange(object):
         Attributes:
           UNKNOWN (int): UNKNOWN is the zero value of the Status enum. It's not a valid status.
           UNUSED (int): UNUSED denotes that this range is unclaimed by any cluster.
-          IN_USE_SERVICE (int): IN\_USE\_SERVICE denotes that this range is claimed by a cluster for
-          services. It cannot be used for other clusters.
-          IN_USE_SHAREABLE_POD (int): IN\_USE\_SHAREABLE\_POD denotes this range was created by the network
-          admin and is currently claimed by a cluster for pods. It can only be
-          used by other clusters as a pod range.
-          IN_USE_MANAGED_POD (int): IN\_USE\_MANAGED\_POD denotes this range was created by GKE and is
-          claimed for pods. It cannot be used for other clusters.
+          IN_USE_SERVICE (int): Filtering currently only supports equality on the networkProjectId
+          and must be in the form: "networkProjectId=[PROJECTID]", where
+          ``networkProjectId`` is the project which owns the listed subnetworks.
+          This defaults to the parent project ID.
+          IN_USE_SHAREABLE_POD (int): Deprecated. The Google Developers Console `project ID or project
+          number <https://developers.google.com/console/help/new/#projectnumber>`__.
+          This field has been deprecated and replaced by the parent field.
+          IN_USE_MANAGED_POD (int): Deprecated. The Google Developers Console `project ID or project
+          number <https://developers.google.com/console/help/new/#projectnumber>`__.
+          This field has been deprecated and replaced by the name field.
         """
 
         UNKNOWN = 0

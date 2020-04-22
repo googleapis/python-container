@@ -29,14 +29,18 @@ class Cluster(object):
           PROVISIONING (int): The PROVISIONING state indicates the cluster is being created.
           RUNNING (int): The RUNNING state indicates the cluster has been created and is fully
           usable.
-          RECONCILING (int): The RECONCILING state indicates that some work is actively being done on
-          the cluster, such as upgrading the master or node software. Details can
-          be found in the ``statusMessage`` field.
+          RECONCILING (int): Filtering currently only supports equality on the networkProjectId
+          and must be in the form: "networkProjectId=[PROJECTID]", where
+          ``networkProjectId`` is the project which owns the listed subnetworks.
+          This defaults to the parent project ID.
           STOPPING (int): The STOPPING state indicates the cluster is being deleted.
-          ERROR (int): The ERROR state indicates the cluster may be unusable. Details can be
-          found in the ``statusMessage`` field.
-          DEGRADED (int): The DEGRADED state indicates the cluster requires user action to restore
-          full functionality. Details can be found in the ``statusMessage`` field.
+          ERROR (int): Required. Deprecated. The name of the Google Compute Engine
+          `zone <https://cloud.google.com/compute/docs/zones#available>`__ in
+          which the cluster resides. This field has been deprecated and replaced
+          by the name field.
+          DEGRADED (int): Additional HTTP bindings for the selector. Nested bindings must not
+          contain an ``additional_bindings`` field themselves (that is, the
+          nesting may only be one level deep).
         """
 
         STATUS_UNSPECIFIED = 0
@@ -85,7 +89,8 @@ class Location(object):
         LocationType is the type of GKE location, regional or zonal.
 
         Attributes:
-          LOCATION_TYPE_UNSPECIFIED (int): LOCATION\_TYPE\_UNSPECIFIED means the location type was not determined.
+          LOCATION_TYPE_UNSPECIFIED (int): Required. Contains the name of the resource requested. Specified in
+          the format ``projects/*``.
           ZONE (int): A GKE Location where Zonal clusters can be created.
           REGION (int): A GKE Location where Regional clusters can be created.
         """
@@ -119,16 +124,12 @@ class NodePool(object):
           PROVISIONING (int): The PROVISIONING state indicates the node pool is being created.
           RUNNING (int): The RUNNING state indicates the node pool has been created
           and is fully usable.
-          RUNNING_WITH_ERROR (int): The RUNNING\_WITH\_ERROR state indicates the node pool has been created
-          and is partially usable. Some error state has occurred and some
-          functionality may be impaired. Customer may need to reissue a request or
-          trigger a new update.
-          RECONCILING (int): The RECONCILING state indicates that some work is actively being done on
-          the node pool, such as upgrading node software. Details can be found in
-          the ``statusMessage`` field.
+          RUNNING_WITH_ERROR (int): Required. Deprecated. The server-assigned ``name`` of the operation.
+          This field has been deprecated and replaced by the name field.
+          RECONCILING (int): [Output only] The current status of this cluster.
           STOPPING (int): The STOPPING state indicates the node pool is being deleted.
-          ERROR (int): The ERROR state indicates the node pool may be unusable. Details can be
-          found in the ``statusMessage`` field.
+          ERROR (int): The desired image type for the node pool. NOTE: Set the
+          "desired_node_pool" field as well.
         """
 
         STATUS_UNSPECIFIED = 0
@@ -248,9 +249,11 @@ class StatusCondition(object):
 
         Attributes:
           UNKNOWN (int): UNKNOWN indicates a generic condition.
-          GCE_STOCKOUT (int): GCE\_STOCKOUT indicates a Google Compute Engine stockout.
-          GKE_SERVICE_ACCOUNT_DELETED (int): GKE\_SERVICE\_ACCOUNT\_DELETED indicates that the user deleted their
-          robot service account.
+          GCE_STOCKOUT (int): The name (project, location, cluster) of the cluster to set
+          monitoring. Specified in the format
+          ``projects/*/locations/*/clusters/*``.
+          GKE_SERVICE_ACCOUNT_DELETED (int): Required. Deprecated. The server-assigned ``name`` of the operation.
+          This field has been deprecated and replaced by the name field.
           GCE_QUOTA_EXCEEDED (int): Google Compute Engine quota was exceeded.
           SET_BY_OPERATOR (int): Cluster state was manually changed by an SRE due to a system logic error.
           CLOUD_KMS_KEY_ERROR (int): Unable to perform an encrypt operation against the CloudKMS key used for
@@ -274,13 +277,16 @@ class UsableSubnetworkSecondaryRange(object):
         Attributes:
           UNKNOWN (int): UNKNOWN is the zero value of the Status enum. It's not a valid status.
           UNUSED (int): UNUSED denotes that this range is unclaimed by any cluster.
-          IN_USE_SERVICE (int): IN\_USE\_SERVICE denotes that this range is claimed by a cluster for
-          services. It cannot be used for other clusters.
-          IN_USE_SHAREABLE_POD (int): IN\_USE\_SHAREABLE\_POD denotes this range was created by the network
-          admin and is currently claimed by a cluster for pods. It can only be
-          used by other clusters as a pod range.
-          IN_USE_MANAGED_POD (int): IN\_USE\_MANAGED\_POD denotes this range was created by GKE and is
-          claimed for pods. It cannot be used for other clusters.
+          IN_USE_SERVICE (int): Only return ListLocationsResponse that occur after the page_token.
+          This value should be populated from the
+          ListLocationsResponse.next_page_token if that response token was set
+          (which happens when listing more Locations than fit in a single
+          ListLocationsResponse).
+          IN_USE_SHAREABLE_POD (int): The name (project, location, cluster, node pool id) of the node pool
+          to get. Specified in the format
+          ``projects/*/locations/*/clusters/*/nodePools/*``.
+          IN_USE_MANAGED_POD (int): The name (project, location, cluster) of the cluster to set addons.
+          Specified in the format ``projects/*/locations/*/clusters/*``.
         """
 
         UNKNOWN = 0
