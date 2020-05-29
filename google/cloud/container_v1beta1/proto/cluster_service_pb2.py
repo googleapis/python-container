@@ -10405,8 +10405,8 @@ AddonsConfig = _reflection.GeneratedProtocolMessageType(
     {
         "DESCRIPTOR": _ADDONSCONFIG,
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
-        "__doc__": """Configuration for the addons that can be automatically
-  spun up in the cluster, enabling additional functionality.
+        "__doc__": """Configuration for the addons that can be automatically spun up in the
+  cluster, enabling additional functionality.
   
   
   Attributes:

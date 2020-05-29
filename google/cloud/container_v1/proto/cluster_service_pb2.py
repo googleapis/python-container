@@ -11798,8 +11798,8 @@ SetLegacyAbacRequest = _reflection.GeneratedProtocolMessageType(
     {
         "DESCRIPTOR": _SETLEGACYABACREQUEST,
         "__module__": "google.cloud.container_v1.proto.cluster_service_pb2",
-        "__doc__": """SetLegacyAbacRequest enables or disables the ABAC authorization
-  mechanism for a cluster.
+        "__doc__": """SetLegacyAbacRequest enables or disables the ABAC
+  authorization mechanism for a cluster.
   
   
   Attributes:
