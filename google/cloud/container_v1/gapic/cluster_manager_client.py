@@ -186,6 +186,186 @@ class ClusterManagerClient(object):
         self._inner_api_calls = {}
 
     # Service calls
+    def delete_cluster(
+        self,
+        project_id=None,
+        zone=None,
+        cluster_id=None,
+        name=None,
+        retry=google.api_core.gapic_v1.method.DEFAULT,
+        timeout=google.api_core.gapic_v1.method.DEFAULT,
+        metadata=None,
+    ):
+        """
+        Deletes the cluster, including the Kubernetes endpoint and all worker
+        nodes.
+
+        Firewalls and routes that were configured during cluster creation
+        are also deleted.
+
+        Other Google Compute Engine resources that might be in use by the cluster,
+        such as load balancer resources, are not deleted if they weren't present
+        when the cluster was initially created.
+
+        Example:
+            >>> from google.cloud import container_v1
+            >>>
+            >>> client = container_v1.ClusterManagerClient()
+            >>>
+            >>> response = client.delete_cluster()
+
+        Args:
+            project_id (str): Deprecated. The Google Developers Console `project ID or project
+                number <https://support.google.com/cloud/answer/6158840>`__. This field
+                has been deprecated and replaced by the name field.
+            zone (str): Deprecated. The name of the Google Compute Engine
+                `zone <https://cloud.google.com/compute/docs/zones#available>`__ in
+                which the cluster resides. This field has been deprecated and replaced
+                by the name field.
+            cluster_id (str): Deprecated. The name of the cluster to delete.
+                This field has been deprecated and replaced by the name field.
+            name (str): The name (project, location, cluster) of the cluster to delete.
+                Specified in the format ``projects/*/locations/*/clusters/*``.
+            retry (Optional[google.api_core.retry.Retry]):  A retry object used
+                to retry requests. If ``None`` is specified, requests will
+                be retried using a default configuration.
+            timeout (Optional[float]): The amount of time, in seconds, to wait
+                for the request to complete. Note that if ``retry`` is
+                specified, the timeout applies to each individual attempt.
+            metadata (Optional[Sequence[Tuple[str, str]]]): Additional metadata
+                that is provided to the method.
+
+        Returns:
+            A :class:`~google.cloud.container_v1.types.Operation` instance.
+
+        Raises:
+            google.api_core.exceptions.GoogleAPICallError: If the request
+                    failed for any reason.
+            google.api_core.exceptions.RetryError: If the request failed due
+                    to a retryable error and retry attempts failed.
+            ValueError: If the parameters are invalid.
+        """
+        # Wrap the transport method to add retry and timeout logic.
+        if "delete_cluster" not in self._inner_api_calls:
+            self._inner_api_calls[
+                "delete_cluster"
+            ] = google.api_core.gapic_v1.method.wrap_method(
+                self.transport.delete_cluster,
+                default_retry=self._method_configs["DeleteCluster"].retry,
+                default_timeout=self._method_configs["DeleteCluster"].timeout,
+                client_info=self._client_info,
+            )
+
+        request = cluster_service_pb2.DeleteClusterRequest(
+            project_id=project_id, zone=zone, cluster_id=cluster_id, name=name
+        )
+        if metadata is None:
+            metadata = []
+        metadata = list(metadata)
+        try:
+            routing_header = [("name", name)]
+        except AttributeError:
+            pass
+        else:
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
+                routing_header
+            )
+            metadata.append(routing_metadata)
+
+        return self._inner_api_calls["delete_cluster"](
+            request, retry=retry, timeout=timeout, metadata=metadata
+        )
+
+    def delete_node_pool(
+        self,
+        project_id=None,
+        zone=None,
+        cluster_id=None,
+        node_pool_id=None,
+        name=None,
+        retry=google.api_core.gapic_v1.method.DEFAULT,
+        timeout=google.api_core.gapic_v1.method.DEFAULT,
+        metadata=None,
+    ):
+        """
+        Deletes a node pool from a cluster.
+
+        Example:
+            >>> from google.cloud import container_v1
+            >>>
+            >>> client = container_v1.ClusterManagerClient()
+            >>>
+            >>> response = client.delete_node_pool()
+
+        Args:
+            project_id (str): Deprecated. The Google Developers Console `project ID or project
+                number <https://developers.google.com/console/help/new/#projectnumber>`__.
+                This field has been deprecated and replaced by the name field.
+            zone (str): Deprecated. The name of the Google Compute Engine
+                `zone <https://cloud.google.com/compute/docs/zones#available>`__ in
+                which the cluster resides. This field has been deprecated and replaced
+                by the name field.
+            cluster_id (str): Deprecated. The name of the cluster.
+                This field has been deprecated and replaced by the name field.
+            node_pool_id (str): Deprecated. The name of the node pool to delete.
+                This field has been deprecated and replaced by the name field.
+            name (str): The name (project, location, cluster, node pool id) of the node pool
+                to delete. Specified in the format
+                ``projects/*/locations/*/clusters/*/nodePools/*``.
+            retry (Optional[google.api_core.retry.Retry]):  A retry object used
+                to retry requests. If ``None`` is specified, requests will
+                be retried using a default configuration.
+            timeout (Optional[float]): The amount of time, in seconds, to wait
+                for the request to complete. Note that if ``retry`` is
+                specified, the timeout applies to each individual attempt.
+            metadata (Optional[Sequence[Tuple[str, str]]]): Additional metadata
+                that is provided to the method.
+
+        Returns:
+            A :class:`~google.cloud.container_v1.types.Operation` instance.
+
+        Raises:
+            google.api_core.exceptions.GoogleAPICallError: If the request
+                    failed for any reason.
+            google.api_core.exceptions.RetryError: If the request failed due
+                    to a retryable error and retry attempts failed.
+            ValueError: If the parameters are invalid.
+        """
+        # Wrap the transport method to add retry and timeout logic.
+        if "delete_node_pool" not in self._inner_api_calls:
+            self._inner_api_calls[
+                "delete_node_pool"
+            ] = google.api_core.gapic_v1.method.wrap_method(
+                self.transport.delete_node_pool,
+                default_retry=self._method_configs["DeleteNodePool"].retry,
+                default_timeout=self._method_configs["DeleteNodePool"].timeout,
+                client_info=self._client_info,
+            )
+
+        request = cluster_service_pb2.DeleteNodePoolRequest(
+            project_id=project_id,
+            zone=zone,
+            cluster_id=cluster_id,
+            node_pool_id=node_pool_id,
+            name=name,
+        )
+        if metadata is None:
+            metadata = []
+        metadata = list(metadata)
+        try:
+            routing_header = [("name", name)]
+        except AttributeError:
+            pass
+        else:
+            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
+                routing_header
+            )
+            metadata.append(routing_metadata)
+
+        return self._inner_api_calls["delete_node_pool"](
+            request, retry=retry, timeout=timeout, metadata=metadata
+        )
+
     def list_clusters(
         self,
         project_id=None,
@@ -1342,96 +1522,6 @@ class ClusterManagerClient(object):
             request, retry=retry, timeout=timeout, metadata=metadata
         )
 
-    def delete_cluster(
-        self,
-        project_id=None,
-        zone=None,
-        cluster_id=None,
-        name=None,
-        retry=google.api_core.gapic_v1.method.DEFAULT,
-        timeout=google.api_core.gapic_v1.method.DEFAULT,
-        metadata=None,
-    ):
-        """
-        Deletes the cluster, including the Kubernetes endpoint and all worker
-        nodes.
-
-        Firewalls and routes that were configured during cluster creation
-        are also deleted.
-
-        Other Google Compute Engine resources that might be in use by the cluster,
-        such as load balancer resources, are not deleted if they weren't present
-        when the cluster was initially created.
-
-        Example:
-            >>> from google.cloud import container_v1
-            >>>
-            >>> client = container_v1.ClusterManagerClient()
-            >>>
-            >>> response = client.delete_cluster()
-
-        Args:
-            project_id (str): Deprecated. The Google Developers Console `project ID or project
-                number <https://support.google.com/cloud/answer/6158840>`__. This field
-                has been deprecated and replaced by the name field.
-            zone (str): Deprecated. The name of the Google Compute Engine
-                `zone <https://cloud.google.com/compute/docs/zones#available>`__ in
-                which the cluster resides. This field has been deprecated and replaced
-                by the name field.
-            cluster_id (str): Deprecated. The name of the cluster to delete.
-                This field has been deprecated and replaced by the name field.
-            name (str): The name (project, location, cluster) of the cluster to delete.
-                Specified in the format ``projects/*/locations/*/clusters/*``.
-            retry (Optional[google.api_core.retry.Retry]):  A retry object used
-                to retry requests. If ``None`` is specified, requests will
-                be retried using a default configuration.
-            timeout (Optional[float]): The amount of time, in seconds, to wait
-                for the request to complete. Note that if ``retry`` is
-                specified, the timeout applies to each individual attempt.
-            metadata (Optional[Sequence[Tuple[str, str]]]): Additional metadata
-                that is provided to the method.
-
-        Returns:
-            A :class:`~google.cloud.container_v1.types.Operation` instance.
-
-        Raises:
-            google.api_core.exceptions.GoogleAPICallError: If the request
-                    failed for any reason.
-            google.api_core.exceptions.RetryError: If the request failed due
-                    to a retryable error and retry attempts failed.
-            ValueError: If the parameters are invalid.
-        """
-        # Wrap the transport method to add retry and timeout logic.
-        if "delete_cluster" not in self._inner_api_calls:
-            self._inner_api_calls[
-                "delete_cluster"
-            ] = google.api_core.gapic_v1.method.wrap_method(
-                self.transport.delete_cluster,
-                default_retry=self._method_configs["DeleteCluster"].retry,
-                default_timeout=self._method_configs["DeleteCluster"].timeout,
-                client_info=self._client_info,
-            )
-
-        request = cluster_service_pb2.DeleteClusterRequest(
-            project_id=project_id, zone=zone, cluster_id=cluster_id, name=name
-        )
-        if metadata is None:
-            metadata = []
-        metadata = list(metadata)
-        try:
-            routing_header = [("name", name)]
-        except AttributeError:
-            pass
-        else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
-                routing_header
-            )
-            metadata.append(routing_metadata)
-
-        return self._inner_api_calls["delete_cluster"](
-            request, retry=retry, timeout=timeout, metadata=metadata
-        )
-
     def list_operations(
         self,
         project_id=None,
@@ -2017,96 +2107,6 @@ class ClusterManagerClient(object):
             metadata.append(routing_metadata)
 
         return self._inner_api_calls["create_node_pool"](
-            request, retry=retry, timeout=timeout, metadata=metadata
-        )
-
-    def delete_node_pool(
-        self,
-        project_id=None,
-        zone=None,
-        cluster_id=None,
-        node_pool_id=None,
-        name=None,
-        retry=google.api_core.gapic_v1.method.DEFAULT,
-        timeout=google.api_core.gapic_v1.method.DEFAULT,
-        metadata=None,
-    ):
-        """
-        Deletes a node pool from a cluster.
-
-        Example:
-            >>> from google.cloud import container_v1
-            >>>
-            >>> client = container_v1.ClusterManagerClient()
-            >>>
-            >>> response = client.delete_node_pool()
-
-        Args:
-            project_id (str): Deprecated. The Google Developers Console `project ID or project
-                number <https://developers.google.com/console/help/new/#projectnumber>`__.
-                This field has been deprecated and replaced by the name field.
-            zone (str): Deprecated. The name of the Google Compute Engine
-                `zone <https://cloud.google.com/compute/docs/zones#available>`__ in
-                which the cluster resides. This field has been deprecated and replaced
-                by the name field.
-            cluster_id (str): Deprecated. The name of the cluster.
-                This field has been deprecated and replaced by the name field.
-            node_pool_id (str): Deprecated. The name of the node pool to delete.
-                This field has been deprecated and replaced by the name field.
-            name (str): The name (project, location, cluster, node pool id) of the node pool
-                to delete. Specified in the format
-                ``projects/*/locations/*/clusters/*/nodePools/*``.
-            retry (Optional[google.api_core.retry.Retry]):  A retry object used
-                to retry requests. If ``None`` is specified, requests will
-                be retried using a default configuration.
-            timeout (Optional[float]): The amount of time, in seconds, to wait
-                for the request to complete. Note that if ``retry`` is
-                specified, the timeout applies to each individual attempt.
-            metadata (Optional[Sequence[Tuple[str, str]]]): Additional metadata
-                that is provided to the method.
-
-        Returns:
-            A :class:`~google.cloud.container_v1.types.Operation` instance.
-
-        Raises:
-            google.api_core.exceptions.GoogleAPICallError: If the request
-                    failed for any reason.
-            google.api_core.exceptions.RetryError: If the request failed due
-                    to a retryable error and retry attempts failed.
-            ValueError: If the parameters are invalid.
-        """
-        # Wrap the transport method to add retry and timeout logic.
-        if "delete_node_pool" not in self._inner_api_calls:
-            self._inner_api_calls[
-                "delete_node_pool"
-            ] = google.api_core.gapic_v1.method.wrap_method(
-                self.transport.delete_node_pool,
-                default_retry=self._method_configs["DeleteNodePool"].retry,
-                default_timeout=self._method_configs["DeleteNodePool"].timeout,
-                client_info=self._client_info,
-            )
-
-        request = cluster_service_pb2.DeleteNodePoolRequest(
-            project_id=project_id,
-            zone=zone,
-            cluster_id=cluster_id,
-            node_pool_id=node_pool_id,
-            name=name,
-        )
-        if metadata is None:
-            metadata = []
-        metadata = list(metadata)
-        try:
-            routing_header = [("name", name)]
-        except AttributeError:
-            pass
-        else:
-            routing_metadata = google.api_core.gapic_v1.routing_header.to_grpc_metadata(
-                routing_header
-            )
-            metadata.append(routing_metadata)
-
-        return self._inner_api_calls["delete_node_pool"](
             request, retry=retry, timeout=timeout, metadata=metadata
         )
 
