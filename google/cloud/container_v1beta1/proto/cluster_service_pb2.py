@@ -10925,6 +10925,7 @@ NodeConfig = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _NODECONFIG,
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """Parameters that describe the nodes in a cluster.
+  
   Attributes:
       machine_type:
           The name of a Google Compute Engine `machine type
@@ -11041,6 +11042,7 @@ ShieldedInstanceConfig = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _SHIELDEDINSTANCECONFIG,
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """A set of Shielded Instance options.
+  
   Attributes:
       enable_secure_boot:
           Defines whether the instance has Secure Boot enabled.  Secure
@@ -11071,6 +11073,7 @@ NodeTaint = _reflection.GeneratedProtocolMessageType(
   NoExecute.  For more information, including usage and the valid
   values, see: https://kubernetes.io/docs/concepts/configuration/taint-
   and-toleration/
+  
   Attributes:
       key:
           Key for taint.
@@ -11093,6 +11096,7 @@ MasterAuth = _reflection.GeneratedProtocolMessageType(
         "__doc__": """The authentication information for accessing the master endpoint.
   Authentication can be done using HTTP basic auth or using client
   certificates.
+  
   Attributes:
       username:
           The username to use for HTTP basic authentication to the
@@ -11130,6 +11134,7 @@ ClientCertificateConfig = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _CLIENTCERTIFICATECONFIG,
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """Configuration for client certificates on the cluster.
+  
   Attributes:
       issue_client_certificate:
           Issue a client certificate.
@@ -11147,6 +11152,7 @@ AddonsConfig = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """Configuration for the addons that can be automatically spun up in the
   cluster, enabling additional functionality.
+  
   Attributes:
       http_load_balancing:
           Configuration for the HTTP (L7) load balancing controller
@@ -11190,6 +11196,7 @@ HttpLoadBalancing = _reflection.GeneratedProtocolMessageType(
         "__doc__": """Configuration options for the HTTP (L7) load balancing controller
   addon, which makes it easy to set up HTTP load balancers for services
   in a cluster.
+  
   Attributes:
       disabled:
           Whether the HTTP Load Balancing controller is enabled in the
@@ -11210,6 +11217,7 @@ HorizontalPodAutoscaling = _reflection.GeneratedProtocolMessageType(
         "__doc__": """Configuration options for the horizontal pod autoscaling feature,
   which increases or decreases the number of replica pods a replication
   controller has based on the resource usage of the existing pods.
+  
   Attributes:
       disabled:
           Whether the Horizontal Pod Autoscaling feature is enabled in
@@ -11229,6 +11237,7 @@ KubernetesDashboard = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _KUBERNETESDASHBOARD,
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """Configuration for the Kubernetes Dashboard.
+  
   Attributes:
       disabled:
           Whether the Kubernetes Dashboard is enabled for this cluster.
@@ -11247,6 +11256,7 @@ NetworkPolicyConfig = _reflection.GeneratedProtocolMessageType(
         "__doc__": """Configuration for NetworkPolicy. This only tracks whether the addon is
   enabled or not on the Master, it does not track whether network policy
   is enabled for the nodes.
+  
   Attributes:
       disabled:
           Whether NetworkPolicy is enabled for this cluster.
@@ -11263,6 +11273,7 @@ PrivateClusterConfig = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _PRIVATECLUSTERCONFIG,
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """Configuration options for private clusters.
+  
   Attributes:
       enable_private_nodes:
           Whether nodes have internal IP addresses only. If enabled, all
@@ -11296,6 +11307,7 @@ IstioConfig = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _ISTIOCONFIG,
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """Configuration options for Istio addon.
+  
   Attributes:
       disabled:
           Whether Istio is enabled for this cluster.
@@ -11314,6 +11326,7 @@ CloudRunConfig = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _CLOUDRUNCONFIG,
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """Configuration options for the Cloud Run feature.
+  
   Attributes:
       disabled:
           Whether Cloud Run addon is enabled for this cluster.
@@ -11334,6 +11347,7 @@ MasterAuthorizedNetworksConfig = _reflection.GeneratedProtocolMessageType(
                 "DESCRIPTOR": _MASTERAUTHORIZEDNETWORKSCONFIG_CIDRBLOCK,
                 "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
                 "__doc__": """CidrBlock contains an optional name and one CIDR block.
+    
     Attributes:
         display_name:
             display_name is an optional field for users to identify CIDR
@@ -11351,6 +11365,7 @@ MasterAuthorizedNetworksConfig = _reflection.GeneratedProtocolMessageType(
   to access Kubernetes master through HTTPS except traffic from the
   given CIDR blocks, Google Compute Engine Public IPs and Google Prod
   IPs.
+  
   Attributes:
       enabled:
           Whether or not master authorized networks is enabled.
@@ -11372,6 +11387,7 @@ LegacyAbac = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """Configuration for the legacy Attribute Based Access Control
   authorization mode.
+  
   Attributes:
       enabled:
           Whether the ABAC authorizer is enabled for this cluster. When
@@ -11394,6 +11410,7 @@ NetworkPolicy = _reflection.GeneratedProtocolMessageType(
         "__doc__": """Configuration options for the NetworkPolicy feature.
   https://kubernetes.io/docs/concepts/services-
   networking/networkpolicies/
+  
   Attributes:
       provider:
           The selected network policy provider.
@@ -11412,6 +11429,7 @@ IPAllocationPolicy = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _IPALLOCATIONPOLICY,
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """Configuration for controlling how IPs are allocated in the cluster.
+  
   Attributes:
       use_ip_aliases:
           Whether alias IPs will be used for pod IPs in the cluster.
@@ -11513,6 +11531,7 @@ BinaryAuthorization = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _BINARYAUTHORIZATION,
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """Configuration for Binary Authorization.
+  
   Attributes:
       enabled:
           Enable Binary Authorization for this cluster. If enabled, all
@@ -11530,6 +11549,7 @@ PodSecurityPolicyConfig = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _PODSECURITYPOLICYCONFIG,
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """Configuration for the PodSecurityPolicy feature.
+  
   Attributes:
       enabled:
           Enable the PodSecurityPolicy controller for this cluster. If
@@ -11548,6 +11568,7 @@ AuthenticatorGroupsConfig = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _AUTHENTICATORGROUPSCONFIG,
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """Configuration for returning group information from authenticators.
+  
   Attributes:
       enabled:
           Whether this cluster should return group membership lookups
@@ -11577,6 +11598,7 @@ Cluster = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _CLUSTER,
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """A Google Kubernetes Engine cluster.
+  
   Attributes:
       name:
           The name of this cluster. The name must be unique within this
@@ -11812,6 +11834,7 @@ ClusterUpdate = _reflection.GeneratedProtocolMessageType(
         "__doc__": """ClusterUpdate describes an update to the cluster. Exactly one update
   can be applied to a cluster with each request, so at most one field
   can be provided.
+  
   Attributes:
       desired_node_version:
           The Kubernetes version to change the nodes to (typically an
@@ -11904,6 +11927,7 @@ Operation = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """This operation resource represents operations that may have happened
   or are happening on the cluster. All fields are output only.
+  
   Attributes:
       name:
           The server-assigned ID for the operation.
@@ -11959,6 +11983,7 @@ OperationProgress = _reflection.GeneratedProtocolMessageType(
                 "DESCRIPTOR": _OPERATIONPROGRESS_METRIC,
                 "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
                 "__doc__": """Progress metric is (string, int|float|string) pair.
+    
     Attributes:
         name:
             Metric name, required. e.g., “nodes total”, “percent done”
@@ -11978,6 +12003,7 @@ OperationProgress = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _OPERATIONPROGRESS,
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """Information about operation (or operation stage) progress.
+  
   Attributes:
       name:
           A non-parameterized string describing an operation stage.
@@ -12006,6 +12032,7 @@ CreateClusterRequest = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _CREATECLUSTERREQUEST,
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """CreateClusterRequest creates a cluster.
+  
   Attributes:
       project_id:
           Required. Deprecated. The Google Developers Console `project
@@ -12038,6 +12065,7 @@ GetClusterRequest = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _GETCLUSTERREQUEST,
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """GetClusterRequest gets the settings of a cluster.
+  
   Attributes:
       project_id:
           Required. Deprecated. The Google Developers Console `project
@@ -12070,6 +12098,7 @@ UpdateClusterRequest = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _UPDATECLUSTERREQUEST,
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """UpdateClusterRequest updates the settings of a cluster.
+  
   Attributes:
       project_id:
           Required. Deprecated. The Google Developers Console `project
@@ -12104,6 +12133,7 @@ UpdateNodePoolRequest = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _UPDATENODEPOOLREQUEST,
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """SetNodePoolVersionRequest updates the version of a node pool.
+  
   Attributes:
       project_id:
           Required. Deprecated. The Google Developers Console `project
@@ -12154,6 +12184,7 @@ SetNodePoolAutoscalingRequest = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """SetNodePoolAutoscalingRequest sets the autoscaler settings of a node
   pool.
+  
   Attributes:
       project_id:
           Required. Deprecated. The Google Developers Console `project
@@ -12191,6 +12222,7 @@ SetLoggingServiceRequest = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _SETLOGGINGSERVICEREQUEST,
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """SetLoggingServiceRequest sets the logging service of a cluster.
+  
   Attributes:
       project_id:
           Required. Deprecated. The Google Developers Console `project
@@ -12228,6 +12260,7 @@ SetMonitoringServiceRequest = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _SETMONITORINGSERVICEREQUEST,
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """SetMonitoringServiceRequest sets the monitoring service of a cluster.
+  
   Attributes:
       project_id:
           Required. Deprecated. The Google Developers Console `project
@@ -12266,6 +12299,7 @@ SetAddonsConfigRequest = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _SETADDONSCONFIGREQUEST,
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """SetAddonsRequest sets the addons associated with the cluster.
+  
   Attributes:
       project_id:
           Required. Deprecated. The Google Developers Console `project
@@ -12301,6 +12335,7 @@ SetLocationsRequest = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _SETLOCATIONSREQUEST,
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """SetLocationsRequest sets the locations of the cluster.
+  
   Attributes:
       project_id:
           Required. Deprecated. The Google Developers Console `project
@@ -12341,6 +12376,7 @@ UpdateMasterRequest = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _UPDATEMASTERREQUEST,
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """UpdateMasterRequest updates the master of the cluster.
+  
   Attributes:
       project_id:
           Required. Deprecated. The Google Developers Console `project
@@ -12383,6 +12419,7 @@ SetMasterAuthRequest = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _SETMASTERAUTHREQUEST,
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """SetMasterAuthRequest updates the admin password of a cluster.
+  
   Attributes:
       project_id:
           Required. Deprecated. The Google Developers Console `project
@@ -12420,6 +12457,7 @@ DeleteClusterRequest = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _DELETECLUSTERREQUEST,
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """DeleteClusterRequest deletes a cluster.
+  
   Attributes:
       project_id:
           Required. Deprecated. The Google Developers Console `project
@@ -12452,6 +12490,7 @@ ListClustersRequest = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _LISTCLUSTERSREQUEST,
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """ListClustersRequest lists clusters.
+  
   Attributes:
       project_id:
           Required. Deprecated. The Google Developers Console `project
@@ -12481,6 +12520,7 @@ ListClustersResponse = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _LISTCLUSTERSRESPONSE,
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """ListClustersResponse is the result of ListClustersRequest.
+  
   Attributes:
       clusters:
           A list of clusters in the project in the specified zone, or
@@ -12501,6 +12541,7 @@ GetOperationRequest = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _GETOPERATIONREQUEST,
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """GetOperationRequest gets a single operation.
+  
   Attributes:
       project_id:
           Required. Deprecated. The Google Developers Console `project
@@ -12534,6 +12575,7 @@ ListOperationsRequest = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _LISTOPERATIONSREQUEST,
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """ListOperationsRequest lists operations.
+  
   Attributes:
       project_id:
           Required. Deprecated. The Google Developers Console `project
@@ -12563,6 +12605,7 @@ CancelOperationRequest = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _CANCELOPERATIONREQUEST,
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """CancelOperationRequest cancels a single operation.
+  
   Attributes:
       project_id:
           Required. Deprecated. The Google Developers Console `project
@@ -12596,6 +12639,7 @@ ListOperationsResponse = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _LISTOPERATIONSRESPONSE,
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """ListOperationsResponse is the result of ListOperationsRequest.
+  
   Attributes:
       operations:
           A list of operations in the project in the specified zone.
@@ -12615,6 +12659,7 @@ GetServerConfigRequest = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _GETSERVERCONFIGREQUEST,
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """Gets the current Kubernetes Engine service configuration.
+  
   Attributes:
       project_id:
           Required. Deprecated. The Google Developers Console `project
@@ -12643,6 +12688,7 @@ ServerConfig = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _SERVERCONFIG,
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """Kubernetes Engine service configuration.
+  
   Attributes:
       default_cluster_version:
           Version of Kubernetes the service deploys by default.
@@ -12667,6 +12713,7 @@ CreateNodePoolRequest = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _CREATENODEPOOLREQUEST,
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """CreateNodePoolRequest creates a node pool for a cluster.
+  
   Attributes:
       project_id:
           Required. Deprecated. The Google Developers Console `project
@@ -12701,6 +12748,7 @@ DeleteNodePoolRequest = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _DELETENODEPOOLREQUEST,
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """DeleteNodePoolRequest deletes a node pool for a cluster.
+  
   Attributes:
       project_id:
           Required. Deprecated. The Google Developers Console `project
@@ -12736,6 +12784,7 @@ ListNodePoolsRequest = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _LISTNODEPOOLSREQUEST,
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """ListNodePoolsRequest lists the node pool(s) for a cluster.
+  
   Attributes:
       project_id:
           Required. Deprecated. The Google Developers Console `project
@@ -12768,6 +12817,7 @@ GetNodePoolRequest = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _GETNODEPOOLREQUEST,
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """GetNodePoolRequest retrieves a node pool for a cluster.
+  
   Attributes:
       project_id:
           Required. Deprecated. The Google Developers Console `project
@@ -12808,6 +12858,7 @@ NodePool = _reflection.GeneratedProtocolMessageType(
   master. They may have a set of Kubernetes labels applied to them,
   which may be used to reference them during pod scheduling. They may
   also be resized up or down, to accommodate the workload.
+  
   Attributes:
       name:
           The name of the node pool.
@@ -12860,6 +12911,7 @@ NodeManagement = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """NodeManagement defines the set of node management services turned on
   for the node pool.
+  
   Attributes:
       auto_upgrade:
           Whether the nodes will be automatically upgraded.
@@ -12881,6 +12933,7 @@ AutoUpgradeOptions = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """AutoUpgradeOptions defines the set of options for the user to control
   how the Auto Upgrades will proceed.
+  
   Attributes:
       auto_upgrade_start_time:
           [Output only] This field is set when upgrades are about to
@@ -12904,6 +12957,7 @@ MaintenancePolicy = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """MaintenancePolicy defines the maintenance policy to be used for the
   cluster.
+  
   Attributes:
       window:
           Specifies the maintenance window in which maintenance may be
@@ -12938,6 +12992,7 @@ MaintenanceWindow = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """MaintenanceWindow defines the maintenance window to be used for the
   cluster.
+  
   Attributes:
       policy:
           Unimplemented, reserved for future use.
@@ -12967,6 +13022,7 @@ TimeWindow = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _TIMEWINDOW,
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """Represents an arbitrary window of time.
+  
   Attributes:
       start_time:
           The time that the window first starts.
@@ -12986,6 +13042,7 @@ RecurringTimeWindow = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _RECURRINGTIMEWINDOW,
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """Represents an arbitrary window of time that recurs.
+  
   Attributes:
       window:
           The window of the first recurrence.
@@ -13023,6 +13080,7 @@ DailyMaintenanceWindow = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _DAILYMAINTENANCEWINDOW,
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """Time window specified for daily maintenance operations.
+  
   Attributes:
       start_time:
           Time within the maintenance window to start the maintenance
@@ -13045,6 +13103,7 @@ SetNodePoolManagementRequest = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """SetNodePoolManagementRequest sets the node management properties of a
   node pool.
+  
   Attributes:
       project_id:
           Required. Deprecated. The Google Developers Console `project
@@ -13082,6 +13141,7 @@ SetNodePoolSizeRequest = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _SETNODEPOOLSIZEREQUEST,
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """SetNodePoolSizeRequest sets the size a node pool.
+  
   Attributes:
       project_id:
           Required. Deprecated. The Google Developers Console `project
@@ -13121,6 +13181,7 @@ RollbackNodePoolUpgradeRequest = _reflection.GeneratedProtocolMessageType(
         "__doc__": """RollbackNodePoolUpgradeRequest rollbacks the previously Aborted or
   Failed NodePool upgrade. This will be an no-op if the last upgrade
   successfully completed.
+  
   Attributes:
       project_id:
           Required. Deprecated. The Google Developers Console `project
@@ -13156,6 +13217,7 @@ ListNodePoolsResponse = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _LISTNODEPOOLSRESPONSE,
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """ListNodePoolsResponse is the result of ListNodePoolsRequest.
+  
   Attributes:
       node_pools:
           A list of node pools for a cluster.
@@ -13174,6 +13236,7 @@ ClusterAutoscaling = _reflection.GeneratedProtocolMessageType(
         "__doc__": """ClusterAutoscaling contains global, per-cluster information required
   by Cluster Autoscaler to automatically adjust the size of the cluster
   and create/delete node pools based on the current needs.
+  
   Attributes:
       enable_node_autoprovisioning:
           Enables automatic node pool creation and deletion.
@@ -13201,6 +13264,7 @@ AutoprovisioningNodePoolDefaults = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """AutoprovisioningNodePoolDefaults contains defaults for a node pool
   created by NAP.
+  
   Attributes:
       oauth_scopes:
           Scopes that are used by NAP when creating node pools. If
@@ -13223,6 +13287,7 @@ ResourceLimit = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """Contains information about amount of some resource in the cluster. For
   memory, value should be in GB.
+  
   Attributes:
       resource_type:
           Resource name “cpu”, “memory” or gpu-specific string.
@@ -13245,6 +13310,7 @@ NodePoolAutoscaling = _reflection.GeneratedProtocolMessageType(
         "__doc__": """NodePoolAutoscaling contains information required by cluster
   autoscaler to adjust the size of the node pool to the current cluster
   usage.
+  
   Attributes:
       enabled:
           Is autoscaling enabled for this node pool.
@@ -13281,6 +13347,7 @@ SetLabelsRequest = _reflection.GeneratedProtocolMessageType(
         "__doc__": """SetLabelsRequest sets the Google Cloud Platform labels on a Google
   Container Engine cluster, which will in turn set them for Google
   Compute Engine resources used by that cluster
+  
   Attributes:
       project_id:
           Required. Deprecated. The Google Developers Console `project
@@ -13325,6 +13392,7 @@ SetLegacyAbacRequest = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """SetLegacyAbacRequest enables or disables the ABAC authorization
   mechanism for a cluster.
+  
   Attributes:
       project_id:
           Required. Deprecated. The Google Developers Console `project
@@ -13361,6 +13429,7 @@ StartIPRotationRequest = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """StartIPRotationRequest creates a new IP for the cluster and then
   performs a node upgrade on each node pool to point to the new IP.
+  
   Attributes:
       project_id:
           Required. Deprecated. The Google Developers Console `project
@@ -13396,6 +13465,7 @@ CompleteIPRotationRequest = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """CompleteIPRotationRequest moves the cluster master back into single-IP
   mode.
+  
   Attributes:
       project_id:
           Required. Deprecated. The Google Developers Console `project
@@ -13428,6 +13498,7 @@ AcceleratorConfig = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _ACCELERATORCONFIG,
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """AcceleratorConfig represents a Hardware Accelerator request.
+  
   Attributes:
       accelerator_count:
           The number of the accelerator cards exposed to an instance.
@@ -13449,6 +13520,7 @@ WorkloadMetadataConfig = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """WorkloadMetadataConfig defines the metadata configuration to expose to
   workloads on the node pool.
+  
   Attributes:
       node_metadata:
           NodeMetadata is the configuration for how to expose metadata
@@ -13466,6 +13538,7 @@ SetNetworkPolicyRequest = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _SETNETWORKPOLICYREQUEST,
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """SetNetworkPolicyRequest enables/disables network policy for a cluster.
+  
   Attributes:
       project_id:
           Required. Deprecated. The Google Developers Console `project
@@ -13500,6 +13573,7 @@ SetMaintenancePolicyRequest = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _SETMAINTENANCEPOLICYREQUEST,
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """SetMaintenancePolicyRequest sets the maintenance policy for a cluster.
+  
   Attributes:
       project_id:
           Required. The Google Developers Console `project ID or project
@@ -13530,6 +13604,7 @@ ListLocationsRequest = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _LISTLOCATIONSREQUEST,
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """ListLocationsRequest is used to request the locations that offer GKE.
+  
   Attributes:
       parent:
           Required. Contains the name of the resource requested.
@@ -13548,6 +13623,7 @@ ListLocationsResponse = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """ListLocationsResponse returns the list of all GKE locations and their
   recommendation state.
+  
   Attributes:
       locations:
           A full list of GKE locations.
@@ -13571,6 +13647,7 @@ Location = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """Location returns the location name, and if the location is recommended
   for GKE cluster scheduling.
+  
   Attributes:
       type:
           Contains the type of location this Location is for. Regional
@@ -13594,6 +13671,7 @@ StatusCondition = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """StatusCondition describes why a cluster or a node pool has a certain
   status (e.g., ERROR or DEGRADED).
+  
   Attributes:
       code:
           Machine-friendly representation of the condition
@@ -13612,6 +13690,7 @@ NetworkConfig = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _NETWORKCONFIG,
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """NetworkConfig reports the relative names of network & subnetwork.
+  
   Attributes:
       network:
           Output only. The relative name of the Google Compute Engine [n
@@ -13642,6 +13721,7 @@ ListUsableSubnetworksRequest = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """ListUsableSubnetworksRequest requests the list of usable subnetworks.
   available to a user for creating clusters.
+  
   Attributes:
       parent:
           Required. The parent project where subnetworks are usable.
@@ -13676,6 +13756,7 @@ ListUsableSubnetworksResponse = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """ListUsableSubnetworksResponse is the response of
   ListUsableSubnetworksRequest.
+  
   Attributes:
       subnetworks:
           A list of usable subnetworks in the specified network project.
@@ -13698,6 +13779,7 @@ UsableSubnetworkSecondaryRange = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _USABLESUBNETWORKSECONDARYRANGE,
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """Secondary IP range of a usable subnetwork.
+  
   Attributes:
       range_name:
           The name associated with this subnetwork secondary range, used
@@ -13721,6 +13803,7 @@ UsableSubnetwork = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _USABLESUBNETWORK,
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """Network Name. Example: projects/my-project/global/networks/my-network
+  
   Attributes:
       subnetwork:
           Subnetwork Name. Example: projects/my-project/regions/us-
@@ -13751,6 +13834,7 @@ VerticalPodAutoscaling = _reflection.GeneratedProtocolMessageType(
         "__doc__": """VerticalPodAutoscaling contains global, per-cluster information
   required by Vertical Pod Autoscaler to automatically adjust the
   resources of pods controlled by it.
+  
   Attributes:
       enabled:
           Enables vertical pod autoscaling.
@@ -13768,6 +13852,7 @@ IntraNodeVisibilityConfig = _reflection.GeneratedProtocolMessageType(
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """IntraNodeVisibilityConfig contains the desired config of the intra-
   node visibility on this cluster.
+  
   Attributes:
       enabled:
           Enables intra node visibility for this cluster.
@@ -13784,6 +13869,7 @@ MaxPodsConstraint = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _MAXPODSCONSTRAINT,
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """Constraints applied to pods.
+  
   Attributes:
       max_pods_per_node:
           Constraint enforced on the max num of pods per node.
@@ -13800,6 +13886,7 @@ DatabaseEncryption = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _DATABASEENCRYPTION,
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """Configuration of etcd encryption.
+  
   Attributes:
       state:
           Denotes the state of etcd encryption.
@@ -13825,6 +13912,7 @@ ResourceUsageExportConfig = _reflection.GeneratedProtocolMessageType(
                 "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
                 "__doc__": """Parameters for using BigQuery as the destination of resource usage
     export.
+    
     Attributes:
         dataset_id:
             The ID of a BigQuery Dataset.
@@ -13839,6 +13927,7 @@ ResourceUsageExportConfig = _reflection.GeneratedProtocolMessageType(
                 "DESCRIPTOR": _RESOURCEUSAGEEXPORTCONFIG_CONSUMPTIONMETERINGCONFIG,
                 "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
                 "__doc__": """Parameters for controlling consumption metering.
+    
     Attributes:
         enabled:
             Whether to enable consumption metering for this cluster. If
@@ -13851,6 +13940,7 @@ ResourceUsageExportConfig = _reflection.GeneratedProtocolMessageType(
         "DESCRIPTOR": _RESOURCEUSAGEEXPORTCONFIG,
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
         "__doc__": """Configuration for exporting cluster resource usages.
+  
   Attributes:
       bigquery_destination:
           Configuration to use BigQuery as usage export destination.
