@@ -138,8 +138,8 @@ class ClusterManagerGrpcTransport(object):
     def create_cluster(self):
         """Return the gRPC stub for :meth:`ClusterManagerClient.create_cluster`.
 
-        Creates a cluster, consisting of the specified number and type of Google
-        Compute Engine instances.
+        Creates a cluster, consisting of the specified number and type of
+        Google Compute Engine instances.
 
         By default, the cluster is created in the project's `default
         network <https://cloud.google.com/compute/docs/networks-and-firewalls#networks>`__.

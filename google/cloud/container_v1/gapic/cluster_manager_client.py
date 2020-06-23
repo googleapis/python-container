@@ -360,8 +360,8 @@ class ClusterManagerClient(object):
         metadata=None,
     ):
         """
-        Creates a cluster, consisting of the specified number and type of Google
-        Compute Engine instances.
+        Creates a cluster, consisting of the specified number and type of
+        Google Compute Engine instances.
 
         By default, the cluster is created in the project's `default
         network <https://cloud.google.com/compute/docs/networks-and-firewalls#networks>`__.
@@ -695,8 +695,8 @@ class ClusterManagerClient(object):
                 This field has been deprecated and replaced by the name field.
             node_pool_id (str): Deprecated. The name of the node pool to upgrade.
                 This field has been deprecated and replaced by the name field.
-            name (str): The name (project, location, cluster, node pool) of the node pool to set
-                autoscaler settings. Specified in the format
+            name (str): The name (project, location, cluster, node pool) of the node pool to
+                set autoscaler settings. Specified in the format
                 ``projects/*/locations/*/clusters/*/nodePools/*``.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
@@ -778,8 +778,8 @@ class ClusterManagerClient(object):
             >>> response = client.set_logging_service(logging_service)
 
         Args:
-            logging_service (str): Required. The logging service the cluster should use to write metrics.
-                Currently available options:
+            logging_service (str): Required. The logging service the cluster should use to write
+                metrics. Currently available options:
 
                 -  "logging.googleapis.com" - the Google Cloud Logging service
                 -  "none" - no metrics will be exported from the cluster
@@ -889,8 +889,9 @@ class ClusterManagerClient(object):
                 by the name field.
             cluster_id (str): Deprecated. The name of the cluster to upgrade.
                 This field has been deprecated and replaced by the name field.
-            name (str): The name (project, location, cluster) of the cluster to set monitoring.
-                Specified in the format ``projects/*/locations/*/clusters/*``.
+            name (str): The name (project, location, cluster) of the cluster to set
+                monitoring. Specified in the format
+                ``projects/*/locations/*/clusters/*``.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -1081,8 +1082,9 @@ class ClusterManagerClient(object):
                 by the name field.
             cluster_id (str): Deprecated. The name of the cluster to upgrade.
                 This field has been deprecated and replaced by the name field.
-            name (str): The name (project, location, cluster) of the cluster to set locations.
-                Specified in the format ``projects/*/locations/*/clusters/*``.
+            name (str): The name (project, location, cluster) of the cluster to set
+                locations. Specified in the format
+                ``projects/*/locations/*/clusters/*``.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -1457,9 +1459,9 @@ class ClusterManagerClient(object):
                 `zone <https://cloud.google.com/compute/docs/zones#available>`__ to
                 return operations for, or ``-`` for all zones. This field has been
                 deprecated and replaced by the parent field.
-            parent (str): The parent (project and location) where the operations will be listed.
-                Specified in the format ``projects/*/locations/*``. Location "-" matches
-                all zones and all regions.
+            parent (str): The parent (project and location) where the operations will be
+                listed. Specified in the format ``projects/*/locations/*``. Location "-"
+                matches all zones and all regions.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -1538,8 +1540,8 @@ class ClusterManagerClient(object):
                 `zone <https://cloud.google.com/compute/docs/zones#available>`__ in
                 which the cluster resides. This field has been deprecated and replaced
                 by the name field.
-            operation_id (str): Deprecated. The server-assigned ``name`` of the operation. This field
-                has been deprecated and replaced by the name field.
+            operation_id (str): Deprecated. The server-assigned ``name`` of the operation. This
+                field has been deprecated and replaced by the name field.
             name (str): The name (project, location, operation id) of the operation to get.
                 Specified in the format ``projects/*/locations/*/operations/*``.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
@@ -1620,10 +1622,10 @@ class ClusterManagerClient(object):
                 `zone <https://cloud.google.com/compute/docs/zones#available>`__ in
                 which the operation resides. This field has been deprecated and replaced
                 by the name field.
-            operation_id (str): Deprecated. The server-assigned ``name`` of the operation. This field
-                has been deprecated and replaced by the name field.
-            name (str): The name (project, location, operation id) of the operation to cancel.
-                Specified in the format ``projects/*/locations/*/operations/*``.
+            operation_id (str): Deprecated. The server-assigned ``name`` of the operation. This
+                field has been deprecated and replaced by the name field.
+            name (str): The name (project, location, operation id) of the operation to
+                cancel. Specified in the format ``projects/*/locations/*/operations/*``.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -1698,8 +1700,8 @@ class ClusterManagerClient(object):
                 `zone <https://cloud.google.com/compute/docs/zones#available>`__ to
                 return operations for. This field has been deprecated and replaced by
                 the name field.
-            name (str): The name (project and location) of the server config to get, specified
-                in the format ``projects/*/locations/*``.
+            name (str): The name (project and location) of the server config to get,
+                specified in the format ``projects/*/locations/*``.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -1780,8 +1782,9 @@ class ClusterManagerClient(object):
                 by the parent field.
             cluster_id (str): Deprecated. The name of the cluster.
                 This field has been deprecated and replaced by the parent field.
-            parent (str): The parent (project, location, cluster id) where the node pools will be
-                listed. Specified in the format ``projects/*/locations/*/clusters/*``.
+            parent (str): The parent (project, location, cluster id) where the node pools will
+                be listed. Specified in the format
+                ``projects/*/locations/*/clusters/*``.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -1865,8 +1868,8 @@ class ClusterManagerClient(object):
                 This field has been deprecated and replaced by the name field.
             node_pool_id (str): Deprecated. The name of the node pool.
                 This field has been deprecated and replaced by the name field.
-            name (str): The name (project, location, cluster, node pool id) of the node pool to
-                get. Specified in the format
+            name (str): The name (project, location, cluster, node pool id) of the node pool
+                to get. Specified in the format
                 ``projects/*/locations/*/clusters/*/nodePools/*``.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
@@ -1960,8 +1963,9 @@ class ClusterManagerClient(object):
                 by the parent field.
             cluster_id (str): Deprecated. The name of the cluster.
                 This field has been deprecated and replaced by the parent field.
-            parent (str): The parent (project, location, cluster id) where the node pool will be
-                created. Specified in the format ``projects/*/locations/*/clusters/*``.
+            parent (str): The parent (project, location, cluster id) where the node pool will
+                be created. Specified in the format
+                ``projects/*/locations/*/clusters/*``.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -2049,8 +2053,8 @@ class ClusterManagerClient(object):
                 This field has been deprecated and replaced by the name field.
             node_pool_id (str): Deprecated. The name of the node pool to delete.
                 This field has been deprecated and replaced by the name field.
-            name (str): The name (project, location, cluster, node pool id) of the node pool to
-                delete. Specified in the format
+            name (str): The name (project, location, cluster, node pool id) of the node pool
+                to delete. Specified in the format
                 ``projects/*/locations/*/clusters/*/nodePools/*``.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
@@ -2140,8 +2144,8 @@ class ClusterManagerClient(object):
                 This field has been deprecated and replaced by the name field.
             node_pool_id (str): Deprecated. The name of the node pool to rollback.
                 This field has been deprecated and replaced by the name field.
-            name (str): The name (project, location, cluster, node pool id) of the node poll to
-                rollback upgrade. Specified in the format
+            name (str): The name (project, location, cluster, node pool id) of the node poll
+                to rollback upgrade. Specified in the format
                 ``projects/*/locations/*/clusters/*/nodePools/*``.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
@@ -2238,8 +2242,8 @@ class ClusterManagerClient(object):
                 This field has been deprecated and replaced by the name field.
             node_pool_id (str): Deprecated. The name of the node pool to update.
                 This field has been deprecated and replaced by the name field.
-            name (str): The name (project, location, cluster, node pool id) of the node pool to
-                set management properties. Specified in the format
+            name (str): The name (project, location, cluster, node pool id) of the node pool
+                to set management properties. Specified in the format
                 ``projects/*/locations/*/clusters/*/nodePools/*``.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
@@ -2341,8 +2345,8 @@ class ClusterManagerClient(object):
                 by the name field.
             cluster_id (str): Deprecated. The name of the cluster.
                 This field has been deprecated and replaced by the name field.
-            name (str): The name (project, location, cluster id) of the cluster to set labels.
-                Specified in the format ``projects/*/locations/*/clusters/*``.
+            name (str): The name (project, location, cluster id) of the cluster to set
+                labels. Specified in the format ``projects/*/locations/*/clusters/*``.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -2433,8 +2437,9 @@ class ClusterManagerClient(object):
                 by the name field.
             cluster_id (str): Deprecated. The name of the cluster to update.
                 This field has been deprecated and replaced by the name field.
-            name (str): The name (project, location, cluster id) of the cluster to set legacy
-                abac. Specified in the format ``projects/*/locations/*/clusters/*``.
+            name (str): The name (project, location, cluster id) of the cluster to set
+                legacy abac. Specified in the format
+                ``projects/*/locations/*/clusters/*``.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -2607,8 +2612,9 @@ class ClusterManagerClient(object):
                 by the name field.
             cluster_id (str): Deprecated. The name of the cluster.
                 This field has been deprecated and replaced by the name field.
-            name (str): The name (project, location, cluster id) of the cluster to complete IP
-                rotation. Specified in the format ``projects/*/locations/*/clusters/*``.
+            name (str): The name (project, location, cluster id) of the cluster to complete
+                IP rotation. Specified in the format
+                ``projects/*/locations/*/clusters/*``.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
                 be retried using a default configuration.
@@ -2697,8 +2703,8 @@ class ClusterManagerClient(object):
                 This field has been deprecated and replaced by the name field.
             node_pool_id (str): Deprecated. The name of the node pool to update.
                 This field has been deprecated and replaced by the name field.
-            name (str): The name (project, location, cluster, node pool id) of the node pool to
-                set size. Specified in the format
+            name (str): The name (project, location, cluster, node pool id) of the node pool
+                to set size. Specified in the format
                 ``projects/*/locations/*/clusters/*/nodePools/*``.
             retry (Optional[google.api_core.retry.Retry]):  A retry object used
                 to retry requests. If ``None`` is specified, requests will
@@ -2984,10 +2990,10 @@ class ClusterManagerClient(object):
             ...         pass
 
         Args:
-            parent (str): The parent project where subnetworks are usable. Specified in the format
-                ``projects/*``.
-            filter_ (str): Filtering currently only supports equality on the networkProjectId and
-                must be in the form: "networkProjectId=[PROJECTID]", where
+            parent (str): The parent project where subnetworks are usable. Specified in the
+                format ``projects/*``.
+            filter_ (str): Filtering currently only supports equality on the networkProjectId
+                and must be in the form: "networkProjectId=[PROJECTID]", where
                 ``networkProjectId`` is the project which owns the listed subnetworks.
                 This defaults to the parent project ID.
             page_size (int): The maximum number of resources contained in the
