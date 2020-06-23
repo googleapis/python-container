@@ -11833,9 +11833,10 @@ NodePool = _reflection.GeneratedProtocolMessageType(
           The node configuration of the pool.
       initial_node_count:
           The initial node count for the pool. You must ensure that your
-          Compute Engine resource quota is sufficient for this number of
-          instances. You must also have available firewall and routes
-          quota.
+          Compute Engine `resource quota
+          <https://cloud.google.com/compute/quotas>`__ is sufficient for
+          this number of instances. You must also have available
+          firewall and routes quota.
       self_link:
           [Output only] Server-defined URL for the resource.
       version:
