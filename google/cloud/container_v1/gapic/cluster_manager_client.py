@@ -39,7 +39,7 @@ from google.protobuf import empty_pb2
 
 
 _GAPIC_LIBRARY_VERSION = pkg_resources.get_distribution(
-    "google-cloud-container"
+    "google-cloud-container",
 ).version
 
 
@@ -160,12 +160,12 @@ class ClusterManagerClient(object):
                 self.transport = transport
         else:
             self.transport = cluster_manager_grpc_transport.ClusterManagerGrpcTransport(
-                address=api_endpoint, channel=channel, credentials=credentials
+                address=api_endpoint, channel=channel, credentials=credentials,
             )
 
         if client_info is None:
             client_info = google.api_core.gapic_v1.client_info.ClientInfo(
-                gapic_version=_GAPIC_LIBRARY_VERSION
+                gapic_version=_GAPIC_LIBRARY_VERSION,
             )
         else:
             client_info.gapic_version = _GAPIC_LIBRARY_VERSION
@@ -176,7 +176,7 @@ class ClusterManagerClient(object):
         # (Ordinarily, these are the defaults specified in the `*_config.py`
         # file next to this one.)
         self._method_configs = google.api_core.gapic_v1.config.parse_method_configs(
-            client_config["interfaces"][self._INTERFACE_NAME]
+            client_config["interfaces"][self._INTERFACE_NAME],
         )
 
         # Save a dictionary of cached API call functions.
@@ -257,7 +257,7 @@ class ClusterManagerClient(object):
             )
 
         request = cluster_service_pb2.DeleteClusterRequest(
-            project_id=project_id, zone=zone, cluster_id=cluster_id, name=name
+            project_id=project_id, zone=zone, cluster_id=cluster_id, name=name,
         )
         if metadata is None:
             metadata = []
@@ -428,7 +428,7 @@ class ClusterManagerClient(object):
             )
 
         request = cluster_service_pb2.ListClustersRequest(
-            project_id=project_id, zone=zone, parent=parent
+            project_id=project_id, zone=zone, parent=parent,
         )
         if metadata is None:
             metadata = []
@@ -510,7 +510,7 @@ class ClusterManagerClient(object):
             )
 
         request = cluster_service_pb2.GetClusterRequest(
-            project_id=project_id, zone=zone, cluster_id=cluster_id, name=name
+            project_id=project_id, zone=zone, cluster_id=cluster_id, name=name,
         )
         if metadata is None:
             metadata = []
@@ -609,7 +609,7 @@ class ClusterManagerClient(object):
             )
 
         request = cluster_service_pb2.CreateClusterRequest(
-            cluster=cluster, project_id=project_id, zone=zone, parent=parent
+            cluster=cluster, project_id=project_id, zone=zone, parent=parent,
         )
         if metadata is None:
             metadata = []
@@ -1583,7 +1583,7 @@ class ClusterManagerClient(object):
             )
 
         request = cluster_service_pb2.ListOperationsRequest(
-            project_id=project_id, zone=zone, parent=parent
+            project_id=project_id, zone=zone, parent=parent,
         )
         if metadata is None:
             metadata = []
@@ -1665,7 +1665,7 @@ class ClusterManagerClient(object):
             )
 
         request = cluster_service_pb2.GetOperationRequest(
-            project_id=project_id, zone=zone, operation_id=operation_id, name=name
+            project_id=project_id, zone=zone, operation_id=operation_id, name=name,
         )
         if metadata is None:
             metadata = []
@@ -1744,7 +1744,7 @@ class ClusterManagerClient(object):
             )
 
         request = cluster_service_pb2.CancelOperationRequest(
-            project_id=project_id, zone=zone, operation_id=operation_id, name=name
+            project_id=project_id, zone=zone, operation_id=operation_id, name=name,
         )
         if metadata is None:
             metadata = []
@@ -1823,7 +1823,7 @@ class ClusterManagerClient(object):
             )
 
         request = cluster_service_pb2.GetServerConfigRequest(
-            project_id=project_id, zone=zone, name=name
+            project_id=project_id, zone=zone, name=name,
         )
         if metadata is None:
             metadata = []
@@ -1906,7 +1906,7 @@ class ClusterManagerClient(object):
             )
 
         request = cluster_service_pb2.ListNodePoolsRequest(
-            project_id=project_id, zone=zone, cluster_id=cluster_id, parent=parent
+            project_id=project_id, zone=zone, cluster_id=cluster_id, parent=parent,
         )
         if metadata is None:
             metadata = []
@@ -2646,7 +2646,7 @@ class ClusterManagerClient(object):
             )
 
         request = cluster_service_pb2.CompleteIPRotationRequest(
-            project_id=project_id, zone=zone, cluster_id=cluster_id, name=name
+            project_id=project_id, zone=zone, cluster_id=cluster_id, name=name,
         )
         if metadata is None:
             metadata = []
@@ -3035,7 +3035,7 @@ class ClusterManagerClient(object):
             )
 
         request = cluster_service_pb2.ListUsableSubnetworksRequest(
-            parent=parent, filter=filter_, page_size=page_size
+            parent=parent, filter=filter_, page_size=page_size,
         )
         if metadata is None:
             metadata = []
