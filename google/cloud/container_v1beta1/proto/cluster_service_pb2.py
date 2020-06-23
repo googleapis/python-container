@@ -11588,14 +11588,15 @@ Cluster = _reflection.GeneratedProtocolMessageType(
           An optional description of this cluster.
       initial_node_count:
           The number of nodes to create in this cluster. You must ensure
-          that your Compute Engine resource quota is sufficient for this
-          number of instances. You must also have available firewall and
-          routes quota. For requests, this field should only be used in
-          lieu of a “node_pool” object, since this configuration (along
-          with the “node_config”) will be used to create a “NodePool”
-          object with an auto-generated name. Do not use this and a
-          node_pool at the same time.  This field is deprecated, use
-          node_pool.initial_node_count instead.
+          that your Compute Engine `resource quota
+          <https://cloud.google.com/compute/quotas>`__ is sufficient for
+          this number of instances. You must also have available
+          firewall and routes quota. For requests, this field should
+          only be used in lieu of a “node_pool” object, since this
+          configuration (along with the “node_config”) will be used to
+          create a “NodePool” object with an auto-generated name. Do not
+          use this and a node_pool at the same time.  This field is
+          deprecated, use node_pool.initial_node_count instead.
       node_config:
           Parameters used in creating the cluster’s nodes. For requests,
           this field should only be used in lieu of a “node_pool”
