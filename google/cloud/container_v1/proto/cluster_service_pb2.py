@@ -11502,8 +11502,8 @@ SetNodePoolManagementRequest = _reflection.GeneratedProtocolMessageType(
     {
         "DESCRIPTOR": _SETNODEPOOLMANAGEMENTREQUEST,
         "__module__": "google.cloud.container_v1.proto.cluster_service_pb2",
-        "__doc__": """SetNodePoolManagementRequest sets the node management properties of a
-  node pool.
+        "__doc__": """SetNodePoolManagementRequest sets the node management
+  properties of a node pool.
   
   
   Attributes:
