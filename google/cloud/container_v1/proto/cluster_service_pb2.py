@@ -11502,8 +11502,8 @@ SetNodePoolManagementRequest = _reflection.GeneratedProtocolMessageType(
     {
         "DESCRIPTOR": _SETNODEPOOLMANAGEMENTREQUEST,
         "__module__": "google.cloud.container_v1.proto.cluster_service_pb2",
-        "__doc__": """SetNodePoolManagementRequest sets the node management
-  properties of a node pool.
+        "__doc__": """SetNodePoolManagementRequest sets the node management properties of a
+  node pool.
   
   
   Attributes:
@@ -11835,8 +11835,9 @@ StartIPRotationRequest = _reflection.GeneratedProtocolMessageType(
     {
         "DESCRIPTOR": _STARTIPROTATIONREQUEST,
         "__module__": "google.cloud.container_v1.proto.cluster_service_pb2",
-        "__doc__": """StartIPRotationRequest creates a new IP for the cluster and then
-  performs a node upgrade on each node pool to point to the new IP.
+        "__doc__": """StartIPRotationRequest creates a new IP for the cluster
+  and then performs a node upgrade on each node pool to point to the new
+  IP.
   
   
   Attributes:

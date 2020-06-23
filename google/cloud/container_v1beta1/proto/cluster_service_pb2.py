@@ -12960,8 +12960,8 @@ ListLocationsResponse = _reflection.GeneratedProtocolMessageType(
     {
         "DESCRIPTOR": _LISTLOCATIONSRESPONSE,
         "__module__": "google.cloud.container_v1beta1.proto.cluster_service_pb2",
-        "__doc__": """ListLocationsResponse returns the list of all GKE locations and their
-  recommendation state.
+        "__doc__": """ListLocationsResponse returns the list of all GKE
+  locations and their recommendation state.
   
   
   Attributes:
