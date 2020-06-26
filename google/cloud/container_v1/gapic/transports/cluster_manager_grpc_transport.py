@@ -110,40 +110,6 @@ class ClusterManagerGrpcTransport(object):
         return self._channel
 
     @property
-    def delete_cluster(self):
-        """Return the gRPC stub for :meth:`ClusterManagerClient.delete_cluster`.
-
-        Deletes the cluster, including the Kubernetes endpoint and all worker
-        nodes.
-
-        Firewalls and routes that were configured during cluster creation
-        are also deleted.
-
-        Other Google Compute Engine resources that might be in use by the cluster,
-        such as load balancer resources, are not deleted if they weren't present
-        when the cluster was initially created.
-
-        Returns:
-            Callable: A callable which accepts the appropriate
-                deserialized request object and returns a
-                deserialized response object.
-        """
-        return self._stubs["cluster_manager_stub"].DeleteCluster
-
-    @property
-    def delete_node_pool(self):
-        """Return the gRPC stub for :meth:`ClusterManagerClient.delete_node_pool`.
-
-        Deletes a node pool from a cluster.
-
-        Returns:
-            Callable: A callable which accepts the appropriate
-                deserialized request object and returns a
-                deserialized response object.
-        """
-        return self._stubs["cluster_manager_stub"].DeleteNodePool
-
-    @property
     def list_clusters(self):
         """Return the gRPC stub for :meth:`ClusterManagerClient.list_clusters`.
 
@@ -314,6 +280,27 @@ class ClusterManagerGrpcTransport(object):
         return self._stubs["cluster_manager_stub"].SetMasterAuth
 
     @property
+    def delete_cluster(self):
+        """Return the gRPC stub for :meth:`ClusterManagerClient.delete_cluster`.
+
+        Deletes the cluster, including the Kubernetes endpoint and all worker
+        nodes.
+
+        Firewalls and routes that were configured during cluster creation
+        are also deleted.
+
+        Other Google Compute Engine resources that might be in use by the cluster,
+        such as load balancer resources, are not deleted if they weren't present
+        when the cluster was initially created.
+
+        Returns:
+            Callable: A callable which accepts the appropriate
+                deserialized request object and returns a
+                deserialized response object.
+        """
+        return self._stubs["cluster_manager_stub"].DeleteCluster
+
+    @property
     def list_operations(self):
         """Return the gRPC stub for :meth:`ClusterManagerClient.list_operations`.
 
@@ -403,6 +390,19 @@ class ClusterManagerGrpcTransport(object):
                 deserialized response object.
         """
         return self._stubs["cluster_manager_stub"].CreateNodePool
+
+    @property
+    def delete_node_pool(self):
+        """Return the gRPC stub for :meth:`ClusterManagerClient.delete_node_pool`.
+
+        Deletes a node pool from a cluster.
+
+        Returns:
+            Callable: A callable which accepts the appropriate
+                deserialized request object and returns a
+                deserialized response object.
+        """
+        return self._stubs["cluster_manager_stub"].DeleteNodePool
 
     @property
     def rollback_node_pool_upgrade(self):
