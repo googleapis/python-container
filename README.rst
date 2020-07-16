@@ -91,7 +91,7 @@ Example Usage
     project_id = ''
     zone = ''
 
-    response = client.list_clusters(project_id, zone)
+    response = client.list_clusters(request = {'project_id': project_id, 'zone': zone})
 
 Next Steps
 ~~~~~~~~~~
