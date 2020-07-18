@@ -22,6 +22,7 @@ import grpc
 from grpc.experimental import aio
 import math
 import pytest
+from proto.marshal.rules.dates import DurationRule, TimestampRule
 
 from google import auth
 from google.api_core import client_options
@@ -445,7 +446,9 @@ def test_list_clusters_flattened():
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
+
         assert args[0].project_id == "project_id_value"
+
         assert args[0].zone == "zone_value"
 
 
@@ -486,7 +489,9 @@ async def test_list_clusters_flattened_async():
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
+
         assert args[0].project_id == "project_id_value"
+
         assert args[0].zone == "zone_value"
 
 
@@ -816,8 +821,11 @@ def test_get_cluster_flattened():
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
+
         assert args[0].project_id == "project_id_value"
+
         assert args[0].zone == "zone_value"
+
         assert args[0].cluster_id == "cluster_id_value"
 
 
@@ -861,8 +869,11 @@ async def test_get_cluster_flattened_async():
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
+
         assert args[0].project_id == "project_id_value"
+
         assert args[0].zone == "zone_value"
+
         assert args[0].cluster_id == "cluster_id_value"
 
 
@@ -1079,8 +1090,11 @@ def test_create_cluster_flattened():
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
+
         assert args[0].project_id == "project_id_value"
+
         assert args[0].zone == "zone_value"
+
         assert args[0].cluster == cluster_service.Cluster(name="name_value")
 
 
@@ -1124,8 +1138,11 @@ async def test_create_cluster_flattened_async():
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
+
         assert args[0].project_id == "project_id_value"
+
         assert args[0].zone == "zone_value"
+
         assert args[0].cluster == cluster_service.Cluster(name="name_value")
 
 
@@ -1345,9 +1362,13 @@ def test_update_cluster_flattened():
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
+
         assert args[0].project_id == "project_id_value"
+
         assert args[0].zone == "zone_value"
+
         assert args[0].cluster_id == "cluster_id_value"
+
         assert args[0].update == cluster_service.ClusterUpdate(
             desired_node_version="desired_node_version_value"
         )
@@ -1399,9 +1420,13 @@ async def test_update_cluster_flattened_async():
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
+
         assert args[0].project_id == "project_id_value"
+
         assert args[0].zone == "zone_value"
+
         assert args[0].cluster_id == "cluster_id_value"
+
         assert args[0].update == cluster_service.ClusterUpdate(
             desired_node_version="desired_node_version_value"
         )
@@ -1994,9 +2019,13 @@ def test_set_logging_service_flattened():
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
+
         assert args[0].project_id == "project_id_value"
+
         assert args[0].zone == "zone_value"
+
         assert args[0].cluster_id == "cluster_id_value"
+
         assert args[0].logging_service == "logging_service_value"
 
 
@@ -2042,9 +2071,13 @@ async def test_set_logging_service_flattened_async():
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
+
         assert args[0].project_id == "project_id_value"
+
         assert args[0].zone == "zone_value"
+
         assert args[0].cluster_id == "cluster_id_value"
+
         assert args[0].logging_service == "logging_service_value"
 
 
@@ -2269,9 +2302,13 @@ def test_set_monitoring_service_flattened():
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
+
         assert args[0].project_id == "project_id_value"
+
         assert args[0].zone == "zone_value"
+
         assert args[0].cluster_id == "cluster_id_value"
+
         assert args[0].monitoring_service == "monitoring_service_value"
 
 
@@ -2317,9 +2354,13 @@ async def test_set_monitoring_service_flattened_async():
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
+
         assert args[0].project_id == "project_id_value"
+
         assert args[0].zone == "zone_value"
+
         assert args[0].cluster_id == "cluster_id_value"
+
         assert args[0].monitoring_service == "monitoring_service_value"
 
 
@@ -2546,9 +2587,13 @@ def test_set_addons_config_flattened():
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
+
         assert args[0].project_id == "project_id_value"
+
         assert args[0].zone == "zone_value"
+
         assert args[0].cluster_id == "cluster_id_value"
+
         assert args[0].addons_config == cluster_service.AddonsConfig(
             http_load_balancing=cluster_service.HttpLoadBalancing(disabled=True)
         )
@@ -2600,9 +2645,13 @@ async def test_set_addons_config_flattened_async():
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
+
         assert args[0].project_id == "project_id_value"
+
         assert args[0].zone == "zone_value"
+
         assert args[0].cluster_id == "cluster_id_value"
+
         assert args[0].addons_config == cluster_service.AddonsConfig(
             http_load_balancing=cluster_service.HttpLoadBalancing(disabled=True)
         )
@@ -2825,9 +2874,13 @@ def test_set_locations_flattened():
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
+
         assert args[0].project_id == "project_id_value"
+
         assert args[0].zone == "zone_value"
+
         assert args[0].cluster_id == "cluster_id_value"
+
         assert args[0].locations == ["locations_value"]
 
 
@@ -2873,9 +2926,13 @@ async def test_set_locations_flattened_async():
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
+
         assert args[0].project_id == "project_id_value"
+
         assert args[0].zone == "zone_value"
+
         assert args[0].cluster_id == "cluster_id_value"
+
         assert args[0].locations == ["locations_value"]
 
 
@@ -3094,9 +3151,13 @@ def test_update_master_flattened():
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
+
         assert args[0].project_id == "project_id_value"
+
         assert args[0].zone == "zone_value"
+
         assert args[0].cluster_id == "cluster_id_value"
+
         assert args[0].master_version == "master_version_value"
 
 
@@ -3142,9 +3203,13 @@ async def test_update_master_flattened_async():
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
+
         assert args[0].project_id == "project_id_value"
+
         assert args[0].zone == "zone_value"
+
         assert args[0].cluster_id == "cluster_id_value"
+
         assert args[0].master_version == "master_version_value"
 
 
@@ -3540,8 +3605,11 @@ def test_delete_cluster_flattened():
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
+
         assert args[0].project_id == "project_id_value"
+
         assert args[0].zone == "zone_value"
+
         assert args[0].cluster_id == "cluster_id_value"
 
 
@@ -3585,8 +3653,11 @@ async def test_delete_cluster_flattened_async():
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
+
         assert args[0].project_id == "project_id_value"
+
         assert args[0].zone == "zone_value"
+
         assert args[0].cluster_id == "cluster_id_value"
 
 
@@ -3741,7 +3812,9 @@ def test_list_operations_flattened():
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
+
         assert args[0].project_id == "project_id_value"
+
         assert args[0].zone == "zone_value"
 
 
@@ -3782,7 +3855,9 @@ async def test_list_operations_flattened_async():
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
+
         assert args[0].project_id == "project_id_value"
+
         assert args[0].zone == "zone_value"
 
 
@@ -3998,8 +4073,11 @@ def test_get_operation_flattened():
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
+
         assert args[0].project_id == "project_id_value"
+
         assert args[0].zone == "zone_value"
+
         assert args[0].operation_id == "operation_id_value"
 
 
@@ -4043,8 +4121,11 @@ async def test_get_operation_flattened_async():
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
+
         assert args[0].project_id == "project_id_value"
+
         assert args[0].zone == "zone_value"
+
         assert args[0].operation_id == "operation_id_value"
 
 
@@ -4195,8 +4276,11 @@ def test_cancel_operation_flattened():
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
+
         assert args[0].project_id == "project_id_value"
+
         assert args[0].zone == "zone_value"
+
         assert args[0].operation_id == "operation_id_value"
 
 
@@ -4238,8 +4322,11 @@ async def test_cancel_operation_flattened_async():
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
+
         assert args[0].project_id == "project_id_value"
+
         assert args[0].zone == "zone_value"
+
         assert args[0].operation_id == "operation_id_value"
 
 
@@ -4424,7 +4511,9 @@ def test_get_server_config_flattened():
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
+
         assert args[0].project_id == "project_id_value"
+
         assert args[0].zone == "zone_value"
 
 
@@ -4465,7 +4554,9 @@ async def test_get_server_config_flattened_async():
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
+
         assert args[0].project_id == "project_id_value"
+
         assert args[0].zone == "zone_value"
 
 
@@ -4613,8 +4704,11 @@ def test_list_node_pools_flattened():
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
+
         assert args[0].project_id == "project_id_value"
+
         assert args[0].zone == "zone_value"
+
         assert args[0].cluster_id == "cluster_id_value"
 
 
@@ -4658,8 +4752,11 @@ async def test_list_node_pools_flattened_async():
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
+
         assert args[0].project_id == "project_id_value"
+
         assert args[0].zone == "zone_value"
+
         assert args[0].cluster_id == "cluster_id_value"
 
 
@@ -4859,9 +4956,13 @@ def test_get_node_pool_flattened():
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
+
         assert args[0].project_id == "project_id_value"
+
         assert args[0].zone == "zone_value"
+
         assert args[0].cluster_id == "cluster_id_value"
+
         assert args[0].node_pool_id == "node_pool_id_value"
 
 
@@ -4907,9 +5008,13 @@ async def test_get_node_pool_flattened_async():
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
+
         assert args[0].project_id == "project_id_value"
+
         assert args[0].zone == "zone_value"
+
         assert args[0].cluster_id == "cluster_id_value"
+
         assert args[0].node_pool_id == "node_pool_id_value"
 
 
@@ -5134,9 +5239,13 @@ def test_create_node_pool_flattened():
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
+
         assert args[0].project_id == "project_id_value"
+
         assert args[0].zone == "zone_value"
+
         assert args[0].cluster_id == "cluster_id_value"
+
         assert args[0].node_pool == cluster_service.NodePool(name="name_value")
 
 
@@ -5182,9 +5291,13 @@ async def test_create_node_pool_flattened_async():
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
+
         assert args[0].project_id == "project_id_value"
+
         assert args[0].zone == "zone_value"
+
         assert args[0].cluster_id == "cluster_id_value"
+
         assert args[0].node_pool == cluster_service.NodePool(name="name_value")
 
 
@@ -5409,9 +5522,13 @@ def test_delete_node_pool_flattened():
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
+
         assert args[0].project_id == "project_id_value"
+
         assert args[0].zone == "zone_value"
+
         assert args[0].cluster_id == "cluster_id_value"
+
         assert args[0].node_pool_id == "node_pool_id_value"
 
 
@@ -5457,9 +5574,13 @@ async def test_delete_node_pool_flattened_async():
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
+
         assert args[0].project_id == "project_id_value"
+
         assert args[0].zone == "zone_value"
+
         assert args[0].cluster_id == "cluster_id_value"
+
         assert args[0].node_pool_id == "node_pool_id_value"
 
 
@@ -5684,9 +5805,13 @@ def test_rollback_node_pool_upgrade_flattened():
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
+
         assert args[0].project_id == "project_id_value"
+
         assert args[0].zone == "zone_value"
+
         assert args[0].cluster_id == "cluster_id_value"
+
         assert args[0].node_pool_id == "node_pool_id_value"
 
 
@@ -5732,9 +5857,13 @@ async def test_rollback_node_pool_upgrade_flattened_async():
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
+
         assert args[0].project_id == "project_id_value"
+
         assert args[0].zone == "zone_value"
+
         assert args[0].cluster_id == "cluster_id_value"
+
         assert args[0].node_pool_id == "node_pool_id_value"
 
 
@@ -5960,10 +6089,15 @@ def test_set_node_pool_management_flattened():
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
+
         assert args[0].project_id == "project_id_value"
+
         assert args[0].zone == "zone_value"
+
         assert args[0].cluster_id == "cluster_id_value"
+
         assert args[0].node_pool_id == "node_pool_id_value"
+
         assert args[0].management == cluster_service.NodeManagement(auto_upgrade=True)
 
 
@@ -6011,10 +6145,15 @@ async def test_set_node_pool_management_flattened_async():
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
+
         assert args[0].project_id == "project_id_value"
+
         assert args[0].zone == "zone_value"
+
         assert args[0].cluster_id == "cluster_id_value"
+
         assert args[0].node_pool_id == "node_pool_id_value"
+
         assert args[0].management == cluster_service.NodeManagement(auto_upgrade=True)
 
 
@@ -6235,10 +6374,15 @@ def test_set_labels_flattened():
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
+
         assert args[0].project_id == "project_id_value"
+
         assert args[0].zone == "zone_value"
+
         assert args[0].cluster_id == "cluster_id_value"
+
         assert args[0].resource_labels == {"key_value": "value_value"}
+
         assert args[0].label_fingerprint == "label_fingerprint_value"
 
 
@@ -6286,10 +6430,15 @@ async def test_set_labels_flattened_async():
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
+
         assert args[0].project_id == "project_id_value"
+
         assert args[0].zone == "zone_value"
+
         assert args[0].cluster_id == "cluster_id_value"
+
         assert args[0].resource_labels == {"key_value": "value_value"}
+
         assert args[0].label_fingerprint == "label_fingerprint_value"
 
 
@@ -6509,9 +6658,13 @@ def test_set_legacy_abac_flattened():
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
+
         assert args[0].project_id == "project_id_value"
+
         assert args[0].zone == "zone_value"
+
         assert args[0].cluster_id == "cluster_id_value"
+
         assert args[0].enabled == True
 
 
@@ -6557,9 +6710,13 @@ async def test_set_legacy_abac_flattened_async():
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
+
         assert args[0].project_id == "project_id_value"
+
         assert args[0].zone == "zone_value"
+
         assert args[0].cluster_id == "cluster_id_value"
+
         assert args[0].enabled == True
 
 
@@ -6783,8 +6940,11 @@ def test_start_ip_rotation_flattened():
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
+
         assert args[0].project_id == "project_id_value"
+
         assert args[0].zone == "zone_value"
+
         assert args[0].cluster_id == "cluster_id_value"
 
 
@@ -6828,8 +6988,11 @@ async def test_start_ip_rotation_flattened_async():
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
+
         assert args[0].project_id == "project_id_value"
+
         assert args[0].zone == "zone_value"
+
         assert args[0].cluster_id == "cluster_id_value"
 
 
@@ -7052,8 +7215,11 @@ def test_complete_ip_rotation_flattened():
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
+
         assert args[0].project_id == "project_id_value"
+
         assert args[0].zone == "zone_value"
+
         assert args[0].cluster_id == "cluster_id_value"
 
 
@@ -7097,8 +7263,11 @@ async def test_complete_ip_rotation_flattened_async():
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
+
         assert args[0].project_id == "project_id_value"
+
         assert args[0].zone == "zone_value"
+
         assert args[0].cluster_id == "cluster_id_value"
 
 
@@ -7506,9 +7675,13 @@ def test_set_network_policy_flattened():
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
+
         assert args[0].project_id == "project_id_value"
+
         assert args[0].zone == "zone_value"
+
         assert args[0].cluster_id == "cluster_id_value"
+
         assert args[0].network_policy == cluster_service.NetworkPolicy(
             provider=cluster_service.NetworkPolicy.Provider.CALICO
         )
@@ -7560,9 +7733,13 @@ async def test_set_network_policy_flattened_async():
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
+
         assert args[0].project_id == "project_id_value"
+
         assert args[0].zone == "zone_value"
+
         assert args[0].cluster_id == "cluster_id_value"
+
         assert args[0].network_policy == cluster_service.NetworkPolicy(
             provider=cluster_service.NetworkPolicy.Provider.CALICO
         )
@@ -7797,9 +7974,13 @@ def test_set_maintenance_policy_flattened():
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
+
         assert args[0].project_id == "project_id_value"
+
         assert args[0].zone == "zone_value"
+
         assert args[0].cluster_id == "cluster_id_value"
+
         assert args[0].maintenance_policy == cluster_service.MaintenancePolicy(
             window=cluster_service.MaintenanceWindow(
                 daily_maintenance_window=cluster_service.DailyMaintenanceWindow(
@@ -7863,9 +8044,13 @@ async def test_set_maintenance_policy_flattened_async():
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
+
         assert args[0].project_id == "project_id_value"
+
         assert args[0].zone == "zone_value"
+
         assert args[0].cluster_id == "cluster_id_value"
+
         assert args[0].maintenance_policy == cluster_service.MaintenancePolicy(
             window=cluster_service.MaintenanceWindow(
                 daily_maintenance_window=cluster_service.DailyMaintenanceWindow(
@@ -8037,6 +8222,7 @@ def test_list_usable_subnetworks_flattened():
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
+
         assert args[0].parent == "parent_value"
 
 
@@ -8073,6 +8259,7 @@ async def test_list_usable_subnetworks_flattened_async():
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
+
         assert args[0].parent == "parent_value"
 
 
@@ -8392,6 +8579,7 @@ def test_list_locations_flattened():
         # request object values.
         assert len(call.mock_calls) == 1
         _, args, _ = call.mock_calls[0]
+
         assert args[0].parent == "parent_value"
 
 
@@ -8428,6 +8616,7 @@ async def test_list_locations_flattened_async():
         # request object values.
         assert len(call.mock_calls)
         _, args, _ = call.mock_calls[0]
+
         assert args[0].parent == "parent_value"
 
 

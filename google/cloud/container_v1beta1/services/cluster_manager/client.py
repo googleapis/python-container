@@ -288,7 +288,15 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # and friendly error handling.
         rpc = gapic_v1.method.wrap_method(
             self._transport.list_clusters,
-            default_timeout=None,
+            default_retry=retries.Retry(
+                initial=0.1,
+                maximum=60.0,
+                multiplier=1.3,
+                predicate=retries.if_exception_type(
+                    exceptions.ServiceUnavailable, exceptions.DeadlineExceeded,
+                ),
+            ),
+            default_timeout=20.0,
             client_info=_client_info,
         )
 
@@ -382,7 +390,17 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
         rpc = gapic_v1.method.wrap_method(
-            self._transport.get_cluster, default_timeout=None, client_info=_client_info,
+            self._transport.get_cluster,
+            default_retry=retries.Retry(
+                initial=0.1,
+                maximum=60.0,
+                multiplier=1.3,
+                predicate=retries.if_exception_type(
+                    exceptions.ServiceUnavailable, exceptions.DeadlineExceeded,
+                ),
+            ),
+            default_timeout=20.0,
+            client_info=_client_info,
         )
 
         # Certain fields should be provided within the metadata header;
@@ -490,7 +508,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # and friendly error handling.
         rpc = gapic_v1.method.wrap_method(
             self._transport.create_cluster,
-            default_timeout=None,
+            default_timeout=45.0,
             client_info=_client_info,
         )
 
@@ -598,7 +616,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # and friendly error handling.
         rpc = gapic_v1.method.wrap_method(
             self._transport.update_cluster,
-            default_timeout=None,
+            default_timeout=45.0,
             client_info=_client_info,
         )
 
@@ -652,7 +670,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # and friendly error handling.
         rpc = gapic_v1.method.wrap_method(
             self._transport.update_node_pool,
-            default_timeout=None,
+            default_timeout=45.0,
             client_info=_client_info,
         )
 
@@ -706,7 +724,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # and friendly error handling.
         rpc = gapic_v1.method.wrap_method(
             self._transport.set_node_pool_autoscaling,
-            default_timeout=None,
+            default_timeout=45.0,
             client_info=_client_info,
         )
 
@@ -818,7 +836,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # and friendly error handling.
         rpc = gapic_v1.method.wrap_method(
             self._transport.set_logging_service,
-            default_timeout=None,
+            default_timeout=45.0,
             client_info=_client_info,
         )
 
@@ -932,7 +950,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # and friendly error handling.
         rpc = gapic_v1.method.wrap_method(
             self._transport.set_monitoring_service,
-            default_timeout=None,
+            default_timeout=45.0,
             client_info=_client_info,
         )
 
@@ -1041,7 +1059,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # and friendly error handling.
         rpc = gapic_v1.method.wrap_method(
             self._transport.set_addons_config,
-            default_timeout=None,
+            default_timeout=45.0,
             client_info=_client_info,
         )
 
@@ -1156,7 +1174,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # and friendly error handling.
         rpc = gapic_v1.method.wrap_method(
             self._transport.set_locations,
-            default_timeout=None,
+            default_timeout=45.0,
             client_info=_client_info,
         )
 
@@ -1276,7 +1294,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # and friendly error handling.
         rpc = gapic_v1.method.wrap_method(
             self._transport.update_master,
-            default_timeout=None,
+            default_timeout=45.0,
             client_info=_client_info,
         )
 
@@ -1332,7 +1350,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # and friendly error handling.
         rpc = gapic_v1.method.wrap_method(
             self._transport.set_master_auth,
-            default_timeout=None,
+            default_timeout=45.0,
             client_info=_client_info,
         )
 
@@ -1440,7 +1458,15 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # and friendly error handling.
         rpc = gapic_v1.method.wrap_method(
             self._transport.delete_cluster,
-            default_timeout=None,
+            default_retry=retries.Retry(
+                initial=0.1,
+                maximum=60.0,
+                multiplier=1.3,
+                predicate=retries.if_exception_type(
+                    exceptions.ServiceUnavailable, exceptions.DeadlineExceeded,
+                ),
+            ),
+            default_timeout=20.0,
             client_info=_client_info,
         )
 
@@ -1528,7 +1554,15 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # and friendly error handling.
         rpc = gapic_v1.method.wrap_method(
             self._transport.list_operations,
-            default_timeout=None,
+            default_retry=retries.Retry(
+                initial=0.1,
+                maximum=60.0,
+                multiplier=1.3,
+                predicate=retries.if_exception_type(
+                    exceptions.ServiceUnavailable, exceptions.DeadlineExceeded,
+                ),
+            ),
+            default_timeout=20.0,
             client_info=_client_info,
         )
 
@@ -1626,7 +1660,15 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # and friendly error handling.
         rpc = gapic_v1.method.wrap_method(
             self._transport.get_operation,
-            default_timeout=None,
+            default_retry=retries.Retry(
+                initial=0.1,
+                maximum=60.0,
+                multiplier=1.3,
+                predicate=retries.if_exception_type(
+                    exceptions.ServiceUnavailable, exceptions.DeadlineExceeded,
+                ),
+            ),
+            default_timeout=20.0,
             client_info=_client_info,
         )
 
@@ -1716,7 +1758,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # and friendly error handling.
         rpc = gapic_v1.method.wrap_method(
             self._transport.cancel_operation,
-            default_timeout=None,
+            default_timeout=45.0,
             client_info=_client_info,
         )
 
@@ -1802,7 +1844,15 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # and friendly error handling.
         rpc = gapic_v1.method.wrap_method(
             self._transport.get_server_config,
-            default_timeout=None,
+            default_retry=retries.Retry(
+                initial=0.1,
+                maximum=60.0,
+                multiplier=1.3,
+                predicate=retries.if_exception_type(
+                    exceptions.ServiceUnavailable, exceptions.DeadlineExceeded,
+                ),
+            ),
+            default_timeout=20.0,
             client_info=_client_info,
         )
 
@@ -1898,7 +1948,15 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # and friendly error handling.
         rpc = gapic_v1.method.wrap_method(
             self._transport.list_node_pools,
-            default_timeout=None,
+            default_retry=retries.Retry(
+                initial=0.1,
+                maximum=60.0,
+                multiplier=1.3,
+                predicate=retries.if_exception_type(
+                    exceptions.ServiceUnavailable, exceptions.DeadlineExceeded,
+                ),
+            ),
+            default_timeout=20.0,
             client_info=_client_info,
         )
 
@@ -2013,7 +2071,15 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # and friendly error handling.
         rpc = gapic_v1.method.wrap_method(
             self._transport.get_node_pool,
-            default_timeout=None,
+            default_retry=retries.Retry(
+                initial=0.1,
+                maximum=60.0,
+                multiplier=1.3,
+                predicate=retries.if_exception_type(
+                    exceptions.ServiceUnavailable, exceptions.DeadlineExceeded,
+                ),
+            ),
+            default_timeout=20.0,
             client_info=_client_info,
         )
 
@@ -2119,7 +2185,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # and friendly error handling.
         rpc = gapic_v1.method.wrap_method(
             self._transport.create_node_pool,
-            default_timeout=None,
+            default_timeout=45.0,
             client_info=_client_info,
         )
 
@@ -2228,7 +2294,15 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # and friendly error handling.
         rpc = gapic_v1.method.wrap_method(
             self._transport.delete_node_pool,
-            default_timeout=None,
+            default_retry=retries.Retry(
+                initial=0.1,
+                maximum=60.0,
+                multiplier=1.3,
+                predicate=retries.if_exception_type(
+                    exceptions.ServiceUnavailable, exceptions.DeadlineExceeded,
+                ),
+            ),
+            default_timeout=20.0,
             client_info=_client_info,
         )
 
@@ -2342,7 +2416,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # and friendly error handling.
         rpc = gapic_v1.method.wrap_method(
             self._transport.rollback_node_pool_upgrade,
-            default_timeout=None,
+            default_timeout=45.0,
             client_info=_client_info,
         )
 
@@ -2463,7 +2537,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # and friendly error handling.
         rpc = gapic_v1.method.wrap_method(
             self._transport.set_node_pool_management,
-            default_timeout=None,
+            default_timeout=45.0,
             client_info=_client_info,
         )
 
@@ -2593,7 +2667,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
         rpc = gapic_v1.method.wrap_method(
-            self._transport.set_labels, default_timeout=None, client_info=_client_info,
+            self._transport.set_labels, default_timeout=45.0, client_info=_client_info,
         )
 
         # Certain fields should be provided within the metadata header;
@@ -2701,7 +2775,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # and friendly error handling.
         rpc = gapic_v1.method.wrap_method(
             self._transport.set_legacy_abac,
-            default_timeout=None,
+            default_timeout=45.0,
             client_info=_client_info,
         )
 
@@ -2800,7 +2874,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # and friendly error handling.
         rpc = gapic_v1.method.wrap_method(
             self._transport.start_ip_rotation,
-            default_timeout=None,
+            default_timeout=45.0,
             client_info=_client_info,
         )
 
@@ -2898,7 +2972,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # and friendly error handling.
         rpc = gapic_v1.method.wrap_method(
             self._transport.complete_ip_rotation,
-            default_timeout=None,
+            default_timeout=45.0,
             client_info=_client_info,
         )
 
@@ -2951,7 +3025,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # and friendly error handling.
         rpc = gapic_v1.method.wrap_method(
             self._transport.set_node_pool_size,
-            default_timeout=None,
+            default_timeout=45.0,
             client_info=_client_info,
         )
 
@@ -3058,7 +3132,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # and friendly error handling.
         rpc = gapic_v1.method.wrap_method(
             self._transport.set_network_policy,
-            default_timeout=None,
+            default_timeout=45.0,
             client_info=_client_info,
         )
 
@@ -3163,7 +3237,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # and friendly error handling.
         rpc = gapic_v1.method.wrap_method(
             self._transport.set_maintenance_policy,
-            default_timeout=None,
+            default_timeout=45.0,
             client_info=_client_info,
         )
 
@@ -3241,7 +3315,15 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # and friendly error handling.
         rpc = gapic_v1.method.wrap_method(
             self._transport.list_usable_subnetworks,
-            default_timeout=None,
+            default_retry=retries.Retry(
+                initial=0.1,
+                maximum=60.0,
+                multiplier=1.3,
+                predicate=retries.if_exception_type(
+                    exceptions.ServiceUnavailable, exceptions.DeadlineExceeded,
+                ),
+            ),
+            default_timeout=20.0,
             client_info=_client_info,
         )
 
@@ -3320,7 +3402,15 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # and friendly error handling.
         rpc = gapic_v1.method.wrap_method(
             self._transport.list_locations,
-            default_timeout=None,
+            default_retry=retries.Retry(
+                initial=0.1,
+                maximum=60.0,
+                multiplier=1.3,
+                predicate=retries.if_exception_type(
+                    exceptions.ServiceUnavailable, exceptions.DeadlineExceeded,
+                ),
+            ),
+            default_timeout=20.0,
             client_info=_client_info,
         )
 
