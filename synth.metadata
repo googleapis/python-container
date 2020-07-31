@@ -4,7 +4,15 @@
       "git": {
         "name": ".",
         "remote": "https://github.com/googleapis/python-container.git",
-        "sha": "761f12af56bc24306b874c5fc60a8c958232a252"
+        "sha": "5341b96719a82cb8509f4dcc9e66ee05acd95ae9"
+      }
+    },
+    {
+      "git": {
+        "name": "googleapis",
+        "remote": "https://github.com/googleapis/googleapis.git",
+        "sha": "fbf9396664b766a08d92da9d4f31be019a847c39",
+        "internalRef": "324209019"
       }
     },
     {

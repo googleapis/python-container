@@ -215,6 +215,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
                 scopes=client_options.scopes,
                 api_mtls_endpoint=client_options.api_endpoint,
                 client_cert_source=client_options.client_cert_source,
+                quota_project_id=client_options.quota_project_id,
             )
 
     def list_clusters(
@@ -276,31 +277,33 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([project_id, zone, parent]):
+        has_flattened_params = any([project_id, zone, parent])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = cluster_service.ListClustersRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a cluster_service.ListClustersRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, cluster_service.ListClustersRequest):
+            request = cluster_service.ListClustersRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if project_id is not None:
-            request.project_id = project_id
-        if zone is not None:
-            request.zone = zone
-        if parent is not None:
-            request.parent = parent
+            if project_id is not None:
+                request.project_id = project_id
+            if zone is not None:
+                request.zone = zone
+            if parent is not None:
+                request.parent = parent
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.list_clusters,
-            default_timeout=None,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.list_clusters]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -378,31 +381,35 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([project_id, zone, cluster_id, name]):
+        has_flattened_params = any([project_id, zone, cluster_id, name])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = cluster_service.GetClusterRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a cluster_service.GetClusterRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, cluster_service.GetClusterRequest):
+            request = cluster_service.GetClusterRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if project_id is not None:
-            request.project_id = project_id
-        if zone is not None:
-            request.zone = zone
-        if cluster_id is not None:
-            request.cluster_id = cluster_id
-        if name is not None:
-            request.name = name
+            if project_id is not None:
+                request.project_id = project_id
+            if zone is not None:
+                request.zone = zone
+            if cluster_id is not None:
+                request.cluster_id = cluster_id
+            if name is not None:
+                request.name = name
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.get_cluster, default_timeout=None, client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.get_cluster]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -494,33 +501,35 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([project_id, zone, cluster, parent]):
+        has_flattened_params = any([project_id, zone, cluster, parent])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = cluster_service.CreateClusterRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a cluster_service.CreateClusterRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, cluster_service.CreateClusterRequest):
+            request = cluster_service.CreateClusterRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if project_id is not None:
-            request.project_id = project_id
-        if zone is not None:
-            request.zone = zone
-        if cluster is not None:
-            request.cluster = cluster
-        if parent is not None:
-            request.parent = parent
+            if project_id is not None:
+                request.project_id = project_id
+            if zone is not None:
+                request.zone = zone
+            if cluster is not None:
+                request.cluster = cluster
+            if parent is not None:
+                request.parent = parent
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.create_cluster,
-            default_timeout=None,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.create_cluster]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -609,35 +618,37 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([project_id, zone, cluster_id, update, name]):
+        has_flattened_params = any([project_id, zone, cluster_id, update, name])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = cluster_service.UpdateClusterRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a cluster_service.UpdateClusterRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, cluster_service.UpdateClusterRequest):
+            request = cluster_service.UpdateClusterRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if project_id is not None:
-            request.project_id = project_id
-        if zone is not None:
-            request.zone = zone
-        if cluster_id is not None:
-            request.cluster_id = cluster_id
-        if update is not None:
-            request.update = update
-        if name is not None:
-            request.name = name
+            if project_id is not None:
+                request.project_id = project_id
+            if zone is not None:
+                request.zone = zone
+            if cluster_id is not None:
+                request.cluster_id = cluster_id
+            if update is not None:
+                request.update = update
+            if name is not None:
+                request.name = name
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.update_cluster,
-            default_timeout=None,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.update_cluster]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -683,15 +694,16 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         """
         # Create or coerce a protobuf request object.
 
-        request = cluster_service.UpdateNodePoolRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a cluster_service.UpdateNodePoolRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, cluster_service.UpdateNodePoolRequest):
+            request = cluster_service.UpdateNodePoolRequest(request)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.update_node_pool,
-            default_timeout=None,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.update_node_pool]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -737,15 +749,18 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         """
         # Create or coerce a protobuf request object.
 
-        request = cluster_service.SetNodePoolAutoscalingRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a cluster_service.SetNodePoolAutoscalingRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, cluster_service.SetNodePoolAutoscalingRequest):
+            request = cluster_service.SetNodePoolAutoscalingRequest(request)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.set_node_pool_autoscaling,
-            default_timeout=None,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[
+            self._transport.set_node_pool_autoscaling
+        ]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -838,37 +853,39 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any(
+        has_flattened_params = any(
             [project_id, zone, cluster_id, logging_service, name]
-        ):
+        )
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = cluster_service.SetLoggingServiceRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a cluster_service.SetLoggingServiceRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, cluster_service.SetLoggingServiceRequest):
+            request = cluster_service.SetLoggingServiceRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if project_id is not None:
-            request.project_id = project_id
-        if zone is not None:
-            request.zone = zone
-        if cluster_id is not None:
-            request.cluster_id = cluster_id
-        if logging_service is not None:
-            request.logging_service = logging_service
-        if name is not None:
-            request.name = name
+            if project_id is not None:
+                request.project_id = project_id
+            if zone is not None:
+                request.zone = zone
+            if cluster_id is not None:
+                request.cluster_id = cluster_id
+            if logging_service is not None:
+                request.logging_service = logging_service
+            if name is not None:
+                request.name = name
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.set_logging_service,
-            default_timeout=None,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.set_logging_service]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -964,37 +981,39 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any(
+        has_flattened_params = any(
             [project_id, zone, cluster_id, monitoring_service, name]
-        ):
+        )
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = cluster_service.SetMonitoringServiceRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a cluster_service.SetMonitoringServiceRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, cluster_service.SetMonitoringServiceRequest):
+            request = cluster_service.SetMonitoringServiceRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if project_id is not None:
-            request.project_id = project_id
-        if zone is not None:
-            request.zone = zone
-        if cluster_id is not None:
-            request.cluster_id = cluster_id
-        if monitoring_service is not None:
-            request.monitoring_service = monitoring_service
-        if name is not None:
-            request.name = name
+            if project_id is not None:
+                request.project_id = project_id
+            if zone is not None:
+                request.zone = zone
+            if cluster_id is not None:
+                request.cluster_id = cluster_id
+            if monitoring_service is not None:
+                request.monitoring_service = monitoring_service
+            if name is not None:
+                request.name = name
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.set_monitoring_service,
-            default_timeout=None,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.set_monitoring_service]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -1084,37 +1103,37 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any(
-            [project_id, zone, cluster_id, addons_config, name]
-        ):
+        has_flattened_params = any([project_id, zone, cluster_id, addons_config, name])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = cluster_service.SetAddonsConfigRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a cluster_service.SetAddonsConfigRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, cluster_service.SetAddonsConfigRequest):
+            request = cluster_service.SetAddonsConfigRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if project_id is not None:
-            request.project_id = project_id
-        if zone is not None:
-            request.zone = zone
-        if cluster_id is not None:
-            request.cluster_id = cluster_id
-        if addons_config is not None:
-            request.addons_config = addons_config
-        if name is not None:
-            request.name = name
+            if project_id is not None:
+                request.project_id = project_id
+            if zone is not None:
+                request.zone = zone
+            if cluster_id is not None:
+                request.cluster_id = cluster_id
+            if addons_config is not None:
+                request.addons_config = addons_config
+            if name is not None:
+                request.name = name
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.set_addons_config,
-            default_timeout=None,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.set_addons_config]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -1210,35 +1229,37 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([project_id, zone, cluster_id, locations, name]):
+        has_flattened_params = any([project_id, zone, cluster_id, locations, name])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = cluster_service.SetLocationsRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a cluster_service.SetLocationsRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, cluster_service.SetLocationsRequest):
+            request = cluster_service.SetLocationsRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if project_id is not None:
-            request.project_id = project_id
-        if zone is not None:
-            request.zone = zone
-        if cluster_id is not None:
-            request.cluster_id = cluster_id
-        if locations is not None:
-            request.locations = locations
-        if name is not None:
-            request.name = name
+            if project_id is not None:
+                request.project_id = project_id
+            if zone is not None:
+                request.zone = zone
+            if cluster_id is not None:
+                request.cluster_id = cluster_id
+            if locations is not None:
+                request.locations = locations
+            if name is not None:
+                request.name = name
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.set_locations,
-            default_timeout=None,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.set_locations]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -1339,37 +1360,37 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any(
-            [project_id, zone, cluster_id, master_version, name]
-        ):
+        has_flattened_params = any([project_id, zone, cluster_id, master_version, name])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = cluster_service.UpdateMasterRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a cluster_service.UpdateMasterRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, cluster_service.UpdateMasterRequest):
+            request = cluster_service.UpdateMasterRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if project_id is not None:
-            request.project_id = project_id
-        if zone is not None:
-            request.zone = zone
-        if cluster_id is not None:
-            request.cluster_id = cluster_id
-        if master_version is not None:
-            request.master_version = master_version
-        if name is not None:
-            request.name = name
+            if project_id is not None:
+                request.project_id = project_id
+            if zone is not None:
+                request.zone = zone
+            if cluster_id is not None:
+                request.cluster_id = cluster_id
+            if master_version is not None:
+                request.master_version = master_version
+            if name is not None:
+                request.name = name
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.update_master,
-            default_timeout=None,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.update_master]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -1417,15 +1438,16 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         """
         # Create or coerce a protobuf request object.
 
-        request = cluster_service.SetMasterAuthRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a cluster_service.SetMasterAuthRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, cluster_service.SetMasterAuthRequest):
+            request = cluster_service.SetMasterAuthRequest(request)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.set_master_auth,
-            default_timeout=None,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.set_master_auth]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -1516,33 +1538,35 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([project_id, zone, cluster_id, name]):
+        has_flattened_params = any([project_id, zone, cluster_id, name])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = cluster_service.DeleteClusterRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a cluster_service.DeleteClusterRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, cluster_service.DeleteClusterRequest):
+            request = cluster_service.DeleteClusterRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if project_id is not None:
-            request.project_id = project_id
-        if zone is not None:
-            request.zone = zone
-        if cluster_id is not None:
-            request.cluster_id = cluster_id
-        if name is not None:
-            request.name = name
+            if project_id is not None:
+                request.project_id = project_id
+            if zone is not None:
+                request.zone = zone
+            if cluster_id is not None:
+                request.cluster_id = cluster_id
+            if name is not None:
+                request.name = name
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.delete_cluster,
-            default_timeout=None,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.delete_cluster]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -1607,29 +1631,31 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([project_id, zone]):
+        has_flattened_params = any([project_id, zone])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = cluster_service.ListOperationsRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a cluster_service.ListOperationsRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, cluster_service.ListOperationsRequest):
+            request = cluster_service.ListOperationsRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if project_id is not None:
-            request.project_id = project_id
-        if zone is not None:
-            request.zone = zone
+            if project_id is not None:
+                request.project_id = project_id
+            if zone is not None:
+                request.zone = zone
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.list_operations,
-            default_timeout=None,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.list_operations]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -1702,31 +1728,33 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([project_id, zone, operation_id]):
+        has_flattened_params = any([project_id, zone, operation_id])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = cluster_service.GetOperationRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a cluster_service.GetOperationRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, cluster_service.GetOperationRequest):
+            request = cluster_service.GetOperationRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if project_id is not None:
-            request.project_id = project_id
-        if zone is not None:
-            request.zone = zone
-        if operation_id is not None:
-            request.operation_id = operation_id
+            if project_id is not None:
+                request.project_id = project_id
+            if zone is not None:
+                request.zone = zone
+            if operation_id is not None:
+                request.operation_id = operation_id
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.get_operation,
-            default_timeout=None,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.get_operation]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -1799,33 +1827,35 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([project_id, zone, operation_id, name]):
+        has_flattened_params = any([project_id, zone, operation_id, name])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = cluster_service.CancelOperationRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a cluster_service.CancelOperationRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, cluster_service.CancelOperationRequest):
+            request = cluster_service.CancelOperationRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if project_id is not None:
-            request.project_id = project_id
-        if zone is not None:
-            request.zone = zone
-        if operation_id is not None:
-            request.operation_id = operation_id
-        if name is not None:
-            request.name = name
+            if project_id is not None:
+                request.project_id = project_id
+            if zone is not None:
+                request.zone = zone
+            if operation_id is not None:
+                request.operation_id = operation_id
+            if name is not None:
+                request.name = name
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.cancel_operation,
-            default_timeout=None,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.cancel_operation]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -1895,31 +1925,33 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([project_id, zone, name]):
+        has_flattened_params = any([project_id, zone, name])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = cluster_service.GetServerConfigRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a cluster_service.GetServerConfigRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, cluster_service.GetServerConfigRequest):
+            request = cluster_service.GetServerConfigRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if project_id is not None:
-            request.project_id = project_id
-        if zone is not None:
-            request.zone = zone
-        if name is not None:
-            request.name = name
+            if project_id is not None:
+                request.project_id = project_id
+            if zone is not None:
+                request.zone = zone
+            if name is not None:
+                request.name = name
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.get_server_config,
-            default_timeout=None,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.get_server_config]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -1998,33 +2030,35 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([project_id, zone, cluster_id, parent]):
+        has_flattened_params = any([project_id, zone, cluster_id, parent])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = cluster_service.ListNodePoolsRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a cluster_service.ListNodePoolsRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, cluster_service.ListNodePoolsRequest):
+            request = cluster_service.ListNodePoolsRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if project_id is not None:
-            request.project_id = project_id
-        if zone is not None:
-            request.zone = zone
-        if cluster_id is not None:
-            request.cluster_id = cluster_id
-        if parent is not None:
-            request.parent = parent
+            if project_id is not None:
+                request.project_id = project_id
+            if zone is not None:
+                request.zone = zone
+            if cluster_id is not None:
+                request.cluster_id = cluster_id
+            if parent is not None:
+                request.parent = parent
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.list_node_pools,
-            default_timeout=None,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.list_node_pools]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -2119,37 +2153,37 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any(
-            [project_id, zone, cluster_id, node_pool_id, name]
-        ):
+        has_flattened_params = any([project_id, zone, cluster_id, node_pool_id, name])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = cluster_service.GetNodePoolRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a cluster_service.GetNodePoolRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, cluster_service.GetNodePoolRequest):
+            request = cluster_service.GetNodePoolRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if project_id is not None:
-            request.project_id = project_id
-        if zone is not None:
-            request.zone = zone
-        if cluster_id is not None:
-            request.cluster_id = cluster_id
-        if node_pool_id is not None:
-            request.node_pool_id = node_pool_id
-        if name is not None:
-            request.name = name
+            if project_id is not None:
+                request.project_id = project_id
+            if zone is not None:
+                request.zone = zone
+            if cluster_id is not None:
+                request.cluster_id = cluster_id
+            if node_pool_id is not None:
+                request.node_pool_id = node_pool_id
+            if name is not None:
+                request.name = name
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.get_node_pool,
-            default_timeout=None,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.get_node_pool]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -2236,37 +2270,37 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any(
-            [project_id, zone, cluster_id, node_pool, parent]
-        ):
+        has_flattened_params = any([project_id, zone, cluster_id, node_pool, parent])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = cluster_service.CreateNodePoolRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a cluster_service.CreateNodePoolRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, cluster_service.CreateNodePoolRequest):
+            request = cluster_service.CreateNodePoolRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if project_id is not None:
-            request.project_id = project_id
-        if zone is not None:
-            request.zone = zone
-        if cluster_id is not None:
-            request.cluster_id = cluster_id
-        if node_pool is not None:
-            request.node_pool = node_pool
-        if parent is not None:
-            request.parent = parent
+            if project_id is not None:
+                request.project_id = project_id
+            if zone is not None:
+                request.zone = zone
+            if cluster_id is not None:
+                request.cluster_id = cluster_id
+            if node_pool is not None:
+                request.node_pool = node_pool
+            if parent is not None:
+                request.parent = parent
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.create_node_pool,
-            default_timeout=None,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.create_node_pool]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -2356,37 +2390,37 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any(
-            [project_id, zone, cluster_id, node_pool_id, name]
-        ):
+        has_flattened_params = any([project_id, zone, cluster_id, node_pool_id, name])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = cluster_service.DeleteNodePoolRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a cluster_service.DeleteNodePoolRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, cluster_service.DeleteNodePoolRequest):
+            request = cluster_service.DeleteNodePoolRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if project_id is not None:
-            request.project_id = project_id
-        if zone is not None:
-            request.zone = zone
-        if cluster_id is not None:
-            request.cluster_id = cluster_id
-        if node_pool_id is not None:
-            request.node_pool_id = node_pool_id
-        if name is not None:
-            request.name = name
+            if project_id is not None:
+                request.project_id = project_id
+            if zone is not None:
+                request.zone = zone
+            if cluster_id is not None:
+                request.cluster_id = cluster_id
+            if node_pool_id is not None:
+                request.node_pool_id = node_pool_id
+            if name is not None:
+                request.name = name
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.delete_node_pool,
-            default_timeout=None,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.delete_node_pool]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -2482,37 +2516,39 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any(
-            [project_id, zone, cluster_id, node_pool_id, name]
-        ):
+        has_flattened_params = any([project_id, zone, cluster_id, node_pool_id, name])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = cluster_service.RollbackNodePoolUpgradeRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a cluster_service.RollbackNodePoolUpgradeRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, cluster_service.RollbackNodePoolUpgradeRequest):
+            request = cluster_service.RollbackNodePoolUpgradeRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if project_id is not None:
-            request.project_id = project_id
-        if zone is not None:
-            request.zone = zone
-        if cluster_id is not None:
-            request.cluster_id = cluster_id
-        if node_pool_id is not None:
-            request.node_pool_id = node_pool_id
-        if name is not None:
-            request.name = name
+            if project_id is not None:
+                request.project_id = project_id
+            if zone is not None:
+                request.zone = zone
+            if cluster_id is not None:
+                request.cluster_id = cluster_id
+            if node_pool_id is not None:
+                request.node_pool_id = node_pool_id
+            if name is not None:
+                request.name = name
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.rollback_node_pool_upgrade,
-            default_timeout=None,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[
+            self._transport.rollback_node_pool_upgrade
+        ]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -2557,15 +2593,16 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         """
         # Create or coerce a protobuf request object.
 
-        request = cluster_service.SetNodePoolManagementRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a cluster_service.SetNodePoolManagementRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, cluster_service.SetNodePoolManagementRequest):
+            request = cluster_service.SetNodePoolManagementRequest(request)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.set_node_pool_management,
-            default_timeout=None,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.set_node_pool_management]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -2612,13 +2649,16 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         """
         # Create or coerce a protobuf request object.
 
-        request = cluster_service.SetLabelsRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a cluster_service.SetLabelsRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, cluster_service.SetLabelsRequest):
+            request = cluster_service.SetLabelsRequest(request)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.set_labels, default_timeout=None, client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.set_labels]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -2708,35 +2748,37 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([project_id, zone, cluster_id, enabled, name]):
+        has_flattened_params = any([project_id, zone, cluster_id, enabled, name])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = cluster_service.SetLegacyAbacRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a cluster_service.SetLegacyAbacRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, cluster_service.SetLegacyAbacRequest):
+            request = cluster_service.SetLegacyAbacRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if project_id is not None:
-            request.project_id = project_id
-        if zone is not None:
-            request.zone = zone
-        if cluster_id is not None:
-            request.cluster_id = cluster_id
-        if enabled is not None:
-            request.enabled = enabled
-        if name is not None:
-            request.name = name
+            if project_id is not None:
+                request.project_id = project_id
+            if zone is not None:
+                request.zone = zone
+            if cluster_id is not None:
+                request.cluster_id = cluster_id
+            if enabled is not None:
+                request.enabled = enabled
+            if name is not None:
+                request.name = name
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.set_legacy_abac,
-            default_timeout=None,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.set_legacy_abac]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -2818,33 +2860,35 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([project_id, zone, cluster_id, name]):
+        has_flattened_params = any([project_id, zone, cluster_id, name])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = cluster_service.StartIPRotationRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a cluster_service.StartIPRotationRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, cluster_service.StartIPRotationRequest):
+            request = cluster_service.StartIPRotationRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if project_id is not None:
-            request.project_id = project_id
-        if zone is not None:
-            request.zone = zone
-        if cluster_id is not None:
-            request.cluster_id = cluster_id
-        if name is not None:
-            request.name = name
+            if project_id is not None:
+                request.project_id = project_id
+            if zone is not None:
+                request.zone = zone
+            if cluster_id is not None:
+                request.cluster_id = cluster_id
+            if name is not None:
+                request.name = name
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.start_ip_rotation,
-            default_timeout=None,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.start_ip_rotation]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -2925,33 +2969,35 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any([project_id, zone, cluster_id, name]):
+        has_flattened_params = any([project_id, zone, cluster_id, name])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = cluster_service.CompleteIPRotationRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a cluster_service.CompleteIPRotationRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, cluster_service.CompleteIPRotationRequest):
+            request = cluster_service.CompleteIPRotationRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if project_id is not None:
-            request.project_id = project_id
-        if zone is not None:
-            request.zone = zone
-        if cluster_id is not None:
-            request.cluster_id = cluster_id
-        if name is not None:
-            request.name = name
+            if project_id is not None:
+                request.project_id = project_id
+            if zone is not None:
+                request.zone = zone
+            if cluster_id is not None:
+                request.cluster_id = cluster_id
+            if name is not None:
+                request.name = name
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.complete_ip_rotation,
-            default_timeout=None,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.complete_ip_rotation]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -2996,15 +3042,16 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         """
         # Create or coerce a protobuf request object.
 
-        request = cluster_service.SetNodePoolSizeRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a cluster_service.SetNodePoolSizeRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, cluster_service.SetNodePoolSizeRequest):
+            request = cluster_service.SetNodePoolSizeRequest(request)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.set_node_pool_size,
-            default_timeout=None,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.set_node_pool_size]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -3092,37 +3139,37 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any(
-            [project_id, zone, cluster_id, network_policy, name]
-        ):
+        has_flattened_params = any([project_id, zone, cluster_id, network_policy, name])
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = cluster_service.SetNetworkPolicyRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a cluster_service.SetNetworkPolicyRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, cluster_service.SetNetworkPolicyRequest):
+            request = cluster_service.SetNetworkPolicyRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if project_id is not None:
-            request.project_id = project_id
-        if zone is not None:
-            request.zone = zone
-        if cluster_id is not None:
-            request.cluster_id = cluster_id
-        if network_policy is not None:
-            request.network_policy = network_policy
-        if name is not None:
-            request.name = name
+            if project_id is not None:
+                request.project_id = project_id
+            if zone is not None:
+                request.zone = zone
+            if cluster_id is not None:
+                request.cluster_id = cluster_id
+            if network_policy is not None:
+                request.network_policy = network_policy
+            if name is not None:
+                request.name = name
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.set_network_policy,
-            default_timeout=None,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.set_network_policy]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -3207,37 +3254,39 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any(
+        has_flattened_params = any(
             [project_id, zone, cluster_id, maintenance_policy, name]
-        ):
+        )
+        if request is not None and has_flattened_params:
             raise ValueError(
                 "If the `request` argument is set, then none of "
                 "the individual field arguments should be set."
             )
 
-        request = cluster_service.SetMaintenancePolicyRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a cluster_service.SetMaintenancePolicyRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, cluster_service.SetMaintenancePolicyRequest):
+            request = cluster_service.SetMaintenancePolicyRequest(request)
 
-        # If we have keyword arguments corresponding to fields on the
-        # request, apply these.
+            # If we have keyword arguments corresponding to fields on the
+            # request, apply these.
 
-        if project_id is not None:
-            request.project_id = project_id
-        if zone is not None:
-            request.zone = zone
-        if cluster_id is not None:
-            request.cluster_id = cluster_id
-        if maintenance_policy is not None:
-            request.maintenance_policy = maintenance_policy
-        if name is not None:
-            request.name = name
+            if project_id is not None:
+                request.project_id = project_id
+            if zone is not None:
+                request.zone = zone
+            if cluster_id is not None:
+                request.cluster_id = cluster_id
+            if maintenance_policy is not None:
+                request.maintenance_policy = maintenance_policy
+            if name is not None:
+                request.name = name
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.set_maintenance_policy,
-            default_timeout=None,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.set_maintenance_policy]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
@@ -3287,15 +3336,16 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         """
         # Create or coerce a protobuf request object.
 
-        request = cluster_service.ListUsableSubnetworksRequest(request)
+        # Minor optimization to avoid making a copy if the user passes
+        # in a cluster_service.ListUsableSubnetworksRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, cluster_service.ListUsableSubnetworksRequest):
+            request = cluster_service.ListUsableSubnetworksRequest(request)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = gapic_v1.method.wrap_method(
-            self._transport.list_usable_subnetworks,
-            default_timeout=None,
-            client_info=_client_info,
-        )
+        rpc = self._transport._wrapped_methods[self._transport.list_usable_subnetworks]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
