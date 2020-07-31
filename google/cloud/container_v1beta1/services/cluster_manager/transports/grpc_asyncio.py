@@ -17,11 +17,11 @@
 
 from typing import Awaitable, Callable, Dict, Optional, Sequence, Tuple
 
-from google.api_core import grpc_helpers_async         # type: ignore
-from google.auth import credentials                    # type: ignore
+from google.api_core import grpc_helpers_async  # type: ignore
+from google.auth import credentials  # type: ignore
 from google.auth.transport.grpc import SslCredentials  # type: ignore
 
-import grpc                        # type: ignore
+import grpc  # type: ignore
 from grpc.experimental import aio  # type: ignore
 
 from google.cloud.container_v1beta1.types import cluster_service
@@ -48,13 +48,15 @@ class ClusterManagerGrpcAsyncIOTransport(ClusterManagerTransport):
     _stubs: Dict[str, Callable] = {}
 
     @classmethod
-    def create_channel(cls,
-                       host: str = 'container.googleapis.com',
-                       credentials: credentials.Credentials = None,
-                       credentials_file: Optional[str] = None,
-                       scopes: Optional[Sequence[str]] = None,
-                       quota_project_id: Optional[str] = None,
-                       **kwargs) -> aio.Channel:
+    def create_channel(
+        cls,
+        host: str = "container.googleapis.com",
+        credentials: credentials.Credentials = None,
+        credentials_file: Optional[str] = None,
+        scopes: Optional[Sequence[str]] = None,
+        quota_project_id: Optional[str] = None,
+        **kwargs,
+    ) -> aio.Channel:
         """Create and return a gRPC AsyncIO channel object.
         Args:
             address (Optional[str]): The host for the channel to use.
@@ -83,19 +85,21 @@ class ClusterManagerGrpcAsyncIOTransport(ClusterManagerTransport):
             credentials_file=credentials_file,
             scopes=scopes,
             quota_project_id=quota_project_id,
-            **kwargs
+            **kwargs,
         )
 
-    def __init__(self, *,
-            host: str = 'container.googleapis.com',
-            credentials: credentials.Credentials = None,
-            credentials_file: Optional[str] = None,
-            scopes: Optional[Sequence[str]] = None,
-            channel: aio.Channel = None,
-            api_mtls_endpoint: str = None,
-            client_cert_source: Callable[[], Tuple[bytes, bytes]] = None,
-            quota_project_id=None,
-            ) -> None:
+    def __init__(
+        self,
+        *,
+        host: str = "container.googleapis.com",
+        credentials: credentials.Credentials = None,
+        credentials_file: Optional[str] = None,
+        scopes: Optional[Sequence[str]] = None,
+        channel: aio.Channel = None,
+        api_mtls_endpoint: str = None,
+        client_cert_source: Callable[[], Tuple[bytes, bytes]] = None,
+        quota_project_id=None,
+    ) -> None:
         """Instantiate the transport.
 
         Args:
@@ -139,7 +143,11 @@ class ClusterManagerGrpcAsyncIOTransport(ClusterManagerTransport):
             # If a channel was explicitly provided, set it.
             self._grpc_channel = channel
         elif api_mtls_endpoint:
-            host = api_mtls_endpoint if ":" in api_mtls_endpoint else api_mtls_endpoint + ":443"
+            host = (
+                api_mtls_endpoint
+                if ":" in api_mtls_endpoint
+                else api_mtls_endpoint + ":443"
+            )
 
             # Create SSL credentials with client_cert_source or application
             # default SSL credentials.
@@ -181,19 +189,21 @@ class ClusterManagerGrpcAsyncIOTransport(ClusterManagerTransport):
         """
         # Sanity check: Only create a new channel if we do not already
         # have one.
-        if not hasattr(self, '_grpc_channel'):
+        if not hasattr(self, "_grpc_channel"):
             self._grpc_channel = self.create_channel(
-                self._host,
-                credentials=self._credentials,
+                self._host, credentials=self._credentials,
             )
 
         # Return the channel from cache.
         return self._grpc_channel
 
     @property
-    def list_clusters(self) -> Callable[
-            [cluster_service.ListClustersRequest],
-            Awaitable[cluster_service.ListClustersResponse]]:
+    def list_clusters(
+        self,
+    ) -> Callable[
+        [cluster_service.ListClustersRequest],
+        Awaitable[cluster_service.ListClustersResponse],
+    ]:
         r"""Return a callable for the list clusters method over gRPC.
 
         Lists all clusters owned by a project in either the
@@ -209,18 +219,20 @@ class ClusterManagerGrpcAsyncIOTransport(ClusterManagerTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'list_clusters' not in self._stubs:
-            self._stubs['list_clusters'] = self.grpc_channel.unary_unary(
-                '/google.container.v1beta1.ClusterManager/ListClusters',
+        if "list_clusters" not in self._stubs:
+            self._stubs["list_clusters"] = self.grpc_channel.unary_unary(
+                "/google.container.v1beta1.ClusterManager/ListClusters",
                 request_serializer=cluster_service.ListClustersRequest.serialize,
                 response_deserializer=cluster_service.ListClustersResponse.deserialize,
             )
-        return self._stubs['list_clusters']
+        return self._stubs["list_clusters"]
 
     @property
-    def get_cluster(self) -> Callable[
-            [cluster_service.GetClusterRequest],
-            Awaitable[cluster_service.Cluster]]:
+    def get_cluster(
+        self,
+    ) -> Callable[
+        [cluster_service.GetClusterRequest], Awaitable[cluster_service.Cluster]
+    ]:
         r"""Return a callable for the get cluster method over gRPC.
 
         Gets the details for a specific cluster.
@@ -235,18 +247,20 @@ class ClusterManagerGrpcAsyncIOTransport(ClusterManagerTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'get_cluster' not in self._stubs:
-            self._stubs['get_cluster'] = self.grpc_channel.unary_unary(
-                '/google.container.v1beta1.ClusterManager/GetCluster',
+        if "get_cluster" not in self._stubs:
+            self._stubs["get_cluster"] = self.grpc_channel.unary_unary(
+                "/google.container.v1beta1.ClusterManager/GetCluster",
                 request_serializer=cluster_service.GetClusterRequest.serialize,
                 response_deserializer=cluster_service.Cluster.deserialize,
             )
-        return self._stubs['get_cluster']
+        return self._stubs["get_cluster"]
 
     @property
-    def create_cluster(self) -> Callable[
-            [cluster_service.CreateClusterRequest],
-            Awaitable[cluster_service.Operation]]:
+    def create_cluster(
+        self,
+    ) -> Callable[
+        [cluster_service.CreateClusterRequest], Awaitable[cluster_service.Operation]
+    ]:
         r"""Return a callable for the create cluster method over gRPC.
 
         Creates a cluster, consisting of the specified number and type
@@ -273,18 +287,20 @@ class ClusterManagerGrpcAsyncIOTransport(ClusterManagerTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'create_cluster' not in self._stubs:
-            self._stubs['create_cluster'] = self.grpc_channel.unary_unary(
-                '/google.container.v1beta1.ClusterManager/CreateCluster',
+        if "create_cluster" not in self._stubs:
+            self._stubs["create_cluster"] = self.grpc_channel.unary_unary(
+                "/google.container.v1beta1.ClusterManager/CreateCluster",
                 request_serializer=cluster_service.CreateClusterRequest.serialize,
                 response_deserializer=cluster_service.Operation.deserialize,
             )
-        return self._stubs['create_cluster']
+        return self._stubs["create_cluster"]
 
     @property
-    def update_cluster(self) -> Callable[
-            [cluster_service.UpdateClusterRequest],
-            Awaitable[cluster_service.Operation]]:
+    def update_cluster(
+        self,
+    ) -> Callable[
+        [cluster_service.UpdateClusterRequest], Awaitable[cluster_service.Operation]
+    ]:
         r"""Return a callable for the update cluster method over gRPC.
 
         Updates the settings for a specific cluster.
@@ -299,18 +315,20 @@ class ClusterManagerGrpcAsyncIOTransport(ClusterManagerTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'update_cluster' not in self._stubs:
-            self._stubs['update_cluster'] = self.grpc_channel.unary_unary(
-                '/google.container.v1beta1.ClusterManager/UpdateCluster',
+        if "update_cluster" not in self._stubs:
+            self._stubs["update_cluster"] = self.grpc_channel.unary_unary(
+                "/google.container.v1beta1.ClusterManager/UpdateCluster",
                 request_serializer=cluster_service.UpdateClusterRequest.serialize,
                 response_deserializer=cluster_service.Operation.deserialize,
             )
-        return self._stubs['update_cluster']
+        return self._stubs["update_cluster"]
 
     @property
-    def update_node_pool(self) -> Callable[
-            [cluster_service.UpdateNodePoolRequest],
-            Awaitable[cluster_service.Operation]]:
+    def update_node_pool(
+        self,
+    ) -> Callable[
+        [cluster_service.UpdateNodePoolRequest], Awaitable[cluster_service.Operation]
+    ]:
         r"""Return a callable for the update node pool method over gRPC.
 
         Updates the version and/or image type of a specific
@@ -326,18 +344,21 @@ class ClusterManagerGrpcAsyncIOTransport(ClusterManagerTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'update_node_pool' not in self._stubs:
-            self._stubs['update_node_pool'] = self.grpc_channel.unary_unary(
-                '/google.container.v1beta1.ClusterManager/UpdateNodePool',
+        if "update_node_pool" not in self._stubs:
+            self._stubs["update_node_pool"] = self.grpc_channel.unary_unary(
+                "/google.container.v1beta1.ClusterManager/UpdateNodePool",
                 request_serializer=cluster_service.UpdateNodePoolRequest.serialize,
                 response_deserializer=cluster_service.Operation.deserialize,
             )
-        return self._stubs['update_node_pool']
+        return self._stubs["update_node_pool"]
 
     @property
-    def set_node_pool_autoscaling(self) -> Callable[
-            [cluster_service.SetNodePoolAutoscalingRequest],
-            Awaitable[cluster_service.Operation]]:
+    def set_node_pool_autoscaling(
+        self,
+    ) -> Callable[
+        [cluster_service.SetNodePoolAutoscalingRequest],
+        Awaitable[cluster_service.Operation],
+    ]:
         r"""Return a callable for the set node pool autoscaling method over gRPC.
 
         Sets the autoscaling settings of a specific node
@@ -353,18 +374,20 @@ class ClusterManagerGrpcAsyncIOTransport(ClusterManagerTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'set_node_pool_autoscaling' not in self._stubs:
-            self._stubs['set_node_pool_autoscaling'] = self.grpc_channel.unary_unary(
-                '/google.container.v1beta1.ClusterManager/SetNodePoolAutoscaling',
+        if "set_node_pool_autoscaling" not in self._stubs:
+            self._stubs["set_node_pool_autoscaling"] = self.grpc_channel.unary_unary(
+                "/google.container.v1beta1.ClusterManager/SetNodePoolAutoscaling",
                 request_serializer=cluster_service.SetNodePoolAutoscalingRequest.serialize,
                 response_deserializer=cluster_service.Operation.deserialize,
             )
-        return self._stubs['set_node_pool_autoscaling']
+        return self._stubs["set_node_pool_autoscaling"]
 
     @property
-    def set_logging_service(self) -> Callable[
-            [cluster_service.SetLoggingServiceRequest],
-            Awaitable[cluster_service.Operation]]:
+    def set_logging_service(
+        self,
+    ) -> Callable[
+        [cluster_service.SetLoggingServiceRequest], Awaitable[cluster_service.Operation]
+    ]:
         r"""Return a callable for the set logging service method over gRPC.
 
         Sets the logging service for a specific cluster.
@@ -379,18 +402,21 @@ class ClusterManagerGrpcAsyncIOTransport(ClusterManagerTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'set_logging_service' not in self._stubs:
-            self._stubs['set_logging_service'] = self.grpc_channel.unary_unary(
-                '/google.container.v1beta1.ClusterManager/SetLoggingService',
+        if "set_logging_service" not in self._stubs:
+            self._stubs["set_logging_service"] = self.grpc_channel.unary_unary(
+                "/google.container.v1beta1.ClusterManager/SetLoggingService",
                 request_serializer=cluster_service.SetLoggingServiceRequest.serialize,
                 response_deserializer=cluster_service.Operation.deserialize,
             )
-        return self._stubs['set_logging_service']
+        return self._stubs["set_logging_service"]
 
     @property
-    def set_monitoring_service(self) -> Callable[
-            [cluster_service.SetMonitoringServiceRequest],
-            Awaitable[cluster_service.Operation]]:
+    def set_monitoring_service(
+        self,
+    ) -> Callable[
+        [cluster_service.SetMonitoringServiceRequest],
+        Awaitable[cluster_service.Operation],
+    ]:
         r"""Return a callable for the set monitoring service method over gRPC.
 
         Sets the monitoring service for a specific cluster.
@@ -405,18 +431,20 @@ class ClusterManagerGrpcAsyncIOTransport(ClusterManagerTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'set_monitoring_service' not in self._stubs:
-            self._stubs['set_monitoring_service'] = self.grpc_channel.unary_unary(
-                '/google.container.v1beta1.ClusterManager/SetMonitoringService',
+        if "set_monitoring_service" not in self._stubs:
+            self._stubs["set_monitoring_service"] = self.grpc_channel.unary_unary(
+                "/google.container.v1beta1.ClusterManager/SetMonitoringService",
                 request_serializer=cluster_service.SetMonitoringServiceRequest.serialize,
                 response_deserializer=cluster_service.Operation.deserialize,
             )
-        return self._stubs['set_monitoring_service']
+        return self._stubs["set_monitoring_service"]
 
     @property
-    def set_addons_config(self) -> Callable[
-            [cluster_service.SetAddonsConfigRequest],
-            Awaitable[cluster_service.Operation]]:
+    def set_addons_config(
+        self,
+    ) -> Callable[
+        [cluster_service.SetAddonsConfigRequest], Awaitable[cluster_service.Operation]
+    ]:
         r"""Return a callable for the set addons config method over gRPC.
 
         Sets the addons for a specific cluster.
@@ -431,18 +459,20 @@ class ClusterManagerGrpcAsyncIOTransport(ClusterManagerTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'set_addons_config' not in self._stubs:
-            self._stubs['set_addons_config'] = self.grpc_channel.unary_unary(
-                '/google.container.v1beta1.ClusterManager/SetAddonsConfig',
+        if "set_addons_config" not in self._stubs:
+            self._stubs["set_addons_config"] = self.grpc_channel.unary_unary(
+                "/google.container.v1beta1.ClusterManager/SetAddonsConfig",
                 request_serializer=cluster_service.SetAddonsConfigRequest.serialize,
                 response_deserializer=cluster_service.Operation.deserialize,
             )
-        return self._stubs['set_addons_config']
+        return self._stubs["set_addons_config"]
 
     @property
-    def set_locations(self) -> Callable[
-            [cluster_service.SetLocationsRequest],
-            Awaitable[cluster_service.Operation]]:
+    def set_locations(
+        self,
+    ) -> Callable[
+        [cluster_service.SetLocationsRequest], Awaitable[cluster_service.Operation]
+    ]:
         r"""Return a callable for the set locations method over gRPC.
 
         Sets the locations for a specific cluster.
@@ -457,18 +487,20 @@ class ClusterManagerGrpcAsyncIOTransport(ClusterManagerTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'set_locations' not in self._stubs:
-            self._stubs['set_locations'] = self.grpc_channel.unary_unary(
-                '/google.container.v1beta1.ClusterManager/SetLocations',
+        if "set_locations" not in self._stubs:
+            self._stubs["set_locations"] = self.grpc_channel.unary_unary(
+                "/google.container.v1beta1.ClusterManager/SetLocations",
                 request_serializer=cluster_service.SetLocationsRequest.serialize,
                 response_deserializer=cluster_service.Operation.deserialize,
             )
-        return self._stubs['set_locations']
+        return self._stubs["set_locations"]
 
     @property
-    def update_master(self) -> Callable[
-            [cluster_service.UpdateMasterRequest],
-            Awaitable[cluster_service.Operation]]:
+    def update_master(
+        self,
+    ) -> Callable[
+        [cluster_service.UpdateMasterRequest], Awaitable[cluster_service.Operation]
+    ]:
         r"""Return a callable for the update master method over gRPC.
 
         Updates the master for a specific cluster.
@@ -483,18 +515,20 @@ class ClusterManagerGrpcAsyncIOTransport(ClusterManagerTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'update_master' not in self._stubs:
-            self._stubs['update_master'] = self.grpc_channel.unary_unary(
-                '/google.container.v1beta1.ClusterManager/UpdateMaster',
+        if "update_master" not in self._stubs:
+            self._stubs["update_master"] = self.grpc_channel.unary_unary(
+                "/google.container.v1beta1.ClusterManager/UpdateMaster",
                 request_serializer=cluster_service.UpdateMasterRequest.serialize,
                 response_deserializer=cluster_service.Operation.deserialize,
             )
-        return self._stubs['update_master']
+        return self._stubs["update_master"]
 
     @property
-    def set_master_auth(self) -> Callable[
-            [cluster_service.SetMasterAuthRequest],
-            Awaitable[cluster_service.Operation]]:
+    def set_master_auth(
+        self,
+    ) -> Callable[
+        [cluster_service.SetMasterAuthRequest], Awaitable[cluster_service.Operation]
+    ]:
         r"""Return a callable for the set master auth method over gRPC.
 
         Sets master auth materials. Currently supports
@@ -512,18 +546,20 @@ class ClusterManagerGrpcAsyncIOTransport(ClusterManagerTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'set_master_auth' not in self._stubs:
-            self._stubs['set_master_auth'] = self.grpc_channel.unary_unary(
-                '/google.container.v1beta1.ClusterManager/SetMasterAuth',
+        if "set_master_auth" not in self._stubs:
+            self._stubs["set_master_auth"] = self.grpc_channel.unary_unary(
+                "/google.container.v1beta1.ClusterManager/SetMasterAuth",
                 request_serializer=cluster_service.SetMasterAuthRequest.serialize,
                 response_deserializer=cluster_service.Operation.deserialize,
             )
-        return self._stubs['set_master_auth']
+        return self._stubs["set_master_auth"]
 
     @property
-    def delete_cluster(self) -> Callable[
-            [cluster_service.DeleteClusterRequest],
-            Awaitable[cluster_service.Operation]]:
+    def delete_cluster(
+        self,
+    ) -> Callable[
+        [cluster_service.DeleteClusterRequest], Awaitable[cluster_service.Operation]
+    ]:
         r"""Return a callable for the delete cluster method over gRPC.
 
         Deletes the cluster, including the Kubernetes
@@ -547,18 +583,21 @@ class ClusterManagerGrpcAsyncIOTransport(ClusterManagerTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'delete_cluster' not in self._stubs:
-            self._stubs['delete_cluster'] = self.grpc_channel.unary_unary(
-                '/google.container.v1beta1.ClusterManager/DeleteCluster',
+        if "delete_cluster" not in self._stubs:
+            self._stubs["delete_cluster"] = self.grpc_channel.unary_unary(
+                "/google.container.v1beta1.ClusterManager/DeleteCluster",
                 request_serializer=cluster_service.DeleteClusterRequest.serialize,
                 response_deserializer=cluster_service.Operation.deserialize,
             )
-        return self._stubs['delete_cluster']
+        return self._stubs["delete_cluster"]
 
     @property
-    def list_operations(self) -> Callable[
-            [cluster_service.ListOperationsRequest],
-            Awaitable[cluster_service.ListOperationsResponse]]:
+    def list_operations(
+        self,
+    ) -> Callable[
+        [cluster_service.ListOperationsRequest],
+        Awaitable[cluster_service.ListOperationsResponse],
+    ]:
         r"""Return a callable for the list operations method over gRPC.
 
         Lists all operations in a project in the specified
@@ -574,18 +613,20 @@ class ClusterManagerGrpcAsyncIOTransport(ClusterManagerTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'list_operations' not in self._stubs:
-            self._stubs['list_operations'] = self.grpc_channel.unary_unary(
-                '/google.container.v1beta1.ClusterManager/ListOperations',
+        if "list_operations" not in self._stubs:
+            self._stubs["list_operations"] = self.grpc_channel.unary_unary(
+                "/google.container.v1beta1.ClusterManager/ListOperations",
                 request_serializer=cluster_service.ListOperationsRequest.serialize,
                 response_deserializer=cluster_service.ListOperationsResponse.deserialize,
             )
-        return self._stubs['list_operations']
+        return self._stubs["list_operations"]
 
     @property
-    def get_operation(self) -> Callable[
-            [cluster_service.GetOperationRequest],
-            Awaitable[cluster_service.Operation]]:
+    def get_operation(
+        self,
+    ) -> Callable[
+        [cluster_service.GetOperationRequest], Awaitable[cluster_service.Operation]
+    ]:
         r"""Return a callable for the get operation method over gRPC.
 
         Gets the specified operation.
@@ -600,18 +641,18 @@ class ClusterManagerGrpcAsyncIOTransport(ClusterManagerTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'get_operation' not in self._stubs:
-            self._stubs['get_operation'] = self.grpc_channel.unary_unary(
-                '/google.container.v1beta1.ClusterManager/GetOperation',
+        if "get_operation" not in self._stubs:
+            self._stubs["get_operation"] = self.grpc_channel.unary_unary(
+                "/google.container.v1beta1.ClusterManager/GetOperation",
                 request_serializer=cluster_service.GetOperationRequest.serialize,
                 response_deserializer=cluster_service.Operation.deserialize,
             )
-        return self._stubs['get_operation']
+        return self._stubs["get_operation"]
 
     @property
-    def cancel_operation(self) -> Callable[
-            [cluster_service.CancelOperationRequest],
-            Awaitable[empty.Empty]]:
+    def cancel_operation(
+        self,
+    ) -> Callable[[cluster_service.CancelOperationRequest], Awaitable[empty.Empty]]:
         r"""Return a callable for the cancel operation method over gRPC.
 
         Cancels the specified operation.
@@ -626,18 +667,21 @@ class ClusterManagerGrpcAsyncIOTransport(ClusterManagerTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'cancel_operation' not in self._stubs:
-            self._stubs['cancel_operation'] = self.grpc_channel.unary_unary(
-                '/google.container.v1beta1.ClusterManager/CancelOperation',
+        if "cancel_operation" not in self._stubs:
+            self._stubs["cancel_operation"] = self.grpc_channel.unary_unary(
+                "/google.container.v1beta1.ClusterManager/CancelOperation",
                 request_serializer=cluster_service.CancelOperationRequest.serialize,
                 response_deserializer=empty.Empty.FromString,
             )
-        return self._stubs['cancel_operation']
+        return self._stubs["cancel_operation"]
 
     @property
-    def get_server_config(self) -> Callable[
-            [cluster_service.GetServerConfigRequest],
-            Awaitable[cluster_service.ServerConfig]]:
+    def get_server_config(
+        self,
+    ) -> Callable[
+        [cluster_service.GetServerConfigRequest],
+        Awaitable[cluster_service.ServerConfig],
+    ]:
         r"""Return a callable for the get server config method over gRPC.
 
         Returns configuration info about the Google
@@ -653,18 +697,21 @@ class ClusterManagerGrpcAsyncIOTransport(ClusterManagerTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'get_server_config' not in self._stubs:
-            self._stubs['get_server_config'] = self.grpc_channel.unary_unary(
-                '/google.container.v1beta1.ClusterManager/GetServerConfig',
+        if "get_server_config" not in self._stubs:
+            self._stubs["get_server_config"] = self.grpc_channel.unary_unary(
+                "/google.container.v1beta1.ClusterManager/GetServerConfig",
                 request_serializer=cluster_service.GetServerConfigRequest.serialize,
                 response_deserializer=cluster_service.ServerConfig.deserialize,
             )
-        return self._stubs['get_server_config']
+        return self._stubs["get_server_config"]
 
     @property
-    def list_node_pools(self) -> Callable[
-            [cluster_service.ListNodePoolsRequest],
-            Awaitable[cluster_service.ListNodePoolsResponse]]:
+    def list_node_pools(
+        self,
+    ) -> Callable[
+        [cluster_service.ListNodePoolsRequest],
+        Awaitable[cluster_service.ListNodePoolsResponse],
+    ]:
         r"""Return a callable for the list node pools method over gRPC.
 
         Lists the node pools for a cluster.
@@ -679,18 +726,20 @@ class ClusterManagerGrpcAsyncIOTransport(ClusterManagerTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'list_node_pools' not in self._stubs:
-            self._stubs['list_node_pools'] = self.grpc_channel.unary_unary(
-                '/google.container.v1beta1.ClusterManager/ListNodePools',
+        if "list_node_pools" not in self._stubs:
+            self._stubs["list_node_pools"] = self.grpc_channel.unary_unary(
+                "/google.container.v1beta1.ClusterManager/ListNodePools",
                 request_serializer=cluster_service.ListNodePoolsRequest.serialize,
                 response_deserializer=cluster_service.ListNodePoolsResponse.deserialize,
             )
-        return self._stubs['list_node_pools']
+        return self._stubs["list_node_pools"]
 
     @property
-    def get_node_pool(self) -> Callable[
-            [cluster_service.GetNodePoolRequest],
-            Awaitable[cluster_service.NodePool]]:
+    def get_node_pool(
+        self,
+    ) -> Callable[
+        [cluster_service.GetNodePoolRequest], Awaitable[cluster_service.NodePool]
+    ]:
         r"""Return a callable for the get node pool method over gRPC.
 
         Retrieves the requested node pool.
@@ -705,18 +754,20 @@ class ClusterManagerGrpcAsyncIOTransport(ClusterManagerTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'get_node_pool' not in self._stubs:
-            self._stubs['get_node_pool'] = self.grpc_channel.unary_unary(
-                '/google.container.v1beta1.ClusterManager/GetNodePool',
+        if "get_node_pool" not in self._stubs:
+            self._stubs["get_node_pool"] = self.grpc_channel.unary_unary(
+                "/google.container.v1beta1.ClusterManager/GetNodePool",
                 request_serializer=cluster_service.GetNodePoolRequest.serialize,
                 response_deserializer=cluster_service.NodePool.deserialize,
             )
-        return self._stubs['get_node_pool']
+        return self._stubs["get_node_pool"]
 
     @property
-    def create_node_pool(self) -> Callable[
-            [cluster_service.CreateNodePoolRequest],
-            Awaitable[cluster_service.Operation]]:
+    def create_node_pool(
+        self,
+    ) -> Callable[
+        [cluster_service.CreateNodePoolRequest], Awaitable[cluster_service.Operation]
+    ]:
         r"""Return a callable for the create node pool method over gRPC.
 
         Creates a node pool for a cluster.
@@ -731,18 +782,20 @@ class ClusterManagerGrpcAsyncIOTransport(ClusterManagerTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'create_node_pool' not in self._stubs:
-            self._stubs['create_node_pool'] = self.grpc_channel.unary_unary(
-                '/google.container.v1beta1.ClusterManager/CreateNodePool',
+        if "create_node_pool" not in self._stubs:
+            self._stubs["create_node_pool"] = self.grpc_channel.unary_unary(
+                "/google.container.v1beta1.ClusterManager/CreateNodePool",
                 request_serializer=cluster_service.CreateNodePoolRequest.serialize,
                 response_deserializer=cluster_service.Operation.deserialize,
             )
-        return self._stubs['create_node_pool']
+        return self._stubs["create_node_pool"]
 
     @property
-    def delete_node_pool(self) -> Callable[
-            [cluster_service.DeleteNodePoolRequest],
-            Awaitable[cluster_service.Operation]]:
+    def delete_node_pool(
+        self,
+    ) -> Callable[
+        [cluster_service.DeleteNodePoolRequest], Awaitable[cluster_service.Operation]
+    ]:
         r"""Return a callable for the delete node pool method over gRPC.
 
         Deletes a node pool from a cluster.
@@ -757,18 +810,21 @@ class ClusterManagerGrpcAsyncIOTransport(ClusterManagerTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'delete_node_pool' not in self._stubs:
-            self._stubs['delete_node_pool'] = self.grpc_channel.unary_unary(
-                '/google.container.v1beta1.ClusterManager/DeleteNodePool',
+        if "delete_node_pool" not in self._stubs:
+            self._stubs["delete_node_pool"] = self.grpc_channel.unary_unary(
+                "/google.container.v1beta1.ClusterManager/DeleteNodePool",
                 request_serializer=cluster_service.DeleteNodePoolRequest.serialize,
                 response_deserializer=cluster_service.Operation.deserialize,
             )
-        return self._stubs['delete_node_pool']
+        return self._stubs["delete_node_pool"]
 
     @property
-    def rollback_node_pool_upgrade(self) -> Callable[
-            [cluster_service.RollbackNodePoolUpgradeRequest],
-            Awaitable[cluster_service.Operation]]:
+    def rollback_node_pool_upgrade(
+        self,
+    ) -> Callable[
+        [cluster_service.RollbackNodePoolUpgradeRequest],
+        Awaitable[cluster_service.Operation],
+    ]:
         r"""Return a callable for the rollback node pool upgrade method over gRPC.
 
         Rolls back a previously Aborted or Failed NodePool
@@ -785,18 +841,21 @@ class ClusterManagerGrpcAsyncIOTransport(ClusterManagerTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'rollback_node_pool_upgrade' not in self._stubs:
-            self._stubs['rollback_node_pool_upgrade'] = self.grpc_channel.unary_unary(
-                '/google.container.v1beta1.ClusterManager/RollbackNodePoolUpgrade',
+        if "rollback_node_pool_upgrade" not in self._stubs:
+            self._stubs["rollback_node_pool_upgrade"] = self.grpc_channel.unary_unary(
+                "/google.container.v1beta1.ClusterManager/RollbackNodePoolUpgrade",
                 request_serializer=cluster_service.RollbackNodePoolUpgradeRequest.serialize,
                 response_deserializer=cluster_service.Operation.deserialize,
             )
-        return self._stubs['rollback_node_pool_upgrade']
+        return self._stubs["rollback_node_pool_upgrade"]
 
     @property
-    def set_node_pool_management(self) -> Callable[
-            [cluster_service.SetNodePoolManagementRequest],
-            Awaitable[cluster_service.Operation]]:
+    def set_node_pool_management(
+        self,
+    ) -> Callable[
+        [cluster_service.SetNodePoolManagementRequest],
+        Awaitable[cluster_service.Operation],
+    ]:
         r"""Return a callable for the set node pool management method over gRPC.
 
         Sets the NodeManagement options for a node pool.
@@ -811,18 +870,20 @@ class ClusterManagerGrpcAsyncIOTransport(ClusterManagerTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'set_node_pool_management' not in self._stubs:
-            self._stubs['set_node_pool_management'] = self.grpc_channel.unary_unary(
-                '/google.container.v1beta1.ClusterManager/SetNodePoolManagement',
+        if "set_node_pool_management" not in self._stubs:
+            self._stubs["set_node_pool_management"] = self.grpc_channel.unary_unary(
+                "/google.container.v1beta1.ClusterManager/SetNodePoolManagement",
                 request_serializer=cluster_service.SetNodePoolManagementRequest.serialize,
                 response_deserializer=cluster_service.Operation.deserialize,
             )
-        return self._stubs['set_node_pool_management']
+        return self._stubs["set_node_pool_management"]
 
     @property
-    def set_labels(self) -> Callable[
-            [cluster_service.SetLabelsRequest],
-            Awaitable[cluster_service.Operation]]:
+    def set_labels(
+        self,
+    ) -> Callable[
+        [cluster_service.SetLabelsRequest], Awaitable[cluster_service.Operation]
+    ]:
         r"""Return a callable for the set labels method over gRPC.
 
         Sets labels on a cluster.
@@ -837,18 +898,20 @@ class ClusterManagerGrpcAsyncIOTransport(ClusterManagerTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'set_labels' not in self._stubs:
-            self._stubs['set_labels'] = self.grpc_channel.unary_unary(
-                '/google.container.v1beta1.ClusterManager/SetLabels',
+        if "set_labels" not in self._stubs:
+            self._stubs["set_labels"] = self.grpc_channel.unary_unary(
+                "/google.container.v1beta1.ClusterManager/SetLabels",
                 request_serializer=cluster_service.SetLabelsRequest.serialize,
                 response_deserializer=cluster_service.Operation.deserialize,
             )
-        return self._stubs['set_labels']
+        return self._stubs["set_labels"]
 
     @property
-    def set_legacy_abac(self) -> Callable[
-            [cluster_service.SetLegacyAbacRequest],
-            Awaitable[cluster_service.Operation]]:
+    def set_legacy_abac(
+        self,
+    ) -> Callable[
+        [cluster_service.SetLegacyAbacRequest], Awaitable[cluster_service.Operation]
+    ]:
         r"""Return a callable for the set legacy abac method over gRPC.
 
         Enables or disables the ABAC authorization mechanism
@@ -864,18 +927,20 @@ class ClusterManagerGrpcAsyncIOTransport(ClusterManagerTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'set_legacy_abac' not in self._stubs:
-            self._stubs['set_legacy_abac'] = self.grpc_channel.unary_unary(
-                '/google.container.v1beta1.ClusterManager/SetLegacyAbac',
+        if "set_legacy_abac" not in self._stubs:
+            self._stubs["set_legacy_abac"] = self.grpc_channel.unary_unary(
+                "/google.container.v1beta1.ClusterManager/SetLegacyAbac",
                 request_serializer=cluster_service.SetLegacyAbacRequest.serialize,
                 response_deserializer=cluster_service.Operation.deserialize,
             )
-        return self._stubs['set_legacy_abac']
+        return self._stubs["set_legacy_abac"]
 
     @property
-    def start_ip_rotation(self) -> Callable[
-            [cluster_service.StartIPRotationRequest],
-            Awaitable[cluster_service.Operation]]:
+    def start_ip_rotation(
+        self,
+    ) -> Callable[
+        [cluster_service.StartIPRotationRequest], Awaitable[cluster_service.Operation]
+    ]:
         r"""Return a callable for the start ip rotation method over gRPC.
 
         Starts master IP rotation.
@@ -890,18 +955,21 @@ class ClusterManagerGrpcAsyncIOTransport(ClusterManagerTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'start_ip_rotation' not in self._stubs:
-            self._stubs['start_ip_rotation'] = self.grpc_channel.unary_unary(
-                '/google.container.v1beta1.ClusterManager/StartIPRotation',
+        if "start_ip_rotation" not in self._stubs:
+            self._stubs["start_ip_rotation"] = self.grpc_channel.unary_unary(
+                "/google.container.v1beta1.ClusterManager/StartIPRotation",
                 request_serializer=cluster_service.StartIPRotationRequest.serialize,
                 response_deserializer=cluster_service.Operation.deserialize,
             )
-        return self._stubs['start_ip_rotation']
+        return self._stubs["start_ip_rotation"]
 
     @property
-    def complete_ip_rotation(self) -> Callable[
-            [cluster_service.CompleteIPRotationRequest],
-            Awaitable[cluster_service.Operation]]:
+    def complete_ip_rotation(
+        self,
+    ) -> Callable[
+        [cluster_service.CompleteIPRotationRequest],
+        Awaitable[cluster_service.Operation],
+    ]:
         r"""Return a callable for the complete ip rotation method over gRPC.
 
         Completes master IP rotation.
@@ -916,18 +984,20 @@ class ClusterManagerGrpcAsyncIOTransport(ClusterManagerTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'complete_ip_rotation' not in self._stubs:
-            self._stubs['complete_ip_rotation'] = self.grpc_channel.unary_unary(
-                '/google.container.v1beta1.ClusterManager/CompleteIPRotation',
+        if "complete_ip_rotation" not in self._stubs:
+            self._stubs["complete_ip_rotation"] = self.grpc_channel.unary_unary(
+                "/google.container.v1beta1.ClusterManager/CompleteIPRotation",
                 request_serializer=cluster_service.CompleteIPRotationRequest.serialize,
                 response_deserializer=cluster_service.Operation.deserialize,
             )
-        return self._stubs['complete_ip_rotation']
+        return self._stubs["complete_ip_rotation"]
 
     @property
-    def set_node_pool_size(self) -> Callable[
-            [cluster_service.SetNodePoolSizeRequest],
-            Awaitable[cluster_service.Operation]]:
+    def set_node_pool_size(
+        self,
+    ) -> Callable[
+        [cluster_service.SetNodePoolSizeRequest], Awaitable[cluster_service.Operation]
+    ]:
         r"""Return a callable for the set node pool size method over gRPC.
 
         Sets the size for a specific node pool.
@@ -942,18 +1012,20 @@ class ClusterManagerGrpcAsyncIOTransport(ClusterManagerTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'set_node_pool_size' not in self._stubs:
-            self._stubs['set_node_pool_size'] = self.grpc_channel.unary_unary(
-                '/google.container.v1beta1.ClusterManager/SetNodePoolSize',
+        if "set_node_pool_size" not in self._stubs:
+            self._stubs["set_node_pool_size"] = self.grpc_channel.unary_unary(
+                "/google.container.v1beta1.ClusterManager/SetNodePoolSize",
                 request_serializer=cluster_service.SetNodePoolSizeRequest.serialize,
                 response_deserializer=cluster_service.Operation.deserialize,
             )
-        return self._stubs['set_node_pool_size']
+        return self._stubs["set_node_pool_size"]
 
     @property
-    def set_network_policy(self) -> Callable[
-            [cluster_service.SetNetworkPolicyRequest],
-            Awaitable[cluster_service.Operation]]:
+    def set_network_policy(
+        self,
+    ) -> Callable[
+        [cluster_service.SetNetworkPolicyRequest], Awaitable[cluster_service.Operation]
+    ]:
         r"""Return a callable for the set network policy method over gRPC.
 
         Enables or disables Network Policy for a cluster.
@@ -968,18 +1040,21 @@ class ClusterManagerGrpcAsyncIOTransport(ClusterManagerTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'set_network_policy' not in self._stubs:
-            self._stubs['set_network_policy'] = self.grpc_channel.unary_unary(
-                '/google.container.v1beta1.ClusterManager/SetNetworkPolicy',
+        if "set_network_policy" not in self._stubs:
+            self._stubs["set_network_policy"] = self.grpc_channel.unary_unary(
+                "/google.container.v1beta1.ClusterManager/SetNetworkPolicy",
                 request_serializer=cluster_service.SetNetworkPolicyRequest.serialize,
                 response_deserializer=cluster_service.Operation.deserialize,
             )
-        return self._stubs['set_network_policy']
+        return self._stubs["set_network_policy"]
 
     @property
-    def set_maintenance_policy(self) -> Callable[
-            [cluster_service.SetMaintenancePolicyRequest],
-            Awaitable[cluster_service.Operation]]:
+    def set_maintenance_policy(
+        self,
+    ) -> Callable[
+        [cluster_service.SetMaintenancePolicyRequest],
+        Awaitable[cluster_service.Operation],
+    ]:
         r"""Return a callable for the set maintenance policy method over gRPC.
 
         Sets the maintenance policy for a cluster.
@@ -994,18 +1069,21 @@ class ClusterManagerGrpcAsyncIOTransport(ClusterManagerTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'set_maintenance_policy' not in self._stubs:
-            self._stubs['set_maintenance_policy'] = self.grpc_channel.unary_unary(
-                '/google.container.v1beta1.ClusterManager/SetMaintenancePolicy',
+        if "set_maintenance_policy" not in self._stubs:
+            self._stubs["set_maintenance_policy"] = self.grpc_channel.unary_unary(
+                "/google.container.v1beta1.ClusterManager/SetMaintenancePolicy",
                 request_serializer=cluster_service.SetMaintenancePolicyRequest.serialize,
                 response_deserializer=cluster_service.Operation.deserialize,
             )
-        return self._stubs['set_maintenance_policy']
+        return self._stubs["set_maintenance_policy"]
 
     @property
-    def list_usable_subnetworks(self) -> Callable[
-            [cluster_service.ListUsableSubnetworksRequest],
-            Awaitable[cluster_service.ListUsableSubnetworksResponse]]:
+    def list_usable_subnetworks(
+        self,
+    ) -> Callable[
+        [cluster_service.ListUsableSubnetworksRequest],
+        Awaitable[cluster_service.ListUsableSubnetworksResponse],
+    ]:
         r"""Return a callable for the list usable subnetworks method over gRPC.
 
         Lists subnetworks that can be used for creating
@@ -1021,18 +1099,21 @@ class ClusterManagerGrpcAsyncIOTransport(ClusterManagerTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'list_usable_subnetworks' not in self._stubs:
-            self._stubs['list_usable_subnetworks'] = self.grpc_channel.unary_unary(
-                '/google.container.v1beta1.ClusterManager/ListUsableSubnetworks',
+        if "list_usable_subnetworks" not in self._stubs:
+            self._stubs["list_usable_subnetworks"] = self.grpc_channel.unary_unary(
+                "/google.container.v1beta1.ClusterManager/ListUsableSubnetworks",
                 request_serializer=cluster_service.ListUsableSubnetworksRequest.serialize,
                 response_deserializer=cluster_service.ListUsableSubnetworksResponse.deserialize,
             )
-        return self._stubs['list_usable_subnetworks']
+        return self._stubs["list_usable_subnetworks"]
 
     @property
-    def list_locations(self) -> Callable[
-            [cluster_service.ListLocationsRequest],
-            Awaitable[cluster_service.ListLocationsResponse]]:
+    def list_locations(
+        self,
+    ) -> Callable[
+        [cluster_service.ListLocationsRequest],
+        Awaitable[cluster_service.ListLocationsResponse],
+    ]:
         r"""Return a callable for the list locations method over gRPC.
 
         Fetches locations that offer Google Kubernetes
@@ -1048,15 +1129,13 @@ class ClusterManagerGrpcAsyncIOTransport(ClusterManagerTransport):
         # the request.
         # gRPC handles serialization and deserialization, so we just need
         # to pass in the functions for each.
-        if 'list_locations' not in self._stubs:
-            self._stubs['list_locations'] = self.grpc_channel.unary_unary(
-                '/google.container.v1beta1.ClusterManager/ListLocations',
+        if "list_locations" not in self._stubs:
+            self._stubs["list_locations"] = self.grpc_channel.unary_unary(
+                "/google.container.v1beta1.ClusterManager/ListLocations",
                 request_serializer=cluster_service.ListLocationsRequest.serialize,
                 response_deserializer=cluster_service.ListLocationsResponse.deserialize,
             )
-        return self._stubs['list_locations']
+        return self._stubs["list_locations"]
 
 
-__all__ = (
-    'ClusterManagerGrpcAsyncIOTransport',
-)
+__all__ = ("ClusterManagerGrpcAsyncIOTransport",)

@@ -25,12 +25,12 @@ from .grpc_asyncio import ClusterManagerGrpcAsyncIOTransport
 
 # Compile a registry of transports.
 _transport_registry = OrderedDict()  # type: Dict[str, Type[ClusterManagerTransport]]
-_transport_registry['grpc'] = ClusterManagerGrpcTransport
-_transport_registry['grpc_asyncio'] = ClusterManagerGrpcAsyncIOTransport
+_transport_registry["grpc"] = ClusterManagerGrpcTransport
+_transport_registry["grpc_asyncio"] = ClusterManagerGrpcAsyncIOTransport
 
 
 __all__ = (
-    'ClusterManagerTransport',
-    'ClusterManagerGrpcTransport',
-    'ClusterManagerGrpcAsyncIOTransport',
+    "ClusterManagerTransport",
+    "ClusterManagerGrpcTransport",
+    "ClusterManagerGrpcAsyncIOTransport",
 )

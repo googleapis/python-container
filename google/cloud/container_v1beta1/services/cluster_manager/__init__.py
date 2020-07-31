@@ -19,6 +19,6 @@ from .client import ClusterManagerClient
 from .async_client import ClusterManagerAsyncClient
 
 __all__ = (
-    'ClusterManagerClient',
-    'ClusterManagerAsyncClient',
+    "ClusterManagerClient",
+    "ClusterManagerAsyncClient",
 )
