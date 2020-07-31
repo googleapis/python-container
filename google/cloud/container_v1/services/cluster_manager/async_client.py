@@ -21,12 +21,12 @@ import re
 from typing import Dict, Sequence, Tuple, Type, Union
 import pkg_resources
 
-import google.api_core.client_options as ClientOptions  # type: ignore
-from google.api_core import exceptions  # type: ignore
-from google.api_core import gapic_v1  # type: ignore
-from google.api_core import retry as retries  # type: ignore
-from google.auth import credentials  # type: ignore
-from google.oauth2 import service_account  # type: ignore
+import google.api_core.client_options as ClientOptions # type: ignore
+from google.api_core import exceptions                 # type: ignore
+from google.api_core import gapic_v1                   # type: ignore
+from google.api_core import retry as retries           # type: ignore
+from google.auth import credentials                    # type: ignore
+from google.oauth2 import service_account              # type: ignore
 
 from google.cloud.container_v1.services.cluster_manager import pagers
 from google.cloud.container_v1.types import cluster_service
@@ -47,17 +47,13 @@ class ClusterManagerAsyncClient:
     from_service_account_file = ClusterManagerClient.from_service_account_file
     from_service_account_json = from_service_account_file
 
-    get_transport_class = functools.partial(
-        type(ClusterManagerClient).get_transport_class, type(ClusterManagerClient)
-    )
+    get_transport_class = functools.partial(type(ClusterManagerClient).get_transport_class, type(ClusterManagerClient))
 
-    def __init__(
-        self,
-        *,
-        credentials: credentials.Credentials = None,
-        transport: Union[str, ClusterManagerTransport] = "grpc_asyncio",
-        client_options: ClientOptions = None,
-    ) -> None:
+    def __init__(self, *,
+            credentials: credentials.Credentials = None,
+            transport: Union[str, ClusterManagerTransport] = 'grpc_asyncio',
+            client_options: ClientOptions = None,
+            ) -> None:
         """Instantiate the cluster manager client.
 
         Args:
@@ -89,20 +85,21 @@ class ClusterManagerAsyncClient:
         """
 
         self._client = ClusterManagerClient(
-            credentials=credentials, transport=transport, client_options=client_options,
+            credentials=credentials,
+            transport=transport,
+            client_options=client_options,
         )
 
-    async def list_clusters(
-        self,
-        request: cluster_service.ListClustersRequest = None,
-        *,
-        project_id: str = None,
-        zone: str = None,
-        parent: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> cluster_service.ListClustersResponse:
+    async def list_clusters(self,
+            request: cluster_service.ListClustersRequest = None,
+            *,
+            project_id: str = None,
+            zone: str = None,
+            parent: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> cluster_service.ListClustersResponse:
         r"""Lists all clusters owned by a project in either the
         specified zone or all zones.
 
@@ -152,10 +149,8 @@ class ClusterManagerAsyncClient:
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         if request is not None and any([project_id, zone, parent]):
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         request = cluster_service.ListClustersRequest(request)
 
@@ -178,7 +173,8 @@ class ClusterManagerAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
-                    exceptions.DeadlineExceeded, exceptions.ServiceUnavailable,
+                    exceptions.DeadlineExceeded,
+exceptions.ServiceUnavailable,
                 ),
             ),
             default_timeout=20.0,
@@ -188,27 +184,33 @@ class ClusterManagerAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('parent', request.parent),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    async def get_cluster(
-        self,
-        request: cluster_service.GetClusterRequest = None,
-        *,
-        project_id: str = None,
-        zone: str = None,
-        cluster_id: str = None,
-        name: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> cluster_service.Cluster:
+    async def get_cluster(self,
+            request: cluster_service.GetClusterRequest = None,
+            *,
+            project_id: str = None,
+            zone: str = None,
+            cluster_id: str = None,
+            name: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> cluster_service.Cluster:
         r"""Gets the details of a specific cluster.
 
         Args:
@@ -262,10 +264,8 @@ class ClusterManagerAsyncClient:
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         if request is not None and any([project_id, zone, cluster_id, name]):
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         request = cluster_service.GetClusterRequest(request)
 
@@ -290,7 +290,8 @@ class ClusterManagerAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
-                    exceptions.DeadlineExceeded, exceptions.ServiceUnavailable,
+                    exceptions.DeadlineExceeded,
+exceptions.ServiceUnavailable,
                 ),
             ),
             default_timeout=20.0,
@@ -300,27 +301,33 @@ class ClusterManagerAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    async def create_cluster(
-        self,
-        request: cluster_service.CreateClusterRequest = None,
-        *,
-        project_id: str = None,
-        zone: str = None,
-        cluster: cluster_service.Cluster = None,
-        parent: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> cluster_service.Operation:
+    async def create_cluster(self,
+            request: cluster_service.CreateClusterRequest = None,
+            *,
+            project_id: str = None,
+            zone: str = None,
+            cluster: cluster_service.Cluster = None,
+            parent: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> cluster_service.Operation:
         r"""Creates a cluster, consisting of the specified number and type
         of Google Compute Engine instances.
 
@@ -388,10 +395,8 @@ class ClusterManagerAsyncClient:
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         if request is not None and any([project_id, zone, cluster, parent]):
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         request = cluster_service.CreateClusterRequest(request)
 
@@ -418,28 +423,34 @@ class ClusterManagerAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('parent', request.parent),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    async def update_cluster(
-        self,
-        request: cluster_service.UpdateClusterRequest = None,
-        *,
-        project_id: str = None,
-        zone: str = None,
-        cluster_id: str = None,
-        update: cluster_service.ClusterUpdate = None,
-        name: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> cluster_service.Operation:
+    async def update_cluster(self,
+            request: cluster_service.UpdateClusterRequest = None,
+            *,
+            project_id: str = None,
+            zone: str = None,
+            cluster_id: str = None,
+            update: cluster_service.ClusterUpdate = None,
+            name: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> cluster_service.Operation:
         r"""Updates the settings of a specific cluster.
 
         Args:
@@ -503,10 +514,8 @@ class ClusterManagerAsyncClient:
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         if request is not None and any([project_id, zone, cluster_id, update, name]):
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         request = cluster_service.UpdateClusterRequest(request)
 
@@ -535,23 +544,29 @@ class ClusterManagerAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    async def update_node_pool(
-        self,
-        request: cluster_service.UpdateNodePoolRequest = None,
-        *,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> cluster_service.Operation:
+    async def update_node_pool(self,
+            request: cluster_service.UpdateNodePoolRequest = None,
+            *,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> cluster_service.Operation:
         r"""Updates the version and/or image type for the
         specified node pool.
 
@@ -589,23 +604,29 @@ class ClusterManagerAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    async def set_node_pool_autoscaling(
-        self,
-        request: cluster_service.SetNodePoolAutoscalingRequest = None,
-        *,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> cluster_service.Operation:
+    async def set_node_pool_autoscaling(self,
+            request: cluster_service.SetNodePoolAutoscalingRequest = None,
+            *,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> cluster_service.Operation:
         r"""Sets the autoscaling settings for the specified node
         pool.
 
@@ -643,28 +664,34 @@ class ClusterManagerAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    async def set_logging_service(
-        self,
-        request: cluster_service.SetLoggingServiceRequest = None,
-        *,
-        project_id: str = None,
-        zone: str = None,
-        cluster_id: str = None,
-        logging_service: str = None,
-        name: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> cluster_service.Operation:
+    async def set_logging_service(self,
+            request: cluster_service.SetLoggingServiceRequest = None,
+            *,
+            project_id: str = None,
+            zone: str = None,
+            cluster_id: str = None,
+            logging_service: str = None,
+            name: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> cluster_service.Operation:
         r"""Sets the logging service for a specific cluster.
 
         Args:
@@ -731,13 +758,9 @@ class ClusterManagerAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any(
-            [project_id, zone, cluster_id, logging_service, name]
-        ):
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+        if request is not None and any([project_id, zone, cluster_id, logging_service, name]):
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         request = cluster_service.SetLoggingServiceRequest(request)
 
@@ -766,28 +789,34 @@ class ClusterManagerAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    async def set_monitoring_service(
-        self,
-        request: cluster_service.SetMonitoringServiceRequest = None,
-        *,
-        project_id: str = None,
-        zone: str = None,
-        cluster_id: str = None,
-        monitoring_service: str = None,
-        name: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> cluster_service.Operation:
+    async def set_monitoring_service(self,
+            request: cluster_service.SetMonitoringServiceRequest = None,
+            *,
+            project_id: str = None,
+            zone: str = None,
+            cluster_id: str = None,
+            monitoring_service: str = None,
+            name: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> cluster_service.Operation:
         r"""Sets the monitoring service for a specific cluster.
 
         Args:
@@ -857,13 +886,9 @@ class ClusterManagerAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any(
-            [project_id, zone, cluster_id, monitoring_service, name]
-        ):
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+        if request is not None and any([project_id, zone, cluster_id, monitoring_service, name]):
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         request = cluster_service.SetMonitoringServiceRequest(request)
 
@@ -892,28 +917,34 @@ class ClusterManagerAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    async def set_addons_config(
-        self,
-        request: cluster_service.SetAddonsConfigRequest = None,
-        *,
-        project_id: str = None,
-        zone: str = None,
-        cluster_id: str = None,
-        addons_config: cluster_service.AddonsConfig = None,
-        name: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> cluster_service.Operation:
+    async def set_addons_config(self,
+            request: cluster_service.SetAddonsConfigRequest = None,
+            *,
+            project_id: str = None,
+            zone: str = None,
+            cluster_id: str = None,
+            addons_config: cluster_service.AddonsConfig = None,
+            name: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> cluster_service.Operation:
         r"""Sets the addons for a specific cluster.
 
         Args:
@@ -977,13 +1008,9 @@ class ClusterManagerAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any(
-            [project_id, zone, cluster_id, addons_config, name]
-        ):
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+        if request is not None and any([project_id, zone, cluster_id, addons_config, name]):
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         request = cluster_service.SetAddonsConfigRequest(request)
 
@@ -1012,28 +1039,34 @@ class ClusterManagerAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    async def set_locations(
-        self,
-        request: cluster_service.SetLocationsRequest = None,
-        *,
-        project_id: str = None,
-        zone: str = None,
-        cluster_id: str = None,
-        locations: Sequence[str] = None,
-        name: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> cluster_service.Operation:
+    async def set_locations(self,
+            request: cluster_service.SetLocationsRequest = None,
+            *,
+            project_id: str = None,
+            zone: str = None,
+            cluster_id: str = None,
+            locations: Sequence[str] = None,
+            name: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> cluster_service.Operation:
         r"""Sets the locations for a specific cluster.
 
         Args:
@@ -1104,10 +1137,8 @@ class ClusterManagerAsyncClient:
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         if request is not None and any([project_id, zone, cluster_id, locations, name]):
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         request = cluster_service.SetLocationsRequest(request)
 
@@ -1136,28 +1167,34 @@ class ClusterManagerAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    async def update_master(
-        self,
-        request: cluster_service.UpdateMasterRequest = None,
-        *,
-        project_id: str = None,
-        zone: str = None,
-        cluster_id: str = None,
-        master_version: str = None,
-        name: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> cluster_service.Operation:
+    async def update_master(self,
+            request: cluster_service.UpdateMasterRequest = None,
+            *,
+            project_id: str = None,
+            zone: str = None,
+            cluster_id: str = None,
+            master_version: str = None,
+            name: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> cluster_service.Operation:
         r"""Updates the master for a specific cluster.
 
         Args:
@@ -1232,13 +1269,9 @@ class ClusterManagerAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any(
-            [project_id, zone, cluster_id, master_version, name]
-        ):
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+        if request is not None and any([project_id, zone, cluster_id, master_version, name]):
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         request = cluster_service.UpdateMasterRequest(request)
 
@@ -1267,23 +1300,29 @@ class ClusterManagerAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    async def set_master_auth(
-        self,
-        request: cluster_service.SetMasterAuthRequest = None,
-        *,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> cluster_service.Operation:
+    async def set_master_auth(self,
+            request: cluster_service.SetMasterAuthRequest = None,
+            *,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> cluster_service.Operation:
         r"""Sets master auth materials. Currently supports
         changing the admin password or a specific cluster,
         either via password generation or explicitly setting the
@@ -1323,27 +1362,33 @@ class ClusterManagerAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    async def delete_cluster(
-        self,
-        request: cluster_service.DeleteClusterRequest = None,
-        *,
-        project_id: str = None,
-        zone: str = None,
-        cluster_id: str = None,
-        name: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> cluster_service.Operation:
+    async def delete_cluster(self,
+            request: cluster_service.DeleteClusterRequest = None,
+            *,
+            project_id: str = None,
+            zone: str = None,
+            cluster_id: str = None,
+            name: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> cluster_service.Operation:
         r"""Deletes the cluster, including the Kubernetes
         endpoint and all worker nodes.
 
@@ -1410,10 +1455,8 @@ class ClusterManagerAsyncClient:
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         if request is not None and any([project_id, zone, cluster_id, name]):
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         request = cluster_service.DeleteClusterRequest(request)
 
@@ -1438,7 +1481,8 @@ class ClusterManagerAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
-                    exceptions.DeadlineExceeded, exceptions.ServiceUnavailable,
+                    exceptions.DeadlineExceeded,
+exceptions.ServiceUnavailable,
                 ),
             ),
             default_timeout=20.0,
@@ -1448,25 +1492,31 @@ class ClusterManagerAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    async def list_operations(
-        self,
-        request: cluster_service.ListOperationsRequest = None,
-        *,
-        project_id: str = None,
-        zone: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> cluster_service.ListOperationsResponse:
+    async def list_operations(self,
+            request: cluster_service.ListOperationsRequest = None,
+            *,
+            project_id: str = None,
+            zone: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> cluster_service.ListOperationsResponse:
         r"""Lists all operations in a project in a specific zone
         or all zones.
 
@@ -1509,10 +1559,8 @@ class ClusterManagerAsyncClient:
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         if request is not None and any([project_id, zone]):
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         request = cluster_service.ListOperationsRequest(request)
 
@@ -1533,7 +1581,8 @@ class ClusterManagerAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
-                    exceptions.DeadlineExceeded, exceptions.ServiceUnavailable,
+                    exceptions.DeadlineExceeded,
+exceptions.ServiceUnavailable,
                 ),
             ),
             default_timeout=20.0,
@@ -1543,26 +1592,32 @@ class ClusterManagerAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('parent', request.parent),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    async def get_operation(
-        self,
-        request: cluster_service.GetOperationRequest = None,
-        *,
-        project_id: str = None,
-        zone: str = None,
-        operation_id: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> cluster_service.Operation:
+    async def get_operation(self,
+            request: cluster_service.GetOperationRequest = None,
+            *,
+            project_id: str = None,
+            zone: str = None,
+            operation_id: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> cluster_service.Operation:
         r"""Gets the specified operation.
 
         Args:
@@ -1612,10 +1667,8 @@ class ClusterManagerAsyncClient:
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         if request is not None and any([project_id, zone, operation_id]):
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         request = cluster_service.GetOperationRequest(request)
 
@@ -1638,7 +1691,8 @@ class ClusterManagerAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
-                    exceptions.DeadlineExceeded, exceptions.ServiceUnavailable,
+                    exceptions.DeadlineExceeded,
+exceptions.ServiceUnavailable,
                 ),
             ),
             default_timeout=20.0,
@@ -1648,27 +1702,33 @@ class ClusterManagerAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    async def cancel_operation(
-        self,
-        request: cluster_service.CancelOperationRequest = None,
-        *,
-        project_id: str = None,
-        zone: str = None,
-        operation_id: str = None,
-        name: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> None:
+    async def cancel_operation(self,
+            request: cluster_service.CancelOperationRequest = None,
+            *,
+            project_id: str = None,
+            zone: str = None,
+            operation_id: str = None,
+            name: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> None:
         r"""Cancels the specified operation.
 
         Args:
@@ -1717,10 +1777,8 @@ class ClusterManagerAsyncClient:
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         if request is not None and any([project_id, zone, operation_id, name]):
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         request = cluster_service.CancelOperationRequest(request)
 
@@ -1747,25 +1805,29 @@ class ClusterManagerAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
         await rpc(
-            request, retry=retry, timeout=timeout, metadata=metadata,
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
         )
 
-    async def get_server_config(
-        self,
-        request: cluster_service.GetServerConfigRequest = None,
-        *,
-        project_id: str = None,
-        zone: str = None,
-        name: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> cluster_service.ServerConfig:
+    async def get_server_config(self,
+            request: cluster_service.GetServerConfigRequest = None,
+            *,
+            project_id: str = None,
+            zone: str = None,
+            name: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> cluster_service.ServerConfig:
         r"""Returns configuration info about the Google
         Kubernetes Engine service.
 
@@ -1813,10 +1875,8 @@ class ClusterManagerAsyncClient:
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         if request is not None and any([project_id, zone, name]):
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         request = cluster_service.GetServerConfigRequest(request)
 
@@ -1839,7 +1899,8 @@ class ClusterManagerAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
-                    exceptions.DeadlineExceeded, exceptions.ServiceUnavailable,
+                    exceptions.DeadlineExceeded,
+exceptions.ServiceUnavailable,
                 ),
             ),
             default_timeout=20.0,
@@ -1849,27 +1910,33 @@ class ClusterManagerAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    async def list_node_pools(
-        self,
-        request: cluster_service.ListNodePoolsRequest = None,
-        *,
-        project_id: str = None,
-        zone: str = None,
-        cluster_id: str = None,
-        parent: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> cluster_service.ListNodePoolsResponse:
+    async def list_node_pools(self,
+            request: cluster_service.ListNodePoolsRequest = None,
+            *,
+            project_id: str = None,
+            zone: str = None,
+            cluster_id: str = None,
+            parent: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> cluster_service.ListNodePoolsResponse:
         r"""Lists the node pools for a cluster.
 
         Args:
@@ -1924,10 +1991,8 @@ class ClusterManagerAsyncClient:
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         if request is not None and any([project_id, zone, cluster_id, parent]):
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         request = cluster_service.ListNodePoolsRequest(request)
 
@@ -1952,7 +2017,8 @@ class ClusterManagerAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
-                    exceptions.DeadlineExceeded, exceptions.ServiceUnavailable,
+                    exceptions.DeadlineExceeded,
+exceptions.ServiceUnavailable,
                 ),
             ),
             default_timeout=20.0,
@@ -1962,28 +2028,34 @@ class ClusterManagerAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('parent', request.parent),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    async def get_node_pool(
-        self,
-        request: cluster_service.GetNodePoolRequest = None,
-        *,
-        project_id: str = None,
-        zone: str = None,
-        cluster_id: str = None,
-        node_pool_id: str = None,
-        name: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> cluster_service.NodePool:
+    async def get_node_pool(self,
+            request: cluster_service.GetNodePoolRequest = None,
+            *,
+            project_id: str = None,
+            zone: str = None,
+            cluster_id: str = None,
+            node_pool_id: str = None,
+            name: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> cluster_service.NodePool:
         r"""Retrieves the requested node pool.
 
         Args:
@@ -2052,13 +2124,9 @@ class ClusterManagerAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any(
-            [project_id, zone, cluster_id, node_pool_id, name]
-        ):
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+        if request is not None and any([project_id, zone, cluster_id, node_pool_id, name]):
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         request = cluster_service.GetNodePoolRequest(request)
 
@@ -2085,7 +2153,8 @@ class ClusterManagerAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
-                    exceptions.DeadlineExceeded, exceptions.ServiceUnavailable,
+                    exceptions.DeadlineExceeded,
+exceptions.ServiceUnavailable,
                 ),
             ),
             default_timeout=20.0,
@@ -2095,28 +2164,34 @@ class ClusterManagerAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    async def create_node_pool(
-        self,
-        request: cluster_service.CreateNodePoolRequest = None,
-        *,
-        project_id: str = None,
-        zone: str = None,
-        cluster_id: str = None,
-        node_pool: cluster_service.NodePool = None,
-        parent: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> cluster_service.Operation:
+    async def create_node_pool(self,
+            request: cluster_service.CreateNodePoolRequest = None,
+            *,
+            project_id: str = None,
+            zone: str = None,
+            cluster_id: str = None,
+            node_pool: cluster_service.NodePool = None,
+            parent: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> cluster_service.Operation:
         r"""Creates a node pool for a cluster.
 
         Args:
@@ -2177,13 +2252,9 @@ class ClusterManagerAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any(
-            [project_id, zone, cluster_id, node_pool, parent]
-        ):
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+        if request is not None and any([project_id, zone, cluster_id, node_pool, parent]):
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         request = cluster_service.CreateNodePoolRequest(request)
 
@@ -2212,28 +2283,34 @@ class ClusterManagerAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('parent', request.parent),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    async def delete_node_pool(
-        self,
-        request: cluster_service.DeleteNodePoolRequest = None,
-        *,
-        project_id: str = None,
-        zone: str = None,
-        cluster_id: str = None,
-        node_pool_id: str = None,
-        name: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> cluster_service.Operation:
+    async def delete_node_pool(self,
+            request: cluster_service.DeleteNodePoolRequest = None,
+            *,
+            project_id: str = None,
+            zone: str = None,
+            cluster_id: str = None,
+            node_pool_id: str = None,
+            name: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> cluster_service.Operation:
         r"""Deletes a node pool from a cluster.
 
         Args:
@@ -2297,13 +2374,9 @@ class ClusterManagerAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any(
-            [project_id, zone, cluster_id, node_pool_id, name]
-        ):
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+        if request is not None and any([project_id, zone, cluster_id, node_pool_id, name]):
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         request = cluster_service.DeleteNodePoolRequest(request)
 
@@ -2330,7 +2403,8 @@ class ClusterManagerAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
-                    exceptions.DeadlineExceeded, exceptions.ServiceUnavailable,
+                    exceptions.DeadlineExceeded,
+exceptions.ServiceUnavailable,
                 ),
             ),
             default_timeout=20.0,
@@ -2340,28 +2414,34 @@ class ClusterManagerAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    async def rollback_node_pool_upgrade(
-        self,
-        request: cluster_service.RollbackNodePoolUpgradeRequest = None,
-        *,
-        project_id: str = None,
-        zone: str = None,
-        cluster_id: str = None,
-        node_pool_id: str = None,
-        name: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> cluster_service.Operation:
+    async def rollback_node_pool_upgrade(self,
+            request: cluster_service.RollbackNodePoolUpgradeRequest = None,
+            *,
+            project_id: str = None,
+            zone: str = None,
+            cluster_id: str = None,
+            node_pool_id: str = None,
+            name: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> cluster_service.Operation:
         r"""Rolls back a previously Aborted or Failed NodePool
         upgrade. This makes no changes if the last upgrade
         successfully completed.
@@ -2431,13 +2511,9 @@ class ClusterManagerAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any(
-            [project_id, zone, cluster_id, node_pool_id, name]
-        ):
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+        if request is not None and any([project_id, zone, cluster_id, node_pool_id, name]):
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         request = cluster_service.RollbackNodePoolUpgradeRequest(request)
 
@@ -2466,23 +2542,29 @@ class ClusterManagerAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    async def set_node_pool_management(
-        self,
-        request: cluster_service.SetNodePoolManagementRequest = None,
-        *,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> cluster_service.Operation:
+    async def set_node_pool_management(self,
+            request: cluster_service.SetNodePoolManagementRequest = None,
+            *,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> cluster_service.Operation:
         r"""Sets the NodeManagement options for a node pool.
 
         Args:
@@ -2519,23 +2601,29 @@ class ClusterManagerAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    async def set_labels(
-        self,
-        request: cluster_service.SetLabelsRequest = None,
-        *,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> cluster_service.Operation:
+    async def set_labels(self,
+            request: cluster_service.SetLabelsRequest = None,
+            *,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> cluster_service.Operation:
         r"""Sets labels on a cluster.
 
         Args:
@@ -2574,28 +2662,34 @@ class ClusterManagerAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    async def set_legacy_abac(
-        self,
-        request: cluster_service.SetLegacyAbacRequest = None,
-        *,
-        project_id: str = None,
-        zone: str = None,
-        cluster_id: str = None,
-        enabled: bool = None,
-        name: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> cluster_service.Operation:
+    async def set_legacy_abac(self,
+            request: cluster_service.SetLegacyAbacRequest = None,
+            *,
+            project_id: str = None,
+            zone: str = None,
+            cluster_id: str = None,
+            enabled: bool = None,
+            name: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> cluster_service.Operation:
         r"""Enables or disables the ABAC authorization mechanism
         on a cluster.
 
@@ -2660,10 +2754,8 @@ class ClusterManagerAsyncClient:
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         if request is not None and any([project_id, zone, cluster_id, enabled, name]):
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         request = cluster_service.SetLegacyAbacRequest(request)
 
@@ -2692,27 +2784,33 @@ class ClusterManagerAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    async def start_ip_rotation(
-        self,
-        request: cluster_service.StartIPRotationRequest = None,
-        *,
-        project_id: str = None,
-        zone: str = None,
-        cluster_id: str = None,
-        name: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> cluster_service.Operation:
+    async def start_ip_rotation(self,
+            request: cluster_service.StartIPRotationRequest = None,
+            *,
+            project_id: str = None,
+            zone: str = None,
+            cluster_id: str = None,
+            name: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> cluster_service.Operation:
         r"""Starts master IP rotation.
 
         Args:
@@ -2770,10 +2868,8 @@ class ClusterManagerAsyncClient:
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         if request is not None and any([project_id, zone, cluster_id, name]):
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         request = cluster_service.StartIPRotationRequest(request)
 
@@ -2800,27 +2896,33 @@ class ClusterManagerAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    async def complete_ip_rotation(
-        self,
-        request: cluster_service.CompleteIPRotationRequest = None,
-        *,
-        project_id: str = None,
-        zone: str = None,
-        cluster_id: str = None,
-        name: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> cluster_service.Operation:
+    async def complete_ip_rotation(self,
+            request: cluster_service.CompleteIPRotationRequest = None,
+            *,
+            project_id: str = None,
+            zone: str = None,
+            cluster_id: str = None,
+            name: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> cluster_service.Operation:
         r"""Completes master IP rotation.
 
         Args:
@@ -2877,10 +2979,8 @@ class ClusterManagerAsyncClient:
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
         if request is not None and any([project_id, zone, cluster_id, name]):
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         request = cluster_service.CompleteIPRotationRequest(request)
 
@@ -2907,23 +3007,29 @@ class ClusterManagerAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    async def set_node_pool_size(
-        self,
-        request: cluster_service.SetNodePoolSizeRequest = None,
-        *,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> cluster_service.Operation:
+    async def set_node_pool_size(self,
+            request: cluster_service.SetNodePoolSizeRequest = None,
+            *,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> cluster_service.Operation:
         r"""Sets the size for a specific node pool.
 
         Args:
@@ -2960,28 +3066,34 @@ class ClusterManagerAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    async def set_network_policy(
-        self,
-        request: cluster_service.SetNetworkPolicyRequest = None,
-        *,
-        project_id: str = None,
-        zone: str = None,
-        cluster_id: str = None,
-        network_policy: cluster_service.NetworkPolicy = None,
-        name: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> cluster_service.Operation:
+    async def set_network_policy(self,
+            request: cluster_service.SetNetworkPolicyRequest = None,
+            *,
+            project_id: str = None,
+            zone: str = None,
+            cluster_id: str = None,
+            network_policy: cluster_service.NetworkPolicy = None,
+            name: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> cluster_service.Operation:
         r"""Enables or disables Network Policy for a cluster.
 
         Args:
@@ -3043,13 +3155,9 @@ class ClusterManagerAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any(
-            [project_id, zone, cluster_id, network_policy, name]
-        ):
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+        if request is not None and any([project_id, zone, cluster_id, network_policy, name]):
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         request = cluster_service.SetNetworkPolicyRequest(request)
 
@@ -3078,28 +3186,34 @@ class ClusterManagerAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    async def set_maintenance_policy(
-        self,
-        request: cluster_service.SetMaintenancePolicyRequest = None,
-        *,
-        project_id: str = None,
-        zone: str = None,
-        cluster_id: str = None,
-        maintenance_policy: cluster_service.MaintenancePolicy = None,
-        name: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> cluster_service.Operation:
+    async def set_maintenance_policy(self,
+            request: cluster_service.SetMaintenancePolicyRequest = None,
+            *,
+            project_id: str = None,
+            zone: str = None,
+            cluster_id: str = None,
+            maintenance_policy: cluster_service.MaintenancePolicy = None,
+            name: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> cluster_service.Operation:
         r"""Sets the maintenance policy for a cluster.
 
         Args:
@@ -3158,13 +3272,9 @@ class ClusterManagerAsyncClient:
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        if request is not None and any(
-            [project_id, zone, cluster_id, maintenance_policy, name]
-        ):
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+        if request is not None and any([project_id, zone, cluster_id, maintenance_policy, name]):
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         request = cluster_service.SetMaintenancePolicyRequest(request)
 
@@ -3193,23 +3303,29 @@ class ClusterManagerAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    async def list_usable_subnetworks(
-        self,
-        request: cluster_service.ListUsableSubnetworksRequest = None,
-        *,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> pagers.ListUsableSubnetworksAsyncPager:
+    async def list_usable_subnetworks(self,
+            request: cluster_service.ListUsableSubnetworksRequest = None,
+            *,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> pagers.ListUsableSubnetworksAsyncPager:
         r"""Lists subnetworks that are usable for creating
         clusters in a project.
 
@@ -3251,28 +3367,47 @@ class ClusterManagerAsyncClient:
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('parent', request.parent),
+            )),
         )
 
         # Send the request.
-        response = await rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = await rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # This method is paged; wrap the response in a pager, which provides
         # an `__aiter__` convenience method.
         response = pagers.ListUsableSubnetworksAsyncPager(
-            method=rpc, request=request, response=response, metadata=metadata,
+            method=rpc,
+            request=request,
+            response=response,
+            metadata=metadata,
         )
 
         # Done; return the response.
         return response
 
 
+
+
+
+
+
 try:
     _client_info = gapic_v1.client_info.ClientInfo(
-        gapic_version=pkg_resources.get_distribution("google-container",).version,
+        gapic_version=pkg_resources.get_distribution(
+            'google-container',
+        ).version,
     )
 except pkg_resources.DistributionNotFound:
     _client_info = gapic_v1.client_info.ClientInfo()
 
 
-__all__ = ("ClusterManagerAsyncClient",)
+__all__ = (
+    'ClusterManagerAsyncClient',
+)

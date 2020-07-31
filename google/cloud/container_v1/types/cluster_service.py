@@ -22,87 +22,87 @@ from google.protobuf import timestamp_pb2 as timestamp  # type: ignore
 
 
 __protobuf__ = proto.module(
-    package="google.container.v1",
+    package='google.container.v1',
     manifest={
-        "NodeConfig",
-        "ShieldedInstanceConfig",
-        "NodeTaint",
-        "MasterAuth",
-        "ClientCertificateConfig",
-        "AddonsConfig",
-        "HttpLoadBalancing",
-        "HorizontalPodAutoscaling",
-        "KubernetesDashboard",
-        "NetworkPolicyConfig",
-        "PrivateClusterConfig",
-        "AuthenticatorGroupsConfig",
-        "CloudRunConfig",
-        "MasterAuthorizedNetworksConfig",
-        "LegacyAbac",
-        "NetworkPolicy",
-        "BinaryAuthorization",
-        "IPAllocationPolicy",
-        "Cluster",
-        "ClusterUpdate",
-        "Operation",
-        "CreateClusterRequest",
-        "GetClusterRequest",
-        "UpdateClusterRequest",
-        "UpdateNodePoolRequest",
-        "SetNodePoolAutoscalingRequest",
-        "SetLoggingServiceRequest",
-        "SetMonitoringServiceRequest",
-        "SetAddonsConfigRequest",
-        "SetLocationsRequest",
-        "UpdateMasterRequest",
-        "SetMasterAuthRequest",
-        "DeleteClusterRequest",
-        "ListClustersRequest",
-        "ListClustersResponse",
-        "GetOperationRequest",
-        "ListOperationsRequest",
-        "CancelOperationRequest",
-        "ListOperationsResponse",
-        "GetServerConfigRequest",
-        "ServerConfig",
-        "CreateNodePoolRequest",
-        "DeleteNodePoolRequest",
-        "ListNodePoolsRequest",
-        "GetNodePoolRequest",
-        "NodePool",
-        "NodeManagement",
-        "AutoUpgradeOptions",
-        "MaintenancePolicy",
-        "MaintenanceWindow",
-        "TimeWindow",
-        "RecurringTimeWindow",
-        "DailyMaintenanceWindow",
-        "SetNodePoolManagementRequest",
-        "SetNodePoolSizeRequest",
-        "RollbackNodePoolUpgradeRequest",
-        "ListNodePoolsResponse",
-        "ClusterAutoscaling",
-        "AutoprovisioningNodePoolDefaults",
-        "ResourceLimit",
-        "NodePoolAutoscaling",
-        "SetLabelsRequest",
-        "SetLegacyAbacRequest",
-        "StartIPRotationRequest",
-        "CompleteIPRotationRequest",
-        "AcceleratorConfig",
-        "SetNetworkPolicyRequest",
-        "SetMaintenancePolicyRequest",
-        "StatusCondition",
-        "NetworkConfig",
-        "IntraNodeVisibilityConfig",
-        "MaxPodsConstraint",
-        "DatabaseEncryption",
-        "ListUsableSubnetworksRequest",
-        "ListUsableSubnetworksResponse",
-        "UsableSubnetworkSecondaryRange",
-        "UsableSubnetwork",
-        "ResourceUsageExportConfig",
-        "VerticalPodAutoscaling",
+        'NodeConfig',
+        'ShieldedInstanceConfig',
+        'NodeTaint',
+        'MasterAuth',
+        'ClientCertificateConfig',
+        'AddonsConfig',
+        'HttpLoadBalancing',
+        'HorizontalPodAutoscaling',
+        'KubernetesDashboard',
+        'NetworkPolicyConfig',
+        'PrivateClusterConfig',
+        'AuthenticatorGroupsConfig',
+        'CloudRunConfig',
+        'MasterAuthorizedNetworksConfig',
+        'LegacyAbac',
+        'NetworkPolicy',
+        'BinaryAuthorization',
+        'IPAllocationPolicy',
+        'Cluster',
+        'ClusterUpdate',
+        'Operation',
+        'CreateClusterRequest',
+        'GetClusterRequest',
+        'UpdateClusterRequest',
+        'UpdateNodePoolRequest',
+        'SetNodePoolAutoscalingRequest',
+        'SetLoggingServiceRequest',
+        'SetMonitoringServiceRequest',
+        'SetAddonsConfigRequest',
+        'SetLocationsRequest',
+        'UpdateMasterRequest',
+        'SetMasterAuthRequest',
+        'DeleteClusterRequest',
+        'ListClustersRequest',
+        'ListClustersResponse',
+        'GetOperationRequest',
+        'ListOperationsRequest',
+        'CancelOperationRequest',
+        'ListOperationsResponse',
+        'GetServerConfigRequest',
+        'ServerConfig',
+        'CreateNodePoolRequest',
+        'DeleteNodePoolRequest',
+        'ListNodePoolsRequest',
+        'GetNodePoolRequest',
+        'NodePool',
+        'NodeManagement',
+        'AutoUpgradeOptions',
+        'MaintenancePolicy',
+        'MaintenanceWindow',
+        'TimeWindow',
+        'RecurringTimeWindow',
+        'DailyMaintenanceWindow',
+        'SetNodePoolManagementRequest',
+        'SetNodePoolSizeRequest',
+        'RollbackNodePoolUpgradeRequest',
+        'ListNodePoolsResponse',
+        'ClusterAutoscaling',
+        'AutoprovisioningNodePoolDefaults',
+        'ResourceLimit',
+        'NodePoolAutoscaling',
+        'SetLabelsRequest',
+        'SetLegacyAbacRequest',
+        'StartIPRotationRequest',
+        'CompleteIPRotationRequest',
+        'AcceleratorConfig',
+        'SetNetworkPolicyRequest',
+        'SetMaintenancePolicyRequest',
+        'StatusCondition',
+        'NetworkConfig',
+        'IntraNodeVisibilityConfig',
+        'MaxPodsConstraint',
+        'DatabaseEncryption',
+        'ListUsableSubnetworksRequest',
+        'ListUsableSubnetworksResponse',
+        'UsableSubnetworkSecondaryRange',
+        'UsableSubnetwork',
+        'ResourceUsageExportConfig',
+        'VerticalPodAutoscaling',
     },
 )
 
@@ -256,18 +256,20 @@ class NodeConfig(proto.Message):
 
     preemptible = proto.Field(proto.BOOL, number=10)
 
-    accelerators = proto.RepeatedField(
-        proto.MESSAGE, number=11, message="AcceleratorConfig",
+    accelerators = proto.RepeatedField(proto.MESSAGE, number=11,
+        message='AcceleratorConfig',
     )
 
     disk_type = proto.Field(proto.STRING, number=12)
 
     min_cpu_platform = proto.Field(proto.STRING, number=13)
 
-    taints = proto.RepeatedField(proto.MESSAGE, number=15, message="NodeTaint",)
+    taints = proto.RepeatedField(proto.MESSAGE, number=15,
+        message='NodeTaint',
+    )
 
-    shielded_instance_config = proto.Field(
-        proto.MESSAGE, number=20, message="ShieldedInstanceConfig",
+    shielded_instance_config = proto.Field(proto.MESSAGE, number=20,
+        message='ShieldedInstanceConfig',
     )
 
 
@@ -315,7 +317,6 @@ class NodeTaint(proto.Message):
         effect (~.cluster_service.NodeTaint.Effect):
             Effect for taint.
     """
-
     class Effect(proto.Enum):
         r"""Possible values for Effect in taint."""
         EFFECT_UNSPECIFIED = 0
@@ -327,7 +328,9 @@ class NodeTaint(proto.Message):
 
     value = proto.Field(proto.STRING, number=2)
 
-    effect = proto.Field(proto.ENUM, number=3, enum=Effect,)
+    effect = proto.Field(proto.ENUM, number=3,
+        enum=Effect,
+    )
 
 
 class MasterAuth(proto.Message):
@@ -369,8 +372,8 @@ class MasterAuth(proto.Message):
 
     password = proto.Field(proto.STRING, number=2)
 
-    client_certificate_config = proto.Field(
-        proto.MESSAGE, number=3, message="ClientCertificateConfig",
+    client_certificate_config = proto.Field(proto.MESSAGE, number=3,
+        message='ClientCertificateConfig',
     )
 
     cluster_ca_certificate = proto.Field(proto.STRING, number=100)
@@ -427,23 +430,25 @@ class AddonsConfig(proto.Message):
             service.
     """
 
-    http_load_balancing = proto.Field(
-        proto.MESSAGE, number=1, message="HttpLoadBalancing",
+    http_load_balancing = proto.Field(proto.MESSAGE, number=1,
+        message='HttpLoadBalancing',
     )
 
-    horizontal_pod_autoscaling = proto.Field(
-        proto.MESSAGE, number=2, message="HorizontalPodAutoscaling",
+    horizontal_pod_autoscaling = proto.Field(proto.MESSAGE, number=2,
+        message='HorizontalPodAutoscaling',
     )
 
-    kubernetes_dashboard = proto.Field(
-        proto.MESSAGE, number=3, message="KubernetesDashboard",
+    kubernetes_dashboard = proto.Field(proto.MESSAGE, number=3,
+        message='KubernetesDashboard',
     )
 
-    network_policy_config = proto.Field(
-        proto.MESSAGE, number=4, message="NetworkPolicyConfig",
+    network_policy_config = proto.Field(proto.MESSAGE, number=4,
+        message='NetworkPolicyConfig',
     )
 
-    cloud_run_config = proto.Field(proto.MESSAGE, number=7, message="CloudRunConfig",)
+    cloud_run_config = proto.Field(proto.MESSAGE, number=7,
+        message='CloudRunConfig',
+    )
 
 
 class HttpLoadBalancing(proto.Message):
@@ -590,7 +595,6 @@ class MasterAuthorizedNetworksConfig(proto.Message):
             cidr_blocks define up to 50 external networks that could
             access Kubernetes master through HTTPS.
     """
-
     class CidrBlock(proto.Message):
         r"""CidrBlock contains an optional name and one CIDR block.
 
@@ -608,7 +612,9 @@ class MasterAuthorizedNetworksConfig(proto.Message):
 
     enabled = proto.Field(proto.BOOL, number=1)
 
-    cidr_blocks = proto.RepeatedField(proto.MESSAGE, number=2, message=CidrBlock,)
+    cidr_blocks = proto.RepeatedField(proto.MESSAGE, number=2,
+        message=CidrBlock,
+    )
 
 
 class LegacyAbac(proto.Message):
@@ -640,13 +646,14 @@ class NetworkPolicy(proto.Message):
             Whether network policy is enabled on the
             cluster.
     """
-
     class Provider(proto.Enum):
         r"""Allowed Network Policy providers."""
         PROVIDER_UNSPECIFIED = 0
         CALICO = 1
 
-    provider = proto.Field(proto.ENUM, number=1, enum=Provider,)
+    provider = proto.Field(proto.ENUM, number=1,
+        enum=Provider,
+    )
 
     enabled = proto.Field(proto.BOOL, number=2)
 
@@ -1039,7 +1046,6 @@ class Cluster(proto.Message):
             Which conditions caused the current cluster
             state.
     """
-
     class Status(proto.Enum):
         r"""The current status of the cluster."""
         STATUS_UNSPECIFIED = 0
@@ -1056,9 +1062,13 @@ class Cluster(proto.Message):
 
     initial_node_count = proto.Field(proto.INT32, number=3)
 
-    node_config = proto.Field(proto.MESSAGE, number=4, message=NodeConfig,)
+    node_config = proto.Field(proto.MESSAGE, number=4,
+        message=NodeConfig,
+    )
 
-    master_auth = proto.Field(proto.MESSAGE, number=5, message=MasterAuth,)
+    master_auth = proto.Field(proto.MESSAGE, number=5,
+        message=MasterAuth,
+    )
 
     logging_service = proto.Field(proto.STRING, number=6)
 
@@ -1068,11 +1078,15 @@ class Cluster(proto.Message):
 
     cluster_ipv4_cidr = proto.Field(proto.STRING, number=9)
 
-    addons_config = proto.Field(proto.MESSAGE, number=10, message=AddonsConfig,)
+    addons_config = proto.Field(proto.MESSAGE, number=10,
+        message=AddonsConfig,
+    )
 
     subnetwork = proto.Field(proto.STRING, number=11)
 
-    node_pools = proto.RepeatedField(proto.MESSAGE, number=12, message="NodePool",)
+    node_pools = proto.RepeatedField(proto.MESSAGE, number=12,
+        message='NodePool',
+    )
 
     locations = proto.RepeatedField(proto.STRING, number=13)
 
@@ -1082,52 +1096,60 @@ class Cluster(proto.Message):
 
     label_fingerprint = proto.Field(proto.STRING, number=16)
 
-    legacy_abac = proto.Field(proto.MESSAGE, number=18, message=LegacyAbac,)
-
-    network_policy = proto.Field(proto.MESSAGE, number=19, message=NetworkPolicy,)
-
-    ip_allocation_policy = proto.Field(
-        proto.MESSAGE, number=20, message=IPAllocationPolicy,
+    legacy_abac = proto.Field(proto.MESSAGE, number=18,
+        message=LegacyAbac,
     )
 
-    master_authorized_networks_config = proto.Field(
-        proto.MESSAGE, number=22, message=MasterAuthorizedNetworksConfig,
+    network_policy = proto.Field(proto.MESSAGE, number=19,
+        message=NetworkPolicy,
     )
 
-    maintenance_policy = proto.Field(
-        proto.MESSAGE, number=23, message="MaintenancePolicy",
+    ip_allocation_policy = proto.Field(proto.MESSAGE, number=20,
+        message=IPAllocationPolicy,
     )
 
-    binary_authorization = proto.Field(
-        proto.MESSAGE, number=24, message=BinaryAuthorization,
+    master_authorized_networks_config = proto.Field(proto.MESSAGE, number=22,
+        message=MasterAuthorizedNetworksConfig,
     )
 
-    autoscaling = proto.Field(proto.MESSAGE, number=26, message="ClusterAutoscaling",)
-
-    network_config = proto.Field(proto.MESSAGE, number=27, message="NetworkConfig",)
-
-    default_max_pods_constraint = proto.Field(
-        proto.MESSAGE, number=30, message="MaxPodsConstraint",
+    maintenance_policy = proto.Field(proto.MESSAGE, number=23,
+        message='MaintenancePolicy',
     )
 
-    resource_usage_export_config = proto.Field(
-        proto.MESSAGE, number=33, message="ResourceUsageExportConfig",
+    binary_authorization = proto.Field(proto.MESSAGE, number=24,
+        message=BinaryAuthorization,
     )
 
-    authenticator_groups_config = proto.Field(
-        proto.MESSAGE, number=34, message=AuthenticatorGroupsConfig,
+    autoscaling = proto.Field(proto.MESSAGE, number=26,
+        message='ClusterAutoscaling',
     )
 
-    private_cluster_config = proto.Field(
-        proto.MESSAGE, number=37, message=PrivateClusterConfig,
+    network_config = proto.Field(proto.MESSAGE, number=27,
+        message='NetworkConfig',
     )
 
-    database_encryption = proto.Field(
-        proto.MESSAGE, number=38, message="DatabaseEncryption",
+    default_max_pods_constraint = proto.Field(proto.MESSAGE, number=30,
+        message='MaxPodsConstraint',
     )
 
-    vertical_pod_autoscaling = proto.Field(
-        proto.MESSAGE, number=39, message="VerticalPodAutoscaling",
+    resource_usage_export_config = proto.Field(proto.MESSAGE, number=33,
+        message='ResourceUsageExportConfig',
+    )
+
+    authenticator_groups_config = proto.Field(proto.MESSAGE, number=34,
+        message=AuthenticatorGroupsConfig,
+    )
+
+    private_cluster_config = proto.Field(proto.MESSAGE, number=37,
+        message=PrivateClusterConfig,
+    )
+
+    database_encryption = proto.Field(proto.MESSAGE, number=38,
+        message='DatabaseEncryption',
+    )
+
+    vertical_pod_autoscaling = proto.Field(proto.MESSAGE, number=39,
+        message='VerticalPodAutoscaling',
     )
 
     self_link = proto.Field(proto.STRING, number=100)
@@ -1144,7 +1166,9 @@ class Cluster(proto.Message):
 
     create_time = proto.Field(proto.STRING, number=106)
 
-    status = proto.Field(proto.ENUM, number=107, enum=Status,)
+    status = proto.Field(proto.ENUM, number=107,
+        enum=Status,
+    )
 
     status_message = proto.Field(proto.STRING, number=108)
 
@@ -1164,8 +1188,8 @@ class Cluster(proto.Message):
 
     tpu_ipv4_cidr_block = proto.Field(proto.STRING, number=116)
 
-    conditions = proto.RepeatedField(
-        proto.MESSAGE, number=118, message="StatusCondition",
+    conditions = proto.RepeatedField(proto.MESSAGE, number=118,
+        message='StatusCondition',
     )
 
 
@@ -1269,46 +1293,48 @@ class ClusterUpdate(proto.Message):
 
     desired_monitoring_service = proto.Field(proto.STRING, number=5)
 
-    desired_addons_config = proto.Field(proto.MESSAGE, number=6, message=AddonsConfig,)
+    desired_addons_config = proto.Field(proto.MESSAGE, number=6,
+        message=AddonsConfig,
+    )
 
     desired_node_pool_id = proto.Field(proto.STRING, number=7)
 
     desired_image_type = proto.Field(proto.STRING, number=8)
 
-    desired_database_encryption = proto.Field(
-        proto.MESSAGE, number=46, message="DatabaseEncryption",
+    desired_database_encryption = proto.Field(proto.MESSAGE, number=46,
+        message='DatabaseEncryption',
     )
 
-    desired_node_pool_autoscaling = proto.Field(
-        proto.MESSAGE, number=9, message="NodePoolAutoscaling",
+    desired_node_pool_autoscaling = proto.Field(proto.MESSAGE, number=9,
+        message='NodePoolAutoscaling',
     )
 
     desired_locations = proto.RepeatedField(proto.STRING, number=10)
 
-    desired_master_authorized_networks_config = proto.Field(
-        proto.MESSAGE, number=12, message=MasterAuthorizedNetworksConfig,
+    desired_master_authorized_networks_config = proto.Field(proto.MESSAGE, number=12,
+        message=MasterAuthorizedNetworksConfig,
     )
 
-    desired_cluster_autoscaling = proto.Field(
-        proto.MESSAGE, number=15, message="ClusterAutoscaling",
+    desired_cluster_autoscaling = proto.Field(proto.MESSAGE, number=15,
+        message='ClusterAutoscaling',
     )
 
-    desired_binary_authorization = proto.Field(
-        proto.MESSAGE, number=16, message=BinaryAuthorization,
+    desired_binary_authorization = proto.Field(proto.MESSAGE, number=16,
+        message=BinaryAuthorization,
     )
 
     desired_logging_service = proto.Field(proto.STRING, number=19)
 
-    desired_resource_usage_export_config = proto.Field(
-        proto.MESSAGE, number=21, message="ResourceUsageExportConfig",
+    desired_resource_usage_export_config = proto.Field(proto.MESSAGE, number=21,
+        message='ResourceUsageExportConfig',
     )
 
-    desired_vertical_pod_autoscaling = proto.Field(
-        proto.MESSAGE, number=22, message="VerticalPodAutoscaling",
+    desired_vertical_pod_autoscaling = proto.Field(proto.MESSAGE, number=22,
+        message='VerticalPodAutoscaling',
     )
 
-    desired_intra_node_visibility_config = proto.Field(
-        proto.MESSAGE, number=26, message="IntraNodeVisibilityConfig",
+    desired_intra_node_visibility_config = proto.Field(proto.MESSAGE, number=26,
+        message='IntraNodeVisibilityConfig',
     )
 
     desired_master_version = proto.Field(proto.STRING, number=100)
@@ -1362,7 +1388,6 @@ class Operation(proto.Message):
             Which conditions caused the current node pool
             state.
     """
-
     class Status(proto.Enum):
         r"""Current status of the operation."""
         STATUS_UNSPECIFIED = 0
@@ -1395,9 +1420,13 @@ class Operation(proto.Message):
 
     zone = proto.Field(proto.STRING, number=2)
 
-    operation_type = proto.Field(proto.ENUM, number=3, enum=Type,)
+    operation_type = proto.Field(proto.ENUM, number=3,
+        enum=Type,
+    )
 
-    status = proto.Field(proto.ENUM, number=4, enum=Status,)
+    status = proto.Field(proto.ENUM, number=4,
+        enum=Status,
+    )
 
     detail = proto.Field(proto.STRING, number=8)
 
@@ -1413,12 +1442,12 @@ class Operation(proto.Message):
 
     end_time = proto.Field(proto.STRING, number=11)
 
-    cluster_conditions = proto.RepeatedField(
-        proto.MESSAGE, number=13, message="StatusCondition",
+    cluster_conditions = proto.RepeatedField(proto.MESSAGE, number=13,
+        message='StatusCondition',
     )
 
-    nodepool_conditions = proto.RepeatedField(
-        proto.MESSAGE, number=14, message="StatusCondition",
+    nodepool_conditions = proto.RepeatedField(proto.MESSAGE, number=14,
+        message='StatusCondition',
     )
 
 
@@ -1449,7 +1478,9 @@ class CreateClusterRequest(proto.Message):
 
     zone = proto.Field(proto.STRING, number=2)
 
-    cluster = proto.Field(proto.MESSAGE, number=3, message=Cluster,)
+    cluster = proto.Field(proto.MESSAGE, number=3,
+        message=Cluster,
+    )
 
     parent = proto.Field(proto.STRING, number=5)
 
@@ -1521,7 +1552,9 @@ class UpdateClusterRequest(proto.Message):
 
     cluster_id = proto.Field(proto.STRING, number=3)
 
-    update = proto.Field(proto.MESSAGE, number=4, message=ClusterUpdate,)
+    update = proto.Field(proto.MESSAGE, number=4,
+        message=ClusterUpdate,
+    )
 
     name = proto.Field(proto.STRING, number=5)
 
@@ -1629,7 +1662,9 @@ class SetNodePoolAutoscalingRequest(proto.Message):
 
     node_pool_id = proto.Field(proto.STRING, number=4)
 
-    autoscaling = proto.Field(proto.MESSAGE, number=5, message="NodePoolAutoscaling",)
+    autoscaling = proto.Field(proto.MESSAGE, number=5,
+        message='NodePoolAutoscaling',
+    )
 
     name = proto.Field(proto.STRING, number=6)
 
@@ -1759,7 +1794,9 @@ class SetAddonsConfigRequest(proto.Message):
 
     cluster_id = proto.Field(proto.STRING, number=3)
 
-    addons_config = proto.Field(proto.MESSAGE, number=4, message=AddonsConfig,)
+    addons_config = proto.Field(proto.MESSAGE, number=4,
+        message=AddonsConfig,
+    )
 
     name = proto.Field(proto.STRING, number=6)
 
@@ -1887,7 +1924,6 @@ class SetMasterAuthRequest(proto.Message):
             auth. Specified in the format
             ``projects/*/locations/*/clusters/*``.
     """
-
     class Action(proto.Enum):
         r"""Operation type: what type update to perform."""
         UNKNOWN = 0
@@ -1901,9 +1937,13 @@ class SetMasterAuthRequest(proto.Message):
 
     cluster_id = proto.Field(proto.STRING, number=3)
 
-    action = proto.Field(proto.ENUM, number=4, enum=Action,)
+    action = proto.Field(proto.ENUM, number=4,
+        enum=Action,
+    )
 
-    update = proto.Field(proto.MESSAGE, number=5, message=MasterAuth,)
+    update = proto.Field(proto.MESSAGE, number=5,
+        message=MasterAuth,
+    )
 
     name = proto.Field(proto.STRING, number=7)
 
@@ -1982,7 +2022,9 @@ class ListClustersResponse(proto.Message):
             clusters returned may be missing those zones.
     """
 
-    clusters = proto.RepeatedField(proto.MESSAGE, number=1, message=Cluster,)
+    clusters = proto.RepeatedField(proto.MESSAGE, number=1,
+        message=Cluster,
+    )
 
     missing_zones = proto.RepeatedField(proto.STRING, number=2)
 
@@ -2098,7 +2140,9 @@ class ListOperationsResponse(proto.Message):
             operations from those zones.
     """
 
-    operations = proto.RepeatedField(proto.MESSAGE, number=1, message=Operation,)
+    operations = proto.RepeatedField(proto.MESSAGE, number=1,
+        message=Operation,
+    )
 
     missing_zones = proto.RepeatedField(proto.STRING, number=2)
 
@@ -2191,7 +2235,9 @@ class CreateNodePoolRequest(proto.Message):
 
     cluster_id = proto.Field(proto.STRING, number=3)
 
-    node_pool = proto.Field(proto.MESSAGE, number=4, message="NodePool",)
+    node_pool = proto.Field(proto.MESSAGE, number=4,
+        message='NodePool',
+    )
 
     parent = proto.Field(proto.STRING, number=6)
 
@@ -2361,7 +2407,6 @@ class NodePool(proto.Message):
             [Output only] The pod CIDR block size per node in this node
             pool.
     """
-
     class Status(proto.Enum):
         r"""The current status of the node pool instance."""
         STATUS_UNSPECIFIED = 0
@@ -2374,7 +2419,9 @@ class NodePool(proto.Message):
 
     name = proto.Field(proto.STRING, number=1)
 
-    config = proto.Field(proto.MESSAGE, number=2, message=NodeConfig,)
+    config = proto.Field(proto.MESSAGE, number=2,
+        message=NodeConfig,
+    )
 
     initial_node_count = proto.Field(proto.INT32, number=3)
 
@@ -2384,20 +2431,26 @@ class NodePool(proto.Message):
 
     instance_group_urls = proto.RepeatedField(proto.STRING, number=102)
 
-    status = proto.Field(proto.ENUM, number=103, enum=Status,)
+    status = proto.Field(proto.ENUM, number=103,
+        enum=Status,
+    )
 
     status_message = proto.Field(proto.STRING, number=104)
 
-    autoscaling = proto.Field(proto.MESSAGE, number=4, message="NodePoolAutoscaling",)
-
-    management = proto.Field(proto.MESSAGE, number=5, message="NodeManagement",)
-
-    max_pods_constraint = proto.Field(
-        proto.MESSAGE, number=6, message="MaxPodsConstraint",
+    autoscaling = proto.Field(proto.MESSAGE, number=4,
+        message='NodePoolAutoscaling',
     )
 
-    conditions = proto.RepeatedField(
-        proto.MESSAGE, number=105, message="StatusCondition",
+    management = proto.Field(proto.MESSAGE, number=5,
+        message='NodeManagement',
+    )
+
+    max_pods_constraint = proto.Field(proto.MESSAGE, number=6,
+        message='MaxPodsConstraint',
+    )
+
+    conditions = proto.RepeatedField(proto.MESSAGE, number=105,
+        message='StatusCondition',
     )
 
     pod_ipv4_cidr_size = proto.Field(proto.INT32, number=7)
@@ -2429,8 +2482,8 @@ class NodeManagement(proto.Message):
 
     auto_repair = proto.Field(proto.BOOL, number=2)
 
-    upgrade_options = proto.Field(
-        proto.MESSAGE, number=10, message="AutoUpgradeOptions",
+    upgrade_options = proto.Field(proto.MESSAGE, number=10,
+        message='AutoUpgradeOptions',
     )
 
 
@@ -2473,7 +2526,9 @@ class MaintenancePolicy(proto.Message):
             it with requests to set the policy.
     """
 
-    window = proto.Field(proto.MESSAGE, number=1, message="MaintenanceWindow",)
+    window = proto.Field(proto.MESSAGE, number=1,
+        message='MaintenanceWindow',
+    )
 
     resource_version = proto.Field(proto.STRING, number=3)
 
@@ -2498,16 +2553,16 @@ class MaintenanceWindow(proto.Message):
             windows.
     """
 
-    daily_maintenance_window = proto.Field(
-        proto.MESSAGE, number=2, oneof="policy", message="DailyMaintenanceWindow",
+    daily_maintenance_window = proto.Field(proto.MESSAGE, number=2, oneof='policy',
+        message='DailyMaintenanceWindow',
     )
 
-    recurring_window = proto.Field(
-        proto.MESSAGE, number=3, oneof="policy", message="RecurringTimeWindow",
+    recurring_window = proto.Field(proto.MESSAGE, number=3, oneof='policy',
+        message='RecurringTimeWindow',
     )
 
-    maintenance_exclusions = proto.MapField(
-        proto.STRING, proto.MESSAGE, number=4, message="TimeWindow",
+    maintenance_exclusions = proto.MapField(proto.STRING, proto.MESSAGE, number=4,
+        message='TimeWindow',
     )
 
 
@@ -2522,9 +2577,13 @@ class TimeWindow(proto.Message):
             should take place after the start time.
     """
 
-    start_time = proto.Field(proto.MESSAGE, number=1, message=timestamp.Timestamp,)
+    start_time = proto.Field(proto.MESSAGE, number=1,
+        message=timestamp.Timestamp,
+    )
 
-    end_time = proto.Field(proto.MESSAGE, number=2, message=timestamp.Timestamp,)
+    end_time = proto.Field(proto.MESSAGE, number=2,
+        message=timestamp.Timestamp,
+    )
 
 
 class RecurringTimeWindow(proto.Message):
@@ -2569,7 +2628,9 @@ class RecurringTimeWindow(proto.Message):
             supported.
     """
 
-    window = proto.Field(proto.MESSAGE, number=1, message=TimeWindow,)
+    window = proto.Field(proto.MESSAGE, number=1,
+        message=TimeWindow,
+    )
 
     recurrence = proto.Field(proto.STRING, number=2)
 
@@ -2637,7 +2698,9 @@ class SetNodePoolManagementRequest(proto.Message):
 
     node_pool_id = proto.Field(proto.STRING, number=4)
 
-    management = proto.Field(proto.MESSAGE, number=5, message=NodeManagement,)
+    management = proto.Field(proto.MESSAGE, number=5,
+        message=NodeManagement,
+    )
 
     name = proto.Field(proto.STRING, number=7)
 
@@ -2738,7 +2801,9 @@ class ListNodePoolsResponse(proto.Message):
             A list of node pools for a cluster.
     """
 
-    node_pools = proto.RepeatedField(proto.MESSAGE, number=1, message=NodePool,)
+    node_pools = proto.RepeatedField(proto.MESSAGE, number=1,
+        message=NodePool,
+    )
 
 
 class ClusterAutoscaling(proto.Message):
@@ -2765,12 +2830,12 @@ class ClusterAutoscaling(proto.Message):
 
     enable_node_autoprovisioning = proto.Field(proto.BOOL, number=1)
 
-    resource_limits = proto.RepeatedField(
-        proto.MESSAGE, number=2, message="ResourceLimit",
+    resource_limits = proto.RepeatedField(proto.MESSAGE, number=2,
+        message='ResourceLimit',
     )
 
-    autoprovisioning_node_pool_defaults = proto.Field(
-        proto.MESSAGE, number=4, message="AutoprovisioningNodePoolDefaults",
+    autoprovisioning_node_pool_defaults = proto.Field(proto.MESSAGE, number=4,
+        message='AutoprovisioningNodePoolDefaults',
     )
 
     autoprovisioning_locations = proto.RepeatedField(proto.STRING, number=5)
@@ -3067,7 +3132,9 @@ class SetNetworkPolicyRequest(proto.Message):
 
     cluster_id = proto.Field(proto.STRING, number=3)
 
-    network_policy = proto.Field(proto.MESSAGE, number=4, message=NetworkPolicy,)
+    network_policy = proto.Field(proto.MESSAGE, number=4,
+        message=NetworkPolicy,
+    )
 
     name = proto.Field(proto.STRING, number=6)
 
@@ -3103,8 +3170,8 @@ class SetMaintenancePolicyRequest(proto.Message):
 
     cluster_id = proto.Field(proto.STRING, number=3)
 
-    maintenance_policy = proto.Field(
-        proto.MESSAGE, number=4, message=MaintenancePolicy,
+    maintenance_policy = proto.Field(proto.MESSAGE, number=4,
+        message=MaintenancePolicy,
     )
 
     name = proto.Field(proto.STRING, number=5)
@@ -3122,7 +3189,6 @@ class StatusCondition(proto.Message):
             Human-friendly representation of the
             condition
     """
-
     class Code(proto.Enum):
         r"""Code for each condition"""
         UNKNOWN = 0
@@ -3132,7 +3198,9 @@ class StatusCondition(proto.Message):
         SET_BY_OPERATOR = 4
         CLOUD_KMS_KEY_ERROR = 7
 
-    code = proto.Field(proto.ENUM, number=1, enum=Code,)
+    code = proto.Field(proto.ENUM, number=1,
+        enum=Code,
+    )
 
     message = proto.Field(proto.STRING, number=2)
 
@@ -3202,14 +3270,15 @@ class DatabaseEncryption(proto.Message):
             project/locations/global/keyRings/my-
             ring/cryptoKeys/my-key
     """
-
     class State(proto.Enum):
         r"""State of etcd encryption."""
         UNKNOWN = 0
         ENCRYPTED = 1
         DECRYPTED = 2
 
-    state = proto.Field(proto.ENUM, number=2, enum=State,)
+    state = proto.Field(proto.ENUM, number=2,
+        enum=State,
+    )
 
     key_name = proto.Field(proto.STRING, number=1)
 
@@ -3270,8 +3339,8 @@ class ListUsableSubnetworksResponse(proto.Message):
     def raw_page(self):
         return self
 
-    subnetworks = proto.RepeatedField(
-        proto.MESSAGE, number=1, message="UsableSubnetwork",
+    subnetworks = proto.RepeatedField(proto.MESSAGE, number=1,
+        message='UsableSubnetwork',
     )
 
     next_page_token = proto.Field(proto.STRING, number=2)
@@ -3292,7 +3361,6 @@ class UsableSubnetworkSecondaryRange(proto.Message):
             This field is to determine the status of the
             secondary range programmably.
     """
-
     class Status(proto.Enum):
         r"""Status shows the current usage of a secondary IP range."""
         UNKNOWN = 0
@@ -3305,7 +3373,9 @@ class UsableSubnetworkSecondaryRange(proto.Message):
 
     ip_cidr_range = proto.Field(proto.STRING, number=2)
 
-    status = proto.Field(proto.ENUM, number=3, enum=Status,)
+    status = proto.Field(proto.ENUM, number=3,
+        enum=Status,
+    )
 
 
 class UsableSubnetwork(proto.Message):
@@ -3340,8 +3410,8 @@ class UsableSubnetwork(proto.Message):
 
     ip_cidr_range = proto.Field(proto.STRING, number=3)
 
-    secondary_ip_ranges = proto.RepeatedField(
-        proto.MESSAGE, number=4, message=UsableSubnetworkSecondaryRange,
+    secondary_ip_ranges = proto.RepeatedField(proto.MESSAGE, number=4,
+        message=UsableSubnetworkSecondaryRange,
     )
 
     status_message = proto.Field(proto.STRING, number=5)
@@ -3363,7 +3433,6 @@ class ResourceUsageExportConfig(proto.Message):
             Configuration to enable resource consumption
             metering.
     """
-
     class BigQueryDestination(proto.Message):
         r"""Parameters for using BigQuery as the destination of resource
         usage export.
@@ -3388,14 +3457,14 @@ class ResourceUsageExportConfig(proto.Message):
 
         enabled = proto.Field(proto.BOOL, number=1)
 
-    bigquery_destination = proto.Field(
-        proto.MESSAGE, number=1, message=BigQueryDestination,
+    bigquery_destination = proto.Field(proto.MESSAGE, number=1,
+        message=BigQueryDestination,
     )
 
     enable_network_egress_metering = proto.Field(proto.BOOL, number=2)
 
-    consumption_metering_config = proto.Field(
-        proto.MESSAGE, number=3, message=ConsumptionMeteringConfig,
+    consumption_metering_config = proto.Field(proto.MESSAGE, number=3,
+        message=ConsumptionMeteringConfig,
     )
 
 

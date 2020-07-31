@@ -21,14 +21,14 @@ import re
 from typing import Callable, Dict, Sequence, Tuple, Type, Union
 import pkg_resources
 
-import google.api_core.client_options as ClientOptions  # type: ignore
-from google.api_core import exceptions  # type: ignore
-from google.api_core import gapic_v1  # type: ignore
-from google.api_core import retry as retries  # type: ignore
-from google.auth import credentials  # type: ignore
-from google.auth.transport import mtls  # type: ignore
+import google.api_core.client_options as ClientOptions # type: ignore
+from google.api_core import exceptions                 # type: ignore
+from google.api_core import gapic_v1                   # type: ignore
+from google.api_core import retry as retries           # type: ignore
+from google.auth import credentials                    # type: ignore
+from google.auth.transport import mtls                 # type: ignore
 from google.auth.exceptions import MutualTLSChannelError  # type: ignore
-from google.oauth2 import service_account  # type: ignore
+from google.oauth2 import service_account              # type: ignore
 
 from google.cloud.container_v1beta1.services.cluster_manager import pagers
 from google.cloud.container_v1beta1.types import cluster_service
@@ -45,14 +45,13 @@ class ClusterManagerClientMeta(type):
     support objects (e.g. transport) without polluting the client instance
     objects.
     """
+    _transport_registry = OrderedDict()  # type: Dict[str, Type[ClusterManagerTransport]]
+    _transport_registry['grpc'] = ClusterManagerGrpcTransport
+    _transport_registry['grpc_asyncio'] = ClusterManagerGrpcAsyncIOTransport
 
-    _transport_registry = (
-        OrderedDict()
-    )  # type: Dict[str, Type[ClusterManagerTransport]]
-    _transport_registry["grpc"] = ClusterManagerGrpcTransport
-    _transport_registry["grpc_asyncio"] = ClusterManagerGrpcAsyncIOTransport
-
-    def get_transport_class(cls, label: str = None,) -> Type[ClusterManagerTransport]:
+    def get_transport_class(cls,
+            label: str = None,
+        ) -> Type[ClusterManagerTransport]:
         """Return an appropriate transport class.
 
         Args:
@@ -103,7 +102,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
 
         return api_endpoint.replace(".googleapis.com", ".mtls.googleapis.com")
 
-    DEFAULT_ENDPOINT = "container.googleapis.com"
+    DEFAULT_ENDPOINT = 'container.googleapis.com'
     DEFAULT_MTLS_ENDPOINT = _get_default_mtls_endpoint.__func__(  # type: ignore
         DEFAULT_ENDPOINT
     )
@@ -122,19 +121,18 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         Returns:
             {@api.name}: The constructed client.
         """
-        credentials = service_account.Credentials.from_service_account_file(filename)
-        kwargs["credentials"] = credentials
+        credentials = service_account.Credentials.from_service_account_file(
+            filename)
+        kwargs['credentials'] = credentials
         return cls(*args, **kwargs)
 
     from_service_account_json = from_service_account_file
 
-    def __init__(
-        self,
-        *,
-        credentials: credentials.Credentials = None,
-        transport: Union[str, ClusterManagerTransport] = None,
-        client_options: ClientOptions = None,
-    ) -> None:
+    def __init__(self, *,
+            credentials: credentials.Credentials = None,
+            transport: Union[str, ClusterManagerTransport] = None,
+            client_options: ClientOptions = None,
+            ) -> None:
         """Instantiate the cluster manager client.
 
         Args:
@@ -181,9 +179,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
                     or mtls.has_default_client_cert_source()
                 )
                 client_options.api_endpoint = (
-                    self.DEFAULT_MTLS_ENDPOINT
-                    if has_client_cert_source
-                    else self.DEFAULT_ENDPOINT
+                    self.DEFAULT_MTLS_ENDPOINT if has_client_cert_source else self.DEFAULT_ENDPOINT
                 )
             else:
                 raise MutualTLSChannelError(
@@ -196,10 +192,8 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         if isinstance(transport, ClusterManagerTransport):
             # transport is a ClusterManagerTransport instance.
             if credentials or client_options.credentials_file:
-                raise ValueError(
-                    "When providing a transport instance, "
-                    "provide its credentials directly."
-                )
+                raise ValueError('When providing a transport instance, '
+                                 'provide its credentials directly.')
             if client_options.scopes:
                 raise ValueError(
                     "When providing a transport instance, "
@@ -218,16 +212,15 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
                 quota_project_id=client_options.quota_project_id,
             )
 
-    def list_clusters(
-        self,
-        request: cluster_service.ListClustersRequest = None,
-        *,
-        project_id: str = None,
-        zone: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> cluster_service.ListClustersResponse:
+    def list_clusters(self,
+            request: cluster_service.ListClustersRequest = None,
+            *,
+            project_id: str = None,
+            zone: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> cluster_service.ListClustersResponse:
         r"""Lists all clusters owned by a project in either the
         specified zone or all zones.
 
@@ -271,10 +264,8 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([project_id, zone])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         # Minor optimization to avoid making a copy if the user passes
         # in a cluster_service.ListClustersRequest.
@@ -298,26 +289,32 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('parent', request.parent),
+            )),
         )
 
         # Send the request.
-        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    def get_cluster(
-        self,
-        request: cluster_service.GetClusterRequest = None,
-        *,
-        project_id: str = None,
-        zone: str = None,
-        cluster_id: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> cluster_service.Cluster:
+    def get_cluster(self,
+            request: cluster_service.GetClusterRequest = None,
+            *,
+            project_id: str = None,
+            zone: str = None,
+            cluster_id: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> cluster_service.Cluster:
         r"""Gets the details for a specific cluster.
 
         Args:
@@ -366,10 +363,8 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([project_id, zone, cluster_id])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         # Minor optimization to avoid making a copy if the user passes
         # in a cluster_service.GetClusterRequest.
@@ -395,26 +390,32 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    def create_cluster(
-        self,
-        request: cluster_service.CreateClusterRequest = None,
-        *,
-        project_id: str = None,
-        zone: str = None,
-        cluster: cluster_service.Cluster = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> cluster_service.Operation:
+    def create_cluster(self,
+            request: cluster_service.CreateClusterRequest = None,
+            *,
+            project_id: str = None,
+            zone: str = None,
+            cluster: cluster_service.Cluster = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> cluster_service.Operation:
         r"""Creates a cluster, consisting of the specified number and type
         of Google Compute Engine instances.
 
@@ -477,10 +478,8 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([project_id, zone, cluster])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         # Minor optimization to avoid making a copy if the user passes
         # in a cluster_service.CreateClusterRequest.
@@ -506,27 +505,33 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('parent', request.parent),
+            )),
         )
 
         # Send the request.
-        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    def update_cluster(
-        self,
-        request: cluster_service.UpdateClusterRequest = None,
-        *,
-        project_id: str = None,
-        zone: str = None,
-        cluster_id: str = None,
-        update: cluster_service.ClusterUpdate = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> cluster_service.Operation:
+    def update_cluster(self,
+            request: cluster_service.UpdateClusterRequest = None,
+            *,
+            project_id: str = None,
+            zone: str = None,
+            cluster_id: str = None,
+            update: cluster_service.ClusterUpdate = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> cluster_service.Operation:
         r"""Updates the settings for a specific cluster.
 
         Args:
@@ -585,10 +590,8 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([project_id, zone, cluster_id, update])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         # Minor optimization to avoid making a copy if the user passes
         # in a cluster_service.UpdateClusterRequest.
@@ -616,23 +619,29 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    def update_node_pool(
-        self,
-        request: cluster_service.UpdateNodePoolRequest = None,
-        *,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> cluster_service.Operation:
+    def update_node_pool(self,
+            request: cluster_service.UpdateNodePoolRequest = None,
+            *,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> cluster_service.Operation:
         r"""Updates the version and/or image type of a specific
         node pool.
 
@@ -671,23 +680,29 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    def set_node_pool_autoscaling(
-        self,
-        request: cluster_service.SetNodePoolAutoscalingRequest = None,
-        *,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> cluster_service.Operation:
+    def set_node_pool_autoscaling(self,
+            request: cluster_service.SetNodePoolAutoscalingRequest = None,
+            *,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> cluster_service.Operation:
         r"""Sets the autoscaling settings of a specific node
         pool.
 
@@ -721,34 +736,38 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = self._transport._wrapped_methods[
-            self._transport.set_node_pool_autoscaling
-        ]
+        rpc = self._transport._wrapped_methods[self._transport.set_node_pool_autoscaling]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    def set_logging_service(
-        self,
-        request: cluster_service.SetLoggingServiceRequest = None,
-        *,
-        project_id: str = None,
-        zone: str = None,
-        cluster_id: str = None,
-        logging_service: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> cluster_service.Operation:
+    def set_logging_service(self,
+            request: cluster_service.SetLoggingServiceRequest = None,
+            *,
+            project_id: str = None,
+            zone: str = None,
+            cluster_id: str = None,
+            logging_service: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> cluster_service.Operation:
         r"""Sets the logging service for a specific cluster.
 
         Args:
@@ -811,10 +830,8 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([project_id, zone, cluster_id, logging_service])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         # Minor optimization to avoid making a copy if the user passes
         # in a cluster_service.SetLoggingServiceRequest.
@@ -842,27 +859,33 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    def set_monitoring_service(
-        self,
-        request: cluster_service.SetMonitoringServiceRequest = None,
-        *,
-        project_id: str = None,
-        zone: str = None,
-        cluster_id: str = None,
-        monitoring_service: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> cluster_service.Operation:
+    def set_monitoring_service(self,
+            request: cluster_service.SetMonitoringServiceRequest = None,
+            *,
+            project_id: str = None,
+            zone: str = None,
+            cluster_id: str = None,
+            monitoring_service: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> cluster_service.Operation:
         r"""Sets the monitoring service for a specific cluster.
 
         Args:
@@ -925,10 +948,8 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([project_id, zone, cluster_id, monitoring_service])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         # Minor optimization to avoid making a copy if the user passes
         # in a cluster_service.SetMonitoringServiceRequest.
@@ -956,27 +977,33 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    def set_addons_config(
-        self,
-        request: cluster_service.SetAddonsConfigRequest = None,
-        *,
-        project_id: str = None,
-        zone: str = None,
-        cluster_id: str = None,
-        addons_config: cluster_service.AddonsConfig = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> cluster_service.Operation:
+    def set_addons_config(self,
+            request: cluster_service.SetAddonsConfigRequest = None,
+            *,
+            project_id: str = None,
+            zone: str = None,
+            cluster_id: str = None,
+            addons_config: cluster_service.AddonsConfig = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> cluster_service.Operation:
         r"""Sets the addons for a specific cluster.
 
         Args:
@@ -1036,10 +1063,8 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([project_id, zone, cluster_id, addons_config])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         # Minor optimization to avoid making a copy if the user passes
         # in a cluster_service.SetAddonsConfigRequest.
@@ -1067,27 +1092,33 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    def set_locations(
-        self,
-        request: cluster_service.SetLocationsRequest = None,
-        *,
-        project_id: str = None,
-        zone: str = None,
-        cluster_id: str = None,
-        locations: Sequence[str] = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> cluster_service.Operation:
+    def set_locations(self,
+            request: cluster_service.SetLocationsRequest = None,
+            *,
+            project_id: str = None,
+            zone: str = None,
+            cluster_id: str = None,
+            locations: Sequence[str] = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> cluster_service.Operation:
         r"""Sets the locations for a specific cluster.
 
         Args:
@@ -1153,10 +1184,8 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([project_id, zone, cluster_id, locations])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         # Minor optimization to avoid making a copy if the user passes
         # in a cluster_service.SetLocationsRequest.
@@ -1184,27 +1213,33 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    def update_master(
-        self,
-        request: cluster_service.UpdateMasterRequest = None,
-        *,
-        project_id: str = None,
-        zone: str = None,
-        cluster_id: str = None,
-        master_version: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> cluster_service.Operation:
+    def update_master(self,
+            request: cluster_service.UpdateMasterRequest = None,
+            *,
+            project_id: str = None,
+            zone: str = None,
+            cluster_id: str = None,
+            master_version: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> cluster_service.Operation:
         r"""Updates the master for a specific cluster.
 
         Args:
@@ -1275,10 +1310,8 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([project_id, zone, cluster_id, master_version])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         # Minor optimization to avoid making a copy if the user passes
         # in a cluster_service.UpdateMasterRequest.
@@ -1306,23 +1339,29 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    def set_master_auth(
-        self,
-        request: cluster_service.SetMasterAuthRequest = None,
-        *,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> cluster_service.Operation:
+    def set_master_auth(self,
+            request: cluster_service.SetMasterAuthRequest = None,
+            *,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> cluster_service.Operation:
         r"""Sets master auth materials. Currently supports
         changing the admin password or a specific cluster,
         either via password generation or explicitly setting the
@@ -1363,26 +1402,32 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    def delete_cluster(
-        self,
-        request: cluster_service.DeleteClusterRequest = None,
-        *,
-        project_id: str = None,
-        zone: str = None,
-        cluster_id: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> cluster_service.Operation:
+    def delete_cluster(self,
+            request: cluster_service.DeleteClusterRequest = None,
+            *,
+            project_id: str = None,
+            zone: str = None,
+            cluster_id: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> cluster_service.Operation:
         r"""Deletes the cluster, including the Kubernetes
         endpoint and all worker nodes.
 
@@ -1444,10 +1489,8 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([project_id, zone, cluster_id])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         # Minor optimization to avoid making a copy if the user passes
         # in a cluster_service.DeleteClusterRequest.
@@ -1473,25 +1516,31 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    def list_operations(
-        self,
-        request: cluster_service.ListOperationsRequest = None,
-        *,
-        project_id: str = None,
-        zone: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> cluster_service.ListOperationsResponse:
+    def list_operations(self,
+            request: cluster_service.ListOperationsRequest = None,
+            *,
+            project_id: str = None,
+            zone: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> cluster_service.ListOperationsResponse:
         r"""Lists all operations in a project in the specified
         zone or all zones.
 
@@ -1536,10 +1585,8 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([project_id, zone])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         # Minor optimization to avoid making a copy if the user passes
         # in a cluster_service.ListOperationsRequest.
@@ -1563,26 +1610,32 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('parent', request.parent),
+            )),
         )
 
         # Send the request.
-        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    def get_operation(
-        self,
-        request: cluster_service.GetOperationRequest = None,
-        *,
-        project_id: str = None,
-        zone: str = None,
-        operation_id: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> cluster_service.Operation:
+    def get_operation(self,
+            request: cluster_service.GetOperationRequest = None,
+            *,
+            project_id: str = None,
+            zone: str = None,
+            operation_id: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> cluster_service.Operation:
         r"""Gets the specified operation.
 
         Args:
@@ -1634,10 +1687,8 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([project_id, zone, operation_id])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         # Minor optimization to avoid making a copy if the user passes
         # in a cluster_service.GetOperationRequest.
@@ -1663,26 +1714,32 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    def cancel_operation(
-        self,
-        request: cluster_service.CancelOperationRequest = None,
-        *,
-        project_id: str = None,
-        zone: str = None,
-        operation_id: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> None:
+    def cancel_operation(self,
+            request: cluster_service.CancelOperationRequest = None,
+            *,
+            project_id: str = None,
+            zone: str = None,
+            operation_id: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> None:
         r"""Cancels the specified operation.
 
         Args:
@@ -1726,10 +1783,8 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([project_id, zone, operation_id])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         # Minor optimization to avoid making a copy if the user passes
         # in a cluster_service.CancelOperationRequest.
@@ -1755,24 +1810,28 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
         rpc(
-            request, retry=retry, timeout=timeout, metadata=metadata,
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
         )
 
-    def get_server_config(
-        self,
-        request: cluster_service.GetServerConfigRequest = None,
-        *,
-        project_id: str = None,
-        zone: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> cluster_service.ServerConfig:
+    def get_server_config(self,
+            request: cluster_service.GetServerConfigRequest = None,
+            *,
+            project_id: str = None,
+            zone: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> cluster_service.ServerConfig:
         r"""Returns configuration info about the Google
         Kubernetes Engine service.
 
@@ -1816,10 +1875,8 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([project_id, zone])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         # Minor optimization to avoid making a copy if the user passes
         # in a cluster_service.GetServerConfigRequest.
@@ -1843,26 +1900,32 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    def list_node_pools(
-        self,
-        request: cluster_service.ListNodePoolsRequest = None,
-        *,
-        project_id: str = None,
-        zone: str = None,
-        cluster_id: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> cluster_service.ListNodePoolsResponse:
+    def list_node_pools(self,
+            request: cluster_service.ListNodePoolsRequest = None,
+            *,
+            project_id: str = None,
+            zone: str = None,
+            cluster_id: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> cluster_service.ListNodePoolsResponse:
         r"""Lists the node pools for a cluster.
 
         Args:
@@ -1912,10 +1975,8 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([project_id, zone, cluster_id])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         # Minor optimization to avoid making a copy if the user passes
         # in a cluster_service.ListNodePoolsRequest.
@@ -1941,27 +2002,33 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('parent', request.parent),
+            )),
         )
 
         # Send the request.
-        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    def get_node_pool(
-        self,
-        request: cluster_service.GetNodePoolRequest = None,
-        *,
-        project_id: str = None,
-        zone: str = None,
-        cluster_id: str = None,
-        node_pool_id: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> cluster_service.NodePool:
+    def get_node_pool(self,
+            request: cluster_service.GetNodePoolRequest = None,
+            *,
+            project_id: str = None,
+            zone: str = None,
+            cluster_id: str = None,
+            node_pool_id: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> cluster_service.NodePool:
         r"""Retrieves the requested node pool.
 
         Args:
@@ -2027,10 +2094,8 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([project_id, zone, cluster_id, node_pool_id])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         # Minor optimization to avoid making a copy if the user passes
         # in a cluster_service.GetNodePoolRequest.
@@ -2058,27 +2123,33 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    def create_node_pool(
-        self,
-        request: cluster_service.CreateNodePoolRequest = None,
-        *,
-        project_id: str = None,
-        zone: str = None,
-        cluster_id: str = None,
-        node_pool: cluster_service.NodePool = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> cluster_service.Operation:
+    def create_node_pool(self,
+            request: cluster_service.CreateNodePoolRequest = None,
+            *,
+            project_id: str = None,
+            zone: str = None,
+            cluster_id: str = None,
+            node_pool: cluster_service.NodePool = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> cluster_service.Operation:
         r"""Creates a node pool for a cluster.
 
         Args:
@@ -2135,10 +2206,8 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([project_id, zone, cluster_id, node_pool])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         # Minor optimization to avoid making a copy if the user passes
         # in a cluster_service.CreateNodePoolRequest.
@@ -2166,27 +2235,33 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('parent', request.parent),
+            )),
         )
 
         # Send the request.
-        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    def delete_node_pool(
-        self,
-        request: cluster_service.DeleteNodePoolRequest = None,
-        *,
-        project_id: str = None,
-        zone: str = None,
-        cluster_id: str = None,
-        node_pool_id: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> cluster_service.Operation:
+    def delete_node_pool(self,
+            request: cluster_service.DeleteNodePoolRequest = None,
+            *,
+            project_id: str = None,
+            zone: str = None,
+            cluster_id: str = None,
+            node_pool_id: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> cluster_service.Operation:
         r"""Deletes a node pool from a cluster.
 
         Args:
@@ -2246,10 +2321,8 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([project_id, zone, cluster_id, node_pool_id])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         # Minor optimization to avoid making a copy if the user passes
         # in a cluster_service.DeleteNodePoolRequest.
@@ -2277,27 +2350,33 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    def rollback_node_pool_upgrade(
-        self,
-        request: cluster_service.RollbackNodePoolUpgradeRequest = None,
-        *,
-        project_id: str = None,
-        zone: str = None,
-        cluster_id: str = None,
-        node_pool_id: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> cluster_service.Operation:
+    def rollback_node_pool_upgrade(self,
+            request: cluster_service.RollbackNodePoolUpgradeRequest = None,
+            *,
+            project_id: str = None,
+            zone: str = None,
+            cluster_id: str = None,
+            node_pool_id: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> cluster_service.Operation:
         r"""Rolls back a previously Aborted or Failed NodePool
         upgrade. This makes no changes if the last upgrade
         successfully completed.
@@ -2362,10 +2441,8 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([project_id, zone, cluster_id, node_pool_id])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         # Minor optimization to avoid making a copy if the user passes
         # in a cluster_service.RollbackNodePoolUpgradeRequest.
@@ -2388,35 +2465,39 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
-        rpc = self._transport._wrapped_methods[
-            self._transport.rollback_node_pool_upgrade
-        ]
+        rpc = self._transport._wrapped_methods[self._transport.rollback_node_pool_upgrade]
 
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    def set_node_pool_management(
-        self,
-        request: cluster_service.SetNodePoolManagementRequest = None,
-        *,
-        project_id: str = None,
-        zone: str = None,
-        cluster_id: str = None,
-        node_pool_id: str = None,
-        management: cluster_service.NodeManagement = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> cluster_service.Operation:
+    def set_node_pool_management(self,
+            request: cluster_service.SetNodePoolManagementRequest = None,
+            *,
+            project_id: str = None,
+            zone: str = None,
+            cluster_id: str = None,
+            node_pool_id: str = None,
+            management: cluster_service.NodeManagement = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> cluster_service.Operation:
         r"""Sets the NodeManagement options for a node pool.
 
         Args:
@@ -2481,14 +2562,10 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        has_flattened_params = any(
-            [project_id, zone, cluster_id, node_pool_id, management]
-        )
+        has_flattened_params = any([project_id, zone, cluster_id, node_pool_id, management])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         # Minor optimization to avoid making a copy if the user passes
         # in a cluster_service.SetNodePoolManagementRequest.
@@ -2518,30 +2595,34 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    def set_labels(
-        self,
-        request: cluster_service.SetLabelsRequest = None,
-        *,
-        project_id: str = None,
-        zone: str = None,
-        cluster_id: str = None,
-        resource_labels: Sequence[
-            cluster_service.SetLabelsRequest.ResourceLabelsEntry
-        ] = None,
-        label_fingerprint: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> cluster_service.Operation:
+    def set_labels(self,
+            request: cluster_service.SetLabelsRequest = None,
+            *,
+            project_id: str = None,
+            zone: str = None,
+            cluster_id: str = None,
+            resource_labels: Sequence[cluster_service.SetLabelsRequest.ResourceLabelsEntry] = None,
+            label_fingerprint: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> cluster_service.Operation:
         r"""Sets labels on a cluster.
 
         Args:
@@ -2614,14 +2695,10 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # Create or coerce a protobuf request object.
         # Sanity check: If we got a request object, we should *not* have
         # gotten any keyword arguments that map to the request.
-        has_flattened_params = any(
-            [project_id, zone, cluster_id, resource_labels, label_fingerprint]
-        )
+        has_flattened_params = any([project_id, zone, cluster_id, resource_labels, label_fingerprint])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         # Minor optimization to avoid making a copy if the user passes
         # in a cluster_service.SetLabelsRequest.
@@ -2651,27 +2728,33 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    def set_legacy_abac(
-        self,
-        request: cluster_service.SetLegacyAbacRequest = None,
-        *,
-        project_id: str = None,
-        zone: str = None,
-        cluster_id: str = None,
-        enabled: bool = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> cluster_service.Operation:
+    def set_legacy_abac(self,
+            request: cluster_service.SetLegacyAbacRequest = None,
+            *,
+            project_id: str = None,
+            zone: str = None,
+            cluster_id: str = None,
+            enabled: bool = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> cluster_service.Operation:
         r"""Enables or disables the ABAC authorization mechanism
         on a cluster.
 
@@ -2731,10 +2814,8 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([project_id, zone, cluster_id, enabled])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         # Minor optimization to avoid making a copy if the user passes
         # in a cluster_service.SetLegacyAbacRequest.
@@ -2762,26 +2843,32 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    def start_ip_rotation(
-        self,
-        request: cluster_service.StartIPRotationRequest = None,
-        *,
-        project_id: str = None,
-        zone: str = None,
-        cluster_id: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> cluster_service.Operation:
+    def start_ip_rotation(self,
+            request: cluster_service.StartIPRotationRequest = None,
+            *,
+            project_id: str = None,
+            zone: str = None,
+            cluster_id: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> cluster_service.Operation:
         r"""Starts master IP rotation.
 
         Args:
@@ -2834,10 +2921,8 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([project_id, zone, cluster_id])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         # Minor optimization to avoid making a copy if the user passes
         # in a cluster_service.StartIPRotationRequest.
@@ -2863,26 +2948,32 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    def complete_ip_rotation(
-        self,
-        request: cluster_service.CompleteIPRotationRequest = None,
-        *,
-        project_id: str = None,
-        zone: str = None,
-        cluster_id: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> cluster_service.Operation:
+    def complete_ip_rotation(self,
+            request: cluster_service.CompleteIPRotationRequest = None,
+            *,
+            project_id: str = None,
+            zone: str = None,
+            cluster_id: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> cluster_service.Operation:
         r"""Completes master IP rotation.
 
         Args:
@@ -2934,10 +3025,8 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([project_id, zone, cluster_id])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         # Minor optimization to avoid making a copy if the user passes
         # in a cluster_service.CompleteIPRotationRequest.
@@ -2963,23 +3052,29 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    def set_node_pool_size(
-        self,
-        request: cluster_service.SetNodePoolSizeRequest = None,
-        *,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> cluster_service.Operation:
+    def set_node_pool_size(self,
+            request: cluster_service.SetNodePoolSizeRequest = None,
+            *,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> cluster_service.Operation:
         r"""Sets the size for a specific node pool.
 
         Args:
@@ -3017,27 +3112,33 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    def set_network_policy(
-        self,
-        request: cluster_service.SetNetworkPolicyRequest = None,
-        *,
-        project_id: str = None,
-        zone: str = None,
-        cluster_id: str = None,
-        network_policy: cluster_service.NetworkPolicy = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> cluster_service.Operation:
+    def set_network_policy(self,
+            request: cluster_service.SetNetworkPolicyRequest = None,
+            *,
+            project_id: str = None,
+            zone: str = None,
+            cluster_id: str = None,
+            network_policy: cluster_service.NetworkPolicy = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> cluster_service.Operation:
         r"""Enables or disables Network Policy for a cluster.
 
         Args:
@@ -3095,10 +3196,8 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([project_id, zone, cluster_id, network_policy])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         # Minor optimization to avoid making a copy if the user passes
         # in a cluster_service.SetNetworkPolicyRequest.
@@ -3126,27 +3225,33 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    def set_maintenance_policy(
-        self,
-        request: cluster_service.SetMaintenancePolicyRequest = None,
-        *,
-        project_id: str = None,
-        zone: str = None,
-        cluster_id: str = None,
-        maintenance_policy: cluster_service.MaintenancePolicy = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> cluster_service.Operation:
+    def set_maintenance_policy(self,
+            request: cluster_service.SetMaintenancePolicyRequest = None,
+            *,
+            project_id: str = None,
+            zone: str = None,
+            cluster_id: str = None,
+            maintenance_policy: cluster_service.MaintenancePolicy = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> cluster_service.Operation:
         r"""Sets the maintenance policy for a cluster.
 
         Args:
@@ -3200,10 +3305,8 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([project_id, zone, cluster_id, maintenance_policy])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         # Minor optimization to avoid making a copy if the user passes
         # in a cluster_service.SetMaintenancePolicyRequest.
@@ -3231,24 +3334,30 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('name', request.name),
+            )),
         )
 
         # Send the request.
-        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
-    def list_usable_subnetworks(
-        self,
-        request: cluster_service.ListUsableSubnetworksRequest = None,
-        *,
-        parent: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> pagers.ListUsableSubnetworksPager:
+    def list_usable_subnetworks(self,
+            request: cluster_service.ListUsableSubnetworksRequest = None,
+            *,
+            parent: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> pagers.ListUsableSubnetworksPager:
         r"""Lists subnetworks that can be used for creating
         clusters in a project.
 
@@ -3286,10 +3395,8 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         # Minor optimization to avoid making a copy if the user passes
         # in a cluster_service.ListUsableSubnetworksRequest.
@@ -3311,30 +3418,39 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('parent', request.parent),
+            )),
         )
 
         # Send the request.
-        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # This method is paged; wrap the response in a pager, which provides
         # an `__iter__` convenience method.
         response = pagers.ListUsableSubnetworksPager(
-            method=rpc, request=request, response=response, metadata=metadata,
+            method=rpc,
+            request=request,
+            response=response,
+            metadata=metadata,
         )
 
         # Done; return the response.
         return response
 
-    def list_locations(
-        self,
-        request: cluster_service.ListLocationsRequest = None,
-        *,
-        parent: str = None,
-        retry: retries.Retry = gapic_v1.method.DEFAULT,
-        timeout: float = None,
-        metadata: Sequence[Tuple[str, str]] = (),
-    ) -> cluster_service.ListLocationsResponse:
+    def list_locations(self,
+            request: cluster_service.ListLocationsRequest = None,
+            *,
+            parent: str = None,
+            retry: retries.Retry = gapic_v1.method.DEFAULT,
+            timeout: float = None,
+            metadata: Sequence[Tuple[str, str]] = (),
+            ) -> cluster_service.ListLocationsResponse:
         r"""Fetches locations that offer Google Kubernetes
         Engine.
 
@@ -3367,10 +3483,8 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # gotten any keyword arguments that map to the request.
         has_flattened_params = any([parent])
         if request is not None and has_flattened_params:
-            raise ValueError(
-                "If the `request` argument is set, then none of "
-                "the individual field arguments should be set."
-            )
+            raise ValueError('If the `request` argument is set, then none of '
+                             'the individual field arguments should be set.')
 
         # Minor optimization to avoid making a copy if the user passes
         # in a cluster_service.ListLocationsRequest.
@@ -3392,22 +3506,38 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # Certain fields should be provided within the metadata header;
         # add these here.
         metadata = tuple(metadata) + (
-            gapic_v1.routing_header.to_grpc_metadata((("parent", request.parent),)),
+            gapic_v1.routing_header.to_grpc_metadata((
+                ('parent', request.parent),
+            )),
         )
 
         # Send the request.
-        response = rpc(request, retry=retry, timeout=timeout, metadata=metadata,)
+        response = rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
 
         # Done; return the response.
         return response
 
 
+
+
+
+
+
 try:
     _client_info = gapic_v1.client_info.ClientInfo(
-        gapic_version=pkg_resources.get_distribution("google-container",).version,
+        gapic_version=pkg_resources.get_distribution(
+            'google-container',
+        ).version,
     )
 except pkg_resources.DistributionNotFound:
     _client_info = gapic_v1.client_info.ClientInfo()
 
 
-__all__ = ("ClusterManagerClient",)
+__all__ = (
+    'ClusterManagerClient',
+)
