@@ -3313,7 +3313,7 @@ class ClusterManagerAsyncClient:
 
 try:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo(
-        gapic_version=pkg_resources.get_distribution("google-container",).version,
+        gapic_version=pkg_resources.get_distribution("google-cloud-container",).version,
     )
 except pkg_resources.DistributionNotFound:
     DEFAULT_CLIENT_INFO = gapic_v1.client_info.ClientInfo()
