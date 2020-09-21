@@ -3200,6 +3200,7 @@ class WorkloadMetadataConfig(proto.Message):
         UNSPECIFIED = 0
         SECURE = 1
         EXPOSE = 2
+        GKE_METADATA_SERVER = 3
 
     node_metadata = proto.Field(proto.ENUM, number=1, enum=NodeMetadata,)
 
