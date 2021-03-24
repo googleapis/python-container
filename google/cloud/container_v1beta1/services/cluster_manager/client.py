@@ -1343,9 +1343,8 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
                 request.zone = zone
             if cluster_id is not None:
                 request.cluster_id = cluster_id
-
-            if locations:
-                request.locations.extend(locations)
+            if locations is not None:
+                request.locations = locations
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
@@ -2910,11 +2909,10 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
                 request.zone = zone
             if cluster_id is not None:
                 request.cluster_id = cluster_id
+            if resource_labels is not None:
+                request.resource_labels = resource_labels
             if label_fingerprint is not None:
                 request.label_fingerprint = label_fingerprint
-
-            if resource_labels:
-                request.resource_labels.update(resource_labels)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.

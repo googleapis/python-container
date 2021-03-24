@@ -1414,11 +1414,10 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
                 request.zone = zone
             if cluster_id is not None:
                 request.cluster_id = cluster_id
+            if locations is not None:
+                request.locations = locations
             if name is not None:
                 request.name = name
-
-            if locations:
-                request.locations.extend(locations)
 
         # Wrap the RPC method; this adds retry and timeout information,
         # and friendly error handling.
