@@ -73,6 +73,7 @@ class ClusterManagerAsyncClient:
         ClusterManagerClient.parse_common_location_path
     )
 
+    from_service_account_info = ClusterManagerClient.from_service_account_info
     from_service_account_file = ClusterManagerClient.from_service_account_file
     from_service_account_json = from_service_account_file
 
@@ -152,7 +153,7 @@ class ClusterManagerAsyncClient:
         specified zone or all zones.
 
         Args:
-            request (:class:`~.cluster_service.ListClustersRequest`):
+            request (:class:`google.cloud.container_v1.types.ListClustersRequest`):
                 The request object. ListClustersRequest lists clusters.
             project_id (:class:`str`):
                 Deprecated. The Google Developers Console `project ID or
@@ -160,6 +161,7 @@ class ClusterManagerAsyncClient:
                 number <https://support.google.com/cloud/answer/6158840>`__.
                 This field has been deprecated and replaced by the
                 parent field.
+
                 This corresponds to the ``project_id`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -169,6 +171,7 @@ class ClusterManagerAsyncClient:
                 in which the cluster resides, or "-" for all zones. This
                 field has been deprecated and replaced by the parent
                 field.
+
                 This corresponds to the ``zone`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -177,6 +180,7 @@ class ClusterManagerAsyncClient:
                 will be listed. Specified in the format
                 ``projects/*/locations/*``. Location "-" matches all
                 zones and all regions.
+
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -188,7 +192,7 @@ class ClusterManagerAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            ~.cluster_service.ListClustersResponse:
+            google.cloud.container_v1.types.ListClustersResponse:
                 ListClustersResponse is the result of
                 ListClustersRequest.
 
@@ -258,7 +262,7 @@ class ClusterManagerAsyncClient:
         r"""Gets the details of a specific cluster.
 
         Args:
-            request (:class:`~.cluster_service.GetClusterRequest`):
+            request (:class:`google.cloud.container_v1.types.GetClusterRequest`):
                 The request object. GetClusterRequest gets the settings
                 of a cluster.
             project_id (:class:`str`):
@@ -267,6 +271,7 @@ class ClusterManagerAsyncClient:
                 number <https://support.google.com/cloud/answer/6158840>`__.
                 This field has been deprecated and replaced by the name
                 field.
+
                 This corresponds to the ``project_id`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -275,6 +280,7 @@ class ClusterManagerAsyncClient:
                 `zone <https://cloud.google.com/compute/docs/zones#available>`__
                 in which the cluster resides. This field has been
                 deprecated and replaced by the name field.
+
                 This corresponds to the ``zone`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -283,6 +289,7 @@ class ClusterManagerAsyncClient:
                 to retrieve. This field has been
                 deprecated and replaced by the name
                 field.
+
                 This corresponds to the ``cluster_id`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -290,6 +297,7 @@ class ClusterManagerAsyncClient:
                 The name (project, location, cluster) of the cluster to
                 retrieve. Specified in the format
                 ``projects/*/locations/*/clusters/*``.
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -301,7 +309,7 @@ class ClusterManagerAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            ~.cluster_service.Cluster:
+            google.cloud.container_v1.types.Cluster:
                 A Google Kubernetes Engine cluster.
         """
         # Create or coerce a protobuf request object.
@@ -383,7 +391,7 @@ class ClusterManagerAsyncClient:
         indicating which CIDR range the cluster is using.
 
         Args:
-            request (:class:`~.cluster_service.CreateClusterRequest`):
+            request (:class:`google.cloud.container_v1.types.CreateClusterRequest`):
                 The request object. CreateClusterRequest creates a
                 cluster.
             project_id (:class:`str`):
@@ -392,6 +400,7 @@ class ClusterManagerAsyncClient:
                 number <https://support.google.com/cloud/answer/6158840>`__.
                 This field has been deprecated and replaced by the
                 parent field.
+
                 This corresponds to the ``project_id`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -400,12 +409,14 @@ class ClusterManagerAsyncClient:
                 `zone <https://cloud.google.com/compute/docs/zones#available>`__
                 in which the cluster resides. This field has been
                 deprecated and replaced by the parent field.
+
                 This corresponds to the ``zone`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            cluster (:class:`~.cluster_service.Cluster`):
+            cluster (:class:`google.cloud.container_v1.types.Cluster`):
                 Required. A `cluster
                 resource <https://cloud.google.com/container-engine/reference/rest/v1/projects.locations.clusters>`__
+
                 This corresponds to the ``cluster`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -413,6 +424,7 @@ class ClusterManagerAsyncClient:
                 The parent (project and location) where the cluster will
                 be created. Specified in the format
                 ``projects/*/locations/*``.
+
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -424,7 +436,7 @@ class ClusterManagerAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            ~.cluster_service.Operation:
+            google.cloud.container_v1.types.Operation:
                 This operation resource represents
                 operations that may have happened or are
                 happening on the cluster. All fields are
@@ -491,7 +503,7 @@ class ClusterManagerAsyncClient:
         r"""Updates the settings of a specific cluster.
 
         Args:
-            request (:class:`~.cluster_service.UpdateClusterRequest`):
+            request (:class:`google.cloud.container_v1.types.UpdateClusterRequest`):
                 The request object. UpdateClusterRequest updates the
                 settings of a cluster.
             project_id (:class:`str`):
@@ -500,6 +512,7 @@ class ClusterManagerAsyncClient:
                 number <https://support.google.com/cloud/answer/6158840>`__.
                 This field has been deprecated and replaced by the name
                 field.
+
                 This corresponds to the ``project_id`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -508,6 +521,7 @@ class ClusterManagerAsyncClient:
                 `zone <https://cloud.google.com/compute/docs/zones#available>`__
                 in which the cluster resides. This field has been
                 deprecated and replaced by the name field.
+
                 This corresponds to the ``zone`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -516,12 +530,14 @@ class ClusterManagerAsyncClient:
                 to upgrade. This field has been
                 deprecated and replaced by the name
                 field.
+
                 This corresponds to the ``cluster_id`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            update (:class:`~.cluster_service.ClusterUpdate`):
+            update (:class:`google.cloud.container_v1.types.ClusterUpdate`):
                 Required. A description of the
                 update.
+
                 This corresponds to the ``update`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -529,6 +545,7 @@ class ClusterManagerAsyncClient:
                 The name (project, location, cluster) of the cluster to
                 update. Specified in the format
                 ``projects/*/locations/*/clusters/*``.
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -540,7 +557,7 @@ class ClusterManagerAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            ~.cluster_service.Operation:
+            google.cloud.container_v1.types.Operation:
                 This operation resource represents
                 operations that may have happened or are
                 happening on the cluster. All fields are
@@ -605,7 +622,7 @@ class ClusterManagerAsyncClient:
         specified node pool.
 
         Args:
-            request (:class:`~.cluster_service.UpdateNodePoolRequest`):
+            request (:class:`google.cloud.container_v1.types.UpdateNodePoolRequest`):
                 The request object. UpdateNodePoolRequests update a node
                 pool's image and/or version.
 
@@ -616,7 +633,7 @@ class ClusterManagerAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            ~.cluster_service.Operation:
+            google.cloud.container_v1.types.Operation:
                 This operation resource represents
                 operations that may have happened or are
                 happening on the cluster. All fields are
@@ -659,7 +676,7 @@ class ClusterManagerAsyncClient:
         pool.
 
         Args:
-            request (:class:`~.cluster_service.SetNodePoolAutoscalingRequest`):
+            request (:class:`google.cloud.container_v1.types.SetNodePoolAutoscalingRequest`):
                 The request object. SetNodePoolAutoscalingRequest sets
                 the autoscaler settings of a node pool.
 
@@ -670,7 +687,7 @@ class ClusterManagerAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            ~.cluster_service.Operation:
+            google.cloud.container_v1.types.Operation:
                 This operation resource represents
                 operations that may have happened or are
                 happening on the cluster. All fields are
@@ -717,7 +734,7 @@ class ClusterManagerAsyncClient:
         r"""Sets the logging service for a specific cluster.
 
         Args:
-            request (:class:`~.cluster_service.SetLoggingServiceRequest`):
+            request (:class:`google.cloud.container_v1.types.SetLoggingServiceRequest`):
                 The request object. SetLoggingServiceRequest sets the
                 logging service of a cluster.
             project_id (:class:`str`):
@@ -726,6 +743,7 @@ class ClusterManagerAsyncClient:
                 number <https://support.google.com/cloud/answer/6158840>`__.
                 This field has been deprecated and replaced by the name
                 field.
+
                 This corresponds to the ``project_id`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -734,6 +752,7 @@ class ClusterManagerAsyncClient:
                 `zone <https://cloud.google.com/compute/docs/zones#available>`__
                 in which the cluster resides. This field has been
                 deprecated and replaced by the name field.
+
                 This corresponds to the ``zone`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -742,6 +761,7 @@ class ClusterManagerAsyncClient:
                 to upgrade. This field has been
                 deprecated and replaced by the name
                 field.
+
                 This corresponds to the ``cluster_id`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -760,6 +780,7 @@ class ClusterManagerAsyncClient:
                 string,\ ``logging.googleapis.com/kubernetes`` will be
                 used for GKE 1.14+ or ``logging.googleapis.com`` for
                 earlier versions.
+
                 This corresponds to the ``logging_service`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -767,6 +788,7 @@ class ClusterManagerAsyncClient:
                 The name (project, location, cluster) of the cluster to
                 set logging. Specified in the format
                 ``projects/*/locations/*/clusters/*``.
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -778,7 +800,7 @@ class ClusterManagerAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            ~.cluster_service.Operation:
+            google.cloud.container_v1.types.Operation:
                 This operation resource represents
                 operations that may have happened or are
                 happening on the cluster. All fields are
@@ -849,7 +871,7 @@ class ClusterManagerAsyncClient:
         r"""Sets the monitoring service for a specific cluster.
 
         Args:
-            request (:class:`~.cluster_service.SetMonitoringServiceRequest`):
+            request (:class:`google.cloud.container_v1.types.SetMonitoringServiceRequest`):
                 The request object. SetMonitoringServiceRequest sets the
                 monitoring service of a cluster.
             project_id (:class:`str`):
@@ -858,6 +880,7 @@ class ClusterManagerAsyncClient:
                 number <https://support.google.com/cloud/answer/6158840>`__.
                 This field has been deprecated and replaced by the name
                 field.
+
                 This corresponds to the ``project_id`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -866,6 +889,7 @@ class ClusterManagerAsyncClient:
                 `zone <https://cloud.google.com/compute/docs/zones#available>`__
                 in which the cluster resides. This field has been
                 deprecated and replaced by the name field.
+
                 This corresponds to the ``zone`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -874,6 +898,7 @@ class ClusterManagerAsyncClient:
                 to upgrade. This field has been
                 deprecated and replaced by the name
                 field.
+
                 This corresponds to the ``cluster_id`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -894,6 +919,7 @@ class ClusterManagerAsyncClient:
                 string,\ ``monitoring.googleapis.com/kubernetes`` will
                 be used for GKE 1.14+ or ``monitoring.googleapis.com``
                 for earlier versions.
+
                 This corresponds to the ``monitoring_service`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -901,6 +927,7 @@ class ClusterManagerAsyncClient:
                 The name (project, location, cluster) of the cluster to
                 set monitoring. Specified in the format
                 ``projects/*/locations/*/clusters/*``.
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -912,7 +939,7 @@ class ClusterManagerAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            ~.cluster_service.Operation:
+            google.cloud.container_v1.types.Operation:
                 This operation resource represents
                 operations that may have happened or are
                 happening on the cluster. All fields are
@@ -983,7 +1010,7 @@ class ClusterManagerAsyncClient:
         r"""Sets the addons for a specific cluster.
 
         Args:
-            request (:class:`~.cluster_service.SetAddonsConfigRequest`):
+            request (:class:`google.cloud.container_v1.types.SetAddonsConfigRequest`):
                 The request object. SetAddonsConfigRequest sets the
                 addons associated with the cluster.
             project_id (:class:`str`):
@@ -992,6 +1019,7 @@ class ClusterManagerAsyncClient:
                 number <https://support.google.com/cloud/answer/6158840>`__.
                 This field has been deprecated and replaced by the name
                 field.
+
                 This corresponds to the ``project_id`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -1000,6 +1028,7 @@ class ClusterManagerAsyncClient:
                 `zone <https://cloud.google.com/compute/docs/zones#available>`__
                 in which the cluster resides. This field has been
                 deprecated and replaced by the name field.
+
                 This corresponds to the ``zone`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -1008,13 +1037,15 @@ class ClusterManagerAsyncClient:
                 to upgrade. This field has been
                 deprecated and replaced by the name
                 field.
+
                 This corresponds to the ``cluster_id`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            addons_config (:class:`~.cluster_service.AddonsConfig`):
+            addons_config (:class:`google.cloud.container_v1.types.AddonsConfig`):
                 Required. The desired configurations
                 for the various addons available to run
                 in the cluster.
+
                 This corresponds to the ``addons_config`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -1022,6 +1053,7 @@ class ClusterManagerAsyncClient:
                 The name (project, location, cluster) of the cluster to
                 set addons. Specified in the format
                 ``projects/*/locations/*/clusters/*``.
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -1033,7 +1065,7 @@ class ClusterManagerAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            ~.cluster_service.Operation:
+            google.cloud.container_v1.types.Operation:
                 This operation resource represents
                 operations that may have happened or are
                 happening on the cluster. All fields are
@@ -1104,7 +1136,7 @@ class ClusterManagerAsyncClient:
         instead.
 
         Args:
-            request (:class:`~.cluster_service.SetLocationsRequest`):
+            request (:class:`google.cloud.container_v1.types.SetLocationsRequest`):
                 The request object. SetLocationsRequest sets the
                 locations of the cluster.
             project_id (:class:`str`):
@@ -1113,6 +1145,7 @@ class ClusterManagerAsyncClient:
                 number <https://support.google.com/cloud/answer/6158840>`__.
                 This field has been deprecated and replaced by the name
                 field.
+
                 This corresponds to the ``project_id`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -1121,6 +1154,7 @@ class ClusterManagerAsyncClient:
                 `zone <https://cloud.google.com/compute/docs/zones#available>`__
                 in which the cluster resides. This field has been
                 deprecated and replaced by the name field.
+
                 This corresponds to the ``zone`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -1129,6 +1163,7 @@ class ClusterManagerAsyncClient:
                 to upgrade. This field has been
                 deprecated and replaced by the name
                 field.
+
                 This corresponds to the ``cluster_id`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -1142,6 +1177,7 @@ class ClusterManagerAsyncClient:
 
                 This list must always include the cluster's primary
                 zone.
+
                 This corresponds to the ``locations`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -1149,6 +1185,7 @@ class ClusterManagerAsyncClient:
                 The name (project, location, cluster) of the cluster to
                 set locations. Specified in the format
                 ``projects/*/locations/*/clusters/*``.
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -1160,7 +1197,7 @@ class ClusterManagerAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            ~.cluster_service.Operation:
+            google.cloud.container_v1.types.Operation:
                 This operation resource represents
                 operations that may have happened or are
                 happening on the cluster. All fields are
@@ -1230,7 +1267,7 @@ class ClusterManagerAsyncClient:
         r"""Updates the master for a specific cluster.
 
         Args:
-            request (:class:`~.cluster_service.UpdateMasterRequest`):
+            request (:class:`google.cloud.container_v1.types.UpdateMasterRequest`):
                 The request object. UpdateMasterRequest updates the
                 master of the cluster.
             project_id (:class:`str`):
@@ -1239,6 +1276,7 @@ class ClusterManagerAsyncClient:
                 number <https://support.google.com/cloud/answer/6158840>`__.
                 This field has been deprecated and replaced by the name
                 field.
+
                 This corresponds to the ``project_id`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -1247,6 +1285,7 @@ class ClusterManagerAsyncClient:
                 `zone <https://cloud.google.com/compute/docs/zones#available>`__
                 in which the cluster resides. This field has been
                 deprecated and replaced by the name field.
+
                 This corresponds to the ``zone`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -1255,6 +1294,7 @@ class ClusterManagerAsyncClient:
                 to upgrade. This field has been
                 deprecated and replaced by the name
                 field.
+
                 This corresponds to the ``cluster_id`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -1273,6 +1313,7 @@ class ClusterManagerAsyncClient:
                 "1.X.Y-gke.N": picks an explicit
                 Kubernetes version - "-": picks the
                 default Kubernetes version
+
                 This corresponds to the ``master_version`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -1280,6 +1321,7 @@ class ClusterManagerAsyncClient:
                 The name (project, location, cluster) of the cluster to
                 update. Specified in the format
                 ``projects/*/locations/*/clusters/*``.
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -1291,7 +1333,7 @@ class ClusterManagerAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            ~.cluster_service.Operation:
+            google.cloud.container_v1.types.Operation:
                 This operation resource represents
                 operations that may have happened or are
                 happening on the cluster. All fields are
@@ -1358,7 +1400,7 @@ class ClusterManagerAsyncClient:
         password.
 
         Args:
-            request (:class:`~.cluster_service.SetMasterAuthRequest`):
+            request (:class:`google.cloud.container_v1.types.SetMasterAuthRequest`):
                 The request object. SetMasterAuthRequest updates the
                 admin password of a cluster.
 
@@ -1369,7 +1411,7 @@ class ClusterManagerAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            ~.cluster_service.Operation:
+            google.cloud.container_v1.types.Operation:
                 This operation resource represents
                 operations that may have happened or are
                 happening on the cluster. All fields are
@@ -1424,7 +1466,7 @@ class ClusterManagerAsyncClient:
         initially created.
 
         Args:
-            request (:class:`~.cluster_service.DeleteClusterRequest`):
+            request (:class:`google.cloud.container_v1.types.DeleteClusterRequest`):
                 The request object. DeleteClusterRequest deletes a
                 cluster.
             project_id (:class:`str`):
@@ -1433,6 +1475,7 @@ class ClusterManagerAsyncClient:
                 number <https://support.google.com/cloud/answer/6158840>`__.
                 This field has been deprecated and replaced by the name
                 field.
+
                 This corresponds to the ``project_id`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -1441,6 +1484,7 @@ class ClusterManagerAsyncClient:
                 `zone <https://cloud.google.com/compute/docs/zones#available>`__
                 in which the cluster resides. This field has been
                 deprecated and replaced by the name field.
+
                 This corresponds to the ``zone`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -1449,6 +1493,7 @@ class ClusterManagerAsyncClient:
                 to delete. This field has been
                 deprecated and replaced by the name
                 field.
+
                 This corresponds to the ``cluster_id`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -1456,6 +1501,7 @@ class ClusterManagerAsyncClient:
                 The name (project, location, cluster) of the cluster to
                 delete. Specified in the format
                 ``projects/*/locations/*/clusters/*``.
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -1467,7 +1513,7 @@ class ClusterManagerAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            ~.cluster_service.Operation:
+            google.cloud.container_v1.types.Operation:
                 This operation resource represents
                 operations that may have happened or are
                 happening on the cluster. All fields are
@@ -1540,7 +1586,7 @@ class ClusterManagerAsyncClient:
         or all zones.
 
         Args:
-            request (:class:`~.cluster_service.ListOperationsRequest`):
+            request (:class:`google.cloud.container_v1.types.ListOperationsRequest`):
                 The request object. ListOperationsRequest lists
                 operations.
             project_id (:class:`str`):
@@ -1549,6 +1595,7 @@ class ClusterManagerAsyncClient:
                 number <https://support.google.com/cloud/answer/6158840>`__.
                 This field has been deprecated and replaced by the
                 parent field.
+
                 This corresponds to the ``project_id`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -1558,6 +1605,7 @@ class ClusterManagerAsyncClient:
                 to return operations for, or ``-`` for all zones. This
                 field has been deprecated and replaced by the parent
                 field.
+
                 This corresponds to the ``zone`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -1569,7 +1617,7 @@ class ClusterManagerAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            ~.cluster_service.ListOperationsResponse:
+            google.cloud.container_v1.types.ListOperationsResponse:
                 ListOperationsResponse is the result
                 of ListOperationsRequest.
 
@@ -1637,7 +1685,7 @@ class ClusterManagerAsyncClient:
         r"""Gets the specified operation.
 
         Args:
-            request (:class:`~.cluster_service.GetOperationRequest`):
+            request (:class:`google.cloud.container_v1.types.GetOperationRequest`):
                 The request object. GetOperationRequest gets a single
                 operation.
             project_id (:class:`str`):
@@ -1646,6 +1694,7 @@ class ClusterManagerAsyncClient:
                 number <https://support.google.com/cloud/answer/6158840>`__.
                 This field has been deprecated and replaced by the name
                 field.
+
                 This corresponds to the ``project_id`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -1654,6 +1703,7 @@ class ClusterManagerAsyncClient:
                 `zone <https://cloud.google.com/compute/docs/zones#available>`__
                 in which the cluster resides. This field has been
                 deprecated and replaced by the name field.
+
                 This corresponds to the ``zone`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -1661,6 +1711,7 @@ class ClusterManagerAsyncClient:
                 Deprecated. The server-assigned ``name`` of the
                 operation. This field has been deprecated and replaced
                 by the name field.
+
                 This corresponds to the ``operation_id`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -1668,6 +1719,7 @@ class ClusterManagerAsyncClient:
                 The name (project, location, operation id) of the
                 operation to get. Specified in the format
                 ``projects/*/locations/*/operations/*``.
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -1679,7 +1731,7 @@ class ClusterManagerAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            ~.cluster_service.Operation:
+            google.cloud.container_v1.types.Operation:
                 This operation resource represents
                 operations that may have happened or are
                 happening on the cluster. All fields are
@@ -1753,7 +1805,7 @@ class ClusterManagerAsyncClient:
         r"""Cancels the specified operation.
 
         Args:
-            request (:class:`~.cluster_service.CancelOperationRequest`):
+            request (:class:`google.cloud.container_v1.types.CancelOperationRequest`):
                 The request object. CancelOperationRequest cancels a
                 single operation.
             project_id (:class:`str`):
@@ -1762,6 +1814,7 @@ class ClusterManagerAsyncClient:
                 number <https://support.google.com/cloud/answer/6158840>`__.
                 This field has been deprecated and replaced by the name
                 field.
+
                 This corresponds to the ``project_id`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -1770,6 +1823,7 @@ class ClusterManagerAsyncClient:
                 `zone <https://cloud.google.com/compute/docs/zones#available>`__
                 in which the operation resides. This field has been
                 deprecated and replaced by the name field.
+
                 This corresponds to the ``zone`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -1777,6 +1831,7 @@ class ClusterManagerAsyncClient:
                 Deprecated. The server-assigned ``name`` of the
                 operation. This field has been deprecated and replaced
                 by the name field.
+
                 This corresponds to the ``operation_id`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -1784,6 +1839,7 @@ class ClusterManagerAsyncClient:
                 The name (project, location, operation id) of the
                 operation to cancel. Specified in the format
                 ``projects/*/locations/*/operations/*``.
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -1852,7 +1908,7 @@ class ClusterManagerAsyncClient:
         Kubernetes Engine service.
 
         Args:
-            request (:class:`~.cluster_service.GetServerConfigRequest`):
+            request (:class:`google.cloud.container_v1.types.GetServerConfigRequest`):
                 The request object. Gets the current Kubernetes Engine
                 service configuration.
             project_id (:class:`str`):
@@ -1861,6 +1917,7 @@ class ClusterManagerAsyncClient:
                 number <https://support.google.com/cloud/answer/6158840>`__.
                 This field has been deprecated and replaced by the name
                 field.
+
                 This corresponds to the ``project_id`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -1869,12 +1926,14 @@ class ClusterManagerAsyncClient:
                 `zone <https://cloud.google.com/compute/docs/zones#available>`__
                 to return operations for. This field has been deprecated
                 and replaced by the name field.
+
                 This corresponds to the ``zone`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
             name (:class:`str`):
                 The name (project and location) of the server config to
                 get, specified in the format ``projects/*/locations/*``.
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -1886,7 +1945,7 @@ class ClusterManagerAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            ~.cluster_service.ServerConfig:
+            google.cloud.container_v1.types.ServerConfig:
                 Kubernetes Engine service
                 configuration.
 
@@ -1955,7 +2014,7 @@ class ClusterManagerAsyncClient:
         available for all clusters.
 
         Args:
-            request (:class:`~.cluster_service.GetJSONWebKeysRequest`):
+            request (:class:`google.cloud.container_v1.types.GetJSONWebKeysRequest`):
                 The request object. GetJSONWebKeysRequest gets the
                 public component of the keys used by the cluster to sign
                 token requests. This will be the jwks_uri for the
@@ -1969,7 +2028,7 @@ class ClusterManagerAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            ~.cluster_service.GetJSONWebKeysResponse:
+            google.cloud.container_v1.types.GetJSONWebKeysResponse:
                 GetJSONWebKeysResponse is a valid
                 JSON Web Key Set as specififed in rfc
                 7517
@@ -2014,7 +2073,7 @@ class ClusterManagerAsyncClient:
         r"""Lists the node pools for a cluster.
 
         Args:
-            request (:class:`~.cluster_service.ListNodePoolsRequest`):
+            request (:class:`google.cloud.container_v1.types.ListNodePoolsRequest`):
                 The request object. ListNodePoolsRequest lists the node
                 pool(s) for a cluster.
             project_id (:class:`str`):
@@ -2023,6 +2082,7 @@ class ClusterManagerAsyncClient:
                 number <https://developers.google.com/console/help/new/#projectnumber>`__.
                 This field has been deprecated and replaced by the
                 parent field.
+
                 This corresponds to the ``project_id`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -2031,6 +2091,7 @@ class ClusterManagerAsyncClient:
                 `zone <https://cloud.google.com/compute/docs/zones#available>`__
                 in which the cluster resides. This field has been
                 deprecated and replaced by the parent field.
+
                 This corresponds to the ``zone`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -2038,6 +2099,7 @@ class ClusterManagerAsyncClient:
                 Deprecated. The name of the cluster.
                 This field has been deprecated and
                 replaced by the parent field.
+
                 This corresponds to the ``cluster_id`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -2045,6 +2107,7 @@ class ClusterManagerAsyncClient:
                 The parent (project, location, cluster id) where the
                 node pools will be listed. Specified in the format
                 ``projects/*/locations/*/clusters/*``.
+
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -2056,7 +2119,7 @@ class ClusterManagerAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            ~.cluster_service.ListNodePoolsResponse:
+            google.cloud.container_v1.types.ListNodePoolsResponse:
                 ListNodePoolsResponse is the result
                 of ListNodePoolsRequest.
 
@@ -2129,7 +2192,7 @@ class ClusterManagerAsyncClient:
         r"""Retrieves the requested node pool.
 
         Args:
-            request (:class:`~.cluster_service.GetNodePoolRequest`):
+            request (:class:`google.cloud.container_v1.types.GetNodePoolRequest`):
                 The request object. GetNodePoolRequest retrieves a node
                 pool for a cluster.
             project_id (:class:`str`):
@@ -2138,6 +2201,7 @@ class ClusterManagerAsyncClient:
                 number <https://developers.google.com/console/help/new/#projectnumber>`__.
                 This field has been deprecated and replaced by the name
                 field.
+
                 This corresponds to the ``project_id`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -2146,6 +2210,7 @@ class ClusterManagerAsyncClient:
                 `zone <https://cloud.google.com/compute/docs/zones#available>`__
                 in which the cluster resides. This field has been
                 deprecated and replaced by the name field.
+
                 This corresponds to the ``zone`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -2153,6 +2218,7 @@ class ClusterManagerAsyncClient:
                 Deprecated. The name of the cluster.
                 This field has been deprecated and
                 replaced by the name field.
+
                 This corresponds to the ``cluster_id`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -2160,6 +2226,7 @@ class ClusterManagerAsyncClient:
                 Deprecated. The name of the node
                 pool. This field has been deprecated and
                 replaced by the name field.
+
                 This corresponds to the ``node_pool_id`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -2167,6 +2234,7 @@ class ClusterManagerAsyncClient:
                 The name (project, location, cluster, node pool id) of
                 the node pool to get. Specified in the format
                 ``projects/*/locations/*/clusters/*/nodePools/*``.
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -2178,7 +2246,7 @@ class ClusterManagerAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            ~.cluster_service.NodePool:
+            google.cloud.container_v1.types.NodePool:
                 NodePool contains the name and
                 configuration for a cluster's node pool.
                 Node pools are a set of nodes (i.e.
@@ -2261,7 +2329,7 @@ class ClusterManagerAsyncClient:
         r"""Creates a node pool for a cluster.
 
         Args:
-            request (:class:`~.cluster_service.CreateNodePoolRequest`):
+            request (:class:`google.cloud.container_v1.types.CreateNodePoolRequest`):
                 The request object. CreateNodePoolRequest creates a node
                 pool for a cluster.
             project_id (:class:`str`):
@@ -2270,6 +2338,7 @@ class ClusterManagerAsyncClient:
                 number <https://developers.google.com/console/help/new/#projectnumber>`__.
                 This field has been deprecated and replaced by the
                 parent field.
+
                 This corresponds to the ``project_id`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -2278,6 +2347,7 @@ class ClusterManagerAsyncClient:
                 `zone <https://cloud.google.com/compute/docs/zones#available>`__
                 in which the cluster resides. This field has been
                 deprecated and replaced by the parent field.
+
                 This corresponds to the ``zone`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -2285,10 +2355,11 @@ class ClusterManagerAsyncClient:
                 Deprecated. The name of the cluster.
                 This field has been deprecated and
                 replaced by the parent field.
+
                 This corresponds to the ``cluster_id`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            node_pool (:class:`~.cluster_service.NodePool`):
+            node_pool (:class:`google.cloud.container_v1.types.NodePool`):
                 Required. The node pool to create.
                 This corresponds to the ``node_pool`` field
                 on the ``request`` instance; if ``request`` is provided, this
@@ -2297,6 +2368,7 @@ class ClusterManagerAsyncClient:
                 The parent (project, location, cluster id) where the
                 node pool will be created. Specified in the format
                 ``projects/*/locations/*/clusters/*``.
+
                 This corresponds to the ``parent`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -2308,7 +2380,7 @@ class ClusterManagerAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            ~.cluster_service.Operation:
+            google.cloud.container_v1.types.Operation:
                 This operation resource represents
                 operations that may have happened or are
                 happening on the cluster. All fields are
@@ -2377,7 +2449,7 @@ class ClusterManagerAsyncClient:
         r"""Deletes a node pool from a cluster.
 
         Args:
-            request (:class:`~.cluster_service.DeleteNodePoolRequest`):
+            request (:class:`google.cloud.container_v1.types.DeleteNodePoolRequest`):
                 The request object. DeleteNodePoolRequest deletes a node
                 pool for a cluster.
             project_id (:class:`str`):
@@ -2386,6 +2458,7 @@ class ClusterManagerAsyncClient:
                 number <https://developers.google.com/console/help/new/#projectnumber>`__.
                 This field has been deprecated and replaced by the name
                 field.
+
                 This corresponds to the ``project_id`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -2394,6 +2467,7 @@ class ClusterManagerAsyncClient:
                 `zone <https://cloud.google.com/compute/docs/zones#available>`__
                 in which the cluster resides. This field has been
                 deprecated and replaced by the name field.
+
                 This corresponds to the ``zone`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -2401,6 +2475,7 @@ class ClusterManagerAsyncClient:
                 Deprecated. The name of the cluster.
                 This field has been deprecated and
                 replaced by the name field.
+
                 This corresponds to the ``cluster_id`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -2409,6 +2484,7 @@ class ClusterManagerAsyncClient:
                 to delete. This field has been
                 deprecated and replaced by the name
                 field.
+
                 This corresponds to the ``node_pool_id`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -2416,6 +2492,7 @@ class ClusterManagerAsyncClient:
                 The name (project, location, cluster, node pool id) of
                 the node pool to delete. Specified in the format
                 ``projects/*/locations/*/clusters/*/nodePools/*``.
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -2427,7 +2504,7 @@ class ClusterManagerAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            ~.cluster_service.Operation:
+            google.cloud.container_v1.types.Operation:
                 This operation resource represents
                 operations that may have happened or are
                 happening on the cluster. All fields are
@@ -2506,7 +2583,7 @@ class ClusterManagerAsyncClient:
         successfully completed.
 
         Args:
-            request (:class:`~.cluster_service.RollbackNodePoolUpgradeRequest`):
+            request (:class:`google.cloud.container_v1.types.RollbackNodePoolUpgradeRequest`):
                 The request object. RollbackNodePoolUpgradeRequest
                 rollbacks the previously Aborted or Failed NodePool
                 upgrade. This will be an no-op if the last upgrade
@@ -2517,6 +2594,7 @@ class ClusterManagerAsyncClient:
                 number <https://support.google.com/cloud/answer/6158840>`__.
                 This field has been deprecated and replaced by the name
                 field.
+
                 This corresponds to the ``project_id`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -2525,6 +2603,7 @@ class ClusterManagerAsyncClient:
                 `zone <https://cloud.google.com/compute/docs/zones#available>`__
                 in which the cluster resides. This field has been
                 deprecated and replaced by the name field.
+
                 This corresponds to the ``zone`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -2533,6 +2612,7 @@ class ClusterManagerAsyncClient:
                 to rollback. This field has been
                 deprecated and replaced by the name
                 field.
+
                 This corresponds to the ``cluster_id`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -2541,6 +2621,7 @@ class ClusterManagerAsyncClient:
                 to rollback. This field has been
                 deprecated and replaced by the name
                 field.
+
                 This corresponds to the ``node_pool_id`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -2549,6 +2630,7 @@ class ClusterManagerAsyncClient:
                 the node poll to rollback upgrade. Specified in the
                 format
                 ``projects/*/locations/*/clusters/*/nodePools/*``.
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -2560,7 +2642,7 @@ class ClusterManagerAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            ~.cluster_service.Operation:
+            google.cloud.container_v1.types.Operation:
                 This operation resource represents
                 operations that may have happened or are
                 happening on the cluster. All fields are
@@ -2624,7 +2706,7 @@ class ClusterManagerAsyncClient:
         r"""Sets the NodeManagement options for a node pool.
 
         Args:
-            request (:class:`~.cluster_service.SetNodePoolManagementRequest`):
+            request (:class:`google.cloud.container_v1.types.SetNodePoolManagementRequest`):
                 The request object. SetNodePoolManagementRequest sets
                 the node management properties of a node pool.
 
@@ -2635,7 +2717,7 @@ class ClusterManagerAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            ~.cluster_service.Operation:
+            google.cloud.container_v1.types.Operation:
                 This operation resource represents
                 operations that may have happened or are
                 happening on the cluster. All fields are
@@ -2677,7 +2759,7 @@ class ClusterManagerAsyncClient:
         r"""Sets labels on a cluster.
 
         Args:
-            request (:class:`~.cluster_service.SetLabelsRequest`):
+            request (:class:`google.cloud.container_v1.types.SetLabelsRequest`):
                 The request object. SetLabelsRequest sets the Google
                 Cloud Platform labels on a Google Container Engine
                 cluster, which will in turn set them for Google Compute
@@ -2690,7 +2772,7 @@ class ClusterManagerAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            ~.cluster_service.Operation:
+            google.cloud.container_v1.types.Operation:
                 This operation resource represents
                 operations that may have happened or are
                 happening on the cluster. All fields are
@@ -2738,7 +2820,7 @@ class ClusterManagerAsyncClient:
         on a cluster.
 
         Args:
-            request (:class:`~.cluster_service.SetLegacyAbacRequest`):
+            request (:class:`google.cloud.container_v1.types.SetLegacyAbacRequest`):
                 The request object. SetLegacyAbacRequest enables or
                 disables the ABAC authorization mechanism for a cluster.
             project_id (:class:`str`):
@@ -2747,6 +2829,7 @@ class ClusterManagerAsyncClient:
                 number <https://support.google.com/cloud/answer/6158840>`__.
                 This field has been deprecated and replaced by the name
                 field.
+
                 This corresponds to the ``project_id`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -2755,6 +2838,7 @@ class ClusterManagerAsyncClient:
                 `zone <https://cloud.google.com/compute/docs/zones#available>`__
                 in which the cluster resides. This field has been
                 deprecated and replaced by the name field.
+
                 This corresponds to the ``zone`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -2763,12 +2847,14 @@ class ClusterManagerAsyncClient:
                 to update. This field has been
                 deprecated and replaced by the name
                 field.
+
                 This corresponds to the ``cluster_id`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
             enabled (:class:`bool`):
                 Required. Whether ABAC authorization
                 will be enabled in the cluster.
+
                 This corresponds to the ``enabled`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -2776,6 +2862,7 @@ class ClusterManagerAsyncClient:
                 The name (project, location, cluster id) of the cluster
                 to set legacy abac. Specified in the format
                 ``projects/*/locations/*/clusters/*``.
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -2787,7 +2874,7 @@ class ClusterManagerAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            ~.cluster_service.Operation:
+            google.cloud.container_v1.types.Operation:
                 This operation resource represents
                 operations that may have happened or are
                 happening on the cluster. All fields are
@@ -2855,7 +2942,7 @@ class ClusterManagerAsyncClient:
         r"""Starts master IP rotation.
 
         Args:
-            request (:class:`~.cluster_service.StartIPRotationRequest`):
+            request (:class:`google.cloud.container_v1.types.StartIPRotationRequest`):
                 The request object. StartIPRotationRequest creates a new
                 IP for the cluster and then performs a node upgrade on
                 each node pool to point to the new IP.
@@ -2865,6 +2952,7 @@ class ClusterManagerAsyncClient:
                 number <https://developers.google.com/console/help/new/#projectnumber>`__.
                 This field has been deprecated and replaced by the name
                 field.
+
                 This corresponds to the ``project_id`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -2873,6 +2961,7 @@ class ClusterManagerAsyncClient:
                 `zone <https://cloud.google.com/compute/docs/zones#available>`__
                 in which the cluster resides. This field has been
                 deprecated and replaced by the name field.
+
                 This corresponds to the ``zone`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -2880,6 +2969,7 @@ class ClusterManagerAsyncClient:
                 Deprecated. The name of the cluster.
                 This field has been deprecated and
                 replaced by the name field.
+
                 This corresponds to the ``cluster_id`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -2887,6 +2977,7 @@ class ClusterManagerAsyncClient:
                 The name (project, location, cluster id) of the cluster
                 to start IP rotation. Specified in the format
                 ``projects/*/locations/*/clusters/*``.
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -2898,7 +2989,7 @@ class ClusterManagerAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            ~.cluster_service.Operation:
+            google.cloud.container_v1.types.Operation:
                 This operation resource represents
                 operations that may have happened or are
                 happening on the cluster. All fields are
@@ -2964,7 +3055,7 @@ class ClusterManagerAsyncClient:
         r"""Completes master IP rotation.
 
         Args:
-            request (:class:`~.cluster_service.CompleteIPRotationRequest`):
+            request (:class:`google.cloud.container_v1.types.CompleteIPRotationRequest`):
                 The request object. CompleteIPRotationRequest moves the
                 cluster master back into single-IP mode.
             project_id (:class:`str`):
@@ -2973,6 +3064,7 @@ class ClusterManagerAsyncClient:
                 number <https://developers.google.com/console/help/new/#projectnumber>`__.
                 This field has been deprecated and replaced by the name
                 field.
+
                 This corresponds to the ``project_id`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -2981,6 +3073,7 @@ class ClusterManagerAsyncClient:
                 `zone <https://cloud.google.com/compute/docs/zones#available>`__
                 in which the cluster resides. This field has been
                 deprecated and replaced by the name field.
+
                 This corresponds to the ``zone`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -2988,6 +3081,7 @@ class ClusterManagerAsyncClient:
                 Deprecated. The name of the cluster.
                 This field has been deprecated and
                 replaced by the name field.
+
                 This corresponds to the ``cluster_id`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -2995,6 +3089,7 @@ class ClusterManagerAsyncClient:
                 The name (project, location, cluster id) of the cluster
                 to complete IP rotation. Specified in the format
                 ``projects/*/locations/*/clusters/*``.
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -3006,7 +3101,7 @@ class ClusterManagerAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            ~.cluster_service.Operation:
+            google.cloud.container_v1.types.Operation:
                 This operation resource represents
                 operations that may have happened or are
                 happening on the cluster. All fields are
@@ -3068,7 +3163,7 @@ class ClusterManagerAsyncClient:
         r"""Sets the size for a specific node pool.
 
         Args:
-            request (:class:`~.cluster_service.SetNodePoolSizeRequest`):
+            request (:class:`google.cloud.container_v1.types.SetNodePoolSizeRequest`):
                 The request object. SetNodePoolSizeRequest sets the size
                 a node pool.
 
@@ -3079,7 +3174,7 @@ class ClusterManagerAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            ~.cluster_service.Operation:
+            google.cloud.container_v1.types.Operation:
                 This operation resource represents
                 operations that may have happened or are
                 happening on the cluster. All fields are
@@ -3126,7 +3221,7 @@ class ClusterManagerAsyncClient:
         r"""Enables or disables Network Policy for a cluster.
 
         Args:
-            request (:class:`~.cluster_service.SetNetworkPolicyRequest`):
+            request (:class:`google.cloud.container_v1.types.SetNetworkPolicyRequest`):
                 The request object. SetNetworkPolicyRequest
                 enables/disables network policy for a cluster.
             project_id (:class:`str`):
@@ -3135,6 +3230,7 @@ class ClusterManagerAsyncClient:
                 number <https://developers.google.com/console/help/new/#projectnumber>`__.
                 This field has been deprecated and replaced by the name
                 field.
+
                 This corresponds to the ``project_id`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -3143,6 +3239,7 @@ class ClusterManagerAsyncClient:
                 `zone <https://cloud.google.com/compute/docs/zones#available>`__
                 in which the cluster resides. This field has been
                 deprecated and replaced by the name field.
+
                 This corresponds to the ``zone`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -3150,12 +3247,14 @@ class ClusterManagerAsyncClient:
                 Deprecated. The name of the cluster.
                 This field has been deprecated and
                 replaced by the name field.
+
                 This corresponds to the ``cluster_id`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            network_policy (:class:`~.cluster_service.NetworkPolicy`):
+            network_policy (:class:`google.cloud.container_v1.types.NetworkPolicy`):
                 Required. Configuration options for
                 the NetworkPolicy feature.
+
                 This corresponds to the ``network_policy`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -3163,6 +3262,7 @@ class ClusterManagerAsyncClient:
                 The name (project, location, cluster id) of the cluster
                 to set networking policy. Specified in the format
                 ``projects/*/locations/*/clusters/*``.
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -3174,7 +3274,7 @@ class ClusterManagerAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            ~.cluster_service.Operation:
+            google.cloud.container_v1.types.Operation:
                 This operation resource represents
                 operations that may have happened or are
                 happening on the cluster. All fields are
@@ -3243,13 +3343,14 @@ class ClusterManagerAsyncClient:
         r"""Sets the maintenance policy for a cluster.
 
         Args:
-            request (:class:`~.cluster_service.SetMaintenancePolicyRequest`):
+            request (:class:`google.cloud.container_v1.types.SetMaintenancePolicyRequest`):
                 The request object. SetMaintenancePolicyRequest sets the
                 maintenance policy for a cluster.
             project_id (:class:`str`):
                 Required. The Google Developers Console `project ID or
                 project
                 number <https://support.google.com/cloud/answer/6158840>`__.
+
                 This corresponds to the ``project_id`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -3257,19 +3358,22 @@ class ClusterManagerAsyncClient:
                 Required. The name of the Google Compute Engine
                 `zone <https://cloud.google.com/compute/docs/zones#available>`__
                 in which the cluster resides.
+
                 This corresponds to the ``zone`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
             cluster_id (:class:`str`):
                 Required. The name of the cluster to
                 update.
+
                 This corresponds to the ``cluster_id`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            maintenance_policy (:class:`~.cluster_service.MaintenancePolicy`):
+            maintenance_policy (:class:`google.cloud.container_v1.types.MaintenancePolicy`):
                 Required. The maintenance policy to
                 be set for the cluster. An empty field
                 clears the existing maintenance policy.
+
                 This corresponds to the ``maintenance_policy`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -3277,6 +3381,7 @@ class ClusterManagerAsyncClient:
                 The name (project, location, cluster id) of the cluster
                 to set maintenance policy. Specified in the format
                 ``projects/*/locations/*/clusters/*``.
+
                 This corresponds to the ``name`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
@@ -3288,7 +3393,7 @@ class ClusterManagerAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            ~.cluster_service.Operation:
+            google.cloud.container_v1.types.Operation:
                 This operation resource represents
                 operations that may have happened or are
                 happening on the cluster. All fields are
@@ -3355,7 +3460,7 @@ class ClusterManagerAsyncClient:
         clusters in a project.
 
         Args:
-            request (:class:`~.cluster_service.ListUsableSubnetworksRequest`):
+            request (:class:`google.cloud.container_v1.types.ListUsableSubnetworksRequest`):
                 The request object. ListUsableSubnetworksRequest
                 requests the list of usable subnetworks available to a
                 user for creating clusters.
@@ -3367,7 +3472,7 @@ class ClusterManagerAsyncClient:
                 sent along with the request as metadata.
 
         Returns:
-            ~.pagers.ListUsableSubnetworksAsyncPager:
+            google.cloud.container_v1.services.cluster_manager.pagers.ListUsableSubnetworksAsyncPager:
                 ListUsableSubnetworksResponse is the
                 response of
                 ListUsableSubnetworksRequest.
