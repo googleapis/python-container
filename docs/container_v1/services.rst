@@ -1,6 +1,6 @@
 Services for Google Container v1 API
 ====================================
-.. toctree::
-    :maxdepth: 2
 
-    cluster_manager
+.. automodule:: google.cloud.container_v1.services.cluster_manager
+    :members:
+    :inherited-members:
