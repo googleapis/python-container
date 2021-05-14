@@ -13,21 +13,3 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-from collections import OrderedDict
-from typing import Dict, Type
-
-from .base import ClusterManagerTransport
-from .grpc import ClusterManagerGrpcTransport
-from .grpc_asyncio import ClusterManagerGrpcAsyncIOTransport
-
-
-# Compile a registry of transports.
-_transport_registry = OrderedDict()  # type: Dict[str, Type[ClusterManagerTransport]]
-_transport_registry['grpc'] = ClusterManagerGrpcTransport
-_transport_registry['grpc_asyncio'] = ClusterManagerGrpcAsyncIOTransport
-
-__all__ = (
-    'ClusterManagerTransport',
-    'ClusterManagerGrpcTransport',
-    'ClusterManagerGrpcAsyncIOTransport',
-)
