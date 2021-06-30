@@ -79,7 +79,7 @@ for library in s.get_staging_dirs(default_version):
         "google/**/*client.py",
         "warnings\.DeprecationWarning",
         "DeprecationWarning"
-
+    )
     s.move(library / "tests")
     s.move(library / "scripts")
     s.move(library / "docs", excludes=["index.rst"])
