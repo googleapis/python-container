@@ -12,5 +12,5 @@
     "api_id": "container.googleapis.com",
     "codeowner_team": "@googleapis/anthos-dpe",
     "requires_billing": true,
-    "default_version": ""
+    "default_version": "v1"
 }
