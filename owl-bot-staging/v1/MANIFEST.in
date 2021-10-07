@@ -1,2 +1,0 @@
-recursive-include google/container *.py
-recursive-include google/container_v1 *.py
