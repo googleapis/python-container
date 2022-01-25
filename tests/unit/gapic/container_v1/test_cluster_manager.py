@@ -38,9 +38,6 @@ from google.cloud.container_v1.services.cluster_manager import transports
 from google.cloud.container_v1.types import cluster_service
 from google.oauth2 import service_account
 from google.protobuf import timestamp_pb2  # type: ignore
-from google.protobuf import wrappers_pb2  # type: ignore
-from google.rpc import code_pb2  # type: ignore
-from google.rpc import status_pb2  # type: ignore
 import google.auth
 
 
@@ -829,7 +826,6 @@ def test_get_cluster(request_type, transport: str = "grpc"):
             location="location_value",
             enable_tpu=True,
             tpu_ipv4_cidr_block="tpu_ipv4_cidr_block_value",
-            id="id_value",
         )
         response = client.get_cluster(request)
 
@@ -868,7 +864,6 @@ def test_get_cluster(request_type, transport: str = "grpc"):
     assert response.location == "location_value"
     assert response.enable_tpu is True
     assert response.tpu_ipv4_cidr_block == "tpu_ipv4_cidr_block_value"
-    assert response.id == "id_value"
 
 
 def test_get_cluster_empty_call():
@@ -931,7 +926,6 @@ async def test_get_cluster_async(
                 location="location_value",
                 enable_tpu=True,
                 tpu_ipv4_cidr_block="tpu_ipv4_cidr_block_value",
-                id="id_value",
             )
         )
         response = await client.get_cluster(request)
@@ -971,7 +965,6 @@ async def test_get_cluster_async(
     assert response.location == "location_value"
     assert response.enable_tpu is True
     assert response.tpu_ipv4_cidr_block == "tpu_ipv4_cidr_block_value"
-    assert response.id == "id_value"
 
 
 @pytest.mark.asyncio
@@ -9445,28 +9438,8 @@ def test_cluster_manager_transport_channel_mtls_with_adc(transport_class):
             assert transport.grpc_channel == mock_grpc_channel
 
 
-def test_topic_path():
-    project = "squid"
-    topic = "clam"
-    expected = "projects/{project}/topics/{topic}".format(project=project, topic=topic,)
-    actual = ClusterManagerClient.topic_path(project, topic)
-    assert expected == actual
-
-
-def test_parse_topic_path():
-    expected = {
-        "project": "whelk",
-        "topic": "octopus",
-    }
-    path = ClusterManagerClient.topic_path(**expected)
-
-    # Check that the path construction is reversible.
-    actual = ClusterManagerClient.parse_topic_path(path)
-    assert expected == actual
-
-
 def test_common_billing_account_path():
-    billing_account = "oyster"
+    billing_account = "squid"
     expected = "billingAccounts/{billing_account}".format(
         billing_account=billing_account,
     )
@@ -9476,7 +9449,7 @@ def test_common_billing_account_path():
 
 def test_parse_common_billing_account_path():
     expected = {
-        "billing_account": "nudibranch",
+        "billing_account": "clam",
     }
     path = ClusterManagerClient.common_billing_account_path(**expected)
 
@@ -9486,7 +9459,7 @@ def test_parse_common_billing_account_path():
 
 
 def test_common_folder_path():
-    folder = "cuttlefish"
+    folder = "whelk"
     expected = "folders/{folder}".format(folder=folder,)
     actual = ClusterManagerClient.common_folder_path(folder)
     assert expected == actual
@@ -9494,7 +9467,7 @@ def test_common_folder_path():
 
 def test_parse_common_folder_path():
     expected = {
-        "folder": "mussel",
+        "folder": "octopus",
     }
     path = ClusterManagerClient.common_folder_path(**expected)
 
@@ -9504,7 +9477,7 @@ def test_parse_common_folder_path():
 
 
 def test_common_organization_path():
-    organization = "winkle"
+    organization = "oyster"
     expected = "organizations/{organization}".format(organization=organization,)
     actual = ClusterManagerClient.common_organization_path(organization)
     assert expected == actual
@@ -9512,7 +9485,7 @@ def test_common_organization_path():
 
 def test_parse_common_organization_path():
     expected = {
-        "organization": "nautilus",
+        "organization": "nudibranch",
     }
     path = ClusterManagerClient.common_organization_path(**expected)
 
@@ -9522,7 +9495,7 @@ def test_parse_common_organization_path():
 
 
 def test_common_project_path():
-    project = "scallop"
+    project = "cuttlefish"
     expected = "projects/{project}".format(project=project,)
     actual = ClusterManagerClient.common_project_path(project)
     assert expected == actual
@@ -9530,7 +9503,7 @@ def test_common_project_path():
 
 def test_parse_common_project_path():
     expected = {
-        "project": "abalone",
+        "project": "mussel",
     }
     path = ClusterManagerClient.common_project_path(**expected)
 
@@ -9540,8 +9513,8 @@ def test_parse_common_project_path():
 
 
 def test_common_location_path():
-    project = "squid"
-    location = "clam"
+    project = "winkle"
+    location = "nautilus"
     expected = "projects/{project}/locations/{location}".format(
         project=project, location=location,
     )
@@ -9551,8 +9524,8 @@ def test_common_location_path():
 
 def test_parse_common_location_path():
     expected = {
-        "project": "whelk",
-        "location": "octopus",
+        "project": "scallop",
+        "location": "abalone",
     }
     path = ClusterManagerClient.common_location_path(**expected)
 

@@ -34,7 +34,6 @@ except AttributeError:  # pragma: NO COVER
 
 from google.cloud.container_v1.services.cluster_manager import pagers
 from google.cloud.container_v1.types import cluster_service
-from google.rpc import status_pb2  # type: ignore
 from .transports.base import ClusterManagerTransport, DEFAULT_CLIENT_INFO
 from .transports.grpc_asyncio import ClusterManagerGrpcAsyncIOTransport
 from .client import ClusterManagerClient
@@ -48,8 +47,6 @@ class ClusterManagerAsyncClient:
     DEFAULT_ENDPOINT = ClusterManagerClient.DEFAULT_ENDPOINT
     DEFAULT_MTLS_ENDPOINT = ClusterManagerClient.DEFAULT_MTLS_ENDPOINT
 
-    topic_path = staticmethod(ClusterManagerClient.topic_path)
-    parse_topic_path = staticmethod(ClusterManagerClient.parse_topic_path)
     common_billing_account_path = staticmethod(
         ClusterManagerClient.common_billing_account_path
     )
@@ -3191,15 +3188,12 @@ class ClusterManagerAsyncClient:
         timeout: float = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> cluster_service.Operation:
-        r"""Sets the size for a specific node pool. The new size will be
-        used for all replicas, including future replicas created by
-        modifying
-        [NodePool.locations][google.container.v1.NodePool.locations].
+        r"""Sets the size for a specific node pool.
 
         Args:
             request (Union[google.cloud.container_v1.types.SetNodePoolSizeRequest, dict]):
                 The request object. SetNodePoolSizeRequest sets the size
-                of a node pool.
+                a node pool.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.
