@@ -261,6 +261,9 @@ class ClusterManagerTransport(abc.ABC):
                 default_timeout=20.0,
                 client_info=client_info,
             ),
+            self.get_open_id_config: gapic_v1.method.wrap_method(
+                self.get_open_id_config, default_timeout=None, client_info=client_info,
+            ),
             self.get_json_web_keys: gapic_v1.method.wrap_method(
                 self.get_json_web_keys, default_timeout=None, client_info=client_info,
             ),
@@ -540,6 +543,18 @@ class ClusterManagerTransport(abc.ABC):
         Union[
             cluster_service.ListNodePoolsResponse,
             Awaitable[cluster_service.ListNodePoolsResponse],
+        ],
+    ]:
+        raise NotImplementedError()
+
+    @property
+    def get_open_id_config(
+        self,
+    ) -> Callable[
+        [cluster_service.GetOpenIDConfigRequest],
+        Union[
+            cluster_service.GetOpenIDConfigResponse,
+            Awaitable[cluster_service.GetOpenIDConfigResponse],
         ],
     ]:
         raise NotImplementedError()

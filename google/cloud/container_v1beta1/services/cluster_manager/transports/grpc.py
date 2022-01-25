@@ -740,6 +740,39 @@ class ClusterManagerGrpcTransport(ClusterManagerTransport):
         return self._stubs["list_node_pools"]
 
     @property
+    def get_open_id_config(
+        self,
+    ) -> Callable[
+        [cluster_service.GetOpenIDConfigRequest],
+        cluster_service.GetOpenIDConfigResponse,
+    ]:
+        r"""Return a callable for the get open id config method over gRPC.
+
+        Gets the OIDC discovery document for the cluster. See the
+        `OpenID Connect Discovery 1.0
+        specification <https://openid.net/specs/openid-connect-discovery-1_0.html>`__
+        for details. This API is not yet intended for general use, and
+        is not available for all clusters.
+
+        Returns:
+            Callable[[~.GetOpenIDConfigRequest],
+                    ~.GetOpenIDConfigResponse]:
+                A function that, when called, will call the underlying RPC
+                on the server.
+        """
+        # Generate a "stub function" on-the-fly which will actually make
+        # the request.
+        # gRPC handles serialization and deserialization, so we just need
+        # to pass in the functions for each.
+        if "get_open_id_config" not in self._stubs:
+            self._stubs["get_open_id_config"] = self.grpc_channel.unary_unary(
+                "/google.container.v1beta1.ClusterManager/GetOpenIDConfig",
+                request_serializer=cluster_service.GetOpenIDConfigRequest.serialize,
+                response_deserializer=cluster_service.GetOpenIDConfigResponse.deserialize,
+            )
+        return self._stubs["get_open_id_config"]
+
+    @property
     def get_json_web_keys(
         self,
     ) -> Callable[

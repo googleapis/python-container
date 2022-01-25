@@ -55,6 +55,11 @@
                 "get_node_pool"
               ]
             },
+            "GetOpenIDConfig": {
+              "methods": [
+                "get_open_id_config"
+              ]
+            },
             "GetOperation": {
               "methods": [
                 "get_operation"
@@ -223,6 +228,11 @@
             "GetNodePool": {
               "methods": [
                 "get_node_pool"
+              ]
+            },
+            "GetOpenIDConfig": {
+              "methods": [
+                "get_open_id_config"
               ]
             },
             "GetOperation": {

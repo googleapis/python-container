@@ -37,7 +37,6 @@ except AttributeError:  # pragma: NO COVER
 
 from google.cloud.container_v1.services.cluster_manager import pagers
 from google.cloud.container_v1.types import cluster_service
-from google.rpc import status_pb2  # type: ignore
 from .transports.base import ClusterManagerTransport, DEFAULT_CLIENT_INFO
 from .transports.grpc import ClusterManagerGrpcTransport
 from .transports.grpc_asyncio import ClusterManagerGrpcAsyncIOTransport
@@ -160,17 +159,6 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
                 instance.
         """
         return self._transport
-
-    @staticmethod
-    def topic_path(project: str, topic: str,) -> str:
-        """Returns a fully-qualified topic string."""
-        return "projects/{project}/topics/{topic}".format(project=project, topic=topic,)
-
-    @staticmethod
-    def parse_topic_path(path: str) -> Dict[str, str]:
-        """Parses a topic path into its component segments."""
-        m = re.match(r"^projects/(?P<project>.+?)/topics/(?P<topic>.+?)$", path)
-        return m.groupdict() if m else {}
 
     @staticmethod
     def common_billing_account_path(billing_account: str,) -> str:
@@ -3303,15 +3291,12 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         timeout: float = None,
         metadata: Sequence[Tuple[str, str]] = (),
     ) -> cluster_service.Operation:
-        r"""Sets the size for a specific node pool. The new size will be
-        used for all replicas, including future replicas created by
-        modifying
-        [NodePool.locations][google.container.v1.NodePool.locations].
+        r"""Sets the size for a specific node pool.
 
         Args:
             request (Union[google.cloud.container_v1.types.SetNodePoolSizeRequest, dict]):
                 The request object. SetNodePoolSizeRequest sets the size
-                of a node pool.
+                a node pool.
             retry (google.api_core.retry.Retry): Designation of what errors, if any,
                 should be retried.
             timeout (float): The timeout for this request.

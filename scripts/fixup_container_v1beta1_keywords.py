@@ -48,6 +48,7 @@ class containerCallTransformer(cst.CSTTransformer):
         'get_cluster': ('project_id', 'zone', 'cluster_id', 'name', ),
         'get_json_web_keys': ('parent', ),
         'get_node_pool': ('project_id', 'zone', 'cluster_id', 'node_pool_id', 'name', ),
+        'get_open_id_config': ('parent', ),
         'get_operation': ('project_id', 'zone', 'operation_id', 'name', ),
         'get_server_config': ('project_id', 'zone', 'name', ),
         'list_clusters': ('project_id', 'zone', 'parent', ),

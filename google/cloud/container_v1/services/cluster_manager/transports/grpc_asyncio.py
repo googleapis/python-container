@@ -1065,10 +1065,7 @@ class ClusterManagerGrpcAsyncIOTransport(ClusterManagerTransport):
     ]:
         r"""Return a callable for the set node pool size method over gRPC.
 
-        Sets the size for a specific node pool. The new size will be
-        used for all replicas, including future replicas created by
-        modifying
-        [NodePool.locations][google.container.v1.NodePool.locations].
+        Sets the size for a specific node pool.
 
         Returns:
             Callable[[~.SetNodePoolSizeRequest],
