@@ -4,6 +4,24 @@
 
 [1]: https://pypi.org/project/google-cloud-container/#history
 
+### [2.10.2](https://github.com/googleapis/python-container/compare/v2.10.1...v2.10.2) (2022-02-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* revert bad publishing (#184)
+
+### Bug Fixes
+
+* resolve DuplicateCredentialArgs error when using credentials_file ([07fbf3c](https://github.com/googleapis/python-container/commit/07fbf3cb1e140abf020e7cfbd083ed79aae701bf))
+* revert bad publishing ([#184](https://github.com/googleapis/python-container/issues/184)) ([cb840d0](https://github.com/googleapis/python-container/commit/cb840d0c776d38788eb7245b4867f60fdf4cf10c))
+* reverting unintentional breaking change: GetOpenIdConfigRequest, GetOpenIdConfigResponse ([#186](https://github.com/googleapis/python-container/issues/186)) ([f545e29](https://github.com/googleapis/python-container/commit/f545e29dfed1d631237c617ed4db5fcad51ee334))
+
+
+### Miscellaneous Chores
+
+* use gapic-generator-python 0.62.1 ([#188](https://github.com/googleapis/python-container/issues/188)) ([07fbf3c](https://github.com/googleapis/python-container/commit/07fbf3cb1e140abf020e7cfbd083ed79aae701bf))
+
 ### [2.10.1](https://www.github.com/googleapis/python-container/compare/v2.10.0...v2.10.1) (2021-11-01)
 
 
