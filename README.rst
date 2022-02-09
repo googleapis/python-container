@@ -79,6 +79,31 @@ Windows
     <your-env>\Scripts\activate
     <your-env>\Scripts\pip.exe install google-cloud-container
 
+Once you have the virtual environment setup and activated, you can install the library:
+
+.. code-block:: console
+   
+   pip install google-cloud-container
+
+Using the client library
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: python
+
+   from google.cloud import container_v1
+   
+   project_id = "GCP_PROJECT_ID"
+   location = "GCP_ZONE"
+   
+   gcp_client = container_v1.ClusterManagerClient()
+   clusterLocation = client.common_location_path(project_id, location)
+   
+   request = { 'parent': clusterLocation }
+   listResponse = client.list_clusters(request)
+
+   print(f"There were {len(listResponse.clusters)} clusters in {location} for project {project_id}.")
+   for cluster in listResponse.clusters:
+      print(f"- {cluster.name}")
 
 Next Steps
 ~~~~~~~~~~
