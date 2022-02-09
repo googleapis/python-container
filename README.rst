@@ -88,7 +88,10 @@ Once you have the virtual environment setup and activated, you can install the l
 Using the client library
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-See the examples in the [samples](/samples) directory. You can start with [quickstart.py](/samples/quickstart.py)
+See the examples in the `samples`_ directory. You can start with `quickstart.py`_.
+
+.. _samples: /samples
+.. _quickstart.py: /samples/quickstart.py
 
 Next Steps
 ~~~~~~~~~~
