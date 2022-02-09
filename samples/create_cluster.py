@@ -62,7 +62,6 @@ def create_cluster(client: container_v1.ClusterManagerClient,
     }
     # Create the request object with the location identifier.
     request = {'parent': cluster_location, 'cluster': cluster_def}
-    # Create the cliuster
     create_response = client.create_cluster(request)
     op_identifier = f"{cluster_location}/operations/{create_response.name}"
     # poll for the operation status and schedule a retry until the cluster is created

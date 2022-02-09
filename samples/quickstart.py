@@ -10,7 +10,6 @@ def list_clusters(client: container_v1.ClusterManagerClient, project_id: str, lo
     clusterLocation = client.common_location_path(project_id, location)
     # Create the request object with the location identifier.
     request = { 'parent': clusterLocation }
-    # List all the clusters in the project and location identified by the `clusterLocation` identifier.
     listResponse = client.list_clusters(request)
 
     print(f"There were {len(listResponse.clusters)} clusters in {location} for project {project_id}.")

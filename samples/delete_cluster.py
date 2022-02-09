@@ -56,7 +56,6 @@ def delete_cluster(client: container_v1.ClusterManagerClient,
     cluster_name = f"{cluster_location}/clusters/{cluster_name}"
     # Create the request object with the location identifier.
     request = {'name': cluster_name}
-    # Delete the cliuster
     delete_response = client.delete_cluster(request)
     op_identifier = f"{cluster_location}/operations/{delete_response.name}"
     # poll for the operation status and schedule a retry until the cluster is deleted
