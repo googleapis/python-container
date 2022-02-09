@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
+# [START gke_delete_cluster]
 import argparse
 import backoff
 from google.cloud import container_v1
@@ -90,3 +90,4 @@ if __name__ == "__main__":
     # Initialize the Cluster management client.
     gcp_client = container_v1.ClusterManagerClient()
     delete_cluster(gcp_client, args.project_id, args.zone, args.cluster_name)
+# [END gke_delete_cluster]

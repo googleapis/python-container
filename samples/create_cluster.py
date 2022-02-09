@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
+# [START gke_create_cluster]
 import argparse
 import backoff
 from google.cloud import container_v1
@@ -57,7 +57,7 @@ def poll_for_op_status(client: container_v1.ClusterManagerClient, op_id: str):
     This function calls the Operation API in GCP with the given operation id. It
     serves as a simple retry function that fetches the operation and returns
     it's status.
-    
+
     We use the 'backoff' python module to provide us the implementation of the
     backoff & retry strategy. The function is annotated with the `backoff` 
     python module to schedule this function based on a reasonable backoff
@@ -67,10 +67,10 @@ def poll_for_op_status(client: container_v1.ClusterManagerClient, op_id: str):
     return op.status
 
 
-def create_cluster(client: container_v1.ClusterManagerClient,
-                   project_id: str, location: str, cluster_name: str) -> None:
+def create_cluster(project_id: str, location: str, cluster_name: str) -> None:
     """Create a new GKE cluster in the given GCP Project and Zone"""
-
+    # Initialize the Cluster management client.
+    client = container_v1.ClusterManagerClient()
     # Create a fully qualified location identifier of form `projects/{project_id}/location/{zone}'.
     cluster_location = client.common_location_path(project_id, location)
     cluster_def = {
@@ -97,6 +97,5 @@ if __name__ == "__main__":
     parser.add_argument("cluster_name", help="Name to be given to the GKE Cluster")
     args = parser.parse_args()
 
-    # Initialize the Cluster management client.
-    gcp_client = container_v1.ClusterManagerClient()
-    create_cluster(gcp_client, args.project_id, args.zone, args.cluster_name)
+    create_cluster(args.project_id, args.zone, args.cluster_name)
+# [END gke_create_cluster]

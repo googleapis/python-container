@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
+# [START gke_list_cluster]
 import argparse
 from google.cloud import container_v1
 
@@ -42,3 +42,4 @@ if __name__ == "__main__":
     # Initialize the Cluster management client.
     gcp_client = container_v1.ClusterManagerClient()
     list_clusters(gcp_client, args.project_id, args.zone)
+# [END gke_list_cluster]
