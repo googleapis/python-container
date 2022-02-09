@@ -54,10 +54,14 @@ def on_failure(details):
     on_success=on_success)
 def poll_for_op_status(client: container_v1.ClusterManagerClient, op_id: str):
     """
-    A simple retry function that fetches the operation and returns it's status.
-
-    The function is annotated with the `backoff` python module to schedule this
-    function based on a reasonable backoff algorithm
+    This function calls the Operation API in GCP with the given operation id. It
+    serves as a simple retry function that fetches the operation and returns
+    it's status.
+    
+    We use the 'backoff' python module to provide us the implementation of the
+    backoff & retry strategy. The function is annotated with the `backoff` 
+    python module to schedule this function based on a reasonable backoff
+    algorithm.
     """
     op = client.get_operation({'name': op_id})
     return op.status
