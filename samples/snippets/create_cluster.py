@@ -15,11 +15,14 @@
 
 # [START gke_create_cluster]
 import argparse
+import sys
+from typing import Dict
+
 import backoff
 from google.cloud import container_v1
 
 
-def on_success(details):
+def on_success(details: Dict[str, str]) -> None:
     """
     A handler function to pass into the retry backoff algorithm as the function
     to be executed upon a successful attempt.
@@ -30,7 +33,7 @@ def on_success(details):
     print("Successfully created cluster after {elapsed:0.1f} seconds".format(**details))
 
 
-def on_failure(details):
+def on_failure(details: Dict[str, str]) -> None:
     """
     A handler function to pass into the retry backoff algorithm as the function
     to be executed upon a failed attempt.
@@ -52,17 +55,18 @@ def on_failure(details):
     on_backoff=on_failure,
     # function to execute upon a successful attempt and no more retries needed
     on_success=on_success)
-def poll_for_op_status(client: container_v1.ClusterManagerClient, op_id: str):
+def poll_for_op_status(client: container_v1.ClusterManagerClient, op_id: str) -> bool:
     """
     This function calls the Operation API in GCP with the given operation id. It
     serves as a simple retry function that fetches the operation and returns
     it's status.
 
     We use the 'backoff' python module to provide us the implementation of the
-    backoff & retry strategy. The function is annotated with the `backoff` 
+    backoff & retry strategy. The function is annotated with the `backoff`
     python module to schedule this function based on a reasonable backoff
     algorithm.
     """
+
     op = client.get_operation({'name': op_id})
     return op.status
 
@@ -96,6 +100,10 @@ if __name__ == "__main__":
     parser.add_argument("zone", help="GKE Cluster zone")
     parser.add_argument("cluster_name", help="Name to be given to the GKE Cluster")
     args = parser.parse_args()
+
+    if len(sys.argv) != 4:
+        parser.print_usage()
+        sys.exit(1)
 
     create_cluster(args.project_id, args.zone, args.cluster_name)
 # [END gke_create_cluster]

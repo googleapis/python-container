@@ -91,7 +91,7 @@ Using the client library
 See the examples in the `samples`_ directory. You can start with `quickstart.py`_.
 
 .. _samples: /samples
-.. _quickstart.py: /samples/quickstart.py
+.. _quickstart.py: /samples/snippets/quickstart.py
 
 Next Steps
 ~~~~~~~~~~
