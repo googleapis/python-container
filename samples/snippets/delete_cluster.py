@@ -54,7 +54,8 @@ def on_failure(details: Dict[str, str]) -> None:
     # function to execute upon a failure and when a retry a scheduled
     on_backoff=on_failure,
     # function to execute upon a successful attempt and no more retries needed
-    on_success=on_success)
+    on_success=on_success,
+)
 def poll_for_op_status(client: container_v1.ClusterManagerClient, op_id: str) -> bool:
     """
     A simple retry function that fetches the operation and returns it's status.
@@ -63,7 +64,7 @@ def poll_for_op_status(client: container_v1.ClusterManagerClient, op_id: str) ->
     function based on a reasonable backoff algorithm
     """
 
-    op = client.get_operation({'name': op_id})
+    op = client.get_operation({"name": op_id})
     return op.status
 
 
@@ -76,7 +77,7 @@ def delete_cluster(project_id: str, location: str, cluster_name: str) -> None:
     cluster_location = client.common_location_path(project_id, location)
     cluster_name = f"{cluster_location}/clusters/{cluster_name}"
     # Create the request object with the location identifier.
-    request = {'name': cluster_name}
+    request = {"name": cluster_name}
     delete_response = client.delete_cluster(request)
     op_identifier = f"{cluster_location}/operations/{delete_response.name}"
     # poll for the operation status and schedule a retry until the cluster is deleted
@@ -85,7 +86,8 @@ def delete_cluster(project_id: str, location: str, cluster_name: str) -> None:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-        description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter,
+        description=__doc__,
+        formatter_class=argparse.RawDescriptionHelpFormatter,
     )
     parser.add_argument("project_id", help="Google Cloud project ID")
     parser.add_argument("zone", help="GKE Cluster zone")

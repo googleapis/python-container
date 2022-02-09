@@ -28,10 +28,12 @@ def list_clusters(project_id: str, location: str) -> None:
     # Create a fully qualified location identifier of form `projects/{project_id}/location/{zone}'.
     clusterLocation = client.common_location_path(project_id, location)
     # Create the request object with the location identifier.
-    request = {'parent': clusterLocation}
+    request = {"parent": clusterLocation}
     listResponse = client.list_clusters(request)
 
-    print(f"There were {len(listResponse.clusters)} clusters in {location} for project {project_id}.")
+    print(
+        f"There were {len(listResponse.clusters)} clusters in {location} for project {project_id}."
+    )
     for cluster in listResponse.clusters:
         print(f"- {cluster.name}")
 
@@ -39,7 +41,8 @@ def list_clusters(project_id: str, location: str) -> None:
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(
-        description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter,
+        description=__doc__,
+        formatter_class=argparse.RawDescriptionHelpFormatter,
     )
     parser.add_argument("project_id", help="Google Cloud project ID")
     parser.add_argument("zone", help="GKE Cluster zone")
