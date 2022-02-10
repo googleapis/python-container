@@ -54,7 +54,8 @@ def on_failure(details: Dict[str, str]) -> None:
     # function to execute upon a failure and when a retry a scheduled
     on_backoff=on_failure,
     # function to execute upon a successful attempt and no more retries needed
-    on_success=on_success)
+    on_success=on_success,
+)
 def poll_for_op_status(client: container_v1.ClusterManagerClient, op_id: str) -> bool:
     """
     This function calls the Operation API in GCP with the given operation id. It
@@ -67,7 +68,7 @@ def poll_for_op_status(client: container_v1.ClusterManagerClient, op_id: str) ->
     algorithm.
     """
 
-    op = client.get_operation({'name': op_id})
+    op = client.get_operation({"name": op_id})
     return op.status
 
 
@@ -78,14 +79,12 @@ def create_cluster(project_id: str, location: str, cluster_name: str) -> None:
     # Create a fully qualified location identifier of form `projects/{project_id}/location/{zone}'.
     cluster_location = client.common_location_path(project_id, location)
     cluster_def = {
-        'name': cluster_name,
-        'initial_node_count': 2,
-        'node_config': {
-            'machine_type': "e2-standard-2"
-        },
+        "name": cluster_name,
+        "initial_node_count": 2,
+        "node_config": {"machine_type": "e2-standard-2"},
     }
     # Create the request object with the location identifier.
-    request = {'parent': cluster_location, 'cluster': cluster_def}
+    request = {"parent": cluster_location, "cluster": cluster_def}
     create_response = client.create_cluster(request)
     op_identifier = f"{cluster_location}/operations/{create_response.name}"
     # poll for the operation status and schedule a retry until the cluster is created
@@ -94,7 +93,8 @@ def create_cluster(project_id: str, location: str, cluster_name: str) -> None:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-        description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter,
+        description=__doc__,
+        formatter_class=argparse.RawDescriptionHelpFormatter,
     )
     parser.add_argument("project_id", help="Google Cloud project ID")
     parser.add_argument("zone", help="GKE Cluster zone")
