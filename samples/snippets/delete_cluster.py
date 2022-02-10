@@ -56,7 +56,8 @@ def on_failure(details: Dict[str, str]) -> None:
     # function to execute upon a successful attempt and no more retries needed
     on_success=on_success,
 )
-def poll_for_op_status(client: container_v1.ClusterManagerClient, op_id: str) -> bool:
+def poll_for_op_status(
+        client: container_v1.ClusterManagerClient, op_id: str) -> container_v1.Operation.Status:
     """
     A simple retry function that fetches the operation and returns it's status.
 

@@ -26,15 +26,15 @@ def list_clusters(project_id: str, location: str) -> None:
     # Initialize the Cluster management client.
     client = container_v1.ClusterManagerClient()
     # Create a fully qualified location identifier of form `projects/{project_id}/location/{zone}'.
-    clusterLocation = client.common_location_path(project_id, location)
+    cluster_location = client.common_location_path(project_id, location)
     # Create the request object with the location identifier.
-    request = {"parent": clusterLocation}
-    listResponse = client.list_clusters(request)
+    request = {"parent": cluster_location}
+    list_response = client.list_clusters(request)
 
     print(
-        f"There were {len(listResponse.clusters)} clusters in {location} for project {project_id}."
+        f"There were {len(list_response.clusters)} clusters in {location} for project {project_id}."
     )
-    for cluster in listResponse.clusters:
+    for cluster in list_response.clusters:
         print(f"- {cluster.name}")
 
 
