@@ -48,7 +48,7 @@ if __name__ == "__main__":
     parser.add_argument("zone", help="GKE Cluster zone")
     args = parser.parse_args()
 
-    if len(sys.argv) != 4:
+    if len(sys.argv) != 3:
         parser.print_usage()
         sys.exit(1)
 
