@@ -30,7 +30,9 @@ def setup_and_tear_down() -> None:
     op_id = f"{cluster_location}/operations/{op.name}"
 
     # schedule a retry to ensure the cluster is created
-    @backoff.on_predicate(backoff.expo, lambda x: x != gke.Operation.Status.DONE, max_tries=20)
+    @backoff.on_predicate(
+        backoff.expo, lambda x: x != gke.Operation.Status.DONE, max_tries=20
+    )
     def wait_for_create() -> gke.Operation.Status:
         return client.get_operation({"name": op_id}).status
 
@@ -49,7 +51,9 @@ def setup_and_tear_down() -> None:
         op_id = f"{cluster_location}/operations/{op.name}"
 
         # schedule a retry to ensure the cluster is deleted
-        @backoff.on_predicate(backoff.expo, lambda x: x != gke.Operation.Status.DONE, max_tries=20)
+        @backoff.on_predicate(
+            backoff.expo, lambda x: x != gke.Operation.Status.DONE, max_tries=20
+        )
         def wait_for_delete() -> gke.Operation.Status:
             return client.get_operation({"name": op_id}).status
 

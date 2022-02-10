@@ -57,7 +57,8 @@ def on_failure(details: Dict[str, str]) -> None:
     on_success=on_success,
 )
 def poll_for_op_status(
-        client: container_v1.ClusterManagerClient, op_id: str) -> container_v1.Operation.Status:
+    client: container_v1.ClusterManagerClient, op_id: str
+) -> container_v1.Operation.Status:
     """
     A simple retry function that fetches the operation and returns it's status.
 
@@ -87,8 +88,7 @@ def delete_cluster(project_id: str, location: str, cluster_name: str) -> None:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-        description=__doc__,
-        formatter_class=argparse.RawDescriptionHelpFormatter,
+        description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter,
     )
     parser.add_argument("project_id", help="Google Cloud project ID")
     parser.add_argument("zone", help="GKE Cluster zone")

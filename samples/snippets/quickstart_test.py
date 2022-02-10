@@ -13,7 +13,7 @@ def test_list_clusters(capsys: object) -> None:
     gke_list.list_clusters(PROJECT_ID, ZONE)
     out, _ = capsys.readouterr()
 
-    '''
+    """
     Typical output looks as follows:
 
       There were 3 clusters in us-central1-b for project test-project.
@@ -29,12 +29,12 @@ def test_list_clusters(capsys: object) -> None:
             "- cluster3",
             "",
         ]
-    '''
+    """
     out_lines = out.split("\n")
     first_line = out_lines[0]
     first_line = first_line.replace(output_prefix, "")
     first_line = first_line.replace(output_suffix, "")
-    cluster_count = int(first_line)   # get the cluster count in the first line
+    cluster_count = int(first_line)  # get the cluster count in the first line
 
     assert output_suffix in out
     assert cluster_count == len(out_lines) - 2
