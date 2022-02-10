@@ -3,8 +3,8 @@ import uuid
 
 import backoff
 
-from google.cloud import container_v1 as gke
 from google.api_core import exceptions as googleEx
+from google.cloud import container_v1 as gke
 
 import pytest
 
@@ -58,8 +58,8 @@ def setup_and_tear_down() -> None:
             return client.get_operation({"name": op_id}).status
 
         wait_for_delete()
-    except googleEx.NotFound as e:
-        # if the delete test passed this won't be necessary
+    except googleEx.NotFound:
+        # if the delete test passed then this is bound to happen
         pass
 
 
