@@ -91,7 +91,7 @@ def create_cluster(project_id: str, location: str, cluster_name: str) -> None:
     op_identifier = f"{cluster_location}/operations/{create_response.name}"
     # poll for the operation status and schedule a retry until the cluster is created
     poll_for_op_status(client, op_identifier)
-
+# [END gke_create_cluster]
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
@@ -107,4 +107,3 @@ if __name__ == "__main__":
         sys.exit(1)
 
     create_cluster(args.project_id, args.zone, args.cluster_name)
-# [END gke_create_cluster]
