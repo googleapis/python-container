@@ -36,7 +36,7 @@ def list_clusters(project_id: str, location: str) -> None:
     )
     for cluster in list_response.clusters:
         print(f"- {cluster.name}")
-
+# [END gke_list_cluster]
 
 if __name__ == "__main__":
 
@@ -52,4 +52,3 @@ if __name__ == "__main__":
         sys.exit(1)
 
     list_clusters(args.project_id, args.zone)
-# [END gke_list_cluster]
