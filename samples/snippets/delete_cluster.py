@@ -84,6 +84,8 @@ def delete_cluster(project_id: str, location: str, cluster_name: str) -> None:
     op_identifier = f"{cluster_location}/operations/{delete_response.name}"
     # poll for the operation status and schedule a retry until the cluster is deleted
     poll_for_op_status(client, op_identifier)
+
+
 # [END gke_delete_cluster]
 
 if __name__ == "__main__":
