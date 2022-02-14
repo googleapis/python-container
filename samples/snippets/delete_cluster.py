@@ -82,7 +82,7 @@ def delete_cluster(project_id: str, location: str, cluster_name: str) -> None:
     request = {"name": cluster_name}
     delete_response = client.delete_cluster(request)
     op_identifier = f"{cluster_location}/operations/{delete_response.name}"
-    # poll for the operation status and schedule a retry until the cluster is deleted
+    # poll for the operation status until the cluster is deleted
     poll_for_op_status(client, op_identifier)
 
 
