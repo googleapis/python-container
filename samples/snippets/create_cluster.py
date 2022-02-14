@@ -93,6 +93,8 @@ def create_cluster(project_id: str, location: str, cluster_name: str) -> None:
     poll_for_op_status(client, op_identifier)
 
 
+# [END gke_create_cluster]
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter,
@@ -107,4 +109,3 @@ if __name__ == "__main__":
         sys.exit(1)
 
     create_cluster(args.project_id, args.zone, args.cluster_name)
-# [END gke_create_cluster]

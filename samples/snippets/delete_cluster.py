@@ -51,7 +51,7 @@ def on_failure(details: Dict[str, str]) -> None:
     lambda x: x != container_v1.Operation.Status.DONE,
     # maximum number of times to retry before giving up
     max_tries=20,
-    # function to execute upon a failure and when a retry a scheduled
+    # function to execute upon a failure and when a retry is scheduled
     on_backoff=on_failure,
     # function to execute upon a successful attempt and no more retries needed
     on_success=on_success,
@@ -82,9 +82,11 @@ def delete_cluster(project_id: str, location: str, cluster_name: str) -> None:
     request = {"name": cluster_name}
     delete_response = client.delete_cluster(request)
     op_identifier = f"{cluster_location}/operations/{delete_response.name}"
-    # poll for the operation status and schedule a retry until the cluster is deleted
+    # poll for the operation status until the cluster is deleted
     poll_for_op_status(client, op_identifier)
 
+
+# [END gke_delete_cluster]
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
@@ -100,4 +102,3 @@ if __name__ == "__main__":
         sys.exit(1)
 
     delete_cluster(args.project_id, args.zone, args.cluster_name)
-# [END gke_delete_cluster]
