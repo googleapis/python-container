@@ -51,7 +51,7 @@ def on_failure(details: Dict[str, str]) -> None:
     lambda x: x != container_v1.Operation.Status.DONE,
     # maximum number of times to retry before giving up
     max_tries=20,
-    # function to execute upon a failure and when a retry a scheduled
+    # function to execute upon a failure and when a retry is scheduled
     on_backoff=on_failure,
     # function to execute upon a successful attempt and no more retries needed
     on_success=on_success,
