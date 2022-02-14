@@ -22,7 +22,7 @@ import setuptools
 
 name = "google-cloud-container"
 description = "Google Container Engine API client library"
-version = "2.10.3"
+version = "2.10.4"
 # Should be one of:
 # 'Development Status :: 3 - Alpha'
 # 'Development Status :: 4 - Beta'
@@ -35,9 +35,8 @@ dependencies = [
     "google-api-core[grpc] >= 1.28.0, <3.0.0dev",
     "grpc-google-iam-v1 >= 0.12.3, < 0.13dev",
     "proto-plus >= 1.15.0",
-    "libcst >= 0.2.5",
 ]
-extras = {}
+extras = {"libcst": "libcst >= 0.2.5"}
 
 
 # Setup boilerplate below this line.
