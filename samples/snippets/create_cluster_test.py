@@ -44,7 +44,7 @@ def setup_and_tear_down() -> None:
         cluster_name = f"{cluster_location}/clusters/{CLUSTER_NAME}"
         op = client.delete_cluster({"name": cluster_name})
         op_id = f"{cluster_location}/operations/{op.name}"
-    
+
     finally:
         # schedule a retry to ensure the cluster is deleted
         @backoff.on_predicate(
