@@ -3354,9 +3354,7 @@ class ClusterManagerAsyncClient:
         project_id: str = None,
         zone: str = None,
         cluster_id: str = None,
-        resource_labels: Sequence[
-            cluster_service.SetLabelsRequest.ResourceLabelsEntry
-        ] = None,
+        resource_labels: Mapping[str, str] = None,
         label_fingerprint: str = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
         timeout: float = None,
@@ -3420,7 +3418,7 @@ class ClusterManagerAsyncClient:
                 This corresponds to the ``cluster_id`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            resource_labels (:class:`Sequence[google.cloud.container_v1beta1.types.SetLabelsRequest.ResourceLabelsEntry]`):
+            resource_labels (:class:`Mapping[str, str]`):
                 Required. The labels to set for that
                 cluster.
 
