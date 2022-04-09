@@ -16,7 +16,7 @@
 from collections import OrderedDict
 import os
 import re
-from typing import Dict, Optional, Sequence, Tuple, Type, Union
+from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union
 import pkg_resources
 import warnings
 
@@ -439,7 +439,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import container_v1beta1
+                    from google.cloud import container_v1beta1
 
             def sample_list_clusters():
                 # Create a client
@@ -552,7 +552,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import container_v1beta1
+                    from google.cloud import container_v1beta1
 
             def sample_get_cluster():
                 # Create a client
@@ -688,7 +688,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import container_v1beta1
+                    from google.cloud import container_v1beta1
 
             def sample_create_cluster():
                 # Create a client
@@ -813,7 +813,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import container_v1beta1
+                    from google.cloud import container_v1beta1
 
             def sample_update_cluster():
                 # Create a client
@@ -948,7 +948,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import container_v1beta1
+                    from google.cloud import container_v1beta1
 
             def sample_update_node_pool():
                 # Create a client
@@ -1031,7 +1031,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import container_v1beta1
+                    from google.cloud import container_v1beta1
 
             def sample_set_node_pool_autoscaling():
                 # Create a client
@@ -1116,7 +1116,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import container_v1beta1
+                    from google.cloud import container_v1beta1
 
             def sample_set_logging_service():
                 # Create a client
@@ -1266,7 +1266,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import container_v1beta1
+                    from google.cloud import container_v1beta1
 
             def sample_set_monitoring_service():
                 # Create a client
@@ -1418,7 +1418,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import container_v1beta1
+                    from google.cloud import container_v1beta1
 
             def sample_set_addons_config():
                 # Create a client
@@ -1559,7 +1559,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import container_v1beta1
+                    from google.cloud import container_v1beta1
 
             def sample_set_locations():
                 # Create a client
@@ -1708,7 +1708,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import container_v1beta1
+                    from google.cloud import container_v1beta1
 
             def sample_update_master():
                 # Create a client
@@ -1858,7 +1858,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import container_v1beta1
+                    from google.cloud import container_v1beta1
 
             def sample_set_master_auth():
                 # Create a client
@@ -1950,7 +1950,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import container_v1beta1
+                    from google.cloud import container_v1beta1
 
             def sample_delete_cluster():
                 # Create a client
@@ -2078,7 +2078,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import container_v1beta1
+                    from google.cloud import container_v1beta1
 
             def sample_list_operations():
                 # Create a client
@@ -2192,7 +2192,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import container_v1beta1
+                    from google.cloud import container_v1beta1
 
             def sample_get_operation():
                 # Create a client
@@ -2318,7 +2318,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import container_v1beta1
+                    from google.cloud import container_v1beta1
 
             def sample_cancel_operation():
                 # Create a client
@@ -2431,7 +2431,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import container_v1beta1
+                    from google.cloud import container_v1beta1
 
             def sample_get_server_config():
                 # Create a client
@@ -2544,7 +2544,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import container_v1beta1
+                    from google.cloud import container_v1beta1
 
             def sample_list_node_pools():
                 # Create a client
@@ -2669,7 +2669,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import container_v1beta1
+                    from google.cloud import container_v1beta1
 
             def sample_get_json_web_keys():
                 # Create a client
@@ -2750,7 +2750,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import container_v1beta1
+                    from google.cloud import container_v1beta1
 
             def sample_get_node_pool():
                 # Create a client
@@ -2928,7 +2928,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import container_v1beta1
+                    from google.cloud import container_v1beta1
 
             def sample_create_node_pool():
                 # Create a client
@@ -3062,7 +3062,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import container_v1beta1
+                    from google.cloud import container_v1beta1
 
             def sample_delete_node_pool():
                 # Create a client
@@ -3204,7 +3204,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import container_v1beta1
+                    from google.cloud import container_v1beta1
 
             def sample_rollback_node_pool_upgrade():
                 # Create a client
@@ -3349,7 +3349,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import container_v1beta1
+                    from google.cloud import container_v1beta1
 
             def sample_set_node_pool_management():
                 # Create a client
@@ -3491,9 +3491,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         project_id: str = None,
         zone: str = None,
         cluster_id: str = None,
-        resource_labels: Sequence[
-            cluster_service.SetLabelsRequest.ResourceLabelsEntry
-        ] = None,
+        resource_labels: Mapping[str, str] = None,
         label_fingerprint: str = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
         timeout: float = None,
@@ -3503,7 +3501,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import container_v1beta1
+                    from google.cloud import container_v1beta1
 
             def sample_set_labels():
                 # Create a client
@@ -3557,7 +3555,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
                 This corresponds to the ``cluster_id`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            resource_labels (Sequence[google.cloud.container_v1beta1.types.SetLabelsRequest.ResourceLabelsEntry]):
+            resource_labels (Mapping[str, str]):
                 Required. The labels to set for that
                 cluster.
 
@@ -3661,7 +3659,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import container_v1beta1
+                    from google.cloud import container_v1beta1
 
             def sample_set_legacy_abac():
                 # Create a client
@@ -3798,7 +3796,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import container_v1beta1
+                    from google.cloud import container_v1beta1
 
             def sample_start_ip_rotation():
                 # Create a client
@@ -3925,7 +3923,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import container_v1beta1
+                    from google.cloud import container_v1beta1
 
             def sample_complete_ip_rotation():
                 # Create a client
@@ -4052,7 +4050,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import container_v1beta1
+                    from google.cloud import container_v1beta1
 
             def sample_set_node_pool_size():
                 # Create a client
@@ -4136,7 +4134,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import container_v1beta1
+                    from google.cloud import container_v1beta1
 
             def sample_set_network_policy():
                 # Create a client
@@ -4272,7 +4270,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import container_v1beta1
+                    from google.cloud import container_v1beta1
 
             def sample_set_maintenance_policy():
                 # Create a client
@@ -4403,7 +4401,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import container_v1beta1
+                    from google.cloud import container_v1beta1
 
             def sample_list_usable_subnetworks():
                 # Create a client
@@ -4516,7 +4514,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
 
         .. code-block:: python
 
-            from google.cloud import container_v1beta1
+                    from google.cloud import container_v1beta1
 
             def sample_list_locations():
                 # Create a client
