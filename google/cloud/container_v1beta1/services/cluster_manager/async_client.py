@@ -16,7 +16,7 @@
 from collections import OrderedDict
 import functools
 import re
-from typing import Dict, Optional, Sequence, Tuple, Type, Union
+from typing import Dict, Mapping, Optional, Sequence, Tuple, Type, Union
 import pkg_resources
 import warnings
 
@@ -217,7 +217,6 @@ class ClusterManagerAsyncClient:
         r"""Lists all clusters owned by a project in either the
         specified zone or all zones.
 
-
         .. code-block:: python
 
             from google.cloud import container_v1beta1
@@ -302,8 +301,7 @@ class ClusterManagerAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
-                    core_exceptions.DeadlineExceeded,
-                    core_exceptions.ServiceUnavailable,
+                    core_exceptions.GoogleAPICallError,
                 ),
                 deadline=20.0,
             ),
@@ -435,8 +433,7 @@ class ClusterManagerAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
-                    core_exceptions.DeadlineExceeded,
-                    core_exceptions.ServiceUnavailable,
+                    core_exceptions.GoogleAPICallError,
                 ),
                 deadline=20.0,
             ),
@@ -485,7 +482,6 @@ class ClusterManagerAsyncClient:
 
         Finally, an entry is added to the project's global metadata
         indicating which CIDR range the cluster is using.
-
 
         .. code-block:: python
 
@@ -746,7 +742,6 @@ class ClusterManagerAsyncClient:
         r"""Updates the version and/or image type of a specific
         node pool.
 
-
         .. code-block:: python
 
             from google.cloud import container_v1beta1
@@ -827,7 +822,6 @@ class ClusterManagerAsyncClient:
     ) -> cluster_service.Operation:
         r"""Sets the autoscaling settings of a specific node
         pool.
-
 
         .. code-block:: python
 
@@ -1353,7 +1347,6 @@ class ClusterManagerAsyncClient:
         `projects.locations.clusters.update <https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1beta1/projects.locations.clusters/update>`__
         instead.
 
-
         .. code-block:: python
 
             from google.cloud import container_v1beta1
@@ -1652,7 +1645,6 @@ class ClusterManagerAsyncClient:
         either via password generation or explicitly setting the
         password.
 
-
         .. code-block:: python
 
             from google.cloud import container_v1beta1
@@ -1742,7 +1734,6 @@ class ClusterManagerAsyncClient:
         use by the cluster, such as load balancer resources, are
         not deleted if they weren't present when the cluster was
         initially created.
-
 
         .. code-block:: python
 
@@ -1842,8 +1833,7 @@ class ClusterManagerAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
-                    core_exceptions.DeadlineExceeded,
-                    core_exceptions.ServiceUnavailable,
+                    core_exceptions.GoogleAPICallError,
                 ),
                 deadline=20.0,
             ),
@@ -1880,7 +1870,6 @@ class ClusterManagerAsyncClient:
     ) -> cluster_service.ListOperationsResponse:
         r"""Lists all operations in a project in the specified
         zone or all zones.
-
 
         .. code-block:: python
 
@@ -1967,8 +1956,7 @@ class ClusterManagerAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
-                    core_exceptions.DeadlineExceeded,
-                    core_exceptions.ServiceUnavailable,
+                    core_exceptions.GoogleAPICallError,
                 ),
                 deadline=20.0,
             ),
@@ -2103,8 +2091,7 @@ class ClusterManagerAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
-                    core_exceptions.DeadlineExceeded,
-                    core_exceptions.ServiceUnavailable,
+                    core_exceptions.GoogleAPICallError,
                 ),
                 deadline=20.0,
             ),
@@ -2254,7 +2241,6 @@ class ClusterManagerAsyncClient:
         r"""Returns configuration info about the Google
         Kubernetes Engine service.
 
-
         .. code-block:: python
 
             from google.cloud import container_v1beta1
@@ -2339,8 +2325,7 @@ class ClusterManagerAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
-                    core_exceptions.DeadlineExceeded,
-                    core_exceptions.ServiceUnavailable,
+                    core_exceptions.GoogleAPICallError,
                 ),
                 deadline=20.0,
             ),
@@ -2473,8 +2458,7 @@ class ClusterManagerAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
-                    core_exceptions.DeadlineExceeded,
-                    core_exceptions.ServiceUnavailable,
+                    core_exceptions.GoogleAPICallError,
                 ),
                 deadline=20.0,
             ),
@@ -2511,7 +2495,6 @@ class ClusterManagerAsyncClient:
         in JSON Web Key format.
         This API is not yet intended for general use, and is not
         available for all clusters.
-
 
         .. code-block:: python
 
@@ -2741,8 +2724,7 @@ class ClusterManagerAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
-                    core_exceptions.DeadlineExceeded,
-                    core_exceptions.ServiceUnavailable,
+                    core_exceptions.GoogleAPICallError,
                 ),
                 deadline=20.0,
             ),
@@ -3024,8 +3006,7 @@ class ClusterManagerAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
-                    core_exceptions.DeadlineExceeded,
-                    core_exceptions.ServiceUnavailable,
+                    core_exceptions.GoogleAPICallError,
                 ),
                 deadline=20.0,
             ),
@@ -3065,7 +3046,6 @@ class ClusterManagerAsyncClient:
         r"""Rolls back a previously Aborted or Failed NodePool
         upgrade. This makes no changes if the last upgrade
         successfully completed.
-
 
         .. code-block:: python
 
@@ -3354,9 +3334,7 @@ class ClusterManagerAsyncClient:
         project_id: str = None,
         zone: str = None,
         cluster_id: str = None,
-        resource_labels: Sequence[
-            cluster_service.SetLabelsRequest.ResourceLabelsEntry
-        ] = None,
+        resource_labels: Mapping[str, str] = None,
         label_fingerprint: str = None,
         retry: OptionalRetry = gapic_v1.method.DEFAULT,
         timeout: float = None,
@@ -3420,7 +3398,7 @@ class ClusterManagerAsyncClient:
                 This corresponds to the ``cluster_id`` field
                 on the ``request`` instance; if ``request`` is provided, this
                 should not be set.
-            resource_labels (:class:`Sequence[google.cloud.container_v1beta1.types.SetLabelsRequest.ResourceLabelsEntry]`):
+            resource_labels (:class:`Mapping[str, str]`):
                 Required. The labels to set for that
                 cluster.
 
@@ -3521,7 +3499,6 @@ class ClusterManagerAsyncClient:
     ) -> cluster_service.Operation:
         r"""Enables or disables the ABAC authorization mechanism
         on a cluster.
-
 
         .. code-block:: python
 
@@ -3913,7 +3890,6 @@ class ClusterManagerAsyncClient:
         created by modifying
         [NodePool.locations][google.container.v1beta1.NodePool.locations].
 
-
         .. code-block:: python
 
             from google.cloud import container_v1beta1
@@ -4263,7 +4239,6 @@ class ClusterManagerAsyncClient:
         r"""Lists subnetworks that can be used for creating
         clusters in a project.
 
-
         .. code-block:: python
 
             from google.cloud import container_v1beta1
@@ -4339,8 +4314,7 @@ class ClusterManagerAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
-                    core_exceptions.DeadlineExceeded,
-                    core_exceptions.ServiceUnavailable,
+                    core_exceptions.GoogleAPICallError,
                 ),
                 deadline=20.0,
             ),
@@ -4385,7 +4359,6 @@ class ClusterManagerAsyncClient:
     ) -> cluster_service.ListLocationsResponse:
         r"""Fetches locations that offer Google Kubernetes
         Engine.
-
 
         .. code-block:: python
 
@@ -4456,8 +4429,7 @@ class ClusterManagerAsyncClient:
                 maximum=60.0,
                 multiplier=1.3,
                 predicate=retries.if_exception_type(
-                    core_exceptions.DeadlineExceeded,
-                    core_exceptions.ServiceUnavailable,
+                    core_exceptions.GoogleAPICallError,
                 ),
                 deadline=20.0,
             ),
