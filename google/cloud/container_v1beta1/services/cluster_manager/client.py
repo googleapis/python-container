@@ -465,7 +465,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
             project_id (str):
                 Required. Deprecated. The Google Developers Console
                 `project ID or project
-                number <https://support.google.com/cloud/answer/6158840>`__.
+                number <https://cloud.google.com/resource-manager/docs/creating-managing-projects>`__.
                 This field has been deprecated and replaced by the
                 parent field.
 
@@ -580,7 +580,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
             project_id (str):
                 Required. Deprecated. The Google Developers Console
                 `project ID or project
-                number <https://support.google.com/cloud/answer/6158840>`__.
+                number <https://cloud.google.com/resource-manager/docs/creating-managing-projects>`__.
                 This field has been deprecated and replaced by the name
                 field.
 
@@ -714,7 +714,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
             project_id (str):
                 Required. Deprecated. The Google Developers Console
                 `project ID or project
-                number <https://support.google.com/cloud/answer/6158840>`__.
+                number <https://cloud.google.com/resource-manager/docs/creating-managing-projects>`__.
                 This field has been deprecated and replaced by the
                 parent field.
 
@@ -840,7 +840,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
             project_id (str):
                 Required. Deprecated. The Google Developers Console
                 `project ID or project
-                number <https://support.google.com/cloud/answer/6158840>`__.
+                number <https://cloud.google.com/resource-manager/docs/creating-managing-projects>`__.
                 This field has been deprecated and replaced by the name
                 field.
 
@@ -1142,7 +1142,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
             project_id (str):
                 Required. Deprecated. The Google Developers Console
                 `project ID or project
-                number <https://support.google.com/cloud/answer/6158840>`__.
+                number <https://cloud.google.com/resource-manager/docs/creating-managing-projects>`__.
                 This field has been deprecated and replaced by the name
                 field.
 
@@ -1292,7 +1292,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
             project_id (str):
                 Required. Deprecated. The Google Developers Console
                 `project ID or project
-                number <https://support.google.com/cloud/answer/6158840>`__.
+                number <https://cloud.google.com/resource-manager/docs/creating-managing-projects>`__.
                 This field has been deprecated and replaced by the name
                 field.
 
@@ -1443,7 +1443,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
             project_id (str):
                 Required. Deprecated. The Google Developers Console
                 `project ID or project
-                number <https://support.google.com/cloud/answer/6158840>`__.
+                number <https://cloud.google.com/resource-manager/docs/creating-managing-projects>`__.
                 This field has been deprecated and replaced by the name
                 field.
 
@@ -1584,7 +1584,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
             project_id (str):
                 Required. Deprecated. The Google Developers Console
                 `project ID or project
-                number <https://support.google.com/cloud/answer/6158840>`__.
+                number <https://cloud.google.com/resource-manager/docs/creating-managing-projects>`__.
                 This field has been deprecated and replaced by the name
                 field.
 
@@ -1733,7 +1733,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
             project_id (str):
                 Required. Deprecated. The Google Developers Console
                 `project ID or project
-                number <https://support.google.com/cloud/answer/6158840>`__.
+                number <https://cloud.google.com/resource-manager/docs/creating-managing-projects>`__.
                 This field has been deprecated and replaced by the name
                 field.
 
@@ -1972,7 +1972,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
             project_id (str):
                 Required. Deprecated. The Google Developers Console
                 `project ID or project
-                number <https://support.google.com/cloud/answer/6158840>`__.
+                number <https://cloud.google.com/resource-manager/docs/creating-managing-projects>`__.
                 This field has been deprecated and replaced by the name
                 field.
 
@@ -2098,7 +2098,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
             project_id (str):
                 Required. Deprecated. The Google Developers Console
                 `project ID or project
-                number <https://support.google.com/cloud/answer/6158840>`__.
+                number <https://cloud.google.com/resource-manager/docs/creating-managing-projects>`__.
                 This field has been deprecated and replaced by the
                 parent field.
 
@@ -2213,7 +2213,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
             project_id (str):
                 Required. Deprecated. The Google Developers Console
                 `project ID or project
-                number <https://support.google.com/cloud/answer/6158840>`__.
+                number <https://cloud.google.com/resource-manager/docs/creating-managing-projects>`__.
                 This field has been deprecated and replaced by the name
                 field.
 
@@ -2336,7 +2336,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
             project_id (str):
                 Required. Deprecated. The Google Developers Console
                 `project ID or project
-                number <https://support.google.com/cloud/answer/6158840>`__.
+                number <https://cloud.google.com/resource-manager/docs/creating-managing-projects>`__.
                 This field has been deprecated and replaced by the name
                 field.
 
@@ -2450,7 +2450,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
             project_id (str):
                 Required. Deprecated. The Google Developers Console
                 `project ID or project
-                number <https://support.google.com/cloud/answer/6158840>`__.
+                number <https://cloud.google.com/resource-manager/docs/creating-managing-projects>`__.
                 This field has been deprecated and replaced by the name
                 field.
 
@@ -2564,7 +2564,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
             project_id (str):
                 Required. Deprecated. The Google Developers Console
                 `project ID or project
-                number <https://developers.google.com/console/help/new/#projectnumber>`__.
+                number <https://cloud.google.com/resource-manager/docs/creating-managing-projects>`__.
                 This field has been deprecated and replaced by the
                 parent field.
 
@@ -2770,7 +2770,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
             project_id (str):
                 Required. Deprecated. The Google Developers Console
                 `project ID or project
-                number <https://developers.google.com/console/help/new/#projectnumber>`__.
+                number <https://cloud.google.com/resource-manager/docs/creating-managing-projects>`__.
                 This field has been deprecated and replaced by the name
                 field.
 
@@ -2947,7 +2947,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
             project_id (str):
                 Required. Deprecated. The Google Developers Console
                 `project ID or project
-                number <https://developers.google.com/console/help/new/#projectnumber>`__.
+                number <https://cloud.google.com/resource-manager/docs/creating-managing-projects>`__.
                 This field has been deprecated and replaced by the
                 parent field.
 
@@ -3082,7 +3082,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
             project_id (str):
                 Required. Deprecated. The Google Developers Console
                 `project ID or project
-                number <https://developers.google.com/console/help/new/#projectnumber>`__.
+                number <https://cloud.google.com/resource-manager/docs/creating-managing-projects>`__.
                 This field has been deprecated and replaced by the name
                 field.
 
@@ -3178,6 +3178,70 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
         # Done; return the response.
         return response
 
+    def complete_node_pool_upgrade(
+        self,
+        request: Union[cluster_service.CompleteNodePoolUpgradeRequest, dict] = None,
+        *,
+        retry: OptionalRetry = gapic_v1.method.DEFAULT,
+        timeout: float = None,
+        metadata: Sequence[Tuple[str, str]] = (),
+    ) -> None:
+        r"""CompleteNodePoolUpgrade will signal an on-going node
+        pool upgrade to complete.
+
+        .. code-block:: python
+
+            from google.cloud import container_v1beta1
+
+            def sample_complete_node_pool_upgrade():
+                # Create a client
+                client = container_v1beta1.ClusterManagerClient()
+
+                # Initialize request argument(s)
+                request = container_v1beta1.CompleteNodePoolUpgradeRequest(
+                )
+
+                # Make the request
+                client.complete_node_pool_upgrade(request=request)
+
+        Args:
+            request (Union[google.cloud.container_v1beta1.types.CompleteNodePoolUpgradeRequest, dict]):
+                The request object. CompleteNodePoolUpgradeRequest sets
+                the name of target node pool to complete upgrade.
+            retry (google.api_core.retry.Retry): Designation of what errors, if any,
+                should be retried.
+            timeout (float): The timeout for this request.
+            metadata (Sequence[Tuple[str, str]]): Strings which should be
+                sent along with the request as metadata.
+        """
+        # Create or coerce a protobuf request object.
+        # Minor optimization to avoid making a copy if the user passes
+        # in a cluster_service.CompleteNodePoolUpgradeRequest.
+        # There's no risk of modifying the input as we've already verified
+        # there are no flattened fields.
+        if not isinstance(request, cluster_service.CompleteNodePoolUpgradeRequest):
+            request = cluster_service.CompleteNodePoolUpgradeRequest(request)
+
+        # Wrap the RPC method; this adds retry and timeout information,
+        # and friendly error handling.
+        rpc = self._transport._wrapped_methods[
+            self._transport.complete_node_pool_upgrade
+        ]
+
+        # Certain fields should be provided within the metadata header;
+        # add these here.
+        metadata = tuple(metadata) + (
+            gapic_v1.routing_header.to_grpc_metadata((("name", request.name),)),
+        )
+
+        # Send the request.
+        rpc(
+            request,
+            retry=retry,
+            timeout=timeout,
+            metadata=metadata,
+        )
+
     def rollback_node_pool_upgrade(
         self,
         request: Union[cluster_service.RollbackNodePoolUpgradeRequest, dict] = None,
@@ -3225,7 +3289,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
             project_id (str):
                 Required. Deprecated. The Google Developers Console
                 `project ID or project
-                number <https://support.google.com/cloud/answer/6158840>`__.
+                number <https://cloud.google.com/resource-manager/docs/creating-managing-projects>`__.
                 This field has been deprecated and replaced by the name
                 field.
 
@@ -3368,7 +3432,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
             project_id (str):
                 Required. Deprecated. The Google Developers Console
                 `project ID or project
-                number <https://support.google.com/cloud/answer/6158840>`__.
+                number <https://cloud.google.com/resource-manager/docs/creating-managing-projects>`__.
                 This field has been deprecated and replaced by the name
                 field.
 
@@ -3522,7 +3586,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
             project_id (str):
                 Required. Deprecated. The Google Developers Console
                 `project ID or project
-                number <https://developers.google.com/console/help/new/#projectnumber>`__.
+                number <https://cloud.google.com/resource-manager/docs/creating-managing-projects>`__.
                 This field has been deprecated and replaced by the name
                 field.
 
@@ -3677,7 +3741,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
             project_id (str):
                 Required. Deprecated. The Google Developers Console
                 `project ID or project
-                number <https://support.google.com/cloud/answer/6158840>`__.
+                number <https://cloud.google.com/resource-manager/docs/creating-managing-projects>`__.
                 This field has been deprecated and replaced by the name
                 field.
 
@@ -3814,7 +3878,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
             project_id (str):
                 Required. Deprecated. The Google Developers Console
                 `project ID or project
-                number <https://developers.google.com/console/help/new/#projectnumber>`__.
+                number <https://cloud.google.com/resource-manager/docs/creating-managing-projects>`__.
                 This field has been deprecated and replaced by the name
                 field.
 
@@ -3940,7 +4004,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
             project_id (str):
                 Required. Deprecated. The Google Developers Console
                 `project ID or project
-                number <https://developers.google.com/console/help/new/#projectnumber>`__.
+                number <https://cloud.google.com/resource-manager/docs/creating-managing-projects>`__.
                 This field has been deprecated and replaced by the name
                 field.
 
@@ -4150,7 +4214,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
             project_id (str):
                 Required. Deprecated. The Google Developers Console
                 `project ID or project
-                number <https://developers.google.com/console/help/new/#projectnumber>`__.
+                number <https://cloud.google.com/resource-manager/docs/creating-managing-projects>`__.
                 This field has been deprecated and replaced by the name
                 field.
 
@@ -4286,7 +4350,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
             project_id (str):
                 Required. The Google Developers Console `project ID or
                 project
-                number <https://support.google.com/cloud/answer/6158840>`__.
+                number <https://cloud.google.com/resource-manager/docs/creating-managing-projects>`__.
 
                 This corresponds to the ``project_id`` field
                 on the ``request`` instance; if ``request`` is provided, this

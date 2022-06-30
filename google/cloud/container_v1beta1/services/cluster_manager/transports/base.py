@@ -328,6 +328,11 @@ class ClusterManagerTransport(abc.ABC):
                 default_timeout=20.0,
                 client_info=client_info,
             ),
+            self.complete_node_pool_upgrade: gapic_v1.method.wrap_method(
+                self.complete_node_pool_upgrade,
+                default_timeout=None,
+                client_info=client_info,
+            ),
             self.rollback_node_pool_upgrade: gapic_v1.method.wrap_method(
                 self.rollback_node_pool_upgrade,
                 default_timeout=45.0,
@@ -621,6 +626,15 @@ class ClusterManagerTransport(abc.ABC):
     ) -> Callable[
         [cluster_service.DeleteNodePoolRequest],
         Union[cluster_service.Operation, Awaitable[cluster_service.Operation]],
+    ]:
+        raise NotImplementedError()
+
+    @property
+    def complete_node_pool_upgrade(
+        self,
+    ) -> Callable[
+        [cluster_service.CompleteNodePoolUpgradeRequest],
+        Union[empty_pb2.Empty, Awaitable[empty_pb2.Empty]],
     ]:
         raise NotImplementedError()
 
