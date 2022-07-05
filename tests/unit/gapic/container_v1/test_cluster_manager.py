@@ -10178,7 +10178,6 @@ def test_cluster_manager_transport_auth_adc(transport_class):
     [
         transports.ClusterManagerGrpcTransport,
         transports.ClusterManagerGrpcAsyncIOTransport,
-        transports.ClusterManagerRestTransport,
     ],
 )
 def test_cluster_manager_transport_auth_gdch_credentials(transport_class):
