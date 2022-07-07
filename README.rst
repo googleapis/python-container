@@ -3,7 +3,7 @@ Python Client for Kubernetes Engine API
 
 |stable| |pypi| |versions|
 
-`Kubernetes Engine API`_: 
+`Kubernetes Engine API`_: is an enterprise-grade platform for containerized applications, including stateful and stateless, AI and ML, Linux and Windows, complex and simple web apps, API, and backend services. Leverage industry-first features like four-way auto-scaling and no-stress management. Optimize GPU and TPU provisioning, use integrated developer tools, and get multi-cluster support from SREs.
 
 - `Client Library Documentation`_
 - `Product Documentation`_
