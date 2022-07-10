@@ -14,5 +14,5 @@
     "requires_billing": true,
     "default_version": "v1",
     "api_shortname": "container",
-    "api_description": "is an enterprise-grade platform for containerized applications, including stateful and stateless, AI and ML, Linux and Windows, complex and simple web apps, API, and backend services. Leverage industry-first features like four-way auto-scaling and no-stress management. Optimize GPU and TPU provisioning, use integrated developer tools, and get multi-cluster support from SREs."
+    "api_description": "The Google Kubernetes Engine API is used for building and managing container based applications, powered by the open source Kubernetes technology."
 }
