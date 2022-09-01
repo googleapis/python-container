@@ -10,7 +10,7 @@
     "repo": "googleapis/python-container",
     "distribution_name": "google-cloud-container",
     "api_id": "container.googleapis.com",
-    "codeowner_team": "@googleapis/anthos-dpe",
+    "codeowner_team": "@googleapis/yoshi-python",
     "requires_billing": true,
     "default_version": "v1",
     "api_shortname": "container",
