@@ -41,6 +41,7 @@ __protobuf__ = proto.module(
         "NodeTaint",
         "NodeTaints",
         "NodeLabels",
+        "ResourceLabels",
         "NetworkTags",
         "MasterAuth",
         "ClientCertificateConfig",
@@ -135,6 +136,7 @@ __protobuf__ = proto.module(
         "Location",
         "StatusCondition",
         "NetworkConfig",
+        "GatewayAPIConfig",
         "ServiceExternalIPsConfig",
         "ListUsableSubnetworksRequest",
         "ListUsableSubnetworksResponse",
@@ -506,6 +508,10 @@ class NodeConfig(proto.Message):
             Confidential nodes config.
             All the nodes in the node pool will be
             Confidential VM once enabled.
+        resource_labels (Mapping[str, str]):
+            The resource labels for the node pool to use
+            to annotate any related Google Compute Engine
+            resources.
         logging_config (google.cloud.container_v1beta1.types.NodePoolLoggingConfig):
             Logging configuration.
     """
@@ -637,6 +643,11 @@ class NodeConfig(proto.Message):
         number=35,
         message="ConfidentialNodes",
     )
+    resource_labels = proto.MapField(
+        proto.STRING,
+        proto.STRING,
+        number=37,
+    )
     logging_config = proto.Field(
         proto.MESSAGE,
         number=38,
@@ -714,6 +725,13 @@ class NodeNetworkConfig(proto.Message):
 
             This field cannot be changed after the node pool has been
             created.
+        enable_private_nodes (bool):
+            Whether nodes have internal IP addresses only. If
+            enable_private_nodes is not specified, then the value is
+            derived from
+            [cluster.privateClusterConfig.enablePrivateNodes][google.container.v1beta1.PrivateClusterConfig.enablePrivateNodes]
+
+            This field is a member of `oneof`_ ``_enable_private_nodes``.
         network_performance_config (google.cloud.container_v1beta1.types.NodeNetworkConfig.NetworkPerformanceConfig):
             Network bandwidth tier configuration.
 
@@ -766,6 +784,11 @@ class NodeNetworkConfig(proto.Message):
     pod_ipv4_cidr_block = proto.Field(
         proto.STRING,
         number=6,
+    )
+    enable_private_nodes = proto.Field(
+        proto.BOOL,
+        number=9,
+        optional=True,
     )
     network_performance_config = proto.Field(
         proto.MESSAGE,
@@ -971,6 +994,22 @@ class NodeTaints(proto.Message):
 class NodeLabels(proto.Message):
     r"""Collection of node-level `Kubernetes
     labels <https://kubernetes.io/docs/concepts/overview/working-with-objects/labels>`__.
+
+    Attributes:
+        labels (Mapping[str, str]):
+            Map of node label keys and node label values.
+    """
+
+    labels = proto.MapField(
+        proto.STRING,
+        proto.STRING,
+        number=1,
+    )
+
+
+class ResourceLabels(proto.Message):
+    r"""Collection of `GCP
+    labels <https://cloud.google.com/resource-manager/docs/creating-managing-labels>`__.
 
     Attributes:
         labels (Mapping[str, str]):
@@ -1410,6 +1449,10 @@ class PrivateClusterConfig(proto.Message):
             VPC used by this cluster.
         master_global_access_config (google.cloud.container_v1beta1.types.PrivateClusterMasterGlobalAccessConfig):
             Controls master global access settings.
+        private_endpoint_subnetwork (str):
+            Subnet to provision the master's private endpoint during
+            cluster creation. Specified in
+            projects/\ */regions/*/subnetworks/\* format.
     """
 
     enable_private_nodes = proto.Field(
@@ -1440,6 +1483,10 @@ class PrivateClusterConfig(proto.Message):
         proto.MESSAGE,
         number=8,
         message="PrivateClusterMasterGlobalAccessConfig",
+    )
+    private_endpoint_subnetwork = proto.Field(
+        proto.STRING,
+        number=10,
     )
 
 
@@ -1515,6 +1562,11 @@ class MasterAuthorizedNetworksConfig(proto.Message):
         cidr_blocks (Sequence[google.cloud.container_v1beta1.types.MasterAuthorizedNetworksConfig.CidrBlock]):
             cidr_blocks define up to 10 external networks that could
             access Kubernetes master through HTTPS.
+        gcp_public_cidrs_access_enabled (bool):
+            Whether master is accessbile via Google
+            Compute Engine Public IP addresses.
+
+            This field is a member of `oneof`_ ``_gcp_public_cidrs_access_enabled``.
     """
 
     class CidrBlock(proto.Message):
@@ -1545,6 +1597,11 @@ class MasterAuthorizedNetworksConfig(proto.Message):
         proto.MESSAGE,
         number=2,
         message=CidrBlock,
+    )
+    gcp_public_cidrs_access_enabled = proto.Field(
+        proto.BOOL,
+        number=3,
+        optional=True,
     )
 
 
@@ -2899,6 +2956,11 @@ class ClusterUpdate(proto.Message):
         desired_identity_service_config (google.cloud.container_v1beta1.types.IdentityServiceConfig):
             The desired Identity Service component
             configuration.
+        desired_enable_private_endpoint (bool):
+            Enable/Disable private endpoint for the
+            cluster's master.
+
+            This field is a member of `oneof`_ ``_desired_enable_private_endpoint``.
         desired_node_pool_auto_config_network_tags (google.cloud.container_v1beta1.types.NetworkTags):
             The desired network tags that apply to all
             auto-provisioned node pools in autopilot
@@ -2909,6 +2971,9 @@ class ClusterUpdate(proto.Message):
             cluster.
 
             This field is a member of `oneof`_ ``_desired_protect_config``.
+        desired_gateway_api_config (google.cloud.container_v1beta1.types.GatewayAPIConfig):
+            The desired config of Gateway API on this
+            cluster.
         desired_node_pool_logging_config (google.cloud.container_v1beta1.types.NodePoolLoggingConfig):
             The desired node pool logging configuration
             defaults for the cluster.
@@ -3107,6 +3172,11 @@ class ClusterUpdate(proto.Message):
         number=66,
         message="IdentityServiceConfig",
     )
+    desired_enable_private_endpoint = proto.Field(
+        proto.BOOL,
+        number=71,
+        optional=True,
+    )
     desired_node_pool_auto_config_network_tags = proto.Field(
         proto.MESSAGE,
         number=110,
@@ -3117,6 +3187,11 @@ class ClusterUpdate(proto.Message):
         number=112,
         optional=True,
         message="ProtectConfig",
+    )
+    desired_gateway_api_config = proto.Field(
+        proto.MESSAGE,
+        number=114,
+        message="GatewayAPIConfig",
     )
     desired_node_pool_logging_config = proto.Field(
         proto.MESSAGE,
@@ -3591,6 +3666,10 @@ class UpdateNodePoolRequest(proto.Message):
             Enable or disable gvnic on the node pool.
         logging_config (google.cloud.container_v1beta1.types.NodePoolLoggingConfig):
             Logging configuration.
+        resource_labels (google.cloud.container_v1beta1.types.ResourceLabels):
+            The resource labels for the node pool to use
+            to annotate any related Google Compute Engine
+            resources.
     """
 
     project_id = proto.Field(
@@ -3684,6 +3763,11 @@ class UpdateNodePoolRequest(proto.Message):
         proto.MESSAGE,
         number=32,
         message="NodePoolLoggingConfig",
+    )
+    resource_labels = proto.Field(
+        proto.MESSAGE,
+        number=33,
+        message="ResourceLabels",
     )
 
 
@@ -4764,7 +4848,7 @@ class BlueGreenSettings(proto.Message):
 
         Attributes:
             batch_percentage (float):
-                Percentage of the bool pool nodes to drain in a batch. The
+                Percentage of the blue pool nodes to drain in a batch. The
                 range of this field should be (0.0, 1.0].
 
                 This field is a member of `oneof`_ ``update_batch_size``.
@@ -6546,6 +6630,9 @@ class NetworkConfig(proto.Message):
             ServiceExternalIPsConfig specifies if
             services with externalIPs field are blocked or
             not.
+        gateway_api_config (google.cloud.container_v1beta1.types.GatewayAPIConfig):
+            GatewayAPIConfig contains the desired config
+            of Gateway API on this cluster.
     """
 
     network = proto.Field(
@@ -6588,6 +6675,37 @@ class NetworkConfig(proto.Message):
         proto.MESSAGE,
         number=15,
         message="ServiceExternalIPsConfig",
+    )
+    gateway_api_config = proto.Field(
+        proto.MESSAGE,
+        number=16,
+        message="GatewayAPIConfig",
+    )
+
+
+class GatewayAPIConfig(proto.Message):
+    r"""GatewayAPIConfig contains the desired config of Gateway API
+    on this cluster.
+
+    Attributes:
+        channel (google.cloud.container_v1beta1.types.GatewayAPIConfig.Channel):
+            The Gateway API release channel to use for
+            Gateway API.
+    """
+
+    class Channel(proto.Enum):
+        r"""Channel describes if/how Gateway API should be installed and
+        implemented in a cluster.
+        """
+        CHANNEL_UNSPECIFIED = 0
+        CHANNEL_DISABLED = 1
+        CHANNEL_EXPERIMENTAL = 3
+        CHANNEL_STANDARD = 4
+
+    channel = proto.Field(
+        proto.ENUM,
+        number=1,
+        enum=Channel,
     )
 
 
@@ -7691,6 +7809,9 @@ class LoggingComponentConfig(proto.Message):
         COMPONENT_UNSPECIFIED = 0
         SYSTEM_COMPONENTS = 1
         WORKLOADS = 2
+        APISERVER = 3
+        SCHEDULER = 4
+        CONTROLLER_MANAGER = 5
 
     enable_components = proto.RepeatedField(
         proto.ENUM,
