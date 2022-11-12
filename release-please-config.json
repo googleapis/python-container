@@ -7,12 +7,12 @@
         "google/cloud/container/gapic_version.py",
         {
           "type": "json",
-          "path": "samples/generated_samples/snippet_metadata_container_v1beta1.json",
+          "path": "samples/generated_samples/snippet_metadata_google.container.v1beta1.json",
           "jsonpath": "$.clientLibrary.version"
         },
         {
           "type": "json",
-          "path": "samples/generated_samples/snippet_metadata_container_v1.json",
+          "path": "samples/generated_samples/snippet_metadata_google.container.v1.json",
           "jsonpath": "$.clientLibrary.version"
         }
       ]
