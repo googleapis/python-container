@@ -4501,6 +4501,8 @@ class NodePool(proto.Message):
         upgrade_settings (google.cloud.container_v1.types.NodePool.UpgradeSettings):
             Upgrade settings control disruption and speed
             of the upgrade.
+        placement_policy (google.cloud.container_v1.types.NodePool.PlacementPolicy):
+            Specifies the node placement policy.
         update_info (google.cloud.container_v1.types.NodePool.UpdateInfo):
             Output only. [Output only] Update info contains relevant
             information during a node pool update.
@@ -4684,6 +4686,26 @@ class NodePool(proto.Message):
             message="NodePool.UpdateInfo.BlueGreenInfo",
         )
 
+    class PlacementPolicy(proto.Message):
+        r"""PlacementPolicy defines the placement policy used by the node
+        pool.
+
+        Attributes:
+            type_ (google.cloud.container_v1.types.NodePool.PlacementPolicy.Type):
+                The type of placement.
+        """
+
+        class Type(proto.Enum):
+            r"""Type defines the type of placement policy."""
+            TYPE_UNSPECIFIED = 0
+            COMPACT = 1
+
+        type_: "NodePool.PlacementPolicy.Type" = proto.Field(
+            proto.ENUM,
+            number=1,
+            enum="NodePool.PlacementPolicy.Type",
+        )
+
     name: str = proto.Field(
         proto.STRING,
         number=1,
@@ -4755,6 +4777,11 @@ class NodePool(proto.Message):
         proto.MESSAGE,
         number=107,
         message=UpgradeSettings,
+    )
+    placement_policy: PlacementPolicy = proto.Field(
+        proto.MESSAGE,
+        number=108,
+        message=PlacementPolicy,
     )
     update_info: UpdateInfo = proto.Field(
         proto.MESSAGE,
