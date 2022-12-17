@@ -149,6 +149,7 @@ from .cluster_service import (
     SetNodePoolSizeRequest,
     ShieldedInstanceConfig,
     ShieldedNodes,
+    StackType,
     StartIPRotationRequest,
     StatusCondition,
     TimeWindow,
@@ -326,5 +327,6 @@ __all__ = (
     "DatapathProvider",
     "NodePoolUpdateStrategy",
     "PrivateIPv6GoogleAccess",
+    "StackType",
     "UpgradeResourceType",
 )

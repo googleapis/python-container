@@ -30,6 +30,7 @@ __protobuf__ = proto.module(
         "UpgradeResourceType",
         "NodePoolUpdateStrategy",
         "DatapathProvider",
+        "StackType",
         "LinuxNodeConfig",
         "NodeKubeletConfig",
         "NodeConfig",
@@ -219,6 +220,13 @@ class DatapathProvider(proto.Enum):
     DATAPATH_PROVIDER_UNSPECIFIED = 0
     LEGACY_DATAPATH = 1
     ADVANCED_DATAPATH = 2
+
+
+class StackType(proto.Enum):
+    r"""Possible values for IP stack type"""
+    STACK_TYPE_UNSPECIFIED = 0
+    IPV4 = 1
+    IPV4_IPV6 = 2
 
 
 class LinuxNodeConfig(proto.Message):
@@ -2992,6 +3000,12 @@ class ClusterUpdate(proto.Message):
         desired_node_pool_logging_config (google.cloud.container_v1beta1.types.NodePoolLoggingConfig):
             The desired node pool logging configuration
             defaults for the cluster.
+        desired_stack_type (google.cloud.container_v1beta1.types.StackType):
+            The desired stack type of the cluster.
+            If a stack type is provided and does not match
+            the current stack type of the cluster, update
+            will attempt to change the stack type to the new
+            type.
     """
 
     desired_node_version: str = proto.Field(
@@ -3214,6 +3228,11 @@ class ClusterUpdate(proto.Message):
         proto.MESSAGE,
         number=116,
         message="NodePoolLoggingConfig",
+    )
+    desired_stack_type: "StackType" = proto.Field(
+        proto.ENUM,
+        number=119,
+        enum="StackType",
     )
 
 
