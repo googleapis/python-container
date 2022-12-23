@@ -32,6 +32,7 @@ __protobuf__ = proto.module(
         "StackType",
         "IPv6AccessType",
         "LinuxNodeConfig",
+        "WindowsNodeConfig",
         "NodeKubeletConfig",
         "NodeConfig",
         "AdvancedMachineFeatures",
@@ -167,6 +168,8 @@ __protobuf__ = proto.module(
         "LoggingVariantConfig",
         "MonitoringComponentConfig",
         "ManagedPrometheusConfig",
+        "LocalNvmeSsdBlockConfig",
+        "EphemeralStorageLocalSsdConfig",
     },
 )
 
@@ -256,6 +259,30 @@ class LinuxNodeConfig(proto.Message):
         proto.ENUM,
         number=2,
         enum=CgroupMode,
+    )
+
+
+class WindowsNodeConfig(proto.Message):
+    r"""Parameters that can be configured on Windows nodes.
+    Windows Node Config that define the parameters that will be used
+    to configure the Windows node pool settings
+
+    Attributes:
+        os_version (google.cloud.container_v1.types.WindowsNodeConfig.OSVersion):
+            OSVersion specifies the Windows node config
+            to be used on the node
+    """
+
+    class OSVersion(proto.Enum):
+        r"""Possible OS version that can be used."""
+        OS_VERSION_UNSPECIFIED = 0
+        OS_VERSION_LTSC2019 = 1
+        OS_VERSION_LTSC2022 = 2
+
+    os_version: OSVersion = proto.Field(
+        proto.ENUM,
+        number=1,
+        enum=OSVersion,
     )
 
 
@@ -519,6 +546,16 @@ class NodeConfig(proto.Message):
             resources.
         logging_config (google.cloud.container_v1.types.NodePoolLoggingConfig):
             Logging configuration.
+        windows_node_config (google.cloud.container_v1.types.WindowsNodeConfig):
+            Parameters that can be configured on Windows
+            nodes.
+        local_nvme_ssd_block_config (google.cloud.container_v1.types.LocalNvmeSsdBlockConfig):
+            Parameters for using raw-block Local NVMe
+            SSDs.
+        ephemeral_storage_local_ssd_config (google.cloud.container_v1.types.EphemeralStorageLocalSsdConfig):
+            Parameters for the node ephemeral storage
+            using Local SSDs. If unspecified, ephemeral
+            storage is backed by the boot disk.
     """
 
     machine_type: str = proto.Field(
@@ -658,6 +695,21 @@ class NodeConfig(proto.Message):
         proto.MESSAGE,
         number=38,
         message="NodePoolLoggingConfig",
+    )
+    windows_node_config: "WindowsNodeConfig" = proto.Field(
+        proto.MESSAGE,
+        number=39,
+        message="WindowsNodeConfig",
+    )
+    local_nvme_ssd_block_config: "LocalNvmeSsdBlockConfig" = proto.Field(
+        proto.MESSAGE,
+        number=40,
+        message="LocalNvmeSsdBlockConfig",
+    )
+    ephemeral_storage_local_ssd_config: "EphemeralStorageLocalSsdConfig" = proto.Field(
+        proto.MESSAGE,
+        number=41,
+        message="EphemeralStorageLocalSsdConfig",
     )
 
 
@@ -3307,6 +3359,9 @@ class UpdateNodePoolRequest(proto.Message):
             The resource labels for the node pool to use
             to annotate any related Google Compute Engine
             resources.
+        windows_node_config (google.cloud.container_v1.types.WindowsNodeConfig):
+            Parameters that can be configured on Windows
+            nodes.
     """
 
     project_id: str = proto.Field(
@@ -3410,6 +3465,11 @@ class UpdateNodePoolRequest(proto.Message):
         proto.MESSAGE,
         number=33,
         message="ResourceLabels",
+    )
+    windows_node_config: "WindowsNodeConfig" = proto.Field(
+        proto.MESSAGE,
+        number=34,
+        message="WindowsNodeConfig",
     )
 
 
@@ -6429,6 +6489,7 @@ class DNSConfig(proto.Message):
         records.
         """
         DNS_SCOPE_UNSPECIFIED = 0
+        CLUSTER_SCOPE = 1
         VPC_SCOPE = 2
 
     cluster_dns: Provider = proto.Field(
@@ -7272,6 +7333,52 @@ class ManagedPrometheusConfig(proto.Message):
 
     enabled: bool = proto.Field(
         proto.BOOL,
+        number=1,
+    )
+
+
+class LocalNvmeSsdBlockConfig(proto.Message):
+    r"""LocalNvmeSsdBlockConfig contains configuration for using
+    raw-block local NVMe SSD.
+
+    Attributes:
+        local_ssd_count (int):
+            The number of raw-block local NVMe SSD disks
+            to be attached to the node. Each local SSD is
+            375 GB in size. If zero, it means no raw-block
+            local NVMe SSD disks to be attached to the node.
+            The limit for this value is dependent upon the
+            maximum number of disks available on a machine
+            per zone. See:
+            https://cloud.google.com/compute/docs/disks/local-ssd
+            for more information.
+    """
+
+    local_ssd_count: int = proto.Field(
+        proto.INT32,
+        number=1,
+    )
+
+
+class EphemeralStorageLocalSsdConfig(proto.Message):
+    r"""EphemeralStorageLocalSsdConfig contains configuration for the
+    node ephemeral storage using Local SSD.
+
+    Attributes:
+        local_ssd_count (int):
+            Number of local SSDs to use to back ephemeral
+            storage. Uses NVMe interfaces. Each local SSD is
+            375 GB in size. If zero, it means to disable
+            using local SSDs as ephemeral storage. The limit
+            for this value is dependent upon the maximum
+            number of disks available on a machine per zone.
+            See:
+            https://cloud.google.com/compute/docs/disks/local-ssd
+            for more information.
+    """
+
+    local_ssd_count: int = proto.Field(
+        proto.INT32,
         number=1,
     )
 
