@@ -366,6 +366,9 @@ class NodeConfig(proto.Message):
     [AutoprovisioningNodePoolDefaults][google.container.v1beta1.AutoprovisioningNodePoolDefaults]
     instead.
 
+
+    .. _oneof: https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields
+
     Attributes:
         machine_type (str):
             The name of a Google Compute Engine `machine
@@ -733,6 +736,8 @@ class NodeConfig(proto.Message):
 class AdvancedMachineFeatures(proto.Message):
     r"""Specifies options for controlling advanced machine features.
 
+    .. _oneof: https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields
+
     Attributes:
         threads_per_core (int):
             The number of threads per physical core. To
@@ -753,6 +758,8 @@ class AdvancedMachineFeatures(proto.Message):
 
 class NodeNetworkConfig(proto.Message):
     r"""Parameters for node pool-level network config.
+
+    .. _oneof: https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields
 
     Attributes:
         create_pod_range (bool):
@@ -815,6 +822,8 @@ class NodeNetworkConfig(proto.Message):
 
     class NetworkPerformanceConfig(proto.Message):
         r"""Configuration of all network bandwidth tiers
+
+        .. _oneof: https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields
 
         Attributes:
             total_egress_bandwidth_tier (google.cloud.container_v1beta1.types.NodeNetworkConfig.NetworkPerformanceConfig.Tier):
@@ -1678,6 +1687,9 @@ class MasterAuthorizedNetworksConfig(proto.Message):
     except traffic from the given CIDR blocks, Google Compute Engine
     Public IPs and Google Prod IPs.
 
+
+    .. _oneof: https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields
+
     Attributes:
         enabled (bool):
             Whether or not master authorized networks is
@@ -2110,6 +2122,8 @@ class ClusterTelemetry(proto.Message):
 
 class Cluster(proto.Message):
     r"""A Google Kubernetes Engine cluster.
+
+    .. _oneof: https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields
 
     Attributes:
         name (str):
@@ -2784,6 +2798,9 @@ class WorkloadConfig(proto.Message):
     r"""WorkloadConfig defines the flags to enable or disable the
     workload configurations for the cluster.
 
+
+    .. _oneof: https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields
+
     Attributes:
         audit_mode (google.cloud.container_v1beta1.types.WorkloadConfig.Mode):
             Sets which mode of auditing should be used
@@ -2811,6 +2828,9 @@ class WorkloadConfig(proto.Message):
 class ProtectConfig(proto.Message):
     r"""ProtectConfig defines the flags needed to enable/disable
     features for the Protect API.
+
+
+    .. _oneof: https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields
 
     Attributes:
         workload_config (google.cloud.container_v1beta1.types.WorkloadConfig):
@@ -2912,6 +2932,9 @@ class ClusterUpdate(proto.Message):
     r"""ClusterUpdate describes an update to the cluster. Exactly one
     update can be applied to a cluster with each request, so at most
     one field can be provided.
+
+
+    .. _oneof: https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields
 
     Attributes:
         desired_node_version (str):
@@ -5188,6 +5211,9 @@ class NodePool(proto.Message):
         2. node_pool_soak_duration is the soak time after all blue nodes are
            drained. After this period, the blue pool nodes will be deleted.
 
+
+        .. _oneof: https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields
+
         Attributes:
             max_surge (int):
                 The maximum number of nodes that can be
@@ -6381,6 +6407,8 @@ class CompleteIPRotationRequest(proto.Message):
 class AcceleratorConfig(proto.Message):
     r"""AcceleratorConfig represents a Hardware Accelerator request.
 
+    .. _oneof: https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields
+
     Attributes:
         accelerator_count (int):
             The number of the accelerator cards exposed
@@ -6429,6 +6457,9 @@ class AcceleratorConfig(proto.Message):
 class GPUSharingConfig(proto.Message):
     r"""GPUSharingConfig represents the GPU sharing configuration for
     Hardware Accelerators.
+
+
+    .. _oneof: https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields
 
     Attributes:
         max_shared_clients_per_gpu (int):
