@@ -2453,6 +2453,11 @@ class Cluster(proto.Message):
             cluster.
 
             This field is a member of `oneof`_ ``_protect_config``.
+        etag (str):
+            This checksum is computed by the server based
+            on the value of cluster fields, and may be sent
+            on update requests to ensure the client has an
+            up-to-date value before proceeding.
     """
 
     class Status(proto.Enum):
@@ -2792,6 +2797,10 @@ class Cluster(proto.Message):
         optional=True,
         message="ProtectConfig",
     )
+    etag: str = proto.Field(
+        proto.STRING,
+        number=139,
+    )
 
 
 class WorkloadConfig(proto.Message):
@@ -3119,6 +3128,11 @@ class ClusterUpdate(proto.Message):
         desired_gateway_api_config (google.cloud.container_v1beta1.types.GatewayAPIConfig):
             The desired config of Gateway API on this
             cluster.
+        etag (str):
+            The current etag of the cluster.
+            If an etag is provided and does not match the
+            current etag of the cluster, update will be
+            blocked and an ABORTED error will be returned.
         desired_node_pool_logging_config (google.cloud.container_v1beta1.types.NodePoolLoggingConfig):
             The desired node pool logging configuration
             defaults for the cluster.
@@ -3345,6 +3359,10 @@ class ClusterUpdate(proto.Message):
         proto.MESSAGE,
         number=114,
         message="GatewayAPIConfig",
+    )
+    etag: str = proto.Field(
+        proto.STRING,
+        number=115,
     )
     desired_node_pool_logging_config: "NodePoolLoggingConfig" = proto.Field(
         proto.MESSAGE,
@@ -3822,6 +3840,11 @@ class UpdateNodePoolRequest(proto.Message):
             Confidential VM once enabled.
         gvnic (google.cloud.container_v1beta1.types.VirtualNIC):
             Enable or disable gvnic on the node pool.
+        etag (str):
+            The current etag of the node pool.
+            If an etag is provided and does not match the
+            current etag of the node pool, update will be
+            blocked and an ABORTED error will be returned.
         fast_socket (google.cloud.container_v1beta1.types.FastSocket):
             Enable or disable NCCL fast socket for the
             node pool.
@@ -3922,6 +3945,10 @@ class UpdateNodePoolRequest(proto.Message):
         proto.MESSAGE,
         number=29,
         message="VirtualNIC",
+    )
+    etag: str = proto.Field(
+        proto.STRING,
+        number=30,
     )
     fast_socket: "FastSocket" = proto.Field(
         proto.MESSAGE,
@@ -5170,6 +5197,11 @@ class NodePool(proto.Message):
         update_info (google.cloud.container_v1beta1.types.NodePool.UpdateInfo):
             Output only. [Output only] Update info contains relevant
             information during a node pool update.
+        etag (str):
+            This checksum is computed by the server based
+            on the value of node pool fields, and may be
+            sent on update requests to ensure the client has
+            an up-to-date value before proceeding.
     """
 
     class Status(proto.Enum):
@@ -5430,6 +5462,10 @@ class NodePool(proto.Message):
         proto.MESSAGE,
         number=109,
         message=UpdateInfo,
+    )
+    etag: str = proto.Field(
+        proto.STRING,
+        number=110,
     )
 
 
