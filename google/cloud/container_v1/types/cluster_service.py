@@ -2992,6 +2992,9 @@ class ClusterUpdate(proto.Message):
         desired_node_pool_logging_config (google.cloud.container_v1.types.NodePoolLoggingConfig):
             The desired node pool logging configuration
             defaults for the cluster.
+        desired_fleet (google.cloud.container_v1.types.Fleet):
+            The desired fleet configuration for the
+            cluster.
         desired_stack_type (google.cloud.container_v1.types.StackType):
             The desired stack type of the cluster.
             If a stack type is provided and does not match
@@ -3197,6 +3200,11 @@ class ClusterUpdate(proto.Message):
         proto.MESSAGE,
         number=116,
         message="NodePoolLoggingConfig",
+    )
+    desired_fleet: "Fleet" = proto.Field(
+        proto.MESSAGE,
+        number=117,
+        message="Fleet",
     )
     desired_stack_type: "StackType" = proto.Field(
         proto.ENUM,
