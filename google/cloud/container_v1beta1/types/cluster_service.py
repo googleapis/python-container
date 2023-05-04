@@ -64,6 +64,7 @@ __protobuf__ = proto.module(
         "ConfigConnectorConfig",
         "GcePersistentDiskCsiDriverConfig",
         "GcpFilestoreCsiDriverConfig",
+        "GcsFuseCsiDriverConfig",
         "PrivateClusterMasterGlobalAccessConfig",
         "PrivateClusterConfig",
         "IstioConfig",
@@ -1453,6 +1454,9 @@ class AddonsConfig(proto.Message):
         gke_backup_agent_config (google.cloud.container_v1beta1.types.GkeBackupAgentConfig):
             Configuration for the Backup for GKE agent
             addon.
+        gcs_fuse_csi_driver_config (google.cloud.container_v1beta1.types.GcsFuseCsiDriverConfig):
+            Configuration for the Cloud Storage Fuse CSI
+            driver.
     """
 
     http_load_balancing: "HttpLoadBalancing" = proto.Field(
@@ -1516,6 +1520,11 @@ class AddonsConfig(proto.Message):
         proto.MESSAGE,
         number=16,
         message="GkeBackupAgentConfig",
+    )
+    gcs_fuse_csi_driver_config: "GcsFuseCsiDriverConfig" = proto.Field(
+        proto.MESSAGE,
+        number=17,
+        message="GcsFuseCsiDriverConfig",
     )
 
 
@@ -1670,6 +1679,21 @@ class GcpFilestoreCsiDriverConfig(proto.Message):
     Attributes:
         enabled (bool):
             Whether the GCP Filestore CSI driver is
+            enabled for this cluster.
+    """
+
+    enabled: bool = proto.Field(
+        proto.BOOL,
+        number=1,
+    )
+
+
+class GcsFuseCsiDriverConfig(proto.Message):
+    r"""Configuration for the Cloud Storage Fuse CSI driver.
+
+    Attributes:
+        enabled (bool):
+            Whether the Cloud Storage Fuse CSI driver is
             enabled for this cluster.
     """
 
@@ -3456,6 +3480,9 @@ class ClusterUpdate(proto.Message):
         desired_node_pool_logging_config (google.cloud.container_v1beta1.types.NodePoolLoggingConfig):
             The desired node pool logging configuration
             defaults for the cluster.
+        desired_fleet (google.cloud.container_v1beta1.types.Fleet):
+            The desired fleet configuration for the
+            cluster.
         desired_stack_type (google.cloud.container_v1beta1.types.StackType):
             The desired stack type of the cluster.
             If a stack type is provided and does not match
@@ -3697,6 +3724,11 @@ class ClusterUpdate(proto.Message):
         proto.MESSAGE,
         number=116,
         message="NodePoolLoggingConfig",
+    )
+    desired_fleet: "Fleet" = proto.Field(
+        proto.MESSAGE,
+        number=117,
+        message="Fleet",
     )
     desired_stack_type: "StackType" = proto.Field(
         proto.ENUM,
