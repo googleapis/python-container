@@ -2287,7 +2287,15 @@ class Cluster(proto.Message):
         shielded_nodes (google.cloud.container_v1.types.ShieldedNodes):
             Shielded Nodes configuration.
         release_channel (google.cloud.container_v1.types.ReleaseChannel):
-            Release channel configuration.
+            Release channel configuration. If left
+            unspecified on cluster creation and a version is
+            specified, the cluster is enrolled in the most
+            mature release channel where the version is
+            available (first checking STABLE, then REGULAR,
+            and finally RAPID). Otherwise, if no release
+            channel configuration and no version is
+            specified, the cluster is enrolled in the
+            REGULAR channel with its default version.
         workload_identity_config (google.cloud.container_v1.types.WorkloadIdentityConfig):
             Configuration for the use of Kubernetes
             Service Accounts in GCP IAM policies.
@@ -3277,10 +3285,8 @@ class Operation(proto.Message):
             -
 
             ``https://container.googleapis.com/v1/projects/123/locations/us-central1/clusters/my-cluster``
-            ----------------------------------------------------------------------------------------------
 
             ``https://container.googleapis.com/v1/projects/123/zones/us-central1-c/clusters/my-cluster/nodePools/my-np``
-            ------------------------------------------------------------------------------------------------------------
 
             ``https://container.googleapis.com/v1/projects/123/zones/us-central1-c/clusters/my-cluster/nodePools/my-np/node/my-node``
         location (str):
