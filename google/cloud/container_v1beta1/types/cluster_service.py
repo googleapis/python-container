@@ -46,6 +46,7 @@ __protobuf__ = proto.module(
         "EphemeralStorageLocalSsdConfig",
         "GcfsConfig",
         "ReservationAffinity",
+        "SoleTenantConfig",
         "NodeTaint",
         "NodeTaints",
         "NodeLabels",
@@ -658,6 +659,9 @@ class NodeConfig(proto.Message):
             If unspecified, ephemeral storage is backed by the boot
             disk. This field is functionally equivalent to the
             ephemeral_storage_config
+        sole_tenant_config (google.cloud.container_v1beta1.types.SoleTenantConfig):
+            Parameters for node pools to be backed by
+            shared sole tenant node groups.
     """
 
     machine_type: str = proto.Field(
@@ -817,6 +821,11 @@ class NodeConfig(proto.Message):
         proto.MESSAGE,
         number=41,
         message="EphemeralStorageLocalSsdConfig",
+    )
+    sole_tenant_config: "SoleTenantConfig" = proto.Field(
+        proto.MESSAGE,
+        number=42,
+        message="SoleTenantConfig",
     )
 
 
@@ -1195,6 +1204,67 @@ class ReservationAffinity(proto.Message):
     values: MutableSequence[str] = proto.RepeatedField(
         proto.STRING,
         number=3,
+    )
+
+
+class SoleTenantConfig(proto.Message):
+    r"""SoleTenantConfig contains the NodeAffinities to specify what
+    shared sole tenant node groups should back the node pool.
+
+    Attributes:
+        node_affinities (MutableSequence[google.cloud.container_v1beta1.types.SoleTenantConfig.NodeAffinity]):
+            NodeAffinities used to match to a shared sole
+            tenant node group.
+    """
+
+    class NodeAffinity(proto.Message):
+        r"""Specifies the NodeAffinity key, values, and affinity operator
+        according to `shared sole tenant node group
+        affinities <https://cloud.google.com/compute/docs/nodes/sole-tenant-nodes#node_affinity_and_anti-affinity>`__.
+
+        Attributes:
+            key (str):
+                Key for NodeAffinity.
+            operator (google.cloud.container_v1beta1.types.SoleTenantConfig.NodeAffinity.Operator):
+                Operator for NodeAffinity.
+            values (MutableSequence[str]):
+                Values for NodeAffinity.
+        """
+
+        class Operator(proto.Enum):
+            r"""Operator allows user to specify affinity or anti-affinity for
+            the given key values.
+
+            Values:
+                OPERATOR_UNSPECIFIED (0):
+                    Invalid or unspecified affinity operator.
+                IN (1):
+                    Affinity operator.
+                NOT_IN (2):
+                    Anti-affinity operator.
+            """
+            OPERATOR_UNSPECIFIED = 0
+            IN = 1
+            NOT_IN = 2
+
+        key: str = proto.Field(
+            proto.STRING,
+            number=1,
+        )
+        operator: "SoleTenantConfig.NodeAffinity.Operator" = proto.Field(
+            proto.ENUM,
+            number=2,
+            enum="SoleTenantConfig.NodeAffinity.Operator",
+        )
+        values: MutableSequence[str] = proto.RepeatedField(
+            proto.STRING,
+            number=3,
+        )
+
+    node_affinities: MutableSequence[NodeAffinity] = proto.RepeatedField(
+        proto.MESSAGE,
+        number=1,
+        message=NodeAffinity,
     )
 
 
