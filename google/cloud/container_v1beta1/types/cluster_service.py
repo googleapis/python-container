@@ -89,6 +89,7 @@ __protobuf__ = proto.module(
         "NodePoolAutoConfig",
         "ClusterUpdate",
         "AdditionalPodRangesConfig",
+        "RangeInfo",
         "Operation",
         "OperationProgress",
         "CreateClusterRequest",
@@ -391,6 +392,8 @@ class WindowsNodeConfig(proto.Message):
 class NodeKubeletConfig(proto.Message):
     r"""Node kubelet configs.
 
+    .. _oneof: https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields
+
     Attributes:
         cpu_manager_policy (str):
             Control the CPU management policy on the node. See
@@ -431,6 +434,10 @@ class NodeKubeletConfig(proto.Message):
             Controls the maximum number of processes allowed
             to run in a pod. The value must be greater than
             or equal to 1024 and less than 4194304.
+        insecure_kubelet_readonly_port_enabled (bool):
+            Enable or disable Kubelet read only port.
+
+            This field is a member of `oneof`_ ``_insecure_kubelet_readonly_port_enabled``.
     """
 
     cpu_manager_policy: str = proto.Field(
@@ -449,6 +456,11 @@ class NodeKubeletConfig(proto.Message):
     pod_pids_limit: int = proto.Field(
         proto.INT64,
         number=4,
+    )
+    insecure_kubelet_readonly_port_enabled: bool = proto.Field(
+        proto.BOOL,
+        number=7,
+        optional=True,
     )
 
 
@@ -936,6 +948,10 @@ class NodeNetworkConfig(proto.Message):
             off to next power of 2) Example: max_pods_per_node of 30
             will result in 32 IPs (/27) when overprovisioning is
             disabled.
+        pod_ipv4_range_utilization (float):
+            Output only. [Output only] The utilization of the IPv4 range
+            for pod. The ratio is Usage/[Total number of IPs in the
+            secondary range], Usage=numNodes\ *numZones*\ podIPsPerNode.
     """
 
     class NetworkPerformanceConfig(proto.Message):
@@ -1010,6 +1026,10 @@ class NodeNetworkConfig(proto.Message):
         proto.MESSAGE,
         number=13,
         message="PodCIDROverprovisionConfig",
+    )
+    pod_ipv4_range_utilization: float = proto.Field(
+        proto.DOUBLE,
+        number=16,
     )
 
 
@@ -2239,6 +2259,11 @@ class IPAllocationPolicy(proto.Message):
             are added to the cluster. These pod ranges can be used by
             new node pools to allocate pod IPs automatically. Once the
             range is removed it will not show up in IPAllocationPolicy.
+        default_pod_ipv4_range_utilization (float):
+            Output only. [Output only] The utilization of the cluster
+            default IPv4 range for pod. The ratio is Usage/[Total number
+            of IPs in the secondary range],
+            Usage=numNodes\ *numZones*\ podIPsPerNode.
     """
 
     class StackType(proto.Enum):
@@ -2358,6 +2383,10 @@ class IPAllocationPolicy(proto.Message):
         proto.MESSAGE,
         number=24,
         message="AdditionalPodRangesConfig",
+    )
+    default_pod_ipv4_range_utilization: float = proto.Field(
+        proto.DOUBLE,
+        number=25,
     )
 
 
@@ -3990,11 +4019,40 @@ class AdditionalPodRangesConfig(proto.Message):
         pod_range_names (MutableSequence[str]):
             Name for pod secondary ipv4 range which has
             the actual range defined ahead.
+        pod_range_info (MutableSequence[google.cloud.container_v1beta1.types.RangeInfo]):
+            Output only. [Output only] Information for additional pod
+            range.
     """
 
     pod_range_names: MutableSequence[str] = proto.RepeatedField(
         proto.STRING,
         number=1,
+    )
+    pod_range_info: MutableSequence["RangeInfo"] = proto.RepeatedField(
+        proto.MESSAGE,
+        number=2,
+        message="RangeInfo",
+    )
+
+
+class RangeInfo(proto.Message):
+    r"""RangeInfo contains the range name and the range utilization
+    by this cluster.
+
+    Attributes:
+        range_name (str):
+            Output only. [Output only] Name of a range.
+        utilization (float):
+            Output only. [Output only] The utilization of the range.
+    """
+
+    range_name: str = proto.Field(
+        proto.STRING,
+        number=1,
+    )
+    utilization: float = proto.Field(
+        proto.DOUBLE,
+        number=2,
     )
 
 
@@ -6228,6 +6286,9 @@ class NodePool(proto.Message):
         Attributes:
             type_ (google.cloud.container_v1beta1.types.NodePool.PlacementPolicy.Type):
                 The type of placement.
+            tpu_topology (str):
+                TPU placement topology for pod slice node pool.
+                https://cloud.google.com/tpu/docs/types-topologies#tpu_topologies
         """
 
         class Type(proto.Enum):
@@ -6249,6 +6310,10 @@ class NodePool(proto.Message):
             proto.ENUM,
             number=1,
             enum="NodePool.PlacementPolicy.Type",
+        )
+        tpu_topology: str = proto.Field(
+            proto.STRING,
+            number=2,
         )
 
     name: str = proto.Field(
@@ -6915,6 +6980,9 @@ class AutoprovisioningNodePoolDefaults(proto.Message):
     r"""AutoprovisioningNodePoolDefaults contains defaults for a node
     pool created by NAP.
 
+
+    .. _oneof: https://proto-plus-python.readthedocs.io/en/stable/fields.html#oneofs-mutually-exclusive-fields
+
     Attributes:
         oauth_scopes (MutableSequence[str]):
             The set of Google API scopes to be made available on all of
@@ -6984,6 +7052,10 @@ class AutoprovisioningNodePoolDefaults(proto.Message):
             Please see
             https://cloud.google.com/kubernetes-engine/docs/concepts/node-images
             for available image types.
+        insecure_kubelet_readonly_port_enabled (bool):
+            Enable or disable Kubelet read only port.
+
+            This field is a member of `oneof`_ ``_insecure_kubelet_readonly_port_enabled``.
     """
 
     oauth_scopes: MutableSequence[str] = proto.RepeatedField(
@@ -7028,6 +7100,11 @@ class AutoprovisioningNodePoolDefaults(proto.Message):
     image_type: str = proto.Field(
         proto.STRING,
         number=10,
+    )
+    insecure_kubelet_readonly_port_enabled: bool = proto.Field(
+        proto.BOOL,
+        number=13,
+        optional=True,
     )
 
 
