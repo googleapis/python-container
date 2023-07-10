@@ -2417,12 +2417,14 @@ class Cluster(proto.Message):
             offered by Kubernetes Engine or version aliases,
             which have the following behavior:
             - "latest": picks the highest valid Kubernetes
-            version - "1.X": picks the highest valid
-            patch+gke.N patch in the 1.X version - "1.X.Y":
-            picks the highest valid gke.N patch in the 1.X.Y
-            version - "1.X.Y-gke.N": picks an explicit
-            Kubernetes version - "","-": picks the default
-            Kubernetes version
+              version
+            - "1.X": picks the highest valid patch+gke.N
+              patch in the 1.X version
+            - "1.X.Y": picks the highest valid gke.N patch
+              in the 1.X.Y version
+            - "1.X.Y-gke.N": picks an explicit Kubernetes
+              version
+            - "","-": picks the default Kubernetes version
         current_master_version (str):
             [Output only] The current software version of the master
             endpoint.
@@ -3018,12 +3020,14 @@ class ClusterUpdate(proto.Message):
             offered by Kubernetes Engine or version aliases,
             which have the following behavior:
             - "latest": picks the highest valid Kubernetes
-            version - "1.X": picks the highest valid
-            patch+gke.N patch in the 1.X version - "1.X.Y":
-            picks the highest valid gke.N patch in the 1.X.Y
-            version - "1.X.Y-gke.N": picks an explicit
-            Kubernetes version - "-": picks the Kubernetes
-            master version
+              version
+            - "1.X": picks the highest valid patch+gke.N
+              patch in the 1.X version
+            - "1.X.Y": picks the highest valid gke.N patch
+              in the 1.X.Y version
+            - "1.X.Y-gke.N": picks an explicit Kubernetes
+              version
+            - "-": picks the Kubernetes master version
         desired_monitoring_service (str):
             The monitoring service the cluster should use to write
             metrics. Currently available options:
@@ -3153,12 +3157,14 @@ class ClusterUpdate(proto.Message):
             offered by Kubernetes Engine or version aliases,
             which have the following behavior:
             - "latest": picks the highest valid Kubernetes
-            version - "1.X": picks the highest valid
-            patch+gke.N patch in the 1.X version - "1.X.Y":
-            picks the highest valid gke.N patch in the 1.X.Y
-            version - "1.X.Y-gke.N": picks an explicit
-            Kubernetes version - "-": picks the default
-            Kubernetes version
+              version
+            - "1.X": picks the highest valid patch+gke.N
+              patch in the 1.X version
+            - "1.X.Y": picks the highest valid gke.N patch
+              in the 1.X.Y version
+            - "1.X.Y-gke.N": picks an explicit Kubernetes
+              version
+            - "-": picks the default Kubernetes version
         desired_gcfs_config (google.cloud.container_v1.types.GcfsConfig):
             The desired GCFS config for the cluster
         desired_node_pool_auto_config_network_tags (google.cloud.container_v1.types.NetworkTags):
@@ -4024,12 +4030,14 @@ class UpdateNodePoolRequest(proto.Message):
             offered by Kubernetes Engine or version aliases,
             which have the following behavior:
             - "latest": picks the highest valid Kubernetes
-            version - "1.X": picks the highest valid
-            patch+gke.N patch in the 1.X version - "1.X.Y":
-            picks the highest valid gke.N patch in the 1.X.Y
-            version - "1.X.Y-gke.N": picks an explicit
-            Kubernetes version - "-": picks the Kubernetes
-            master version
+              version
+            - "1.X": picks the highest valid patch+gke.N
+              patch in the 1.X version
+            - "1.X.Y": picks the highest valid gke.N patch
+              in the 1.X.Y version
+            - "1.X.Y-gke.N": picks an explicit Kubernetes
+              version
+            - "-": picks the Kubernetes master version
         image_type (str):
             Required. The desired image type for the node
             pool. Please see
@@ -4533,12 +4541,14 @@ class UpdateMasterRequest(proto.Message):
             offered by Kubernetes Engine or version aliases,
             which have the following behavior:
             - "latest": picks the highest valid Kubernetes
-            version - "1.X": picks the highest valid
-            patch+gke.N patch in the 1.X version - "1.X.Y":
-            picks the highest valid gke.N patch in the 1.X.Y
-            version - "1.X.Y-gke.N": picks an explicit
-            Kubernetes version - "-": picks the default
-            Kubernetes version
+              version
+            - "1.X": picks the highest valid patch+gke.N
+              patch in the 1.X version
+            - "1.X.Y": picks the highest valid gke.N patch
+              in the 1.X.Y version
+            - "1.X.Y-gke.N": picks an explicit Kubernetes
+              version
+            - "-": picks the default Kubernetes version
         name (str):
             The name (project, location, cluster) of the cluster to
             update. Specified in the format
