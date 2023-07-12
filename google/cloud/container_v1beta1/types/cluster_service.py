@@ -197,6 +197,7 @@ __protobuf__ = proto.module(
         "LoggingConfig",
         "LoggingComponentConfig",
         "MonitoringConfig",
+        "AdvancedDatapathObservabilityConfig",
         "NodePoolLoggingConfig",
         "LoggingVariantConfig",
         "MonitoringComponentConfig",
@@ -950,7 +951,7 @@ class NodeNetworkConfig(proto.Message):
             disabled.
         pod_ipv4_range_utilization (float):
             Output only. [Output only] The utilization of the IPv4 range
-            for pod. The ratio is Usage/[Total number of IPs in the
+            for the pod. The ratio is Usage/[Total number of IPs in the
             secondary range], Usage=numNodes\ *numZones*\ podIPsPerNode.
     """
 
@@ -2261,8 +2262,8 @@ class IPAllocationPolicy(proto.Message):
             range is removed it will not show up in IPAllocationPolicy.
         default_pod_ipv4_range_utilization (float):
             Output only. [Output only] The utilization of the cluster
-            default IPv4 range for pod. The ratio is Usage/[Total number
-            of IPs in the secondary range],
+            default IPv4 range for the pod. The ratio is Usage/[Total
+            number of IPs in the secondary range],
             Usage=numNodes\ *numZones*\ podIPsPerNode.
     """
 
@@ -8421,7 +8422,7 @@ class DNSConfig(proto.Message):
             CLOUD_DNS (2):
                 Use CloudDNS for DNS resolution.
             KUBE_DNS (3):
-                Use KubeDNS for DNS resolution
+                Use KubeDNS for DNS resolution.
         """
         PROVIDER_UNSPECIFIED = 0
         PLATFORM_DEFAULT = 1
@@ -9512,6 +9513,9 @@ class MonitoringConfig(proto.Message):
         managed_prometheus_config (google.cloud.container_v1beta1.types.ManagedPrometheusConfig):
             Enable Google Cloud Managed Service for
             Prometheus in the cluster.
+        advanced_datapath_observability_config (google.cloud.container_v1beta1.types.AdvancedDatapathObservabilityConfig):
+            Configuration of Advanced Datapath
+            Observability features.
     """
 
     component_config: "MonitoringComponentConfig" = proto.Field(
@@ -9523,6 +9527,53 @@ class MonitoringConfig(proto.Message):
         proto.MESSAGE,
         number=2,
         message="ManagedPrometheusConfig",
+    )
+    advanced_datapath_observability_config: "AdvancedDatapathObservabilityConfig" = (
+        proto.Field(
+            proto.MESSAGE,
+            number=3,
+            message="AdvancedDatapathObservabilityConfig",
+        )
+    )
+
+
+class AdvancedDatapathObservabilityConfig(proto.Message):
+    r"""AdvancedDatapathObservabilityConfig specifies configuration
+    of observability features of advanced datapath.
+
+    Attributes:
+        enable_metrics (bool):
+            Expose flow metrics on nodes
+        relay_mode (google.cloud.container_v1beta1.types.AdvancedDatapathObservabilityConfig.RelayMode):
+            Method used to make Relay available
+    """
+
+    class RelayMode(proto.Enum):
+        r"""Supported Relay modes
+
+        Values:
+            RELAY_MODE_UNSPECIFIED (0):
+                Default value. This shouldn't be used.
+            DISABLED (1):
+                disabled
+            INTERNAL_VPC_LB (3):
+                exposed via internal load balancer
+            EXTERNAL_LB (4):
+                exposed via external load balancer
+        """
+        RELAY_MODE_UNSPECIFIED = 0
+        DISABLED = 1
+        INTERNAL_VPC_LB = 3
+        EXTERNAL_LB = 4
+
+    enable_metrics: bool = proto.Field(
+        proto.BOOL,
+        number=1,
+    )
+    relay_mode: RelayMode = proto.Field(
+        proto.ENUM,
+        number=2,
+        enum=RelayMode,
     )
 
 
