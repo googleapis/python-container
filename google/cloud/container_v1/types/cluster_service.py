@@ -567,6 +567,7 @@ class NodeConfig(proto.Message):
             undefined and conflicts should be avoided.
             For more information, including usage and the
             valid values, see:
+
             https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
         local_ssd_count (int):
             The number of local SSD disks to be attached
@@ -574,6 +575,7 @@ class NodeConfig(proto.Message):
             The limit for this value is dependent upon the
             maximum number of disks available on a machine
             per zone. See:
+
             https://cloud.google.com/compute/docs/disks/local-ssd
             for more information.
         tags (MutableSequence[str]):
@@ -586,6 +588,7 @@ class NodeConfig(proto.Message):
         preemptible (bool):
             Whether the nodes are created as preemptible
             VM instances. See:
+
             https://cloud.google.com/compute/docs/instances/preemptible
             for more information about preemptible VM
             instances.
@@ -616,6 +619,7 @@ class NodeConfig(proto.Message):
             each node.
             For more information, including usage and the
             valid values, see:
+
             https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
         sandbox_config (google.cloud.container_v1.types.SandboxConfig):
             Sandbox configuration for this node.
@@ -1338,6 +1342,7 @@ class MasterAuth(proto.Message):
             will be removed in GKE control plane versions
             1.19 and newer. For a list of recommended
             authentication methods, see:
+
             https://cloud.google.com/kubernetes-engine/docs/how-to/api-server-authentication
         password (str):
             The password to use for HTTP basic
@@ -1351,6 +1356,7 @@ class MasterAuth(proto.Message):
             will be removed in GKE control plane versions
             1.19 and newer. For a list of recommended
             authentication methods, see:
+
             https://cloud.google.com/kubernetes-engine/docs/how-to/api-server-authentication
         client_certificate_config (google.cloud.container_v1.types.ClientCertificateConfig):
             Configuration for client certificate
@@ -1432,6 +1438,7 @@ class AddonsConfig(proto.Message):
             Console to manage and monitor your Kubernetes
             clusters, workloads and applications. For more
             information, see:
+
             https://cloud.google.com/kubernetes-engine/docs/concepts/dashboards
         network_policy_config (google.cloud.container_v1.types.NetworkPolicyConfig):
             Configuration for NetworkPolicy. This only
@@ -2470,6 +2477,7 @@ class Cluster(proto.Message):
             Users may specify either explicit versions
             offered by Kubernetes Engine or version aliases,
             which have the following behavior:
+
             - "latest": picks the highest valid Kubernetes
               version
             - "1.X": picks the highest valid patch+gke.N
@@ -3073,6 +3081,7 @@ class ClusterUpdate(proto.Message):
             Users may specify either explicit versions
             offered by Kubernetes Engine or version aliases,
             which have the following behavior:
+
             - "latest": picks the highest valid Kubernetes
               version
             - "1.X": picks the highest valid patch+gke.N
@@ -3210,6 +3219,7 @@ class ClusterUpdate(proto.Message):
             Users may specify either explicit versions
             offered by Kubernetes Engine or version aliases,
             which have the following behavior:
+
             - "latest": picks the highest valid Kubernetes
               version
             - "1.X": picks the highest valid patch+gke.N
@@ -4112,6 +4122,7 @@ class UpdateNodePoolRequest(proto.Message):
             Users may specify either explicit versions
             offered by Kubernetes Engine or version aliases,
             which have the following behavior:
+
             - "latest": picks the highest valid Kubernetes
               version
             - "1.X": picks the highest valid patch+gke.N
@@ -4623,6 +4634,7 @@ class UpdateMasterRequest(proto.Message):
             Users may specify either explicit versions
             offered by Kubernetes Engine or version aliases,
             which have the following behavior:
+
             - "latest": picks the highest valid Kubernetes
               version
             - "1.X": picks the highest valid patch+gke.N
@@ -8867,6 +8879,7 @@ class LocalNvmeSsdBlockConfig(proto.Message):
             The limit for this value is dependent upon the
             maximum number of disks available on a machine
             per zone. See:
+
             https://cloud.google.com/compute/docs/disks/local-ssd
             for more information.
     """
@@ -8890,6 +8903,7 @@ class EphemeralStorageLocalSsdConfig(proto.Message):
             for this value is dependent upon the maximum
             number of disks available on a machine per zone.
             See:
+
             https://cloud.google.com/compute/docs/disks/local-ssd
             for more information.
     """

@@ -1860,6 +1860,7 @@ class ClusterManagerClient(metaclass=ClusterManagerClientMeta):
                 versions offered by Kubernetes Engine or
                 version aliases, which have the
                 following behavior:
+
                 - "latest": picks the highest valid
                   Kubernetes version
                 - "1.X": picks the highest valid
