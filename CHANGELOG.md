@@ -4,6 +4,19 @@
 
 [1]: https://pypi.org/project/google-cloud-container/#history
 
+## [2.32.0](https://github.com/googleapis/python-container/compare/v2.31.0...v2.32.0) (2023-09-18)
+
+
+### Features
+
+* Add SecurityPostureConfig Enterprise vuln mode to allow customers to enable Advanced Vulnerability Scanning for their clusters ([d9750ff](https://github.com/googleapis/python-container/commit/d9750ffecffacfd9051f6d3575c820e9f564261c))
+
+
+### Documentation
+
+* Deprecate ProtectConfig fields in alpha and beta, with SecurityPostureConfig as the intended replacement ([d9750ff](https://github.com/googleapis/python-container/commit/d9750ffecffacfd9051f6d3575c820e9f564261c))
+* Minor formatting ([#411](https://github.com/googleapis/python-container/issues/411)) ([96ddca6](https://github.com/googleapis/python-container/commit/96ddca67bf0e23c9c8fb838ebdfb000bee7d1b02))
+
 ## [2.31.0](https://github.com/googleapis/python-container/compare/v2.30.0...v2.31.0) (2023-08-28)
 
 
